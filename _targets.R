@@ -30,6 +30,12 @@ list(
             "workspace/data/harvested/biodiversite_piei-1.0.0/processed/occurrences_piei.csv"
             )
         }, format = "file")),
+    list(tarchetypes::tar_download(tg_dfbfc2d7_697f_4801_b859_91bf4c1575df_Event_Data, 
+    url = "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_e234a1a5-e21e-4c09-bc77-d92d72796ae7/kelp_event-data_2018-2019.csv", 
+    path = "workspace/data/harvested/inventaire_batture_alouettes-1.0.0/raw/kelp_event-data_2018-2019.csv"), 
+    tarchetypes::tar_download(tg_dfbfc2d7_697f_4801_b859_91bf4c1575df_Occurrence_Data, 
+        url = "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_e234a1a5-e21e-4c09-bc77-d92d72796ae7/kelp_occurrence-data_2018-2019.csv", 
+        path = "workspace/data/harvested/inventaire_batture_alouettes-1.0.0/raw/kelp_occurrence-data_2018-2019.csv")),
     list(tarchetypes::tar_download(tg_71e5ee2d_2433_455d_8434_9a9fa26afde6_Evenements_echantillonnage, 
     url = "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_4bb77d86-b94e-4f61-b91b-fdcfd6ecbaed/macroalgae-macroinvertebrates_event-data_2019.csv", 
     path = "workspace/data/harvested/inventaire_macroalgues_macroinvertebres-1.0.0/raw/macroalgae-macroinvertebrates_event-data_2019.csv"), 

@@ -243,5 +243,64 @@ Les données sont déjà disponibles dans un format standardisé; un effort mini
 | `occurrence_remarks`  | Remarques sur l’occurrence                           |
 
 
+## Caractérisation du banc de laminaires de la Batture-aux-Alouettes {#sec-inventaire_batture_alouettes}
+
+Les données proviennent d'une étude visant à caractériser le banc de laminaires de la Batture-aux-Alouettes, situé à Baie-Sainte-Catherine, Québec. Ce projet a évalué l'abondance et la biomasse des laminaires à l'aide de quadrats et de plongées sous-marines entre 2018 et 2019. Les résultats sont présentés sous forme de présence/absence des espèces, et les données de biomasse seront mises à jour suite à la publication d'un article scientifique. Cette initiative fait partie du Programme sur les données environnementales côtières de référence (PDECR) dans le cadre du Plan de protection des océans (PPO) [@belley2021].
+
+- **Source** : [Caractérisation du banc de laminaires de la Batture-aux-Alouettes](https://doi.org/10.26071/ogsl-e234a1a5-e21e)  
+- **Accessibilité** : Libre, Creative Commons Attribution 4.0 (CC-BY-4.0)  
+- **Type de données** : Fichiers CSV  
+- **Couverture géographique** : Batture-aux-Alouettes, Baie-Sainte-Catherine, Québec, Canada (latitude : 47.992783 à 48.122247, longitude : -69.767374 à -69.592266)  
+- **Script de traitement** : `prc_inventaire_batture_alouettes`  
+- **Fichiers de sortie** :  
+  - `kelp_events.csv`  
+  - `kelp_occurrences.csv`
+
+### Étapes de traitement des données
+
+Les données ont été téléchargées à partir du catalogue OGSL et importées en format CSV. Les noms des colonnes ont été standardisés à l'aide de `janitor::clean_names()` pour assurer la cohérence à travers le projet. Les données ont ensuite été exportées en tant que fichiers CSV pour une utilisation ultérieure.
+
+### Structure des données traitées
+
+#### Table des événements d’échantillonnage
+
+| Variable                           | Description                                                                  |
+|------------------------------------|------------------------------------------------------------------------------|
+| `event_id`                         | Identifiant unique de l’événement                                            |
+| `field_number`                     | Numéro de champ lié à l'événement                                            |
+| `mission_id`                       | Identifiant de la mission                                                    |
+| `boat_name`                        | Nom du bateau utilisé pour l'échantillonnage                                 |
+| `station_name`                     | Nom de la station d'échantillonnage                                          |
+| `sampling_protocol`                | Protocole d’échantillonnage (ex. plongée sous-marine avec quadrats)          |
+| `sampling_effort`                  | Description de l’effort d’échantillonnage                                    |
+| `sample_size_value`                | Taille de l’échantillon                                                     |
+| `sample_size_unit`                 | Unité de la taille de l’échantillon                                          |
+| `decimal_latitude`                 | Latitude décimale                                                           |
+| `decimal_longitude`                | Longitude décimale                                                          |
+| `depth_value`                      | Profondeur lors de l’échantillonnage                                        |
+| `depth_unit`                       | Unité de mesure de la profondeur (ex. mètre)                                 |
+| `substrate_type`                   | Type de substrat observé                                                    |
+| `field_notes`                      | Notes de terrain pour des observations additionnelles                        |
+
+
+#### Table des occurrences biologiques
+
+| Variable              | Description                                           |
+|-----------------------|-------------------------------------------------------|
+| `event_id`            | Identifiant de l’événement                            |
+| `occurrence_id`       | Identifiant unique de l’occurrence                    |
+| `scientific_name`     | Nom scientifique de l’organisme                       |
+| `scientific_name_id`  | Identifiant WoRMS du nom scientifique                 |
+| `taxon_id`            | Identifiant numérique du taxon                        |
+| `kingdom`             | Règne biologique                                      |
+| `phylum`              | Embranchement biologique                              |
+| `class`               | Classe biologique                                     |
+| `order`               | Ordre biologique                                      |
+| `family`              | Famille biologique                                    |
+| `genus`               | Genre biologique                                      |
+| `occurrence_status`   | Statut de l’occurrence (présence/absence)             |
+| `basis_of_record`     | Type de donnée (ex. observation humaine)              |
+| `life_stage`          | Stade de vie de l'organisme (ex. adulte, juvénile)    |
+
 
 ## Références

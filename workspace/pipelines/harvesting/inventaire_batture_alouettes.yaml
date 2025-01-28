@@ -1,0 +1,75 @@
+pipeline:
+  id: dfbfc2d7-697f-4801-b859-91bf4c1575df
+  name: inventaire_batture_alouettes
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-01-28 14:46:06
+  last_modified: 2025-01-28 14:46:06
+  description: |
+    Ce pipeline collecte et traite des données sur la caractérisation du banc
+    de laminaires de la Batture-aux-Alouettes, Baie-Sainte-Catherine, Québec.
+    Les données incluent des évaluations d'abondance et de biomasse de laminaires
+    récoltées à l'aide de quadrats sur une caméra déposée et en plongée sous-marine.
+
+  metadata:
+    source_name: "Caractérisation du banc de laminaires de la Batture-aux-Alouettes"
+    data_type: "CSV"
+    file_size: "Inconnu"
+    license: "Creative Commons Attribution 4.0 (CC-BY-4.0)"
+    license_url: "https://creativecommons.org/licenses/by/4.0"
+    last_updated: "2023-05-18"
+    geographic_coverage:
+      region: "Batture-aux-Alouettes, Baie-Sainte-Catherine, Québec"
+      bounding_box:
+        - -69.767374  # Longitude min
+        - 47.992783   # Latitude min
+        - -69.592266  # Longitude max
+        - 48.122247   # Latitude max
+    temporal_coverage:
+      start_date: "2018-08-20"
+      end_date: "2019-08-15"
+    variables:
+      - kelp_abundance
+      - kelp_biomass
+      - environmental_factors
+    data_quality:
+      - "Données validées et normalisées via des protocoles internes."
+
+  bibliography:
+    - "@Dataset{belley2021,
+        title = {Characterization of the Batture-aux-Alouettes Kelp Bed, Baie-Sainte-Catherine, Quebec},
+        author = {Belley, R. and Fisheries and Oceans Canada},
+        year = {2021},
+        publisher = {OGSL Catalogue},
+        url = {https://doi.org/10.26071/ogsl-e234a1a5-e21e}
+      }"
+
+  download:
+    sources:
+      - name: "Event Data"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_e234a1a5-e21e-4c09-bc77-d92d72796ae7/kelp_event-data_2018-2019.csv"
+        output: "kelp_event-data_2018-2019.csv"
+        format: "csv"
+      
+      - name: "Occurrence Data"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_e234a1a5-e21e-4c09-bc77-d92d72796ae7/kelp_occurrence-data_2018-2019.csv"
+        output: "kelp_occurrence-data_2018-2019.csv"
+        format: "csv"
+
+  notprocessing:
+    sources:
+      - name: process inventaire_batture_alouettes
+        script: prc_inventaire_batture_alouettes
+        input_files:
+          - Event Data
+          - Occurrence Data
+        output_files:
+          - kelp_events.csv
+          - kelp_occurrences.csv
+
+  output:
+    output_dir: "workspace/data/harvested/"
+    log_dir: "workspace/logs/"
+    archive_raw: true
