@@ -1,0 +1,92 @@
+pipeline:
+  id: 0a5569d7-5b9c-44df-9fba-1cc19c95f2ab
+  name: inventaire_pointe_john
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-01-28 10:57:04
+  last_modified: 2025-01-28 10:57:04
+  description: |
+    Résultats d'inventaires annuels de poissons et de macroinvertébrés benthiques
+    de la zone médiolittorale près de la Pointe à John, de 2012 à aujourd'hui.
+    Ces inventaires sont réalisés par des étudiants du programme de Techniques
+    de bioécologie au Cégep de Sherbrooke.
+
+  metadata:
+    source_name: "Inventaire annuels Pointe à John"
+    data_type: "CSV"
+    file_size: "Inconnu"
+    license: "Creative Commons Attribution 4.0 (CC-BY-4.0)"
+    license_url: "https://creativecommons.org/licenses/by/4.0"
+    last_updated: "2023-03-27"
+    geographic_coverage:
+      region: "Pointe à John, Bergeronnes, Québec, Canada"
+      bounding_box:
+        - -69.57   # Longitude min
+        - 48.22    # Latitude min
+        - -69.53   # Longitude max
+        - 48.24    # Latitude max
+    temporal_coverage:
+      start_date: "2012-01-01"
+    variables:
+      - évènements_d'échantillonnage
+      - mesures_physico_chimiques
+      - observations_taxons
+      - recouvrement_espèces
+    data_quality:
+      - "Données validées par un enseignant avant publication."
+      - "Protocole d'échantillonnage inchangé depuis 2012."
+
+  bibliography:
+    - "@Dataset{Ouellette2023,
+        title = {Résultats d'inventaires annuels de poissons et de macroinvertébrés benthiques de la zone médiolittorale près de la Pointe à John, de 2012 à aujourd’hui},
+        author = {Ouellette, D. and Cégep de Sherbrooke},
+        year = {2023},
+        publisher = {OGSL Catalogue},
+        url = {https://catalogue.ogsl.ca/fr/dataset/ca-cioos_b943abc0-09be-43c6-a003-efa665a6c8a9}
+      }"
+
+  download:
+    sources:
+      - name: "Evenements echantillonnage"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/cegep-sherbrooke/ca-cioos_b943abc0-09be-43c6-a003-efa665a6c8a9/DwC_cegepSher_pointe-john_event_2021.csv"
+        output: "events_pointe_john.csv"
+        format: "csv"
+
+      - name: "Mesures physico-chimiques"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/cegep-sherbrooke/ca-cioos_b943abc0-09be-43c6-a003-efa665a6c8a9/DwC_cegepSher_pointe-john_event-emof_2021.csv"
+        output: "physico_chem_pointe_john.csv"
+        format: "csv"
+
+      - name: "Observations taxons"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/cegep-sherbrooke/ca-cioos_b943abc0-09be-43c6-a003-efa665a6c8a9/DwC_cegepSher_pointe-john_occurrence_2021.csv"
+        output: "occurrences_pointe_john.csv"
+        format: "csv"
+
+      - name: "Recouvrement especes"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/cegep-sherbrooke/ca-cioos_b943abc0-09be-43c6-a003-efa665a6c8a9/DwC_cegepSher_pointe-john_occurrence-emof_2021.csv"
+        output: "species_recovery_pointe_john.csv"
+        format: "csv"
+
+  processing:
+    sources:
+      - name: processing inventaire_pointe_john
+        script: prc_inventaire_pointe_john
+        input_files:
+          - Evenements echantillonnage
+          - Mesures physico-chimiques
+          - Observations taxons
+          - Recouvrement especes
+        output_files: 
+          - events_pointe_john.csv
+          - occurrences_pointe_john.csv
+          - physico_chem_pointe_john.csv
+          - species_recovery_pointe_john.csv
+
+  output:
+    output_dir: "workspace/data/harvested/"
+    log_dir: "workspace/logs/"
+    archive_raw: true
