@@ -1,0 +1,100 @@
+pipeline:
+  id: d66fe58a-b279-4e2c-8a81-71ab068f2a04
+  name: invertebres_vegetation_saint_laurent
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-01-28 11:34:27
+  last_modified: 2025-01-28 11:34:27
+  description: |
+    Ce pipeline collecte et traite des données sur les assemblages d'invertébrés
+    épibenthiques et la végétation aquatique submergée dans l'estuaire et le golfe
+    du Saint-Laurent (rive nord). Les données ont été collectées grâce à un système
+    de caméra photo déposé (CPD) entre 2019 et 2022.
+
+  # Métadonnées
+  metadata:
+    source_name: "Assemblages d’invertébrés et végétation submergée"
+    data_type: "CSV"
+    file_size: "Inconnu"
+    license: "Creative Commons Attribution 4.0 (CC-BY-4.0)"
+    license_url: "https://creativecommons.org/licenses/by/4.0"
+    last_updated: "2023-08-30"
+    geographic_coverage:
+      region: "Estuaire et golfe du Saint-Laurent (rive nord)"
+      bounding_box:
+        - -68.7    # Longitude min
+        - 49.3     # Latitude min
+        - -66.2    # Longitude max
+        - 50.0     # Latitude max
+    temporal_coverage:
+      start_date: "2019-06-01"
+    variables:
+      - occurrences_invertebres
+      - substrat_benthique
+      - vegetation_submergee
+    data_quality:
+      - "Noms taxonomiques vérifiés via WoRMS."
+      - "Validation des identifications par des experts en taxonomie."
+
+  # Bibliographie
+  bibliography:
+    - "@TechReport{scallon2022,
+        title = {Méthodes complémentaires d'imagerie sous-marine déposée pour la collecte de données biologiques et environnementales. Volume 1 : Dispositifs d’échantillonnage},
+        author = {Scallon-Chouinard, P.-M. and Lévesque, D. and Roux, M.-J.},
+        year = {2022},
+        institution = {{Pêches et Océans Canada}},
+        number = {3507},
+        series = {Rapp. tech. can. sci. halieut. aquat.},
+        pages = {ix + 52},
+        url = {https://waves-vagues.dfo-mpo.gc.ca/library-bibliotheque/41081171.pdf}
+      }"
+    - "@Dataset{scallon2023,
+        title = {Assemblages d’invertébrés et végétation aquatique submergée en milieux côtiers dans l’estuaire et le golfe du Saint-Laurent (rive nord) à l’aide d’un système de caméra photo déposé},
+        author = {Scallon-Chouinard, P.-M. and Lévesque, D. and Roux, M.-J.},
+        year = {2023},
+        publisher = {OGSL Catalogue},
+        url = {https://catalogue.ogsl.ca/fr/dataset/ca-cioos_0756dd24-4bf4-47ab-a325-c83f9ed763da}
+      }"
+
+
+
+  # Section de téléchargement : ressources à collecter
+  download:
+    sources:
+      - name: "Evenements echantillonnage"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_0756dd24-4bf4-47ab-a325-c83f9ed763da/DL_CPD_PPO_EVENT_Fr_20230830.csv"
+        output: "evenements_cpd.csv"
+        format: "csv"
+      
+      - name: "Occurrences"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_0756dd24-4bf4-47ab-a325-c83f9ed763da/DL_CPD_PPO_OCCURENCE_Fr_20230830.csv"
+        output: "occurrences_cpd.csv"
+        format: "csv"
+      
+      - name: "Dictionnaire des donnees"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_0756dd24-4bf4-47ab-a325-c83f9ed763da/DataDictionary_DictionnaireDonnees_MP_AR20230824.csv"
+        output: "dictionnaire_donnees.csv"
+        format: "csv"
+
+  # Section de traitement des données
+  processing:
+    sources:
+      - name: process invertebres_vegetation_saint_laurent
+        script: prc_invertebres_vegetation_saint_laurent
+        input_files:
+          - Evenements echantillonnage
+          - Occurrences
+          - Dictionnaire des donnees
+        output_files: 
+          - evenements_cpd.csv
+          - occurrences_cpd.csv
+          - dictionnaire_donnees.csv
+
+  # Section de sortie : organisation des données traitées
+  output:
+    output_dir: "workspace/data/harvested/"
+    log_dir: "workspace/logs/"
+    archive_raw: true

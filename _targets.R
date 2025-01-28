@@ -33,5 +33,25 @@ list(
             "workspace/data/harvested/inventaire_pointe_john-1.0.0/processed/physico_chem_pointe_john.csv", 
             "workspace/data/harvested/inventaire_pointe_john-1.0.0/processed/species_recovery_pointe_john.csv"
             )
+        }, format = "file")),
+    list(tarchetypes::tar_download(tg_d66fe58a_b279_4e2c_8a81_71ab068f2a04_Evenements_echantillonnage, 
+    url = "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_0756dd24-4bf4-47ab-a325-c83f9ed763da/DL_CPD_PPO_EVENT_Fr_20230830.csv", 
+    path = "workspace/data/harvested/invertebres_vegetation_saint_laurent-1.0.0/raw/evenements_cpd.csv"), 
+    tarchetypes::tar_download(tg_d66fe58a_b279_4e2c_8a81_71ab068f2a04_Occurrences, 
+        url = "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_0756dd24-4bf4-47ab-a325-c83f9ed763da/DL_CPD_PPO_OCCURENCE_Fr_20230830.csv", 
+        path = "workspace/data/harvested/invertebres_vegetation_saint_laurent-1.0.0/raw/occurrences_cpd.csv"), 
+    tarchetypes::tar_download(tg_d66fe58a_b279_4e2c_8a81_71ab068f2a04_Dictionnaire_des_donnees, 
+        url = "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_0756dd24-4bf4-47ab-a325-c83f9ed763da/DataDictionary_DictionnaireDonnees_MP_AR20230824.csv", 
+        path = "workspace/data/harvested/invertebres_vegetation_saint_laurent-1.0.0/raw/dictionnaire_donnees.csv"), 
+    tar_target(tg_d66fe58a_b279_4e2c_8a81_71ab068f2a04_process_invertebres_vegetation_saint_laurent, 
+        {
+            prc_invertebres_vegetation_saint_laurent(output_path = "workspace/data/harvested/invertebres_vegetation_saint_laurent-1.0.0/processed", 
+                input_files = list(tg_d66fe58a_b279_4e2c_8a81_71ab068f2a04_Evenements_echantillonnage, 
+                  tg_d66fe58a_b279_4e2c_8a81_71ab068f2a04_Occurrences, 
+                  tg_d66fe58a_b279_4e2c_8a81_71ab068f2a04_Dictionnaire_des_donnees))
+            c("workspace/data/harvested/invertebres_vegetation_saint_laurent-1.0.0/processed/evenements_cpd.csv", 
+            "workspace/data/harvested/invertebres_vegetation_saint_laurent-1.0.0/processed/occurrences_cpd.csv", 
+            "workspace/data/harvested/invertebres_vegetation_saint_laurent-1.0.0/processed/dictionnaire_donnees.csv"
+            )
         }, format = "file"))
 )

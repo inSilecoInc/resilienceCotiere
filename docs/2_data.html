@@ -154,7 +154,8 @@ div.csl-indent {
    
   <ul class="collapse">
   <li><a href="#sec-inventaire_pointe_john" id="toc-sec-inventaire_pointe_john" class="nav-link active" data-scroll-target="#sec-inventaire_pointe_john"><span class="header-section-number">3.1</span> Inventaire annuel de la Pointe à John</a></li>
-  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">3.2</span> Références</a></li>
+  <li><a href="#sec-invertebres_vegetation_saint_laurent" id="toc-sec-invertebres_vegetation_saint_laurent" class="nav-link" data-scroll-target="#sec-invertebres_vegetation_saint_laurent"><span class="header-section-number">3.2</span> Assemblages d’invertébrés et végétation aquatique submergée</a></li>
+  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">3.3</span> Références</a></li>
   </ul>
 </nav>
     </div>
@@ -362,16 +363,176 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
+<p>Here is the report section describing the harvested dataset based on the provided pipeline:</p>
 </section>
 </section>
 </section>
-<section id="références" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="références"><span class="header-section-number">3.2</span> Références</h2>
+<section id="sec-invertebres_vegetation_saint_laurent" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="sec-invertebres_vegetation_saint_laurent"><span class="header-section-number">3.2</span> Assemblages d’invertébrés et végétation aquatique submergée</h2>
+<p>Ce jeu de données contient des informations sur les assemblages d’invertébrés épibenthiques et la végétation aquatique submergée collectées dans l’estuaire et le golfe du Saint-Laurent (rive nord) entre 2019 et 2022 <span class="citation" data-cites="scallon2022 scallon2023">(<a href="#ref-scallon2022" role="doc-biblioref">Scallon-Chouinard et al., 2022</a>, <a href="#ref-scallon2023" role="doc-biblioref">2023</a>)</span>. Les données ont été collectées grâce à un système de caméra photo déposé (CPD), une méthode non intrusive qui minimise l’impact sur les habitats marins tout en maximisant les données recueillies.</p>
+<p>Le jeu de données inclut : - 4,866 occurrences de 109 taxons d’invertébrés et de végétation aquatique submergée, - des informations sur la classification des substrats benthiques, - des métadonnées sur les événements d’échantillonnage, et - des commentaires détaillés sur les identifications taxonomiques.</p>
+<p>Les données sont fournies en format DarwinCore, comprenant des fichiers distincts pour les événements et les occurrences. Les noms taxonomiques ont été vérifiés à l’aide de WoRMS (World Register of Marine Species) pour garantir leur exactitude.</p>
+<ul>
+<li><strong>Source</strong> : <a href="https://catalogue.ogsl.ca/fr/dataset/ca-cioos_0756dd24-4bf4-47ab-a325-c83f9ed763da">Assemblages d’invertébrés et végétation submergée - OGSL</a><br>
+</li>
+<li><strong>Accessibilité</strong> : Libre, sous licence Creative Commons Attribution 4.0 (CC-BY-4.0)<br>
+</li>
+<li><strong>Type de données</strong> : CSV<br>
+</li>
+<li><strong>Couverture géographique</strong> : Estuaire et golfe du Saint-Laurent (rive nord)<br>
+</li>
+<li><strong>Période</strong> : Juin à octobre, de 2019 à 2022<br>
+</li>
+<li><strong>Script de traitement</strong> : <code>prc_invertebres_vegetation_saint_laurent</code><br>
+</li>
+<li><strong>Fichiers de sortie</strong> :
+<ul>
+<li><code>evenements_cpd.csv</code></li>
+<li><code>occurrences_cpd.csv</code></li>
+<li><code>dictionnaire_donnees.csv</code></li>
+</ul></li>
+</ul>
+<section id="étapes-de-traitement-des-données-1" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="étapes-de-traitement-des-données-1"><span class="header-section-number">3.2.1</span> Étapes de traitement des données</h3>
+<p>Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisés les noms de colonnes en utilisant <code>janitor::clean_names()</code> pour garantir des noms uniformes à travers le projet.</p>
+</section>
+<section id="structure-des-données-traitées-1" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="structure-des-données-traitées-1"><span class="header-section-number">3.2.2</span> Structure des données traitées</h3>
+<section id="table-des-événements-déchantillonnage-1" class="level4" data-number="3.2.2.1">
+<h4 data-number="3.2.2.1" class="anchored" data-anchor-id="table-des-événements-déchantillonnage-1"><span class="header-section-number">3.2.2.1</span> Table des événements d’échantillonnage</h4>
+<table class="table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nom de colonne</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>id</code></td>
+<td>Identifiant unique de l’activité</td>
+</tr>
+<tr class="even">
+<td><code>date_activite</code></td>
+<td>Date et heure de l’activité</td>
+</tr>
+<tr class="odd">
+<td><code>methode_echantillonnage</code></td>
+<td>Méthode utilisée pour l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>latitude_decimal</code></td>
+<td>Latitude (degré décimal)</td>
+</tr>
+<tr class="odd">
+<td><code>longitude_decimal</code></td>
+<td>Longitude (degré décimal)</td>
+</tr>
+<tr class="even">
+<td><code>profondeur_verbatim</code></td>
+<td>Profondeur mesurée sur le terrain</td>
+</tr>
+<tr class="odd">
+<td><code>effort_echantillonnage</code></td>
+<td>Description de l’effort d’échantillonnage</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="table-des-occurrences-biologiques-1" class="level4" data-number="3.2.2.2">
+<h4 data-number="3.2.2.2" class="anchored" data-anchor-id="table-des-occurrences-biologiques-1"><span class="header-section-number">3.2.2.2</span> Table des occurrences biologiques</h4>
+<table class="table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nom de colonne</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>occurrence_id</code></td>
+<td>Identifiant unique de l’occurrence</td>
+</tr>
+<tr class="even">
+<td><code>statut_occurrence</code></td>
+<td>Présence ou absence de l’organisme</td>
+</tr>
+<tr class="odd">
+<td><code>nom_scientifique</code></td>
+<td>Nom scientifique de l’organisme</td>
+</tr>
+<tr class="even">
+<td><code>taxon_id</code></td>
+<td>Identifiant WoRMS du taxon</td>
+</tr>
+<tr class="odd">
+<td><code>remarques_organisme</code></td>
+<td>Remarques sur l’organisme observé</td>
+</tr>
+<tr class="even">
+<td><code>remarques_identification</code></td>
+<td>Détails sur les incertitudes taxonomiques</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="table-du-dictionnaire-des-données" class="level4" data-number="3.2.2.3">
+<h4 data-number="3.2.2.3" class="anchored" data-anchor-id="table-du-dictionnaire-des-données"><span class="header-section-number">3.2.2.3</span> Table du dictionnaire des données</h4>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 32%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nom de colonne</th>
+<th>Légende</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>column_name</code></td>
+<td>Nom de la colonne</td>
+<td>Nom utilisé dans les fichiers de données</td>
+</tr>
+<tr class="even">
+<td><code>legend</code></td>
+<td>Légende (EN)</td>
+<td>Signification du champ (anglais)</td>
+</tr>
+<tr class="odd">
+<td><code>description_fr</code></td>
+<td>Description (FR)</td>
+<td>Description détaillée du champ (français)</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="références" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="références"><span class="header-section-number">3.3</span> Références</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="1" data-line-spacing="5" role="list">
 <div id="ref-Ouellette2023" class="csl-entry" role="listitem">
 Ouellette, D., and Sherbrooke, C. de (2023). Résultats d’inventaires annuels de poissons et de macroinvertébrés benthiques de la zone médiolittorale près de la pointe à john, de 2012 à aujourd’hui. Available at: <a href="https://catalogue.ogsl.ca/fr/dataset/ca-cioos_b943abc0-09be-43c6-a003-efa665a6c8a9">https://catalogue.ogsl.ca/fr/dataset/ca-cioos_b943abc0-09be-43c6-a003-efa665a6c8a9</a>.
+</div>
+<div id="ref-scallon2022" class="csl-entry" role="listitem">
+Scallon-Chouinard, P.-M., Lévesque, D., and Roux, M.-J. (2022). Méthodes complémentaires d’imagerie sous-marine déposée pour la collecte de données biologiques et environnementales. Volume 1 : Dispositifs d’échantillonnage. <span>Pêches et Océans Canada</span> Available at: <a href="https://waves-vagues.dfo-mpo.gc.ca/library-bibliotheque/41081171.pdf">https://waves-vagues.dfo-mpo.gc.ca/library-bibliotheque/41081171.pdf</a>.
+</div>
+<div id="ref-scallon2023" class="csl-entry" role="listitem">
+Scallon-Chouinard, P.-M., Lévesque, D., and Roux, M.-J. (2023). Assemblages d’invertébrés et végétation aquatique submergée en milieux côtiers dans l’estuaire et le golfe du saint-laurent (rive nord) à l’aide d’un système de caméra photo déposé. Available at: <a href="https://catalogue.ogsl.ca/fr/dataset/ca-cioos_0756dd24-4bf4-47ab-a325-c83f9ed763da">https://catalogue.ogsl.ca/fr/dataset/ca-cioos_0756dd24-4bf4-47ab-a325-c83f9ed763da</a>.
 </div>
 </div>
 </section>

@@ -67,5 +67,70 @@ Les tables produites par le processus de traitement sont décrites ci-dessous.
 | `measurement_value`   | Pourcentage de recouvrement                           |
 
 
+Here is the report section describing the harvested dataset based on the provided pipeline:
+
+
+## Assemblages d'invertébrés et végétation aquatique submergée {#sec-invertebres_vegetation_saint_laurent}
+
+Ce jeu de données contient des informations sur les assemblages d'invertébrés épibenthiques et la végétation aquatique submergée collectées dans l'estuaire et le golfe du Saint-Laurent (rive nord) entre 2019 et 2022 [@scallon2022; @scallon2023]. Les données ont été collectées grâce à un système de caméra photo déposé (CPD), une méthode non intrusive qui minimise l'impact sur les habitats marins tout en maximisant les données recueillies. 
+
+Le jeu de données inclut :
+- 4,866 occurrences de 109 taxons d'invertébrés et de végétation aquatique submergée,
+- des informations sur la classification des substrats benthiques,
+- des métadonnées sur les événements d'échantillonnage, et
+- des commentaires détaillés sur les identifications taxonomiques.
+
+Les données sont fournies en format DarwinCore, comprenant des fichiers distincts pour les événements et les occurrences. Les noms taxonomiques ont été vérifiés à l'aide de WoRMS (World Register of Marine Species) pour garantir leur exactitude.
+
+- **Source** : [Assemblages d'invertébrés et végétation submergée - OGSL](https://catalogue.ogsl.ca/fr/dataset/ca-cioos_0756dd24-4bf4-47ab-a325-c83f9ed763da)  
+- **Accessibilité** : Libre, sous licence Creative Commons Attribution 4.0 (CC-BY-4.0)  
+- **Type de données** : CSV  
+- **Couverture géographique** : Estuaire et golfe du Saint-Laurent (rive nord)  
+- **Période** : Juin à octobre, de 2019 à 2022  
+- **Script de traitement** : `prc_invertebres_vegetation_saint_laurent`  
+- **Fichiers de sortie** : 
+  - `evenements_cpd.csv`
+  - `occurrences_cpd.csv`
+  - `dictionnaire_donnees.csv`
+
+### Étapes de traitement des données
+
+Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisés les noms de colonnes en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
+
+### Structure des données traitées
+
+#### Table des événements d'échantillonnage
+
+| Nom de colonne                  | Description                                     |
+|---------------------------------|-------------------------------------------------|
+| `id`                            | Identifiant unique de l'activité                |
+| `date_activite`                 | Date et heure de l'activité                     |
+| `methode_echantillonnage`       | Méthode utilisée pour l'échantillonnage         |
+| `latitude_decimal`              | Latitude (degré décimal)                        |
+| `longitude_decimal`             | Longitude (degré décimal)                       |
+| `profondeur_verbatim`           | Profondeur mesurée sur le terrain               |
+| `effort_echantillonnage`        | Description de l'effort d'échantillonnage       |
+
+#### Table des occurrences biologiques
+
+| Nom de colonne                  | Description                                     |
+|---------------------------------|-------------------------------------------------|
+| `occurrence_id`                 | Identifiant unique de l'occurrence              |
+| `statut_occurrence`             | Présence ou absence de l'organisme              |
+| `nom_scientifique`              | Nom scientifique de l'organisme                 |
+| `taxon_id`                      | Identifiant WoRMS du taxon                      |
+| `remarques_organisme`           | Remarques sur l'organisme observé               |
+| `remarques_identification`      | Détails sur les incertitudes taxonomiques       |
+
+#### Table du dictionnaire des données
+
+| Nom de colonne      | Légende                         | Description                                    |
+|---------------------|---------------------------------|------------------------------------------------|
+| `column_name`       | Nom de la colonne              | Nom utilisé dans les fichiers de données       |
+| `legend`            | Légende (EN)                   | Signification du champ (anglais)              |
+| `description_fr`    | Description (FR)               | Description détaillée du champ (français)      |
+
+
+
 
 ## Références
