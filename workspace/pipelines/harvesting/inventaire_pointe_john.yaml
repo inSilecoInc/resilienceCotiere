@@ -39,7 +39,7 @@ pipeline:
   bibliography:
     - "@Dataset{Ouellette2023,
         title = {Résultats d'inventaires annuels de poissons et de macroinvertébrés benthiques de la zone médiolittorale près de la Pointe à John, de 2012 à aujourd’hui},
-        author = {Ouellette, D. and Cégep de Sherbrooke},
+        author = {Ouellette, D. and {Cégep de Sherbrooke}},
         year = {2023},
         publisher = {OGSL Catalogue},
         url = {https://catalogue.ogsl.ca/fr/dataset/ca-cioos_b943abc0-09be-43c6-a003-efa665a6c8a9}

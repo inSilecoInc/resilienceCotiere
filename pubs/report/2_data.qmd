@@ -164,7 +164,6 @@ Les données sont déjà disponibles dans un format standardisé; un effort mini
 | `sample_size_unit`                 | Unité de la taille de l’échantillon                                         |
 | `coordinate_uncertainty_in_meters` | Incertitude des coordonnées géographiques en mètres                         |
 
----
 
 #### Table des occurrences biologiques
 
@@ -181,7 +180,6 @@ Les données sont déjà disponibles dans un format standardisé; un effort mini
 | `family`              | Famille biologique                                   |
 | `genus`               | Genre biologique                                     |
 
----
 
 #### Table des mesures abiotiques
 
@@ -194,6 +192,55 @@ Les données sont déjà disponibles dans un format standardisé; un effort mini
 | `measurement_method`  | Méthode utilisée pour la mesure                       |
 
 
+## Biodiversité du relevé côtier PIEI (2017–2021) {#sec-biodiversite_piei}
+
+Les données proviennent de l’initiative Planification pour une intervention environnementale intégrée (PIEI) menée dans l’estuaire et le golfe du Saint-Laurent entre 2017 et 2021. Ce projet, sous l’égide du Plan de protection des océans (PPO) du gouvernement du Canada, visait à préserver les écosystèmes marins vulnérables face à l’augmentation des activités maritimes. Les données récoltées incluent 21 490 occurrences de 150 taxons et catégories informelles, analysées à partir de 2959 images sous-marines échantillonnées dans des zones côtières peu profondes (≤10 m). Ces informations ont été principalement utilisées pour valider des cartes d’habitats côtiers basées sur des photographies aériennes [@gregoire2024; @gregoire2024b; @provencher2024].
+
+- **Source** : [Biodiversité du relevé côtier PIEI (2017–2021)](https://doi.org/10.26071/ogsl-90c40dba)  
+- **Accessibilité** : Libre, Open Government License - Canada  
+- **Type de données** : Fichiers CSV et PDF  
+- **Couverture géographique** : Estuaire et golfe du Saint-Laurent, Québec, Canada (latitude : 47.4 à 50.471, longitude : -70.3 à -61.765)  
+- **Script de traitement** : `prc_biodiversite_piei`  
+- **Fichiers de sortie** :  
+  - `events_piei.csv`  
+  - `occurrences_piei.csv`
+
+### Étapes de traitement des données
+
+Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisés les noms de colonnes en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
+
+
+### Structure des données traitées
+
+#### Table des événements d’échantillonnage
+
+| Variable                           | Description                                                                  |
+|------------------------------------|------------------------------------------------------------------------------|
+| `event_id`                         | Identifiant unique de l’événement                                            |
+| `event_date`                       | Date et heure de l’événement                                                |
+| `decimal_latitude`                 | Latitude décimale                                                           |
+| `decimal_longitude`                | Longitude décimale                                                          |
+| `sampling_protocol`                | Protocole d’échantillonnage                                                 |
+| `coordinate_uncertainty_in_meters` | Incertitude des coordonnées géographiques en mètres                         |
+| `country_code`                     | Code ISO du pays                                                            |
+| `maximum_depth_in_meters`          | Profondeur maximale en mètres                                               |
+
+
+#### Table des occurrences biologiques
+
+| Variable              | Description                                           |
+|-----------------------|-------------------------------------------------------|
+| `event_id`            | Identifiant de l’événement                            |
+| `occurrence_id`       | Identifiant unique de l’occurrence                    |
+| `scientific_name`     | Nom scientifique de l’organisme                       |
+| `scientific_name_id`  | Identifiant WoRMS du nom scientifique                 |
+| `kingdom`             | Règne biologique                                     |
+| `phylum`              | Embranchement biologique                             |
+| `class`               | Classe biologique                                    |
+| `order`               | Ordre biologique                                     |
+| `family`              | Famille biologique                                   |
+| `genus`               | Genre biologique                                     |
+| `occurrence_remarks`  | Remarques sur l’occurrence                           |
 
 
 

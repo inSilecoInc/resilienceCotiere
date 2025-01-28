@@ -1,0 +1,111 @@
+pipeline:
+  id: 2b9ea288-e863-4cf3-9196-2dc19a5f5def
+  name: biodiversite_piei
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-01-28 14:24:38
+  last_modified: 2025-01-28 14:24:38
+  description: |
+    Ce pipeline collecte et traite des données sur la biodiversité marine dans le cadre de
+    l'initiative Planification pour une intervention environnementale intégrée (PIEI) dans
+    l’estuaire et le golfe du Saint-Laurent (2017–2021). Les données comprennent des
+    informations sur 21 490 occurrences de 150 taxons observés à partir de 2959 images
+    sous-marines.
+
+  metadata:
+    source_name: "Biodiversité du relevé côtier PIEI (2017–2021)"
+    data_type: "CSV, PDF"
+    file_size: "Inconnu"
+    license: "Open Government License - Canada"
+    license_url: "http://open.canada.ca/en/open-government-licence-canada"
+    last_updated: "2024-07-17"
+    geographic_coverage:
+      region: "Estuaire et golfe du Saint-Laurent, Québec"
+      bounding_box:
+        - -70.3  # Longitude min
+        - 47.4   # Latitude min
+        - -61.765 # Longitude max
+        - 50.471 # Latitude max
+    temporal_coverage:
+      start_date: "2017-01-01"
+      end_date: "2021-12-31"
+    variables:
+      - abiotic_factors (salinity, substrate type)
+      - macroalgae
+      - macroinvertebrates
+      - fish
+    data_quality:
+      - "Noms taxonomiques validés via WoRMS."
+      - "Contrôle qualité effectué avec les paquets R obistools et worrms."
+
+  bibliography:
+    - "@Dataset{gregoire2024,
+        title = {Biodiversity of the Planning for Integrated Environmental Response Coastal Survey in the St. Lawrence Estuary and Gulf (2017–2021)},
+        author = {Grégoire, B.},
+        year = {2024},
+        publisher = {OGSL Catalogue},
+        url = {https://doi.org/10.26071/ogsl-90c40dba}
+      }"
+    - "@TechReport{provencher2024,
+        title = {Cartographie des macrophytes estuariens et marins du Québec},
+        author = {Provencher-Nolet, L. and Paquette, L. and Pitre, L.D. and Grégoire, B. and Desjardins, C.},
+        year = {2024},
+        institution = {{Pêches et Océans Canada}},
+        series = {Rapp. tech. can. sci. halieut. aquat.},
+        number = {3617},
+        pages = {v + 99},
+        url = {https://publications.gc.ca/collections/collection_2024/mpo-dfo/Fs97-6-3617-fra.pdf}
+      }"
+    - "@TechReport{gregoire2024b,
+        title = {Distribution d’organismes marins de la zone côtière peu profonde du Québec recensés par imagerie sous-marine de 2017 à 2021},
+        author = {Grégoire, B. and Pitre, L.D. and Provencher-Nolet, L. and Paquette, L. and Desjardins, C.},
+        year = {2024},
+        institution = {{Pêches et Océans Canada}},
+        series = {Rapp. tech. can. sci. halieut. aquat.},
+        number = {3616},
+        pages = {v + 78},
+        url = {https://publications.gc.ca/collections/collection_2024/mpo-dfo/Fs97-6-3616-fra.pdf}
+      }"
+
+
+  download:
+    sources:
+      - name: "Event Information"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_90c40dba-740d-473b-8489-1c4eb3331555/piei_event_information_estuary_gulf_2017-2021.csv"
+        output: "piei_event_information_estuary_gulf_2017-2021.csv"
+        format: "csv"
+      
+      - name: "Taxon Occurrences"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_90c40dba-740d-473b-8489-1c4eb3331555/piei_taxon_occurrence_estuary_gulf_2017-2021.csv"
+        output: "piei_taxon_occurrence_estuary_gulf_2017-2021.csv"
+        format: "csv"
+
+      - name: "Visual Dictionary (EN)"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_90c40dba-740d-473b-8489-1c4eb3331555/Dic_visuel_ISM_MPO_PIEI_20220310_EN.pdf"
+        output: "Dic_visuel_ISM_MPO_PIEI_20220310_EN.pdf"
+        format: "pdf"
+
+      - name: "Visual Dictionary (FR)"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_90c40dba-740d-473b-8489-1c4eb3331555/Dic_visuel_ISM_MPO_PIEI_20220310_FR.pdf"
+        output: "Dic_visuel_ISM_MPO_PIEI_20220310_FR.pdf"
+        format: "pdf"
+
+  processing:
+    sources:
+      - name: process biodiversite_piei
+        script: prc_biodiversite_piei
+        input_files:
+          - Event Information
+          - Taxon Occurrences
+        output_files:
+          - events_piei.csv
+          - occurrences_piei.csv
+
+  output:
+    output_dir: "workspace/data/harvested/"
+    log_dir: "workspace/logs/"
+    archive_raw: true

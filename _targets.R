@@ -9,6 +9,27 @@ tar_option_set(packages = c('curl', 'googleCloudStorageR', 'aws.s3', 'yaml', 'dp
 tar_source('workspace/scripts/') # To edit properly by the end of the project
 list(
   tar_target(bibtex_master, bibtex_master(), format = "file", cue = tar_cue(mode = "always")),
+    list(tarchetypes::tar_download(tg_2b9ea288_e863_4cf3_9196_2dc19a5f5def_Event_Information, 
+    url = "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_90c40dba-740d-473b-8489-1c4eb3331555/piei_event_information_estuary_gulf_2017-2021.csv", 
+    path = "workspace/data/harvested/biodiversite_piei-1.0.0/raw/piei_event_information_estuary_gulf_2017-2021.csv"), 
+    tarchetypes::tar_download(tg_2b9ea288_e863_4cf3_9196_2dc19a5f5def_Taxon_Occurrences, 
+        url = "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_90c40dba-740d-473b-8489-1c4eb3331555/piei_taxon_occurrence_estuary_gulf_2017-2021.csv", 
+        path = "workspace/data/harvested/biodiversite_piei-1.0.0/raw/piei_taxon_occurrence_estuary_gulf_2017-2021.csv"), 
+    tarchetypes::tar_download(tg_2b9ea288_e863_4cf3_9196_2dc19a5f5def_Visual_Dictionary__EN_, 
+        url = "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_90c40dba-740d-473b-8489-1c4eb3331555/Dic_visuel_ISM_MPO_PIEI_20220310_EN.pdf", 
+        path = "workspace/data/harvested/biodiversite_piei-1.0.0/raw/Dic_visuel_ISM_MPO_PIEI_20220310_EN.pdf"), 
+    tarchetypes::tar_download(tg_2b9ea288_e863_4cf3_9196_2dc19a5f5def_Visual_Dictionary__FR_, 
+        url = "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_90c40dba-740d-473b-8489-1c4eb3331555/Dic_visuel_ISM_MPO_PIEI_20220310_FR.pdf", 
+        path = "workspace/data/harvested/biodiversite_piei-1.0.0/raw/Dic_visuel_ISM_MPO_PIEI_20220310_FR.pdf"), 
+    tar_target(tg_2b9ea288_e863_4cf3_9196_2dc19a5f5def_process_biodiversite_piei, 
+        {
+            prc_biodiversite_piei(output_path = "workspace/data/harvested/biodiversite_piei-1.0.0/processed", 
+                input_files = list(tg_2b9ea288_e863_4cf3_9196_2dc19a5f5def_Event_Information, 
+                  tg_2b9ea288_e863_4cf3_9196_2dc19a5f5def_Taxon_Occurrences))
+            c("workspace/data/harvested/biodiversite_piei-1.0.0/processed/events_piei.csv", 
+            "workspace/data/harvested/biodiversite_piei-1.0.0/processed/occurrences_piei.csv"
+            )
+        }, format = "file")),
     list(tarchetypes::tar_download(tg_71e5ee2d_2433_455d_8434_9a9fa26afde6_Evenements_echantillonnage, 
     url = "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_4bb77d86-b94e-4f61-b91b-fdcfd6ecbaed/macroalgae-macroinvertebrates_event-data_2019.csv", 
     path = "workspace/data/harvested/inventaire_macroalgues_macroinvertebres-1.0.0/raw/macroalgae-macroinvertebrates_event-data_2019.csv"), 

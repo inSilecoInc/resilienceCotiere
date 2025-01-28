@@ -40,7 +40,7 @@ pipeline:
   bibliography:
     - "@Dataset{loiseau2024,
         title = {Inventory of Macroalgae and Benthic Macroinvertebrates Along a Hypoosmolarity Stress Gradient in Barthelemy Bay and the Colombier, Mistassini, Franquelin and Saint-Nicolas Rivers of the Upper North Shore, Quebec},
-        author = {Loiseau, V. and Calosi, P. and Gendreau, Y. and Cusson, M. and Fisheries and Oceans Canada},
+        author = {Loiseau, V. and Calosi, P. and Gendreau, Y. and Cusson, M. and {Fisheries and Oceans Canada}},
         year = {2024},
         publisher = {OGSL Catalogue},
         url = {https://doi.org/10.26071/ogsl-4bb77d86-b94e}
