@@ -9,6 +9,26 @@ tar_option_set(packages = c('curl', 'googleCloudStorageR', 'aws.s3', 'yaml', 'dp
 tar_source('workspace/scripts/') # To edit properly by the end of the project
 list(
   tar_target(bibtex_master, bibtex_master(), format = "file", cue = tar_cue(mode = "always")),
+    list(tarchetypes::tar_download(tg_71e5ee2d_2433_455d_8434_9a9fa26afde6_Evenements_echantillonnage, 
+    url = "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_4bb77d86-b94e-4f61-b91b-fdcfd6ecbaed/macroalgae-macroinvertebrates_event-data_2019.csv", 
+    path = "workspace/data/harvested/inventaire_macroalgues_macroinvertebres-1.0.0/raw/macroalgae-macroinvertebrates_event-data_2019.csv"), 
+    tarchetypes::tar_download(tg_71e5ee2d_2433_455d_8434_9a9fa26afde6_Occurrences_macroinvertebres, 
+        url = "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_4bb77d86-b94e-4f61-b91b-fdcfd6ecbaed/macroalgae-macroinvertebrates_occurrence-data_2019.csv", 
+        path = "workspace/data/harvested/inventaire_macroalgues_macroinvertebres-1.0.0/raw/macroalgae-macroinvertebrates_occurrence-data_2019.csv"), 
+    tarchetypes::tar_download(tg_71e5ee2d_2433_455d_8434_9a9fa26afde6_Mesures_abiotiques, 
+        url = "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_4bb77d86-b94e-4f61-b91b-fdcfd6ecbaed/macroalgae-macroinvertebrates_abiotic-measurement_2019.csv", 
+        path = "workspace/data/harvested/inventaire_macroalgues_macroinvertebres-1.0.0/raw/macroalgae-macroinvertebrates_abiotic-measurement_2019.csv"), 
+    tar_target(tg_71e5ee2d_2433_455d_8434_9a9fa26afde6_process_inventaire_macroalgues_macroinvertebres, 
+        {
+            prc_inventaire_macroalgues_macroinvertebres(output_path = "workspace/data/harvested/inventaire_macroalgues_macroinvertebres-1.0.0/processed", 
+                input_files = list(tg_71e5ee2d_2433_455d_8434_9a9fa26afde6_Evenements_echantillonnage, 
+                  tg_71e5ee2d_2433_455d_8434_9a9fa26afde6_Occurrences_macroinvertebres, 
+                  tg_71e5ee2d_2433_455d_8434_9a9fa26afde6_Mesures_abiotiques))
+            c("workspace/data/harvested/inventaire_macroalgues_macroinvertebres-1.0.0/processed/events.csv", 
+            "workspace/data/harvested/inventaire_macroalgues_macroinvertebres-1.0.0/processed/occurrences.csv", 
+            "workspace/data/harvested/inventaire_macroalgues_macroinvertebres-1.0.0/processed/abiotic.csv"
+            )
+        }, format = "file")),
     list(tarchetypes::tar_download(tg_0a5569d7_5b9c_44df_9fba_1cc19c95f2ab_Evenements_echantillonnage, 
     url = "https://catalogue.ogsl.ca/data/cegep-sherbrooke/ca-cioos_b943abc0-09be-43c6-a003-efa665a6c8a9/DwC_cegepSher_pointe-john_event_2021.csv", 
     path = "workspace/data/harvested/inventaire_pointe_john-1.0.0/raw/events_pointe_john.csv"), 

@@ -67,7 +67,6 @@ Les tables produites par le processus de traitement sont décrites ci-dessous.
 | `measurement_value`   | Pourcentage de recouvrement                           |
 
 
-Here is the report section describing the harvested dataset based on the provided pipeline:
 
 
 ## Assemblages d'invertébrés et végétation aquatique submergée {#sec-invertebres_vegetation_saint_laurent}
@@ -129,6 +128,71 @@ Les données sont déjà disponibles dans un format standardisé; un effort mini
 | `column_name`       | Nom de la colonne              | Nom utilisé dans les fichiers de données       |
 | `legend`            | Légende (EN)                   | Signification du champ (anglais)              |
 | `description_fr`    | Description (FR)               | Description détaillée du champ (français)      |
+
+
+## Inventaire des macroalgues et macroinvertébrés {#sec-inventaire_macroalgues_macroinvertebres}
+
+Les données proviennent d'un inventaire des macroalgues et macroinvertébrés benthiques réalisé dans la baie Barthélemy et les rivières Colombier, Mistassini, Franquelin et Saint-Nicolas, sur la Haute-Côte-Nord du Québec, entre le 26 septembre et le 3 octobre 2019. Cet inventaire décrit les structures des espèces et les traits fonctionnels des communautés benthiques en fonction d’un gradient de stress d’hypoosmolarité. Les informations récoltées incluent des facteurs abiotiques (salinité, type de substrat) et des occurrences d'espèces de macroalgues et de macroinvertébrés identifiées au niveau taxonomique le plus bas possible [@loiseau2024].
+
+- **Source** : [Inventaire des macroalgues et macroinvertébrés](https://doi.org/10.26071/ogsl-4bb77d86-b94e)  
+- **Accessibilité** : Libre, Creative Commons Attribution 4.0 (CC-BY-4.0)  
+- **Type de données** : Fichiers CSV  
+- **Couverture géographique** : Haute-Côte-Nord, Québec, Canada (latitude : 48.794 à 49.334, longitude : -68.98 à -67.735)  
+- **Script de traitement** : `prc_inventaire_macroalgues_macroinvertebres`  
+- **Fichiers de sortie** :  
+  - `events.csv`  
+  - `occurrences.csv`  
+  - `abiotic.csv`
+
+### Étapes de traitement des données
+
+Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisés les noms de colonnes en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
+
+### Structure des données traitées
+
+#### Table des événements d’échantillonnage 
+
+| Variable                           | Description                                                                  |
+|------------------------------------|------------------------------------------------------------------------------|
+| `event_id`                         | Identifiant unique de l’événement                                            |
+| `event_date`                       | Date et heure de l’événement                                                |
+| `decimal_latitude`                 | Latitude décimale                                                           |
+| `decimal_longitude`                | Longitude décimale                                                          |
+| `sampling_protocol`                | Protocole d’échantillonnage                                                 |
+| `sampling_effort`                  | Description de l’effort d’échantillonnage                                    |
+| `sample_size_value`                | Taille de l’échantillon                                                     |
+| `sample_size_unit`                 | Unité de la taille de l’échantillon                                         |
+| `coordinate_uncertainty_in_meters` | Incertitude des coordonnées géographiques en mètres                         |
+
+---
+
+#### Table des occurrences biologiques
+
+| Variable              | Description                                           |
+|-----------------------|-------------------------------------------------------|
+| `event_id`            | Identifiant de l’événement                            |
+| `occurrence_id`       | Identifiant unique de l’occurrence                    |
+| `scientific_name`     | Nom scientifique de l’organisme                       |
+| `scientific_name_id`  | Identifiant WoRMS du nom scientifique                 |
+| `kingdom`             | Règne biologique                                     |
+| `phylum`              | Embranchement biologique                             |
+| `class`               | Classe biologique                                    |
+| `order`               | Ordre biologique                                     |
+| `family`              | Famille biologique                                   |
+| `genus`               | Genre biologique                                     |
+
+---
+
+#### Table des mesures abiotiques
+
+| Variable              | Description                                           |
+|-----------------------|-------------------------------------------------------|
+| `event_id`            | Identifiant de l’événement                            |
+| `measurement_type`    | Type de mesure (ex. salinité, type de substrat)       |
+| `measurement_value`   | Valeur mesurée                                        |
+| `measurement_unit`    | Unité de mesure                                       |
+| `measurement_method`  | Méthode utilisée pour la mesure                       |
+
 
 
 

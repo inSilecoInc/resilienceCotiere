@@ -1,0 +1,85 @@
+pipeline:
+  id: 71e5ee2d-2433-455d-8434-9a9fa26afde6
+  name: inventaire_macroalgues_macroinvertebres
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-01-28 14:00:16
+  last_modified: 2025-01-28 14:00:16
+  description: |
+    Ce pipeline collecte et traite des données sur les macroalgues et macroinvertébrés
+    benthiques selon un gradient de stress d’hypoosmolarité. Les données proviennent
+    de la baie Barthélemy et des rivières Colombier, Mistassini, Franquelin et
+    Saint-Nicolas de la Haute-Côte-Nord, Québec, récoltées entre le 26 septembre
+    et le 3 octobre 2019.
+
+  metadata:
+    source_name: "Inventaire des macroalgues et macroinvertébrés benthiques"
+    data_type: "CSV"
+    file_size: "Inconnu"
+    license: "Creative Commons Attribution 4.0 (CC-BY-4.0)"
+    license_url: "https://creativecommons.org/licenses/by/4.0"
+    last_updated: "2024-07-16"
+    geographic_coverage:
+      region: "Haute-Côte-Nord, Québec"
+      bounding_box:
+        - -68.98  # Longitude min
+        - 48.794  # Latitude min
+        - -67.735 # Longitude max
+        - 49.334  # Latitude max
+    temporal_coverage:
+      start_date: "2019-09-26"
+      end_date: "2019-10-03"
+    variables:
+      - abiotic_factors (salinity, substrate type)
+      - macroalgae
+      - macroinvertebrates
+    data_quality:
+      - "Noms taxonomiques validés via WoRMS."
+      - "Échantillonnage aléatoire stratifié avec contrôle qualité expert."
+
+  bibliography:
+    - "@Dataset{loiseau2024,
+        title = {Inventory of Macroalgae and Benthic Macroinvertebrates Along a Hypoosmolarity Stress Gradient in Barthelemy Bay and the Colombier, Mistassini, Franquelin and Saint-Nicolas Rivers of the Upper North Shore, Quebec},
+        author = {Loiseau, V. and Calosi, P. and Gendreau, Y. and Cusson, M. and Fisheries and Oceans Canada},
+        year = {2024},
+        publisher = {OGSL Catalogue},
+        url = {https://doi.org/10.26071/ogsl-4bb77d86-b94e}
+      }"
+
+  download:
+    sources:
+      - name: "Evenements echantillonnage"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_4bb77d86-b94e-4f61-b91b-fdcfd6ecbaed/macroalgae-macroinvertebrates_event-data_2019.csv"
+        output: "macroalgae-macroinvertebrates_event-data_2019.csv"
+        format: "csv"
+      
+      - name: "Occurrences macroinvertebres"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_4bb77d86-b94e-4f61-b91b-fdcfd6ecbaed/macroalgae-macroinvertebrates_occurrence-data_2019.csv"
+        output: "macroalgae-macroinvertebrates_occurrence-data_2019.csv"
+        format: "csv"
+      
+      - name: "Mesures abiotiques"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_4bb77d86-b94e-4f61-b91b-fdcfd6ecbaed/macroalgae-macroinvertebrates_abiotic-measurement_2019.csv"
+        output: "macroalgae-macroinvertebrates_abiotic-measurement_2019.csv"
+        format: "csv"
+
+  processing:
+    sources:
+      - name: process inventaire_macroalgues_macroinvertebres
+        script: prc_inventaire_macroalgues_macroinvertebres
+        input_files:
+          - Evenements echantillonnage
+          - Occurrences macroinvertebres
+          - Mesures abiotiques
+        output_files:
+          - events.csv
+          - occurrences.csv
+          - abiotic.csv
+
+  output:
+    output_dir: "workspace/data/harvested/"
+    log_dir: "workspace/logs/"
+    archive_raw: true

@@ -155,7 +155,8 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#sec-inventaire_pointe_john" id="toc-sec-inventaire_pointe_john" class="nav-link active" data-scroll-target="#sec-inventaire_pointe_john"><span class="header-section-number">3.1</span> Inventaire annuel de la Pointe à John</a></li>
   <li><a href="#sec-invertebres_vegetation_saint_laurent" id="toc-sec-invertebres_vegetation_saint_laurent" class="nav-link" data-scroll-target="#sec-invertebres_vegetation_saint_laurent"><span class="header-section-number">3.2</span> Assemblages d’invertébrés et végétation aquatique submergée</a></li>
-  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">3.3</span> Références</a></li>
+  <li><a href="#sec-inventaire_macroalgues_macroinvertebres" id="toc-sec-inventaire_macroalgues_macroinvertebres" class="nav-link" data-scroll-target="#sec-inventaire_macroalgues_macroinvertebres"><span class="header-section-number">3.3</span> Inventaire des macroalgues et macroinvertébrés</a></li>
+  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">3.4</span> Références</a></li>
   </ul>
 </nav>
     </div>
@@ -363,7 +364,6 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-<p>Here is the report section describing the harvested dataset based on the provided pipeline:</p>
 </section>
 </section>
 </section>
@@ -520,11 +520,194 @@ div.csl-indent {
 </section>
 </section>
 </section>
-<section id="références" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="références"><span class="header-section-number">3.3</span> Références</h2>
+<section id="sec-inventaire_macroalgues_macroinvertebres" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="sec-inventaire_macroalgues_macroinvertebres"><span class="header-section-number">3.3</span> Inventaire des macroalgues et macroinvertébrés</h2>
+<p>Les données proviennent d’un inventaire des macroalgues et macroinvertébrés benthiques réalisé dans la baie Barthélemy et les rivières Colombier, Mistassini, Franquelin et Saint-Nicolas, sur la Haute-Côte-Nord du Québec, entre le 26 septembre et le 3 octobre 2019. Cet inventaire décrit les structures des espèces et les traits fonctionnels des communautés benthiques en fonction d’un gradient de stress d’hypoosmolarité. Les informations récoltées incluent des facteurs abiotiques (salinité, type de substrat) et des occurrences d’espèces de macroalgues et de macroinvertébrés identifiées au niveau taxonomique le plus bas possible <span class="citation" data-cites="loiseau2024">(<a href="#ref-loiseau2024" role="doc-biblioref">Loiseau et al., 2024</a>)</span>.</p>
+<ul>
+<li><strong>Source</strong> : <a href="https://doi.org/10.26071/ogsl-4bb77d86-b94e">Inventaire des macroalgues et macroinvertébrés</a><br>
+</li>
+<li><strong>Accessibilité</strong> : Libre, Creative Commons Attribution 4.0 (CC-BY-4.0)<br>
+</li>
+<li><strong>Type de données</strong> : Fichiers CSV<br>
+</li>
+<li><strong>Couverture géographique</strong> : Haute-Côte-Nord, Québec, Canada (latitude : 48.794 à 49.334, longitude : -68.98 à -67.735)<br>
+</li>
+<li><strong>Script de traitement</strong> : <code>prc_inventaire_macroalgues_macroinvertebres</code><br>
+</li>
+<li><strong>Fichiers de sortie</strong> :
+<ul>
+<li><code>events.csv</code><br>
+</li>
+<li><code>occurrences.csv</code><br>
+</li>
+<li><code>abiotic.csv</code></li>
+</ul></li>
+</ul>
+<section id="étapes-de-traitement-des-données-2" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="étapes-de-traitement-des-données-2"><span class="header-section-number">3.3.1</span> Étapes de traitement des données</h3>
+<p>Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisés les noms de colonnes en utilisant <code>janitor::clean_names()</code> pour garantir des noms uniformes à travers le projet.</p>
+</section>
+<section id="structure-des-données-traitées-2" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="structure-des-données-traitées-2"><span class="header-section-number">3.3.2</span> Structure des données traitées</h3>
+<section id="table-des-événements-déchantillonnage-2" class="level4" data-number="3.3.2.1">
+<h4 data-number="3.3.2.1" class="anchored" data-anchor-id="table-des-événements-déchantillonnage-2"><span class="header-section-number">3.3.2.1</span> Table des événements d’échantillonnage</h4>
+<table class="table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 68%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>event_id</code></td>
+<td>Identifiant unique de l’événement</td>
+</tr>
+<tr class="even">
+<td><code>event_date</code></td>
+<td>Date et heure de l’événement</td>
+</tr>
+<tr class="odd">
+<td><code>decimal_latitude</code></td>
+<td>Latitude décimale</td>
+</tr>
+<tr class="even">
+<td><code>decimal_longitude</code></td>
+<td>Longitude décimale</td>
+</tr>
+<tr class="odd">
+<td><code>sampling_protocol</code></td>
+<td>Protocole d’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>sampling_effort</code></td>
+<td>Description de l’effort d’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>sample_size_value</code></td>
+<td>Taille de l’échantillon</td>
+</tr>
+<tr class="even">
+<td><code>sample_size_unit</code></td>
+<td>Unité de la taille de l’échantillon</td>
+</tr>
+<tr class="odd">
+<td><code>coordinate_uncertainty_in_meters</code></td>
+<td>Incertitude des coordonnées géographiques en mètres</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="table-des-occurrences-biologiques-2" class="level4" data-number="3.3.2.2">
+<h4 data-number="3.3.2.2" class="anchored" data-anchor-id="table-des-occurrences-biologiques-2"><span class="header-section-number">3.3.2.2</span> Table des occurrences biologiques</h4>
+<table class="table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>event_id</code></td>
+<td>Identifiant de l’événement</td>
+</tr>
+<tr class="even">
+<td><code>occurrence_id</code></td>
+<td>Identifiant unique de l’occurrence</td>
+</tr>
+<tr class="odd">
+<td><code>scientific_name</code></td>
+<td>Nom scientifique de l’organisme</td>
+</tr>
+<tr class="even">
+<td><code>scientific_name_id</code></td>
+<td>Identifiant WoRMS du nom scientifique</td>
+</tr>
+<tr class="odd">
+<td><code>kingdom</code></td>
+<td>Règne biologique</td>
+</tr>
+<tr class="even">
+<td><code>phylum</code></td>
+<td>Embranchement biologique</td>
+</tr>
+<tr class="odd">
+<td><code>class</code></td>
+<td>Classe biologique</td>
+</tr>
+<tr class="even">
+<td><code>order</code></td>
+<td>Ordre biologique</td>
+</tr>
+<tr class="odd">
+<td><code>family</code></td>
+<td>Famille biologique</td>
+</tr>
+<tr class="even">
+<td><code>genus</code></td>
+<td>Genre biologique</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="table-des-mesures-abiotiques" class="level4" data-number="3.3.2.3">
+<h4 data-number="3.3.2.3" class="anchored" data-anchor-id="table-des-mesures-abiotiques"><span class="header-section-number">3.3.2.3</span> Table des mesures abiotiques</h4>
+<table class="table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>event_id</code></td>
+<td>Identifiant de l’événement</td>
+</tr>
+<tr class="even">
+<td><code>measurement_type</code></td>
+<td>Type de mesure (ex. salinité, type de substrat)</td>
+</tr>
+<tr class="odd">
+<td><code>measurement_value</code></td>
+<td>Valeur mesurée</td>
+</tr>
+<tr class="even">
+<td><code>measurement_unit</code></td>
+<td>Unité de mesure</td>
+</tr>
+<tr class="odd">
+<td><code>measurement_method</code></td>
+<td>Méthode utilisée pour la mesure</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="références" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="références"><span class="header-section-number">3.4</span> Références</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="1" data-line-spacing="5" role="list">
+<div id="ref-loiseau2024" class="csl-entry" role="listitem">
+Loiseau, V., Calosi, P., Gendreau, Y., Cusson, M., Fisheries, and Canada, O. (2024). Inventory of macroalgae and benthic macroinvertebrates along a hypoosmolarity stress gradient in barthelemy bay and the colombier, mistassini, franquelin and saint-nicolas rivers of the upper north shore, quebec. Available at: <a href="https://doi.org/10.26071/ogsl-4bb77d86-b94e">https://doi.org/10.26071/ogsl-4bb77d86-b94e</a>.
+</div>
 <div id="ref-Ouellette2023" class="csl-entry" role="listitem">
 Ouellette, D., and Sherbrooke, C. de (2023). Résultats d’inventaires annuels de poissons et de macroinvertébrés benthiques de la zone médiolittorale près de la pointe à john, de 2012 à aujourd’hui. Available at: <a href="https://catalogue.ogsl.ca/fr/dataset/ca-cioos_b943abc0-09be-43c6-a003-efa665a6c8a9">https://catalogue.ogsl.ca/fr/dataset/ca-cioos_b943abc0-09be-43c6-a003-efa665a6c8a9</a>.
 </div>
