@@ -58,7 +58,7 @@ pipeline:
         output: "kelp_occurrence-data_2018-2019.csv"
         format: "csv"
 
-  notprocessing:
+  processing:
     sources:
       - name: process inventaire_batture_alouettes
         script: prc_inventaire_batture_alouettes

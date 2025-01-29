@@ -35,7 +35,16 @@ list(
     path = "workspace/data/harvested/inventaire_batture_alouettes-1.0.0/raw/kelp_event-data_2018-2019.csv"), 
     tarchetypes::tar_download(tg_dfbfc2d7_697f_4801_b859_91bf4c1575df_Occurrence_Data, 
         url = "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_e234a1a5-e21e-4c09-bc77-d92d72796ae7/kelp_occurrence-data_2018-2019.csv", 
-        path = "workspace/data/harvested/inventaire_batture_alouettes-1.0.0/raw/kelp_occurrence-data_2018-2019.csv")),
+        path = "workspace/data/harvested/inventaire_batture_alouettes-1.0.0/raw/kelp_occurrence-data_2018-2019.csv"), 
+    tar_target(tg_dfbfc2d7_697f_4801_b859_91bf4c1575df_process_inventaire_batture_alouettes, 
+        {
+            prc_inventaire_batture_alouettes(output_path = "workspace/data/harvested/inventaire_batture_alouettes-1.0.0/processed", 
+                input_files = list(tg_dfbfc2d7_697f_4801_b859_91bf4c1575df_Event_Data, 
+                  tg_dfbfc2d7_697f_4801_b859_91bf4c1575df_Occurrence_Data))
+            c("workspace/data/harvested/inventaire_batture_alouettes-1.0.0/processed/kelp_events.csv", 
+            "workspace/data/harvested/inventaire_batture_alouettes-1.0.0/processed/kelp_occurrences.csv"
+            )
+        }, format = "file")),
     list(tarchetypes::tar_download(tg_71e5ee2d_2433_455d_8434_9a9fa26afde6_Evenements_echantillonnage, 
     url = "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_4bb77d86-b94e-4f61-b91b-fdcfd6ecbaed/macroalgae-macroinvertebrates_event-data_2019.csv", 
     path = "workspace/data/harvested/inventaire_macroalgues_macroinvertebres-1.0.0/raw/macroalgae-macroinvertebrates_event-data_2019.csv"), 
@@ -99,6 +108,31 @@ list(
             c("workspace/data/harvested/invertebres_vegetation_saint_laurent-1.0.0/processed/evenements_cpd.csv", 
             "workspace/data/harvested/invertebres_vegetation_saint_laurent-1.0.0/processed/occurrences_cpd.csv", 
             "workspace/data/harvested/invertebres_vegetation_saint_laurent-1.0.0/processed/dictionnaire_donnees.csv"
+            )
+        }, format = "file")),
+    list(tarchetypes::tar_download(tg_01fab37f_efbc_433d_8a08_d717200c0ff7_Evenements_echantillonnage, 
+    url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_3b8c6d97-6eb8-4e8d-9869-ccb2b9bab5f3/zip-rne_marais-pf_event_2019-2021.csv", 
+    path = "workspace/data/harvested/zip_inventaire_marais_pointe_fortin-1.0.0/raw/marais_pointe_fortin_events.csv"), 
+    tarchetypes::tar_download(tg_01fab37f_efbc_433d_8a08_d717200c0ff7_Mesures_abiotiques, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_3b8c6d97-6eb8-4e8d-9869-ccb2b9bab5f3/zip-rne_marais-pf_event_emof_2019-2021.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_pointe_fortin-1.0.0/raw/marais_pointe_fortin_abiotic.csv"), 
+    tarchetypes::tar_download(tg_01fab37f_efbc_433d_8a08_d717200c0ff7_Occurrences_biologiques, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_3b8c6d97-6eb8-4e8d-9869-ccb2b9bab5f3/zip-rne_marais-pf_occurrence_2019-2021.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_pointe_fortin-1.0.0/raw/marais_pointe_fortin_occurrences.csv"), 
+    tarchetypes::tar_download(tg_01fab37f_efbc_433d_8a08_d717200c0ff7_Donnees_abondance, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_3b8c6d97-6eb8-4e8d-9869-ccb2b9bab5f3/zip-rne_marais-pf_occurrence_emof_2019-2021.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_pointe_fortin-1.0.0/raw/marais_pointe_fortin_abundance.csv"), 
+    tar_target(tg_01fab37f_efbc_433d_8a08_d717200c0ff7_process_zip_inventaire_marais_pointe_fortin, 
+        {
+            prc_zip_inventaire_marais_pointe_fortin(output_path = "workspace/data/harvested/zip_inventaire_marais_pointe_fortin-1.0.0/processed", 
+                input_files = list(tg_01fab37f_efbc_433d_8a08_d717200c0ff7_Evenements_echantillonnage, 
+                  tg_01fab37f_efbc_433d_8a08_d717200c0ff7_Mesures_abiotiques, 
+                  tg_01fab37f_efbc_433d_8a08_d717200c0ff7_Occurrences_biologiques, 
+                  tg_01fab37f_efbc_433d_8a08_d717200c0ff7_Donnees_abondance))
+            c("workspace/data/harvested/zip_inventaire_marais_pointe_fortin-1.0.0/processed/marais_pointe_fortin_events.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_pointe_fortin-1.0.0/processed/marais_pointe_fortin_abiotic.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_pointe_fortin-1.0.0/processed/marais_pointe_fortin_occurrences.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_pointe_fortin-1.0.0/processed/marais_pointe_fortin_abundance.csv"
             )
         }, format = "file"))
 )

@@ -303,4 +303,87 @@ Les données ont été téléchargées à partir du catalogue OGSL et importées
 | `life_stage`          | Stade de vie de l'organisme (ex. adulte, juvénile)    |
 
 
+## Caractérisation du marais de la Pointe des Fortin {#sec-inventaire_marais_pointe_fortin}
+
+Les données proviennent d'un projet de caractérisation des habitats littoraux du marais de la Pointe des Fortin, situé sur la rive nord de l’estuaire maritime du Saint-Laurent. Ce projet, réalisé entre 2019 et 2021, avait pour objectif de générer des données écologiques de référence sur l'état des marais littoraux dans le secteur de la Haute-Côte-Nord, Québec. Il comprend des inventaires floristiques, ichtyologiques et benthiques, ainsi que des mesures abiotiques (ex. température, salinité, type de substrat) [@ziprne2022].
+
+- **Source** : [Le marais de la Pointe des Fortin - Caractérisation des habitats littoraux](https://doi.org/10.26071/ogsl-3b8c6d97-6eb8)  
+- **Accessibilité** : Libre, Creative Commons Attribution 4.0 (CC-BY-4.0)  
+- **Type de données** : Fichiers CSV  
+- **Couverture géographique** : Marais de la Pointe des Fortin, Québec, Canada (latitude : 48.6185174 à 48.6747239, longitude : -69.1176676 à -69.0334743)  
+- **Script de traitement** : `prc_zip_inventaire_marais_pointe_fortin`  
+- **Fichiers de sortie** :  
+  - `marais_pointe_fortin_events.csv`  
+  - `marais_pointe_fortin_abiotic.csv`  
+  - `marais_pointe_fortin_occurrences.csv`  
+  - `marais_pointe_fortin_abundance.csv`
+
+
+### Étapes de traitement des données
+
+Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Ces données ont été formatées conformément aux standards Darwin Core, permettant leur intégration dans des bases de données de biodiversité. Nous avons uniquement standardisés les noms de colonnes en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
+
+### Structure des données traitées
+
+#### Table des événements d’échantillonnage
+
+| Variable                           | Description                                                              |
+|------------------------------------|--------------------------------------------------------------------------|
+| `event_id`                         | Identifiant unique de l’événement                                        |
+| `event_date`                       | Date et heure de l’événement d’échantillonnage                          |
+| `decimal_latitude`                 | Latitude décimale                                                       |
+| `decimal_longitude`                | Longitude décimale                                                      |
+| `sampling_protocol`                | Protocole d’échantillonnage utilisé                                     |
+| `code_station`                     | Code de la station d’échantillonnage                                    |
+| `num_echantillon`                  | Numéro de l’échantillon collecté                                        |
+| `habitat`                          | Type d’habitat observé                                                  |
+| `minimum_elevation_in_meters`      | Élévation minimale du site (si applicable)                              |
+| `maximum_elevation_in_meters`      | Élévation maximale du site (si applicable)                              |
+| `event_remarks`                    | Remarques sur l’événement d’échantillonnage                             |
+
+
+#### Table des mesures abiotiques
+
+| Variable              | Description                                           |
+|-----------------------|-------------------------------------------------------|
+| `event_id`            | Identifiant de l’événement                            |
+| `measurement_id`      | Identifiant unique de la mesure                       |
+| `measurement_type`    | Type de mesure (ex. salinité, température, substrat)  |
+| `measurement_value`   | Valeur mesurée                                        |
+| `measurement_unit`    | Unité de mesure                                       |
+
+
+#### Table des occurrences biologiques
+
+| Variable              | Description                                           |
+|-----------------------|-------------------------------------------------------|
+| `event_id`            | Identifiant de l’événement                            |
+| `occurrence_id`       | Identifiant unique de l’occurrence                    |
+| `scientific_name`     | Nom scientifique de l’organisme                       |
+| `scientific_name_id`  | Identifiant WoRMS du taxon                            |
+| `kingdom`             | Règne biologique                                     |
+| `phylum`              | Embranchement biologique                             |
+| `class`               | Classe biologique                                    |
+| `order`               | Ordre biologique                                     |
+| `family`              | Famille biologique                                   |
+| `genus`               | Genre biologique                                     |
+| `occurrence_status`   | Présence ou absence de l’espèce                      |
+| `basis_of_record`     | Type de donnée (ex. observation humaine)              |
+
+
+#### Table des données d’abondance
+
+| Variable              | Description                                           |
+|-----------------------|-------------------------------------------------------|
+| `event_id`            | Identifiant de l’événement                            |
+| `occurrence_id`       | Identifiant unique de l’occurrence                    |
+| `measurement_id`      | Identifiant de la mesure d’abondance                  |
+| `measurement_type`    | Type de mesure (ex. nombre d’individus, biomasse)     |
+| `measurement_value`   | Valeur mesurée                                        |
+| `measurement_unit`    | Unité de mesure                                       |
+
+
+
+
+
 ## Références
