@@ -1,0 +1,109 @@
+pipeline:
+  id: 36f7af6b-8d9c-439f-a838-a25a9c08efe3
+  name: zip_inventaire_marais_portneuf_sur_mer
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-01-29 18:50:55
+  last_modified: 2025-01-29 18:50:55
+  description: |
+    Ce pipeline collecte et traite des données sur la caractérisation des habitats 
+    littoraux du marais salé de Portneuf-sur-Mer, situé sur la rive nord de l’estuaire 
+    maritime du Saint-Laurent. Le projet vise à générer des données écologiques de 
+    référence pour évaluer l’état des marais littoraux dans le secteur de la Haute-Côte-Nord, 
+    au Québec. Les données incluent des inventaires floristiques, ichtyologiques et benthiques, 
+    ainsi que des mesures abiotiques.
+
+  metadata:
+    source_name: "Le marais salé de Portneuf-sur-Mer - Caractérisation des habitats littoraux"
+    data_type: "CSV, PDF"
+    file_size: "Inconnu"
+    license: "Creative Commons Attribution 4.0 (CC-BY-4.0)"
+    license_url: "https://creativecommons.org/licenses/by/4.0"
+    last_updated: "2024-03-22"
+    geographic_coverage:
+      region: "Marais de Portneuf-sur-Mer, Québec"
+      bounding_box:
+        - -69.1388298  # Longitude min
+        - 48.5773392   # Latitude min
+        - -69.0449599  # Longitude max
+        - 48.6260527   # Latitude max
+    temporal_coverage:
+      start_date: "2018-01-01"
+      end_date: "2018-12-31"
+    variables:
+      - abiotic_factors (salinité, substrat, température)
+      - fish_occurrences
+      - benthic_occurrences
+      - vegetation_occurrences
+    data_quality:
+      - "Noms taxonomiques validés via WoRMS."
+      - "Échantillonnage et mesures normalisés selon les standards Darwin Core."
+
+  bibliography:
+    - "@Dataset{ziprne2022b,
+        title = {The Portneuf-sur-Mer Salt Marsh - Characterization of Important Coastal Habitats on the North Shore of the St. Lawrence Estuary},
+        author = {{Comité ZIP de la Rive Nord de l’Estuaire}},
+        year = {2022},
+        publisher = {OGSL Catalogue},
+        url = {https://doi.org/10.26071/ogsl-5374b582-43aa}
+      }"
+    - "@TechReport{benaiteau2020,
+        title = {Caractérisation et plan d’intervention - Marais salé de Portneuf-sur-Mer},
+        author = {Benaiteau, M. and Bélanger-Deschênes, S. and Bérubé, A. and Valcourt, C. and Maltais, M.K.},
+        year = {2020},
+        institution = {{Comité ZIP de la Rive Nord de l’Estuaire}},
+        location = {Baie-Comeau, Québec},
+        pages = {134 p et annexe}
+      }"
+
+  download:
+    sources:
+      - name: "Rapport de caracterisation"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_5374b582-43aa-4ffa-8361-4a0d9f1f6b8e/caract_portneuf-sur-mer_comiteziprne.pdf"
+        output: "caract_portneuf-sur-mer.pdf"
+        format: "pdf"
+
+      - name: "Evenements echantillonnage"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_5374b582-43aa-4ffa-8361-4a0d9f1f6b8e/zip-rne_marais-psm_event_2018.csv"
+        output: "marais_portneuf_sur_mer_events.csv"
+        format: "csv"
+      
+      - name: "Mesures abiotiques"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_5374b582-43aa-4ffa-8361-4a0d9f1f6b8e/zip-rne_marais-psm_event_emof_2018.csv"
+        output: "marais_portneuf_sur_mer_abiotic.csv"
+        format: "csv"
+
+      - name: "Occurrences biologiques"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_5374b582-43aa-4ffa-8361-4a0d9f1f6b8e/zip-rne_marais-psm_occurrence_2018.csv"
+        output: "marais_portneuf_sur_mer_occurrences.csv"
+        format: "csv"
+
+      - name: "Donnees abondance"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_5374b582-43aa-4ffa-8361-4a0d9f1f6b8e/zip-rne_marais-psm_occurrence_emof_2018.csv"
+        output: "marais_portneuf_sur_mer_abundance.csv"
+        format: "csv"
+
+  processing:
+    sources:
+      - name: process zip_inventaire_marais_portneuf_sur_mer
+        script: prc_zip_inventaire_marais_portneuf_sur_mer
+        input_files:
+          - Evenements echantillonnage
+          - Mesures abiotiques
+          - Occurrences biologiques
+          - Donnees abondance
+        output_files:
+          - marais_portneuf_sur_mer_events.csv
+          - marais_portneuf_sur_mer_abiotic.csv
+          - marais_portneuf_sur_mer_occurrences.csv
+          - marais_portneuf_sur_mer_abundance.csv
+
+  output:
+    output_dir: "workspace/data/harvested/"
+    log_dir: "workspace/logs/"
+    archive_raw: true

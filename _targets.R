@@ -134,5 +134,33 @@ list(
             "workspace/data/harvested/zip_inventaire_marais_pointe_fortin-1.0.0/processed/marais_pointe_fortin_occurrences.csv", 
             "workspace/data/harvested/zip_inventaire_marais_pointe_fortin-1.0.0/processed/marais_pointe_fortin_abundance.csv"
             )
+        }, format = "file")),
+    list(tarchetypes::tar_download(tg_36f7af6b_8d9c_439f_a838_a25a9c08efe3_Rapport_de_caracterisation, 
+    url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_5374b582-43aa-4ffa-8361-4a0d9f1f6b8e/caract_portneuf-sur-mer_comiteziprne.pdf", 
+    path = "workspace/data/harvested/zip_inventaire_marais_portneuf_sur_mer-1.0.0/raw/caract_portneuf-sur-mer.pdf"), 
+    tarchetypes::tar_download(tg_36f7af6b_8d9c_439f_a838_a25a9c08efe3_Evenements_echantillonnage, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_5374b582-43aa-4ffa-8361-4a0d9f1f6b8e/zip-rne_marais-psm_event_2018.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_portneuf_sur_mer-1.0.0/raw/marais_portneuf_sur_mer_events.csv"), 
+    tarchetypes::tar_download(tg_36f7af6b_8d9c_439f_a838_a25a9c08efe3_Mesures_abiotiques, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_5374b582-43aa-4ffa-8361-4a0d9f1f6b8e/zip-rne_marais-psm_event_emof_2018.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_portneuf_sur_mer-1.0.0/raw/marais_portneuf_sur_mer_abiotic.csv"), 
+    tarchetypes::tar_download(tg_36f7af6b_8d9c_439f_a838_a25a9c08efe3_Occurrences_biologiques, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_5374b582-43aa-4ffa-8361-4a0d9f1f6b8e/zip-rne_marais-psm_occurrence_2018.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_portneuf_sur_mer-1.0.0/raw/marais_portneuf_sur_mer_occurrences.csv"), 
+    tarchetypes::tar_download(tg_36f7af6b_8d9c_439f_a838_a25a9c08efe3_Donnees_abondance, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_5374b582-43aa-4ffa-8361-4a0d9f1f6b8e/zip-rne_marais-psm_occurrence_emof_2018.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_portneuf_sur_mer-1.0.0/raw/marais_portneuf_sur_mer_abundance.csv"), 
+    tar_target(tg_36f7af6b_8d9c_439f_a838_a25a9c08efe3_process_zip_inventaire_marais_portneuf_sur_mer, 
+        {
+            prc_zip_inventaire_marais_portneuf_sur_mer(output_path = "workspace/data/harvested/zip_inventaire_marais_portneuf_sur_mer-1.0.0/processed", 
+                input_files = list(tg_36f7af6b_8d9c_439f_a838_a25a9c08efe3_Evenements_echantillonnage, 
+                  tg_36f7af6b_8d9c_439f_a838_a25a9c08efe3_Mesures_abiotiques, 
+                  tg_36f7af6b_8d9c_439f_a838_a25a9c08efe3_Occurrences_biologiques, 
+                  tg_36f7af6b_8d9c_439f_a838_a25a9c08efe3_Donnees_abondance))
+            c("workspace/data/harvested/zip_inventaire_marais_portneuf_sur_mer-1.0.0/processed/marais_portneuf_sur_mer_events.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_portneuf_sur_mer-1.0.0/processed/marais_portneuf_sur_mer_abiotic.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_portneuf_sur_mer-1.0.0/processed/marais_portneuf_sur_mer_occurrences.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_portneuf_sur_mer-1.0.0/processed/marais_portneuf_sur_mer_abundance.csv"
+            )
         }, format = "file"))
 )
