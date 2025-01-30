@@ -164,7 +164,8 @@ div.csl-indent {
   <li><a href="#sec-inventaire_marais_baie_mille_vaches" id="toc-sec-inventaire_marais_baie_mille_vaches" class="nav-link" data-scroll-target="#sec-inventaire_marais_baie_mille_vaches"><span class="header-section-number">3.9</span> Caractérisation du marais de la Baie de Mille-Vaches</a></li>
   <li><a href="#sec-inventaire_marais_bergeronnes" id="toc-sec-inventaire_marais_bergeronnes" class="nav-link" data-scroll-target="#sec-inventaire_marais_bergeronnes"><span class="header-section-number">3.10</span> Caractérisation des marais des Bergeronnes</a></li>
   <li><a href="#sec-inventaire_marais_hickey" id="toc-sec-inventaire_marais_hickey" class="nav-link" data-scroll-target="#sec-inventaire_marais_hickey"><span class="header-section-number">3.11</span> Caractérisation du marais à Hickey</a></li>
-  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">3.12</span> Références</a></li>
+  <li><a href="#sec-cabin_aquatic_biomonitoring" id="toc-sec-cabin_aquatic_biomonitoring" class="nav-link" data-scroll-target="#sec-cabin_aquatic_biomonitoring"><span class="header-section-number">3.12</span> Caractérisation du Réseau Canadien de Biosurveillance Aquatique (RCBA)</a></li>
+  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">3.13</span> Références</a></li>
   </ul>
 </nav>
     </div>
@@ -2442,8 +2443,268 @@ div.csl-indent {
 </section>
 </section>
 </section>
-<section id="références" class="level2" data-number="3.12">
-<h2 data-number="3.12" class="anchored" data-anchor-id="références"><span class="header-section-number">3.12</span> Références</h2>
+<section id="sec-cabin_aquatic_biomonitoring" class="level2" data-number="3.12">
+<h2 data-number="3.12" class="anchored" data-anchor-id="sec-cabin_aquatic_biomonitoring"><span class="header-section-number">3.12</span> Caractérisation du Réseau Canadien de Biosurveillance Aquatique (RCBA)</h2>
+<p>Les données proviennent du Réseau Canadien de Biosurveillance Aquatique (RCBA/CABIN), un programme fédéral de biosurveillance visant à évaluer la santé des écosystèmes d’eau douce au Canada. Le programme est administré par Environnement et Changement climatique Canada (ECCC) et s’appuie sur la collecte de macroinvertébrés benthiques, considérés comme des indicateurs biologiques de la qualité de l’eau. Les données de CABIN sont recueillies en utilisant des protocoles d’échantillonnage standardisés et sont organisées en fonction des grands bassins de drainage du Canada <span class="citation" data-cites="cabin2024">(<a href="#ref-cabin2024" role="doc-biblioref">Environment and Climate Change Canada, 2024</a>)</span>. Un traitement partiel de la base de données a été effectué afin de cibler uniquement les grands bassins de drainage pertinents pour la présente étude, i.e.&nbsp;les Maritimes et le Saint-Laurent.</p>
+<ul>
+<li><strong>Source</strong> : <a href="https://open.canada.ca/data/en/dataset/13564ca4-e330-40a5-9521-bfb1be767147">CABIN - Réseau Canadien de Biosurveillance Aquatique</a><br>
+</li>
+<li><strong>Accessibilité</strong> : Libre, Licence du Gouvernement ouvert - Canada<br>
+</li>
+<li><strong>Type de données</strong> : Fichiers CSV<br>
+</li>
+<li><strong>Couverture géographique</strong> : Ensemble du Canada (latitude : 41.6755 à 83.1139, longitude : -141.003 à -52.6174)<br>
+</li>
+<li><strong>Script de traitement</strong> : <code>prc_cabin_aquatic_biomonitoring</code><br>
+</li>
+<li><strong>Fichiers de sortie</strong> :
+<ul>
+<li><code>cabin_study_data.csv</code><br>
+</li>
+<li><code>cabin_habitat_data.csv</code><br>
+</li>
+<li><code>cabin_benthic_data.csv</code></li>
+</ul></li>
+</ul>
+<section id="étapes-de-traitement-des-données-11" class="level3" data-number="3.12.1">
+<h3 data-number="3.12.1" class="anchored" data-anchor-id="étapes-de-traitement-des-données-11"><span class="header-section-number">3.12.1</span> Étapes de traitement des données</h3>
+<p>Les données de CABIN sont publiées sous format CSV avec une double nomenclature linguistique (anglais/français) pour les colonnes, ce qui pose plusieurs problèmes lors de l’importation et du traitement des données. Le traitement des données a suivi ces étapes :</p>
+<ol type="1">
+<li>Téléchargement des données :
+<ul>
+<li>Extraction des fichiers de métadonnées sur les sites d’étude, des mesures d’habitat et des données benthiques.</li>
+<li>Données récupérées pour deux bassins versants : Maritimes et Saint-Laurent.</li>
+</ul></li>
+<li>Nettoyage et normalisation :
+<ul>
+<li>Suppression des doublons linguistiques dans les noms de colonnes.</li>
+<li>Correction de l’encodage (<code>UTF-16LE</code> → <code>UTF-8</code>).</li>
+<li>Nettoyage des caractères spéciaux et des séparateurs incorrects dans les valeurs.</li>
+</ul></li>
+<li>Transformation et harmonisation :
+<ul>
+<li>Ajout d’une colonne bassin pour distinguer les données des différents bassins.</li>
+<li>Uniformisation des identifiants taxonomiques et des statuts des occurrences.</li>
+</ul></li>
+<li>Exportation des données traitées :
+<ul>
+<li>Trois fichiers finalisés et harmonisés enregistrés en format CSV.</li>
+</ul></li>
+</ol>
+</section>
+<section id="structure-des-données-traitées-11" class="level3" data-number="3.12.2">
+<h3 data-number="3.12.2" class="anchored" data-anchor-id="structure-des-données-traitées-11"><span class="header-section-number">3.12.2</span> Structure des données traitées</h3>
+<section id="table-des-sites-détude" class="level4" data-number="3.12.2.1">
+<h4 data-number="3.12.2.1" class="anchored" data-anchor-id="table-des-sites-détude"><span class="header-section-number">3.12.2.1</span> Table des sites d’étude</h4>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 74%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>bassin</code></td>
+<td>Nom du bassin de drainage (<code>maritimes</code>, <code>st_lawrence</code>)</td>
+</tr>
+<tr class="even">
+<td><code>site_visit_id</code></td>
+<td>Identifiant unique de la visite du site</td>
+</tr>
+<tr class="odd">
+<td><code>site</code></td>
+<td>Code du site</td>
+</tr>
+<tr class="even">
+<td><code>year</code></td>
+<td>Année de l’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>julian_day</code></td>
+<td>Jour julien de l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>province</code></td>
+<td>Province où se situe le site</td>
+</tr>
+<tr class="odd">
+<td><code>latitude</code></td>
+<td>Latitude du site (en degrés décimaux)</td>
+</tr>
+<tr class="even">
+<td><code>longitude</code></td>
+<td>Longitude du site (en degrés décimaux)</td>
+</tr>
+<tr class="odd">
+<td><code>ecoregion</code></td>
+<td>Écorégion où se situe le site</td>
+</tr>
+<tr class="even">
+<td><code>study_purpose</code></td>
+<td>Objectif de l’étude</td>
+</tr>
+<tr class="odd">
+<td><code>authority</code></td>
+<td>Autorité responsable de la collecte</td>
+</tr>
+<tr class="even">
+<td><code>site_description</code></td>
+<td>Description détaillée du site</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="table-des-mesures-abiotiques-7" class="level4" data-number="3.12.2.2">
+<h4 data-number="3.12.2.2" class="anchored" data-anchor-id="table-des-mesures-abiotiques-7"><span class="header-section-number">3.12.2.2</span> Table des mesures abiotiques</h4>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 66%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>bassin</code></td>
+<td>Nom du bassin de drainage (<code>maritimes</code>, <code>st_lawrence</code>)</td>
+</tr>
+<tr class="even">
+<td><code>site_visit_id</code></td>
+<td>Identifiant unique de la visite du site</td>
+</tr>
+<tr class="odd">
+<td><code>site</code></td>
+<td>Code du site</td>
+</tr>
+<tr class="even">
+<td><code>protocol</code></td>
+<td>Protocole utilisé</td>
+</tr>
+<tr class="odd">
+<td><code>julian_day</code></td>
+<td>Jour julien de l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>year</code></td>
+<td>Année de l’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>variable</code></td>
+<td>Type de mesure environnementale</td>
+</tr>
+<tr class="even">
+<td><code>variable_description</code></td>
+<td>Description de la mesure</td>
+</tr>
+<tr class="odd">
+<td><code>unit</code></td>
+<td>Unité de mesure</td>
+</tr>
+<tr class="even">
+<td><code>value</code></td>
+<td>Valeur mesurée</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="table-des-macroinvertébrés-benthiques" class="level4" data-number="3.12.2.3">
+<h4 data-number="3.12.2.3" class="anchored" data-anchor-id="table-des-macroinvertébrés-benthiques"><span class="header-section-number">3.12.2.3</span> Table des macroinvertébrés benthiques</h4>
+<table class="table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 72%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>bassin</code></td>
+<td>Nom du bassin de drainage (<code>maritimes</code>, <code>st_lawrence</code>)</td>
+</tr>
+<tr class="even">
+<td><code>site_visit_id</code></td>
+<td>Identifiant unique de la visite du site</td>
+</tr>
+<tr class="odd">
+<td><code>site</code></td>
+<td>Code du site</td>
+</tr>
+<tr class="even">
+<td><code>year</code></td>
+<td>Année de l’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>sampling_device</code></td>
+<td>Type de dispositif utilisé pour l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>mesh_size</code></td>
+<td>Maillage utilisé pour la capture des invertébrés</td>
+</tr>
+<tr class="odd">
+<td><code>taxonomist</code></td>
+<td>Nom du taxonomiste responsable de l’identification</td>
+</tr>
+<tr class="even">
+<td><code>phylum</code></td>
+<td>Embranchement de l’organisme</td>
+</tr>
+<tr class="odd">
+<td><code>class</code></td>
+<td>Classe taxonomique</td>
+</tr>
+<tr class="even">
+<td><code>order</code></td>
+<td>Ordre taxonomique</td>
+</tr>
+<tr class="odd">
+<td><code>family</code></td>
+<td>Famille taxonomique</td>
+</tr>
+<tr class="even">
+<td><code>genus</code></td>
+<td>Genre taxonomique</td>
+</tr>
+<tr class="odd">
+<td><code>species</code></td>
+<td>Espèce taxonomique</td>
+</tr>
+<tr class="even">
+<td><code>replicate</code></td>
+<td>Numéro de réplicat</td>
+</tr>
+<tr class="odd">
+<td><code>count</code></td>
+<td>Nombre total d’individus recensés</td>
+</tr>
+<tr class="even">
+<td><code>itis_tsn</code></td>
+<td>Identifiant ITIS du taxon</td>
+</tr>
+<tr class="odd">
+<td><code>valid</code></td>
+<td>Statut de validation des données</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="références" class="level2" data-number="3.13">
+<h2 data-number="3.13" class="anchored" data-anchor-id="références"><span class="header-section-number">3.13</span> Références</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="1" data-line-spacing="5" role="list">
@@ -2479,6 +2740,9 @@ Desrochers, V., Maltais, M. K., Saint-Marc, C., and Morissette, A. (2022b). Rapp
 </div>
 <div id="ref-desrochers2023" class="csl-entry" role="listitem">
 Desrochers, V., Quiec, F., Marée, S., D’Amours-Leclerc, F., and Maltais, M. K. (2023). Rapport de caractérisation : Les marais littoraux d’importance à longue-rive. Baie-Comeau, Québec: <span>Comité ZIP de la Rive Nord de l’Estuaire</span>.
+</div>
+<div id="ref-cabin2024" class="csl-entry" role="listitem">
+Environment and Climate Change Canada (2024). CABIN - canadian aquatic biomonitoring network. Available at: <a href="https://open.canada.ca/data/en/dataset/13564ca4-e330-40a5-9521-bfb1be767147">https://open.canada.ca/data/en/dataset/13564ca4-e330-40a5-9521-bfb1be767147</a>.
 </div>
 <div id="ref-gregoire2024" class="csl-entry" role="listitem">
 Grégoire, B. (2024). Biodiversity of the planning for integrated environmental response coastal survey in the st. Lawrence estuary and gulf (2017–2021). Available at: <a href="https://doi.org/10.26071/ogsl-90c40dba">https://doi.org/10.26071/ogsl-90c40dba</a>.

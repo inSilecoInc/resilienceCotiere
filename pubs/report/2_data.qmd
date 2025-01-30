@@ -779,5 +779,102 @@ Les données sont déjà disponibles dans un format standardisé; un effort mini
 
 
 
+## Caractérisation du Réseau Canadien de Biosurveillance Aquatique (RCBA) {#sec-cabin_aquatic_biomonitoring}
+
+Les données proviennent du Réseau Canadien de Biosurveillance Aquatique (RCBA/CABIN), un programme fédéral de biosurveillance visant à évaluer la santé des écosystèmes d’eau douce au Canada. Le programme est administré par Environnement et Changement climatique Canada (ECCC) et s’appuie sur la collecte de macroinvertébrés benthiques, considérés comme des indicateurs biologiques de la qualité de l’eau. Les données de CABIN sont recueillies en utilisant des protocoles d’échantillonnage standardisés et sont organisées en fonction des grands bassins de drainage du Canada [@cabin2024]. Un traitement partiel de la base de données a été effectué afin de cibler uniquement les grands bassins de drainage pertinents pour la présente étude, i.e. les Maritimes et le Saint-Laurent.
+
+- **Source** : [CABIN - Réseau Canadien de Biosurveillance Aquatique](https://open.canada.ca/data/en/dataset/13564ca4-e330-40a5-9521-bfb1be767147)  
+- **Accessibilité** : Libre, Licence du Gouvernement ouvert - Canada  
+- **Type de données** : Fichiers CSV  
+- **Couverture géographique** : Ensemble du Canada (latitude : 41.6755 à 83.1139, longitude : -141.003 à -52.6174)  
+- **Script de traitement** : `prc_cabin_aquatic_biomonitoring`  
+- **Fichiers de sortie** :  
+  - `cabin_study_data.csv`  
+  - `cabin_habitat_data.csv`  
+  - `cabin_benthic_data.csv`
+
+
+### Étapes de traitement des données
+
+Les données de CABIN sont publiées sous format CSV avec une double nomenclature linguistique (anglais/français) pour les colonnes, ce qui pose plusieurs problèmes lors de l'importation et du traitement des données. Le traitement des données a suivi ces étapes :
+
+1. Téléchargement des données :
+   - Extraction des fichiers de métadonnées sur les sites d’étude, des mesures d’habitat et des données benthiques.
+   - Données récupérées pour deux bassins versants : Maritimes et Saint-Laurent.
+
+2. Nettoyage et normalisation :
+   - Suppression des doublons linguistiques dans les noms de colonnes.
+   - Correction de l’encodage (`UTF-16LE` → `UTF-8`).
+   - Nettoyage des caractères spéciaux et des séparateurs incorrects dans les valeurs.
+
+3. Transformation et harmonisation :
+   - Ajout d’une colonne bassin pour distinguer les données des différents bassins.
+   - Uniformisation des identifiants taxonomiques et des statuts des occurrences.
+
+4. Exportation des données traitées :
+   - Trois fichiers finalisés et harmonisés enregistrés en format CSV.
+
+
+### Structure des données traitées
+
+#### Table des sites d’étude
+
+| Variable             | Description                                                 |
+|---------------------|-------------------------------------------------------------|
+| `bassin`           | Nom du bassin de drainage (`maritimes`, `st_lawrence`)      |
+| `site_visit_id`    | Identifiant unique de la visite du site                     |
+| `site`             | Code du site                                                 |
+| `year`             | Année de l’échantillonnage                                   |
+| `julian_day`       | Jour julien de l’échantillonnage                             |
+| `province`         | Province où se situe le site                                |
+| `latitude`         | Latitude du site (en degrés décimaux)                       |
+| `longitude`        | Longitude du site (en degrés décimaux)                      |
+| `ecoregion`        | Écorégion où se situe le site                               |
+| `study_purpose`    | Objectif de l’étude                                          |
+| `authority`        | Autorité responsable de la collecte                         |
+| `site_description` | Description détaillée du site                              |
+
+
+#### Table des mesures abiotiques 
+
+| Variable                  | Description                                        |
+|--------------------------|----------------------------------------------------|
+| `bassin`                 | Nom du bassin de drainage  (`maritimes`, `st_lawrence`) |
+| `site_visit_id`          | Identifiant unique de la visite du site           |
+| `site`                   | Code du site                                      |
+| `protocol`               | Protocole utilisé                                 |
+| `julian_day`             | Jour julien de l’échantillonnage                  |
+| `year`                   | Année de l’échantillonnage                        |
+| `variable`               | Type de mesure environnementale                   |
+| `variable_description`   | Description de la mesure                          |
+| `unit`                   | Unité de mesure                                   |
+| `value`                  | Valeur mesurée                                    |
+
+
+#### Table des macroinvertébrés benthiques
+
+| Variable              | Description                                              |
+|----------------------|----------------------------------------------------------|
+| `bassin`            | Nom du bassin de drainage (`maritimes`, `st_lawrence`)    |
+| `site_visit_id`     | Identifiant unique de la visite du site                   |
+| `site`              | Code du site                                              |
+| `year`              | Année de l’échantillonnage                                |
+| `sampling_device`   | Type de dispositif utilisé pour l’échantillonnage         |
+| `mesh_size`         | Maillage utilisé pour la capture des invertébrés         |
+| `taxonomist`        | Nom du taxonomiste responsable de l’identification       |
+| `phylum`            | Embranchement de l’organisme                             |
+| `class`             | Classe taxonomique                                       |
+| `order`             | Ordre taxonomique                                        |
+| `family`            | Famille taxonomique                                      |
+| `genus`             | Genre taxonomique                                        |
+| `species`           | Espèce taxonomique                                       |
+| `replicate`         | Numéro de réplicat                                       |
+| `count`             | Nombre total d’individus recensés                        |
+| `itis_tsn`          | Identifiant ITIS du taxon                                |
+| `valid`             | Statut de validation des données                         |
+
+
+
+
 
 ## Références

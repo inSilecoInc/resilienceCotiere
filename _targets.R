@@ -30,6 +30,38 @@ list(
             "workspace/data/harvested/biodiversite_piei-1.0.0/processed/occurrences_piei.csv"
             )
         }, format = "file")),
+    list(tarchetypes::tar_download(tg_1cac3c56_ed56_49f5_897c_1b7cf40605c5_Metadata_on_Study_Sites___Maritimes, 
+    url = "https://cabin-rcba.ec.gc.ca/Cabin/opendata/cabin_study_data_mda01_1987-present.csv", 
+    path = "workspace/data/harvested/cabin_aquatic_biomonitoring-1.0.0/raw/cabin_study_data_maritimes.csv"), 
+    tarchetypes::tar_download(tg_1cac3c56_ed56_49f5_897c_1b7cf40605c5_Habitat_Data___Maritimes, 
+        url = "https://cabin-rcba.ec.gc.ca/Cabin/opendata/cabin_habitat_data_mda01_1987-present.csv", 
+        path = "workspace/data/harvested/cabin_aquatic_biomonitoring-1.0.0/raw/cabin_habitat_data_maritimes.csv"), 
+    tarchetypes::tar_download(tg_1cac3c56_ed56_49f5_897c_1b7cf40605c5_Benthic_Macroinvertebrate_Data___Maritimes, 
+        url = "https://cabin-rcba.ec.gc.ca/Cabin/opendata/cabin_benthic_data_mda01_1987-present.csv", 
+        path = "workspace/data/harvested/cabin_aquatic_biomonitoring-1.0.0/raw/cabin_benthic_data_maritimes.csv"), 
+    tarchetypes::tar_download(tg_1cac3c56_ed56_49f5_897c_1b7cf40605c5_Metadata_on_Study_Sites___St_Lawrence, 
+        url = "https://cabin-rcba.ec.gc.ca/Cabin/opendata/cabin_study_data_mda02_1987-present.csv", 
+        path = "workspace/data/harvested/cabin_aquatic_biomonitoring-1.0.0/raw/cabin_study_data_st_lawrence.csv"), 
+    tarchetypes::tar_download(tg_1cac3c56_ed56_49f5_897c_1b7cf40605c5_Habitat_Data___St_Lawrence, 
+        url = "https://cabin-rcba.ec.gc.ca/Cabin/opendata/cabin_habitat_data_mda02_1987-present.csv", 
+        path = "workspace/data/harvested/cabin_aquatic_biomonitoring-1.0.0/raw/cabin_habitat_data_st_lawrence.csv"), 
+    tarchetypes::tar_download(tg_1cac3c56_ed56_49f5_897c_1b7cf40605c5_Benthic_Macroinvertebrate_Data___St_Lawrence, 
+        url = "https://cabin-rcba.ec.gc.ca/Cabin/opendata/cabin_benthic_data_mda02_1987-present.csv", 
+        path = "workspace/data/harvested/cabin_aquatic_biomonitoring-1.0.0/raw/cabin_benthic_data_st_lawrence.csv"), 
+    tar_target(tg_1cac3c56_ed56_49f5_897c_1b7cf40605c5_process_cabin_aquatic_biomonitoring, 
+        {
+            prc_cabin_aquatic_biomonitoring(output_path = "workspace/data/harvested/cabin_aquatic_biomonitoring-1.0.0/processed", 
+                input_files = list(tg_1cac3c56_ed56_49f5_897c_1b7cf40605c5_Metadata_on_Study_Sites___Maritimes, 
+                  tg_1cac3c56_ed56_49f5_897c_1b7cf40605c5_Habitat_Data___Maritimes, 
+                  tg_1cac3c56_ed56_49f5_897c_1b7cf40605c5_Benthic_Macroinvertebrate_Data___Maritimes, 
+                  tg_1cac3c56_ed56_49f5_897c_1b7cf40605c5_Metadata_on_Study_Sites___St_Lawrence, 
+                  tg_1cac3c56_ed56_49f5_897c_1b7cf40605c5_Habitat_Data___St_Lawrence, 
+                  tg_1cac3c56_ed56_49f5_897c_1b7cf40605c5_Benthic_Macroinvertebrate_Data___St_Lawrence))
+            c("workspace/data/harvested/cabin_aquatic_biomonitoring-1.0.0/processed/cabin_study_data.csv", 
+            "workspace/data/harvested/cabin_aquatic_biomonitoring-1.0.0/processed/cabin_habitat_data.csv", 
+            "workspace/data/harvested/cabin_aquatic_biomonitoring-1.0.0/processed/cabin_benthic_data.csv"
+            )
+        }, format = "file")),
     list(tarchetypes::tar_download(tg_dfbfc2d7_697f_4801_b859_91bf4c1575df_Event_Data, 
     url = "https://catalogue.ogsl.ca/data/dfo-mpo/ca-cioos_e234a1a5-e21e-4c09-bc77-d92d72796ae7/kelp_event-data_2018-2019.csv", 
     path = "workspace/data/harvested/inventaire_batture_alouettes-1.0.0/raw/kelp_event-data_2018-2019.csv"), 

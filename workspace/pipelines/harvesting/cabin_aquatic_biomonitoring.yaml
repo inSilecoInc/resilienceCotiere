@@ -1,0 +1,108 @@
+pipeline:
+  id: 1cac3c56-ed56-49f5-897c-1b7cf40605c5
+  name: cabin_aquatic_biomonitoring
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-01-30 10:48:09
+  last_modified: 2025-01-30 10:48:09
+  description: |
+    Ce pipeline collecte et traite des données du **Réseau Canadien de Biosurveillance Aquatique (RCBA/CABIN)**, 
+    un programme de biosurveillance aquatique pour évaluer la santé des écosystèmes d’eau douce au Canada. 
+    Il repose sur la collecte et l’analyse des macroinvertébrés benthiques, en s’appuyant sur un réseau 
+    collaboratif de partage de données. Ce pipeline récupère les données disponibles sur l’**Open Government 
+    Portal du Canada** et **Environnement et Changement climatique Canada**.
+
+  metadata:
+    source_name: "CABIN - Canadian Aquatic Biomonitoring Network"
+    program_url: "https://www.canada.ca/en/environment-climate-change/services/canadian-aquatic-biomonitoring-network.html"
+    data_type: "CSV"
+    file_size: "Inconnu"
+    license: "Open Government License - Canada"
+    license_url: "https://open.canada.ca/en/open-government-licence-canada"
+    last_updated: "2024-07-02"
+    geographic_coverage:
+      region: "Canada"
+      bounding_box:
+        - -141.003  # Longitude min
+        - 41.6755   # Latitude min
+        - -52.6174  # Longitude max
+        - 83.1139   # Latitude max
+    temporal_coverage:
+      start_date: "1987-01-01"
+      end_date: "Present"
+    variables:
+      - site_metadata (site location, monitoring period, drainage basin)
+      - habitat_data (physical and chemical parameters)
+      - benthic_invertebrates (species composition, abundance)
+    data_quality:
+      - "Standardized CABIN field protocols used for collection."
+      - "Taxonomic identification of macroinvertebrates validated through certified methods."
+      - "Consistent monitoring across major drainage basins."
+
+  bibliography:
+    - "@Dataset{cabin2024,
+        title = {CABIN - Canadian Aquatic Biomonitoring Network},
+        author = {{Environment and Climate Change Canada}},
+        year = {2024},
+        publisher = {Open Government Portal Canada},
+        url = {https://open.canada.ca/data/en/dataset/13564ca4-e330-40a5-9521-bfb1be767147}
+      }"
+
+  download:
+    sources:
+      - name: "Metadata on Study Sites - Maritimes"
+        source_type: "http"
+        urls: "https://cabin-rcba.ec.gc.ca/Cabin/opendata/cabin_study_data_mda01_1987-present.csv"
+        output: "cabin_study_data_maritimes.csv"
+        format: "csv"
+
+      - name: "Habitat Data - Maritimes"
+        source_type: "http"
+        urls: "https://cabin-rcba.ec.gc.ca/Cabin/opendata/cabin_habitat_data_mda01_1987-present.csv"
+        output: "cabin_habitat_data_maritimes.csv"
+        format: "csv"
+
+      - name: "Benthic Macroinvertebrate Data - Maritimes"
+        source_type: "http"
+        urls: "https://cabin-rcba.ec.gc.ca/Cabin/opendata/cabin_benthic_data_mda01_1987-present.csv"
+        output: "cabin_benthic_data_maritimes.csv"
+        format: "csv"
+
+      - name: "Metadata on Study Sites - St Lawrence"
+        source_type: "http"
+        urls: "https://cabin-rcba.ec.gc.ca/Cabin/opendata/cabin_study_data_mda02_1987-present.csv"
+        output: "cabin_study_data_st_lawrence.csv"
+        format: "csv"
+
+      - name: "Habitat Data - St Lawrence"
+        source_type: "http"
+        urls: "https://cabin-rcba.ec.gc.ca/Cabin/opendata/cabin_habitat_data_mda02_1987-present.csv"
+        output: "cabin_habitat_data_st_lawrence.csv"
+        format: "csv"
+
+      - name: "Benthic Macroinvertebrate Data - St Lawrence"
+        source_type: "http"
+        urls: "https://cabin-rcba.ec.gc.ca/Cabin/opendata/cabin_benthic_data_mda02_1987-present.csv"
+        output: "cabin_benthic_data_st_lawrence.csv"
+        format: "csv"
+
+  processing:
+    sources:
+      - name: process_cabin_aquatic_biomonitoring
+        script: prc_cabin_aquatic_biomonitoring
+        input_files:
+          - Metadata on Study Sites - Maritimes
+          - Habitat Data - Maritimes
+          - Benthic Macroinvertebrate Data - Maritimes
+          - Metadata on Study Sites - St Lawrence
+          - Habitat Data - St Lawrence
+          - Benthic Macroinvertebrate Data - St Lawrence
+        output_files:
+          - cabin_study_data.csv
+          - cabin_habitat_data.csv
+          - cabin_benthic_data.csv
+
+  output:
+    output_dir: "workspace/data/harvested/"
+    log_dir: "workspace/logs/"
+    archive_raw: true
