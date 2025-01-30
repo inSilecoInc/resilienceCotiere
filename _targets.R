@@ -157,6 +157,31 @@ list(
             "workspace/data/harvested/zip_inventaire_marais_bergeronnes-1.0.0/processed/marais_bergeronnes_abundance.csv"
             )
         }, format = "file")),
+    list(tarchetypes::tar_download(tg_645bee2a_0a34_460a_9062_cb276213ce96_Evenements_echantillonnage, 
+    url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_0925e105-860e-4fe7-83ac-afc5e4c2699e/zip-rne_marais-hick_event.csv", 
+    path = "workspace/data/harvested/zip_inventaire_marais_hickey-1.0.0/raw/marais_hick_events.csv"), 
+    tarchetypes::tar_download(tg_645bee2a_0a34_460a_9062_cb276213ce96_Mesures_abiotiques, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_0925e105-860e-4fe7-83ac-afc5e4c2699e/zip-rne_marais-hick_event_emof_2022.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_hickey-1.0.0/raw/marais_hick_abiotic.csv"), 
+    tarchetypes::tar_download(tg_645bee2a_0a34_460a_9062_cb276213ce96_Occurrences_biologiques, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_0925e105-860e-4fe7-83ac-afc5e4c2699e/zip-rne_marais-hick_occurrence_2022.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_hickey-1.0.0/raw/marais_hick_occurrences.csv"), 
+    tarchetypes::tar_download(tg_645bee2a_0a34_460a_9062_cb276213ce96_Donnees_abondance, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_0925e105-860e-4fe7-83ac-afc5e4c2699e/zip-rne_marais-hick_occurrence_emof_2022.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_hickey-1.0.0/raw/marais_hick_abundance.csv"), 
+    tar_target(tg_645bee2a_0a34_460a_9062_cb276213ce96_process_zip_inventaire_marais_hickey, 
+        {
+            prc_zip_inventaire_marais_hickey(output_path = "workspace/data/harvested/zip_inventaire_marais_hickey-1.0.0/processed", 
+                input_files = list(tg_645bee2a_0a34_460a_9062_cb276213ce96_Evenements_echantillonnage, 
+                  tg_645bee2a_0a34_460a_9062_cb276213ce96_Mesures_abiotiques, 
+                  tg_645bee2a_0a34_460a_9062_cb276213ce96_Occurrences_biologiques, 
+                  tg_645bee2a_0a34_460a_9062_cb276213ce96_Donnees_abondance))
+            c("workspace/data/harvested/zip_inventaire_marais_hickey-1.0.0/processed/marais_hick_events.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_hickey-1.0.0/processed/marais_hick_occurrences.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_hickey-1.0.0/processed/marais_hick_abiotic.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_hickey-1.0.0/processed/marais_hick_abundance.csv"
+            )
+        }, format = "file")),
     list(tarchetypes::tar_download(tg_1a7d4967_4a9d_446c_a080_c93755a24be9_Rapport_de_caracterisation, 
     url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_46d3ba2e-2fd3-4aad-a51a-f8343fbe6a73/Portrait_PAO_2022_ZIPRNE.pdf", 
     path = "workspace/data/harvested/zip_inventaire_marais_pointe_aux_outardes-1.0.0/raw/portrait_pao_2022.pdf"), 

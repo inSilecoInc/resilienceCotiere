@@ -1,0 +1,94 @@
+pipeline:
+  id: 645bee2a-0a34-460a-9062-cb276213ce96
+  name: zip_inventaire_marais_hickey
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-01-30 10:26:08
+  last_modified: 2025-01-30 10:26:08
+  description: |
+    Ce pipeline collecte et traite des données sur la caractérisation des habitats 
+    littoraux du marais à Hickey (Colombier), situé sur la rive nord de l’estuaire 
+    maritime du Saint-Laurent. Le projet vise à générer des données écologiques de 
+    référence pour évaluer l’état des marais littoraux dans le secteur de la Haute-Côte-Nord, 
+    au Québec. Les données incluent des inventaires floristiques et ichtyologiques, 
+    ainsi que des mesures abiotiques.
+
+  metadata:
+    source_name: "Le marais à Hickey - Caractérisation des habitats littoraux"
+    data_type: "CSV"
+    file_size: "Inconnu"
+    license: "Creative Commons Attribution 4.0 (CC-BY-4.0)"
+    license_url: "https://creativecommons.org/licenses/by/4.0"
+    last_updated: "2024-05-02"
+    geographic_coverage:
+      region: "Marais à Hickey, Québec"
+      bounding_box:
+        - -68.78537  # Longitude min
+        - 48.88933   # Latitude min
+        - -68.75671  # Longitude max
+        - 48.90168   # Latitude max
+    temporal_coverage:
+      start_date: "2022-01-01"
+      end_date: "2022-12-31"
+    variables:
+      - abiotic_factors (salinité, substrat, température)
+      - fish_occurrences
+      - vegetation_occurrences
+    data_quality:
+      - "Noms taxonomiques validés via WoRMS."
+      - "Échantillonnage et mesures normalisés selon les standards Darwin Core."
+
+  bibliography:
+    - "@Dataset{ziprne2024b,
+        title = {The Hickey Marsh - Characterization of Important Coastal Habitats on the North Shore of the St. Lawrence Maritime Estuary},
+        author = {{Comité ZIP de la Rive Nord de l’Estuaire}},
+        year = {2024},
+        publisher = {OGSL Catalogue},
+        url = {https://doi.org/10.26071/ogsl-0925e105-860e}
+      }"
+
+  download:
+    sources:
+      - name: "Evenements echantillonnage"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_0925e105-860e-4fe7-83ac-afc5e4c2699e/zip-rne_marais-hick_event.csv"
+        output: "marais_hick_events.csv"
+        format: "csv"
+
+      - name: "Mesures abiotiques"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_0925e105-860e-4fe7-83ac-afc5e4c2699e/zip-rne_marais-hick_event_emof_2022.csv"
+        output: "marais_hick_abiotic.csv"
+        format: "csv"
+
+      - name: "Occurrences biologiques"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_0925e105-860e-4fe7-83ac-afc5e4c2699e/zip-rne_marais-hick_occurrence_2022.csv"
+        output: "marais_hick_occurrences.csv"
+        format: "csv"
+
+      - name: "Donnees abondance"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_0925e105-860e-4fe7-83ac-afc5e4c2699e/zip-rne_marais-hick_occurrence_emof_2022.csv"
+        output: "marais_hick_abundance.csv"
+        format: "csv"
+
+  processing:
+    sources:
+      - name: process zip_inventaire_marais_hickey
+        script: prc_zip_inventaire_marais_hickey
+        input_files:
+          - Evenements echantillonnage
+          - Mesures abiotiques
+          - Occurrences biologiques
+          - Donnees abondance
+        output_files:
+          - marais_hick_events.csv
+          - marais_hick_occurrences.csv
+          - marais_hick_abiotic.csv
+          - marais_hick_abundance.csv
+
+  output:
+    output_dir: "workspace/data/harvested/"
+    log_dir: "workspace/logs/"
+    archive_raw: true

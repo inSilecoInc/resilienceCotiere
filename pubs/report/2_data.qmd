@@ -700,4 +700,84 @@ Les données sont déjà disponibles dans un format standardisé; un effort mini
 
 
 
+## Caractérisation du marais à Hickey {#sec-inventaire_marais_hickey}
+
+Les données proviennent d'un projet de caractérisation des habitats littoraux du marais à Hickey, situé sur la rive nord de l’estuaire maritime du Saint-Laurent. Ce projet, réalisé en 2022, vise à générer des données écologiques de référence sur l'état du marais et des milieux humides connexes. Il comprend des inventaires floristiques et ichtyologiques, ainsi que des mesures abiotiques [@ziprne2024b].
+
+- **Source** : [Le marais à Hickey - Caractérisation des habitats littoraux](https://doi.org/10.26071/ogsl-0925e105-860e)  
+- **Accessibilité** : Libre, Creative Commons Attribution 4.0 (CC-BY-4.0)  
+- **Type de données** : Fichiers CSV  
+- **Couverture géographique** : Marais à Hickey, Québec, Canada (latitude : 48.88933 à 48.90168, longitude : -68.78537 à -68.75671)  
+- **Script de traitement** : `prc_zip_inventaire_marais_hickey`  
+- **Fichiers de sortie** :  
+  - `marais_hick_events.csv`  
+  - `marais_hick_abiotic.csv`  
+  - `marais_hick_occurrences.csv`  
+  - `marais_hick_abundance.csv`  
+
+### Étapes de traitement des données
+
+Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Ces données ont été formatées conformément aux standards Darwin Core, permettant leur intégration dans des bases de données de biodiversité. Nous avons uniquement standardisé les noms de colonnes en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
+
+
+### Structure des données traitées
+
+#### Table des événements d’échantillonnage
+
+| Variable             | Description                                                   |
+|----------------------|--------------------------------------------------------------|
+| `event_id`          | Identifiant unique de l’événement                            |
+| `station`           | Code de la station d’échantillonnage                         |
+| `sampling_protocol` | Protocole d’échantillonnage utilisé                         |
+| `decimal_latitude`  | Latitude en décimales                                        |
+| `decimal_longitude` | Longitude en décimales                                       |
+| `event_date`        | Date et heure de l’événement d’échantillonnage               |
+| `date_pose`         | Date de mise en place des engins d’échantillonnage           |
+| `heure_pose`        | Heure de mise en place                                       |
+| `date_levee`        | Date de retrait des engins                                   |
+| `heure_levee`       | Heure de retrait                                             |
+| `habitat`           | Type d’habitat observé                                      |
+| `profondeur_cm`     | Profondeur mesurée au site (si applicable)                   |
+
+
+#### Table des mesures abiotiques
+
+| Variable              | Description                                           |
+|-----------------------|-------------------------------------------------------|
+| `event_id`           | Identifiant unique de l’événement                      |
+| `measurement_id`     | Identifiant unique de la mesure                        |
+| `measurement_type`   | Type de mesure (ex. salinité, température, substrat)   |
+| `measurement_value`  | Valeur mesurée                                         |
+| `measurement_unit`   | Unité de mesure (ex. °C, psu)                          |
+
+
+#### Table des occurrences biologiques
+
+| Variable              | Description                                          |
+|-----------------------|------------------------------------------------------|
+| `event_id`           | Identifiant unique de l’événement                     |
+| `occurrence_id`      | Identifiant unique de l’occurrence                     |
+| `organism_scope`     | Domaine de l'organisme observé (Flore, Ichtyofaune)   |
+| `taxon_rank`         | Niveau taxonomique                                    |
+| `scientific_name`    | Nom scientifique de l’espèce                          |
+| `scientific_name_id` | Identifiant unique du taxon                           |
+| `accepted_name_usage`| Nom taxonomique validé                                |
+| `occurrence_status`  | Présence ou absence de l’espèce                       |
+| `basis_of_record`    | Type de donnée (ex. observation humaine)              |
+
+
+#### Table des données d’abondance
+
+| Variable              | Description                                          |
+|-----------------------|------------------------------------------------------|
+| `event_id`           | Identifiant unique de l’événement                     |
+| `occurrence_id`      | Identifiant unique de l’occurrence                     |
+| `measurement_id`     | Identifiant unique de la mesure                        |
+| `measurement_type`   | Type de mesure (ex. nombre d’individus, biomasse)     |
+| `measurement_value`  | Valeur mesurée                                        |
+| `measurement_unit`   | Unité de mesure                                       |
+
+
+
+
 ## Références
