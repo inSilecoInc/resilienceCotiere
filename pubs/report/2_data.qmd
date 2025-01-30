@@ -400,7 +400,7 @@ Les données proviennent d'un projet de caractérisation des habitats littoraux 
 
 ### Étapes de traitement des données
 
-Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Ces données ont été formatées conformément aux standards Darwin Core, permettant leur intégration dans des bases de données de biodiversité. Nous avons uniquement standardisés les noms de colonnes en utilisant \`janitor::clean\_names()\` pour garantir des noms uniformes à travers le projet.
+Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Ces données ont été formatées conformément aux standards Darwin Core, permettant leur intégration dans des bases de données de biodiversité. Nous avons uniquement standardisés les noms de colonnes en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
 
 ### Structure des données traitées
 
@@ -460,6 +460,83 @@ Les données sont déjà disponibles dans un format standardisé; un effort mini
 
 
 
+## Caractérisation du marais de la Pointe-aux-Outardes {#sec-inventaire_marais_pointe_aux_outardes}
+
+Les données proviennent d'un projet de caractérisation des habitats littoraux du marais de la Pointe-aux-Outardes, situé sur la rive nord de l’estuaire maritime du Saint-Laurent. Ce projet, réalisé entre 2020 et 2021, avait pour objectif de générer des données écologiques de référence sur l'état des marais littoraux dans le secteur de la Haute-Côte-Nord, Québec. Il comprend des inventaires floristiques, ichtyologiques et benthiques, ainsi que des mesures abiotiques (ex. température, salinité, type de substrat) [@ziprne2022c; @desrochers2022].
+
+- **Source** : [Le marais de la Pointe-aux-Outardes - Caractérisation des habitats littoraux](https://doi.org/10.26071/ogsl-46d3ba2e-2fd3)  
+- **Accessibilité** : Libre, Creative Commons Attribution 4.0 (CC-BY-4.0)  
+- **Type de données** : Fichiers CSV et PDF  
+- **Couverture géographique** : Marais de la Pointe-aux-Outardes, Québec, Canada (latitude : 48.9544104 à 49.1253908, longitude : -68.6597572 à -68.098516)  
+- **Script de traitement** : `prc_zip_inventaire_marais_pointe_aux_outardes`  
+- **Fichiers de sortie** :  
+  - `marais_pao_events.csv`  
+  - `marais_pao_abiotic.csv`  
+  - `marais_pao_occurrences.csv`  
+  - `marais_pao_abundance.csv`
+
+### Étapes de traitement des données
+
+Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Ces données ont été formatées conformément aux standards Darwin Core, permettant leur intégration dans des bases de données de biodiversité. Nous avons uniquement standardisé les noms de colonnes en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
+
+### Structure des données traitées
+
+#### Table des événements d’échantillonnage
+
+| Variable                           | Description                                                              |
+|------------------------------------|--------------------------------------------------------------------------|
+| `event_id`                         | Identifiant unique de l’événement                                        |
+| `event_date`                       | Date et heure de l’événement d’échantillonnage                          |
+| `decimal_latitude`                 | Latitude décimale                                                       |
+| `decimal_longitude`                | Longitude décimale                                                      |
+| `sampling_protocol`                | Protocole d’échantillonnage utilisé                                     |
+| `station`                          | Code de la station d’échantillonnage                                    |
+| `type_engin`                       | Type d’engin utilisé pour l’échantillonnage                            |
+| `date_pose`                        | Date de pose du matériel d’échantillonnage                              |
+| `date_levee`                       | Date de levée du matériel d’échantillonnage                             |
+| `temps_total_peche_heure`          | Durée totale de pêche en heures                                         |
+| `habitat`                          | Type d’habitat observé                                                  |
+
+
+#### Table des mesures abiotiques
+
+| Variable              | Description                                           |
+|-----------------------|-------------------------------------------------------|
+| `event_id`            | Identifiant de l’événement                            |
+| `measurement_id`      | Identifiant unique de la mesure                       |
+| `measurement_type`    | Type de mesure (ex. salinité, température, substrat)  |
+| `measurement_value`   | Valeur mesurée                                        |
+| `measurement_unit`    | Unité de mesure                                       |
+
+
+#### Table des occurrences biologiques
+
+| Variable              | Description                                           |
+|-----------------------|-------------------------------------------------------|
+| `event_id`            | Identifiant de l’événement                            |
+| `occurrence_id`       | Identifiant unique de l’occurrence                    |
+| `scientific_name`     | Nom scientifique de l’organisme                       |
+| `scientific_name_id`  | Identifiant WoRMS du taxon                            |
+| `kingdom`             | Règne biologique                                     |
+| `phylum`              | Embranchement biologique                             |
+| `class`               | Classe biologique                                    |
+| `order`               | Ordre biologique                                     |
+| `family`              | Famille biologique                                   |
+| `genus`               | Genre biologique                                     |
+| `occurrence_status`   | Présence ou absence de l’espèce                      |
+| `basis_of_record`     | Type de donnée (ex. observation humaine)              |
+
+
+#### Table des données d’abondance
+
+| Variable              | Description                                           |
+|-----------------------|-------------------------------------------------------|
+| `event_id`            | Identifiant de l’événement                            |
+| `occurrence_id`       | Identifiant unique de l’occurrence                    |
+| `measurement_id`      | Identifiant de la mesure d’abondance                  |
+| `measurement_type`    | Type de mesure (ex. nombre d’individus, biomasse)     |
+| `measurement_value`   | Valeur mesurée                                        |
+| `measurement_unit`    | Unité de mesure                                       |
 
 
 

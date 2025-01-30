@@ -110,6 +110,34 @@ list(
             "workspace/data/harvested/invertebres_vegetation_saint_laurent-1.0.0/processed/dictionnaire_donnees.csv"
             )
         }, format = "file")),
+    list(tarchetypes::tar_download(tg_1a7d4967_4a9d_446c_a080_c93755a24be9_Rapport_de_caracterisation, 
+    url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_46d3ba2e-2fd3-4aad-a51a-f8343fbe6a73/Portrait_PAO_2022_ZIPRNE.pdf", 
+    path = "workspace/data/harvested/zip_inventaire_marais_pointe_aux_outardes-1.0.0/raw/portrait_pao_2022.pdf"), 
+    tarchetypes::tar_download(tg_1a7d4967_4a9d_446c_a080_c93755a24be9_Evenements_echantillonnage, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_46d3ba2e-2fd3-4aad-a51a-f8343fbe6a73/zip-rne_marais-pao_event_2020-2021.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_pointe_aux_outardes-1.0.0/raw/marais_pao_events.csv"), 
+    tarchetypes::tar_download(tg_1a7d4967_4a9d_446c_a080_c93755a24be9_Mesures_abiotiques, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_46d3ba2e-2fd3-4aad-a51a-f8343fbe6a73/zip-rne_marais-pao_event_emof_2020-2021.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_pointe_aux_outardes-1.0.0/raw/marais_pao_abiotic.csv"), 
+    tarchetypes::tar_download(tg_1a7d4967_4a9d_446c_a080_c93755a24be9_Occurrences_biologiques, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_46d3ba2e-2fd3-4aad-a51a-f8343fbe6a73/zip-rne_marais-pao_occurrence_2020-2021.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_pointe_aux_outardes-1.0.0/raw/marais_pao_occurrences.csv"), 
+    tarchetypes::tar_download(tg_1a7d4967_4a9d_446c_a080_c93755a24be9_Donnees_abondance, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_46d3ba2e-2fd3-4aad-a51a-f8343fbe6a73/zip-rne_marais-pao_occurrence_emof_2020-2021.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_pointe_aux_outardes-1.0.0/raw/marais_pao_abundance.csv"), 
+    tar_target(tg_1a7d4967_4a9d_446c_a080_c93755a24be9_process_zip_inventaire_marais_pointe_aux_outardes, 
+        {
+            prc_zip_inventaire_marais_pointe_aux_outardes(output_path = "workspace/data/harvested/zip_inventaire_marais_pointe_aux_outardes-1.0.0/processed", 
+                input_files = list(tg_1a7d4967_4a9d_446c_a080_c93755a24be9_Evenements_echantillonnage, 
+                  tg_1a7d4967_4a9d_446c_a080_c93755a24be9_Mesures_abiotiques, 
+                  tg_1a7d4967_4a9d_446c_a080_c93755a24be9_Occurrences_biologiques, 
+                  tg_1a7d4967_4a9d_446c_a080_c93755a24be9_Donnees_abondance))
+            c("workspace/data/harvested/zip_inventaire_marais_pointe_aux_outardes-1.0.0/processed/marais_pao_events.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_pointe_aux_outardes-1.0.0/processed/marais_pao_abiotic.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_pointe_aux_outardes-1.0.0/processed/marais_pao_occurrences.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_pointe_aux_outardes-1.0.0/processed/marais_pao_abundance.csv"
+            )
+        }, format = "file")),
     list(tarchetypes::tar_download(tg_01fab37f_efbc_433d_8a08_d717200c0ff7_Evenements_echantillonnage, 
     url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_3b8c6d97-6eb8-4e8d-9869-ccb2b9bab5f3/zip-rne_marais-pf_event_2019-2021.csv", 
     path = "workspace/data/harvested/zip_inventaire_marais_pointe_fortin-1.0.0/raw/marais_pointe_fortin_events.csv"), 

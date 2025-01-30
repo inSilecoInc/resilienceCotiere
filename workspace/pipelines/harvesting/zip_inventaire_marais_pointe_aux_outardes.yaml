@@ -1,0 +1,109 @@
+pipeline:
+  id: 1a7d4967-4a9d-446c-a080-c93755a24be9
+  name: zip_inventaire_marais_pointe_aux_outardes
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-01-30 09:38:55
+  last_modified: 2025-01-30 09:38:55
+  description: |
+    Ce pipeline collecte et traite des données sur la caractérisation des habitats 
+    littoraux du marais de la Pointe-aux-Outardes, situé sur la rive nord de l’estuaire 
+    maritime du Saint-Laurent. Le projet vise à générer des données écologiques de 
+    référence pour évaluer l’état des marais littoraux dans le secteur de la Haute-Côte-Nord, 
+    au Québec. Les données incluent des inventaires floristiques, ichtyologiques et benthiques, 
+    ainsi que des mesures abiotiques.
+
+  metadata:
+    source_name: "Le marais de la Pointe-aux-Outardes - Caractérisation des habitats littoraux"
+    data_type: "CSV, PDF"
+    file_size: "Inconnu"
+    license: "Creative Commons Attribution 4.0 (CC-BY-4.0)"
+    license_url: "https://creativecommons.org/licenses/by/4.0"
+    last_updated: "2024-03-22"
+    geographic_coverage:
+      region: "Marais de la Pointe-aux-Outardes, Québec"
+      bounding_box:
+        - -68.6597572  # Longitude min
+        - 48.9544104   # Latitude min
+        - -68.098516   # Longitude max
+        - 49.1253908   # Latitude max
+    temporal_coverage:
+      start_date: "2020-01-01"
+      end_date: "2021-12-31"
+    variables:
+      - abiotic_factors (salinité, substrat, température)
+      - fish_occurrences
+      - benthic_occurrences
+      - vegetation_occurrences
+    data_quality:
+      - "Noms taxonomiques validés via WoRMS."
+      - "Échantillonnage et mesures normalisés selon les standards Darwin Core."
+
+  bibliography:
+    - "@Dataset{ziprne2022c,
+        title = {The Pointe-aux-Outardes Marsh - Characterization of Important Coastal Habitats on the North Shore of the St. Lawrence Estuary},
+        author = {{Comité ZIP de la Rive Nord de l’Estuaire}},
+        year = {2022},
+        publisher = {OGSL Catalogue},
+        url = {https://doi.org/10.26071/ogsl-46d3ba2e-2fd3}
+      }"
+    - "@TechReport{desrochers2022,
+        title = {Rapport de caractérisation : Marais littoral de la Pointe-aux-Outardes},
+        author = {Desrochers, V. and Maltais, M.K. and Saint-Marc, C. and Morissette, A.},
+        year = {2022},
+        institution = {{Comité ZIP de la Rive Nord de l’Estuaire}},
+        location = {Baie-Comeau, Québec},
+        pages = {179 p + Annexes}
+      }"
+
+  download:
+    sources:
+      - name: "Rapport de caracterisation"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_46d3ba2e-2fd3-4aad-a51a-f8343fbe6a73/Portrait_PAO_2022_ZIPRNE.pdf"
+        output: "portrait_pao_2022.pdf"
+        format: "pdf"
+
+      - name: "Evenements echantillonnage"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_46d3ba2e-2fd3-4aad-a51a-f8343fbe6a73/zip-rne_marais-pao_event_2020-2021.csv"
+        output: "marais_pao_events.csv"
+        format: "csv"
+      
+      - name: "Mesures abiotiques"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_46d3ba2e-2fd3-4aad-a51a-f8343fbe6a73/zip-rne_marais-pao_event_emof_2020-2021.csv"
+        output: "marais_pao_abiotic.csv"
+        format: "csv"
+
+      - name: "Occurrences biologiques"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_46d3ba2e-2fd3-4aad-a51a-f8343fbe6a73/zip-rne_marais-pao_occurrence_2020-2021.csv"
+        output: "marais_pao_occurrences.csv"
+        format: "csv"
+
+      - name: "Donnees abondance"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_46d3ba2e-2fd3-4aad-a51a-f8343fbe6a73/zip-rne_marais-pao_occurrence_emof_2020-2021.csv"
+        output: "marais_pao_abundance.csv"
+        format: "csv"
+
+  processing:
+    sources:
+      - name: process zip_inventaire_marais_pointe_aux_outardes
+        script: prc_zip_inventaire_marais_pointe_aux_outardes
+        input_files:
+          - Evenements echantillonnage
+          - Mesures abiotiques
+          - Occurrences biologiques
+          - Donnees abondance
+        output_files:
+          - marais_pao_events.csv
+          - marais_pao_abiotic.csv
+          - marais_pao_occurrences.csv
+          - marais_pao_abundance.csv
+
+  output:
+    output_dir: "workspace/data/harvested/"
+    log_dir: "workspace/logs/"
+    archive_raw: true
