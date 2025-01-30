@@ -161,7 +161,8 @@ div.csl-indent {
   <li><a href="#sec-inventaire_marais_pointe_fortin" id="toc-sec-inventaire_marais_pointe_fortin" class="nav-link" data-scroll-target="#sec-inventaire_marais_pointe_fortin"><span class="header-section-number">3.6</span> Caractérisation du marais de la Pointe des Fortin</a></li>
   <li><a href="#sec-inventaire_marais_portneuf_sur_mer" id="toc-sec-inventaire_marais_portneuf_sur_mer" class="nav-link" data-scroll-target="#sec-inventaire_marais_portneuf_sur_mer"><span class="header-section-number">3.7</span> Caractérisation du marais salé de Portneuf-sur-Mer</a></li>
   <li><a href="#sec-inventaire_marais_pointe_aux_outardes" id="toc-sec-inventaire_marais_pointe_aux_outardes" class="nav-link" data-scroll-target="#sec-inventaire_marais_pointe_aux_outardes"><span class="header-section-number">3.8</span> Caractérisation du marais de la Pointe-aux-Outardes</a></li>
-  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">3.9</span> Références</a></li>
+  <li><a href="#sec-inventaire_marais_baie_mille_vaches" id="toc-sec-inventaire_marais_baie_mille_vaches" class="nav-link" data-scroll-target="#sec-inventaire_marais_baie_mille_vaches"><span class="header-section-number">3.9</span> Caractérisation du marais de la Baie de Mille-Vaches</a></li>
+  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">3.10</span> Références</a></li>
   </ul>
 </nav>
     </div>
@@ -1720,8 +1721,225 @@ div.csl-indent {
 </section>
 </section>
 </section>
-<section id="références" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="références"><span class="header-section-number">3.9</span> Références</h2>
+<section id="sec-inventaire_marais_baie_mille_vaches" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="sec-inventaire_marais_baie_mille_vaches"><span class="header-section-number">3.9</span> Caractérisation du marais de la Baie de Mille-Vaches</h2>
+<p>Les données proviennent d’un projet visant à caractériser les habitats littoraux du marais de la Baie de Mille-Vaches, situé sur la rive nord de l’estuaire maritime du Saint-Laurent. Ce projet, mené entre 2019 et 2021, visait à générer des données écologiques de référence afin d’évaluer l’état des marais littoraux dans le secteur de la Haute-Côte-Nord, Québec. L’ensemble de données comprend des inventaires floristiques, ichtyologiques et benthiques, ainsi que des mesures abiotiques, notamment la température, la salinité et la composition du substrat <span class="citation" data-cites="ziprne2024 desrochers2023 morissette2012">(<a href="#ref-ziprne2024" role="doc-biblioref">Comité ZIP de la Rive Nord de l’Estuaire, 2024</a>; <a href="#ref-desrochers2023" role="doc-biblioref">Desrochers et al., 2023</a>; <a href="#ref-morissette2012" role="doc-biblioref">Morissette and Joyal, 2012</a>)</span>.</p>
+<ul>
+<li><strong>Source</strong> : <a href="https://doi.org/10.26071/ogsl-f10f496a-acf4">Baie de Mille-Vaches Marsh - Characterization of Important Coastal Habitats on the North Shore of the St.&nbsp;Lawrence Maritime Estuary</a><br>
+</li>
+<li><strong>Accessibilité</strong> : Libre, Creative Commons Attribution 4.0 (CC-BY-4.0)<br>
+</li>
+<li><strong>Type de données</strong> : Archive ZIP (données d’échantillonnage au format Darwin Core), rapports PDF<br>
+</li>
+<li><strong>Couverture géographique</strong> : Baie de Mille-Vaches, Québec, Canada (latitude : 48.5193406 à 48.5855113, longitude : -69.2568389 à -69.1483564)<br>
+</li>
+<li><strong>Script de traitement</strong> : <code>prc_zip_inventaire_marais_baie_mille_vaches</code><br>
+</li>
+<li><strong>Fichiers de sortie</strong> :
+<ul>
+<li><code>marais_bmv_events.csv</code><br>
+</li>
+<li><code>marais_bmv_abiotic.csv</code><br>
+</li>
+<li><code>marais_bmv_occurrences.csv</code><br>
+</li>
+<li><code>marais_bmv_abundance.csv</code></li>
+</ul></li>
+</ul>
+<section id="étapes-de-traitement-des-données-8" class="level3" data-number="3.9.1">
+<h3 data-number="3.9.1" class="anchored" data-anchor-id="étapes-de-traitement-des-données-8"><span class="header-section-number">3.9.1</span> Étapes de traitement des données</h3>
+<p>Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Ces données ont été formatées conformément aux standards Darwin Core, permettant leur intégration dans des bases de données de biodiversité. Nous avons uniquement standardisé les noms de colonnes en utilisant <code>janitor::clean_names()</code> pour garantir des noms uniformes à travers le projet.</p>
+</section>
+<section id="structure-des-données-traitées-8" class="level3" data-number="3.9.2">
+<h3 data-number="3.9.2" class="anchored" data-anchor-id="structure-des-données-traitées-8"><span class="header-section-number">3.9.2</span> Structure des données traitées</h3>
+<section id="table-des-événements-déchantillonnage-8" class="level4" data-number="3.9.2.1">
+<h4 data-number="3.9.2.1" class="anchored" data-anchor-id="table-des-événements-déchantillonnage-8"><span class="header-section-number">3.9.2.1</span> Table des événements d’échantillonnage</h4>
+<table class="table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 68%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>event_id</code></td>
+<td>Identifiant unique de l’événement</td>
+</tr>
+<tr class="even">
+<td><code>event_date</code></td>
+<td>Date et heure de l’événement d’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>decimal_latitude</code></td>
+<td>Latitude décimale</td>
+</tr>
+<tr class="even">
+<td><code>decimal_longitude</code></td>
+<td>Longitude décimale</td>
+</tr>
+<tr class="odd">
+<td><code>code_station</code></td>
+<td>Code de la station d’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>habitat</code></td>
+<td>Type d’habitat observé</td>
+</tr>
+<tr class="odd">
+<td><code>sampling_protocol</code></td>
+<td>Protocole d’échantillonnage utilisé</td>
+</tr>
+<tr class="even">
+<td><code>event_remarks</code></td>
+<td>Remarques sur l’événement d’échantillonnage</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="table-des-mesures-abiotiques-4" class="level4" data-number="3.9.2.2">
+<h4 data-number="3.9.2.2" class="anchored" data-anchor-id="table-des-mesures-abiotiques-4"><span class="header-section-number">3.9.2.2</span> Table des mesures abiotiques</h4>
+<table class="table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>event_id</code></td>
+<td>Identifiant de l’événement</td>
+</tr>
+<tr class="even">
+<td><code>measurement_id</code></td>
+<td>Identifiant unique de la mesure</td>
+</tr>
+<tr class="odd">
+<td><code>measurement_type</code></td>
+<td>Type de mesure (ex. salinité, température, substrat)</td>
+</tr>
+<tr class="even">
+<td><code>measurement_value</code></td>
+<td>Valeur mesurée</td>
+</tr>
+<tr class="odd">
+<td><code>measurement_unit</code></td>
+<td>Unité de mesure</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="table-des-occurrences-biologiques-8" class="level4" data-number="3.9.2.3">
+<h4 data-number="3.9.2.3" class="anchored" data-anchor-id="table-des-occurrences-biologiques-8"><span class="header-section-number">3.9.2.3</span> Table des occurrences biologiques</h4>
+<table class="table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>event_id</code></td>
+<td>Identifiant de l’événement</td>
+</tr>
+<tr class="even">
+<td><code>occurrence_id</code></td>
+<td>Identifiant unique de l’occurrence</td>
+</tr>
+<tr class="odd">
+<td><code>scientific_name</code></td>
+<td>Nom scientifique de l’organisme</td>
+</tr>
+<tr class="even">
+<td><code>scientific_name_id</code></td>
+<td>Identifiant WoRMS du taxon</td>
+</tr>
+<tr class="odd">
+<td><code>kingdom</code></td>
+<td>Règne biologique</td>
+</tr>
+<tr class="even">
+<td><code>taxon_rank</code></td>
+<td>Rang taxonomique</td>
+</tr>
+<tr class="odd">
+<td><code>accepted_name_usage</code></td>
+<td>Nom scientifique validé</td>
+</tr>
+<tr class="even">
+<td><code>taxon_id</code></td>
+<td>Identifiant GBIF du taxon</td>
+</tr>
+<tr class="odd">
+<td><code>occurrence_status</code></td>
+<td>Présence ou absence de l’espèce</td>
+</tr>
+<tr class="even">
+<td><code>basis_of_record</code></td>
+<td>Type de donnée (ex. observation humaine)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="table-des-données-dabondance-3" class="level4" data-number="3.9.2.4">
+<h4 data-number="3.9.2.4" class="anchored" data-anchor-id="table-des-données-dabondance-3"><span class="header-section-number">3.9.2.4</span> Table des données d’abondance</h4>
+<table class="table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>event_id</code></td>
+<td>Identifiant de l’événement</td>
+</tr>
+<tr class="even">
+<td><code>occurrence_id</code></td>
+<td>Identifiant unique de l’occurrence</td>
+</tr>
+<tr class="odd">
+<td><code>measurement_id</code></td>
+<td>Identifiant de la mesure d’abondance</td>
+</tr>
+<tr class="even">
+<td><code>measurement_type</code></td>
+<td>Type de mesure (ex. nombre d’individus, biomasse)</td>
+</tr>
+<tr class="odd">
+<td><code>measurement_value</code></td>
+<td>Valeur mesurée</td>
+</tr>
+<tr class="even">
+<td><code>measurement_unit</code></td>
+<td>Unité de mesure</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="références" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="références"><span class="header-section-number">3.10</span> Références</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="1" data-line-spacing="5" role="list">
@@ -1740,8 +1958,14 @@ Comité ZIP de la Rive Nord de l’Estuaire (2022b). The pointe-aux-outardes mar
 <div id="ref-ziprne2022b" class="csl-entry" role="listitem">
 Comité ZIP de la Rive Nord de l’Estuaire (2022c). The portneuf-sur-mer salt marsh - characterization of important coastal habitats on the north shore of the st. Lawrence estuary. Available at: <a href="https://doi.org/10.26071/ogsl-5374b582-43aa">https://doi.org/10.26071/ogsl-5374b582-43aa</a>.
 </div>
+<div id="ref-ziprne2024" class="csl-entry" role="listitem">
+Comité ZIP de la Rive Nord de l’Estuaire (2024). Baie de mille-vaches marsh - characterization of important coastal habitats on the north shore of the st. Lawrence maritime estuary. Available at: <a href="https://doi.org/10.26071/ogsl-f10f496a-acf4">https://doi.org/10.26071/ogsl-f10f496a-acf4</a>.
+</div>
 <div id="ref-desrochers2022" class="csl-entry" role="listitem">
 Desrochers, V., Maltais, M. K., Saint-Marc, C., and Morissette, A. (2022). Rapport de caractérisation : Marais littoral de la pointe-aux-outardes. Baie-Comeau, Québec: <span>Comité ZIP de la Rive Nord de l’Estuaire</span>.
+</div>
+<div id="ref-desrochers2023" class="csl-entry" role="listitem">
+Desrochers, V., Quiec, F., Marée, S., D’Amours-Leclerc, F., and Maltais, M. K. (2023). Rapport de caractérisation : Les marais littoraux d’importance à longue-rive. Baie-Comeau, Québec: <span>Comité ZIP de la Rive Nord de l’Estuaire</span>.
 </div>
 <div id="ref-gregoire2024" class="csl-entry" role="listitem">
 Grégoire, B. (2024). Biodiversity of the planning for integrated environmental response coastal survey in the st. Lawrence estuary and gulf (2017–2021). Available at: <a href="https://doi.org/10.26071/ogsl-90c40dba">https://doi.org/10.26071/ogsl-90c40dba</a>.
@@ -1751,6 +1975,9 @@ Grégoire, B., Pitre, L. D., Provencher-Nolet, L., Paquette, L., and Desjardins,
 </div>
 <div id="ref-loiseau2024" class="csl-entry" role="listitem">
 Loiseau, V., Calosi, P., Gendreau, Y., Cusson, M., and Fisheries and Oceans Canada (2024). Inventory of macroalgae and benthic macroinvertebrates along a hypoosmolarity stress gradient in barthelemy bay and the colombier, mistassini, franquelin and saint-nicolas rivers of the upper north shore, quebec. Available at: <a href="https://doi.org/10.26071/ogsl-4bb77d86-b94e">https://doi.org/10.26071/ogsl-4bb77d86-b94e</a>.
+</div>
+<div id="ref-morissette2012" class="csl-entry" role="listitem">
+Morissette, A., and Joyal, G. (2012). Caractérisation hydrogéomorphologique et sédimentologique de la plage de la pointe-à-boisvert, longue-rive, haute-côte-nord. Baie-Comeau, Québec: <span>Université du Québec à Rimouski, Département de biologie, chimie et géographie</span>.
 </div>
 <div id="ref-Ouellette2023" class="csl-entry" role="listitem">
 Ouellette, D., and Cégep de Sherbrooke (2023). Résultats d’inventaires annuels de poissons et de macroinvertébrés benthiques de la zone médiolittorale près de la pointe à john, de 2012 à aujourd’hui. Available at: <a href="https://catalogue.ogsl.ca/fr/dataset/ca-cioos_b943abc0-09be-43c6-a003-efa665a6c8a9">https://catalogue.ogsl.ca/fr/dataset/ca-cioos_b943abc0-09be-43c6-a003-efa665a6c8a9</a>.

@@ -540,6 +540,78 @@ Les données sont déjà disponibles dans un format standardisé; un effort mini
 
 
 
+## Caractérisation du marais de la Baie de Mille-Vaches {#sec-inventaire_marais_baie_mille_vaches}
+
+Les données proviennent d’un projet visant à caractériser les habitats littoraux du marais de la Baie de Mille-Vaches, situé sur la rive nord de l’estuaire maritime du Saint-Laurent. Ce projet, mené entre 2019 et 2021, visait à générer des données écologiques de référence afin d’évaluer l’état des marais littoraux dans le secteur de la Haute-Côte-Nord, Québec. L’ensemble de données comprend des inventaires floristiques, ichtyologiques et benthiques, ainsi que des mesures abiotiques, notamment la température, la salinité et la composition du substrat [@ziprne2024; @desrochers2023; @morissette2012].
+
+- **Source** : [Baie de Mille-Vaches Marsh - Characterization of Important Coastal Habitats on the North Shore of the St. Lawrence Maritime Estuary](https://doi.org/10.26071/ogsl-f10f496a-acf4)  
+- **Accessibilité** : Libre, Creative Commons Attribution 4.0 (CC-BY-4.0)  
+- **Type de données** : Archive ZIP (données d’échantillonnage au format Darwin Core), rapports PDF  
+- **Couverture géographique** : Baie de Mille-Vaches, Québec, Canada (latitude : 48.5193406 à 48.5855113, longitude : -69.2568389 à -69.1483564)  
+- **Script de traitement** : `prc_zip_inventaire_marais_baie_mille_vaches`  
+- **Fichiers de sortie** :  
+  - `marais_bmv_events.csv`  
+  - `marais_bmv_abiotic.csv`  
+  - `marais_bmv_occurrences.csv`  
+  - `marais_bmv_abundance.csv`  
+
+### Étapes de traitement des données
+
+Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Ces données ont été formatées conformément aux standards Darwin Core, permettant leur intégration dans des bases de données de biodiversité. Nous avons uniquement standardisé les noms de colonnes en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
+
+
+### Structure des données traitées
+
+#### Table des événements d’échantillonnage
+
+| Variable                           | Description                                                                  |
+|------------------------------------|------------------------------------------------------------------------------|
+| `event_id`                         | Identifiant unique de l’événement                                            |
+| `event_date`                       | Date et heure de l’événement d’échantillonnage                              |
+| `decimal_latitude`                 | Latitude décimale                                                           |
+| `decimal_longitude`                | Longitude décimale                                                          |
+| `code_station`                     | Code de la station d’échantillonnage                                        |
+| `habitat`                          | Type d’habitat observé                                                      |
+| `sampling_protocol`                | Protocole d’échantillonnage utilisé                                         |
+| `event_remarks`                    | Remarques sur l’événement d’échantillonnage                                 |
+
+#### Table des mesures abiotiques
+
+| Variable              | Description                                           |
+|-----------------------|-------------------------------------------------------|
+| `event_id`            | Identifiant de l’événement                            |
+| `measurement_id`      | Identifiant unique de la mesure                       |
+| `measurement_type`    | Type de mesure (ex. salinité, température, substrat)  |
+| `measurement_value`   | Valeur mesurée                                        |
+| `measurement_unit`    | Unité de mesure                                       |
+
+#### Table des occurrences biologiques
+
+| Variable              | Description                                           |
+|-----------------------|-------------------------------------------------------|
+| `event_id`            | Identifiant de l’événement                            |
+| `occurrence_id`       | Identifiant unique de l’occurrence                    |
+| `scientific_name`     | Nom scientifique de l’organisme                       |
+| `scientific_name_id`  | Identifiant WoRMS du taxon                            |
+| `kingdom`             | Règne biologique                                      |
+| `taxon_rank`          | Rang taxonomique                                      |
+| `accepted_name_usage` | Nom scientifique validé                               |
+| `taxon_id`            | Identifiant GBIF du taxon                             |
+| `occurrence_status`   | Présence ou absence de l’espèce                      |
+| `basis_of_record`     | Type de donnée (ex. observation humaine)              |
+
+#### Table des données d’abondance
+
+| Variable              | Description                                           |
+|-----------------------|-------------------------------------------------------|
+| `event_id`            | Identifiant de l’événement                            |
+| `occurrence_id`       | Identifiant unique de l’occurrence                    |
+| `measurement_id`      | Identifiant de la mesure d’abondance                  |
+| `measurement_type`    | Type de mesure (ex. nombre d’individus, biomasse)     |
+| `measurement_value`   | Valeur mesurée                                        |
+| `measurement_unit`    | Unité de mesure                                       |
+
+
 
 
 ## Références

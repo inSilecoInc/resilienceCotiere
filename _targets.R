@@ -110,6 +110,25 @@ list(
             "workspace/data/harvested/invertebres_vegetation_saint_laurent-1.0.0/processed/dictionnaire_donnees.csv"
             )
         }, format = "file")),
+    list(tarchetypes::tar_download(tg_66ac503f_ead2_46a4_afc9_e658e459efef_Donnees_echantillonnage, 
+    url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_f10f496a-acf4-4274-9c7b-7a005bcf54ed/DwC_zip_rne_marais_bmv_2019-2021.zip", 
+    path = "workspace/data/harvested/zip_inventaire_marais_baie_mille_vaches-1.0.0/raw/DwC_marais_bmv_2019-2021.zip"), 
+    tarchetypes::tar_download(tg_66ac503f_ead2_46a4_afc9_e658e459efef_Rapport_de_caracterisation, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_f10f496a-acf4-4274-9c7b-7a005bcf54ed/ziprne_portrait_ecogeomorphologique.pdf", 
+        path = "workspace/data/harvested/zip_inventaire_marais_baie_mille_vaches-1.0.0/raw/portrait_ecogeomorphologique.pdf"), 
+    tarchetypes::tar_download(tg_66ac503f_ead2_46a4_afc9_e658e459efef_Rapport_hydrogeomorphologique_et_sedimentologique, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_f10f496a-acf4-4274-9c7b-7a005bcf54ed/ziprne_caracterisation_hydrogeomorph_sedimentolo_plage_pointe_a_boisvert.pdf", 
+        path = "workspace/data/harvested/zip_inventaire_marais_baie_mille_vaches-1.0.0/raw/hydrogeomorph_sedimentologie_pointe_a_boisvert.pdf"), 
+    tar_target(tg_66ac503f_ead2_46a4_afc9_e658e459efef_process_zip_inventaire_marais_baie_mille_vaches, 
+        {
+            prc_zip_inventaire_marais_baie_mille_vaches(output_path = "workspace/data/harvested/zip_inventaire_marais_baie_mille_vaches-1.0.0/processed", 
+                input_files = list(tg_66ac503f_ead2_46a4_afc9_e658e459efef_Donnees_echantillonnage))
+            c("workspace/data/harvested/zip_inventaire_marais_baie_mille_vaches-1.0.0/processed/marais_bmv_events.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_baie_mille_vaches-1.0.0/processed/marais_bmv_occurrences.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_baie_mille_vaches-1.0.0/processed/marais_bmv_abiotic.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_baie_mille_vaches-1.0.0/processed/marais_bmv_abundance.csv"
+            )
+        }, format = "file")),
     list(tarchetypes::tar_download(tg_1a7d4967_4a9d_446c_a080_c93755a24be9_Rapport_de_caracterisation, 
     url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_46d3ba2e-2fd3-4aad-a51a-f8343fbe6a73/Portrait_PAO_2022_ZIPRNE.pdf", 
     path = "workspace/data/harvested/zip_inventaire_marais_pointe_aux_outardes-1.0.0/raw/portrait_pao_2022.pdf"), 
