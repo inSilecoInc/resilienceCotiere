@@ -1,0 +1,108 @@
+pipeline:
+  id: e0f4140b-48b8-47d4-8006-af63af48a1c2
+  name: zip_inventaire_marais_bergeronnes
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-01-30 10:12:28
+  last_modified: 2025-01-30 10:12:28
+  description: |
+    Ce pipeline collecte et traite des données sur la caractérisation des habitats 
+    littoraux des marais des Bergeronnes, situés dans les baies des Grandes et Petites Bergeronnes, 
+    sur la rive nord de l’estuaire maritime du Saint-Laurent. Le projet vise à générer des 
+    données écologiques de référence pour évaluer l’état de ces marais, en considérant les 
+    aspects floristiques, ichtyologiques, benthiques et abiotiques.
+
+  metadata:
+    source_name: "Les marais des Bergeronnes - Caractérisation des habitats littoraux"
+    data_type: "CSV, PDF"
+    file_size: "Inconnu"
+    license: "Creative Commons Attribution 4.0 (CC-BY-4.0)"
+    license_url: "https://creativecommons.org/licenses/by/4.0"
+    last_updated: "2024-03-22"
+    geographic_coverage:
+      region: "Les marais des Bergeronnes, Québec"
+      bounding_box:
+        - -69.6  # Longitude min
+        - 48.22  # Latitude min
+        - -69.53 # Longitude max
+        - 48.24  # Latitude max
+    temporal_coverage:
+      start_date: "2021-01-01"
+      end_date: "2021-12-31"
+    variables:
+      - abiotic_factors (salinité, substrat, température)
+      - fish_occurrences
+      - benthic_occurrences
+      - vegetation_occurrences
+    data_quality:
+      - "Noms taxonomiques validés via WoRMS."
+      - "Échantillonnage et mesures normalisés selon les standards Darwin Core."
+
+  bibliography:
+    - "@Dataset{ziprne2023,
+        title = {The Bergeronnes Marshes - Characterization of Important Coastal Habitats on the North Shore of the St. Lawrence Maritime Estuary},
+        author = {{Desrochers, V. & Comité ZIP Rive Nord de l’Estuaire}},
+        year = {2023},
+        publisher = {OGSL Catalogue},
+        url = {https://doi.org/10.26071/ogsl-a5125bd3-60e3}
+      }"
+    - "@TechReport{desrochers2022b,
+        title = {Rapport de caractérisation : Les marais de Les Bergeronnes},
+        author = {Desrochers, V. and Maltais, M.K. and Saint-Marc, C. and Morissette, A.},
+        year = {2022},
+        institution = {{Comité ZIP de la Rive Nord de l’Estuaire}},
+        location = {Baie-Comeau, Québec},
+        pages = {134 p + Annexes}
+      }"
+
+  download:
+    sources:
+      - name: "Rapport de caracterisation"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_a5125bd3-60e3-4c89-89b6-2d3a8728d10f/Portrait_ZIPRNE_bergeronnes_2022.pdf"
+        output: "portrait_bergeronnes_2022.pdf"
+        format: "pdf"
+
+      - name: "Evenements echantillonnage"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_a5125bd3-60e3-4c89-89b6-2d3a8728d10f/zip-rne_marais-bergeronnes_event_2021.csv"
+        output: "marais_bergeronnes_events.csv"
+        format: "csv"
+
+      - name: "Mesures abiotiques"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_a5125bd3-60e3-4c89-89b6-2d3a8728d10f/zip-rne_marais-bergeronnes_event-emof_2021.csv"
+        output: "marais_bergeronnes_abiotic.csv"
+        format: "csv"
+
+      - name: "Occurrences biologiques"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_a5125bd3-60e3-4c89-89b6-2d3a8728d10f/zip-rne_marais-bergeronnes_occurrence_2021.csv"
+        output: "marais_bergeronnes_occurrences.csv"
+        format: "csv"
+
+      - name: "Donnees abondance"
+        source_type: "http"
+        urls: "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_a5125bd3-60e3-4c89-89b6-2d3a8728d10f/zip-rne_marais-bergeronnes_occurrence-emof_2021.csv"
+        output: "marais_bergeronnes_abundance.csv"
+        format: "csv"
+
+  processing:
+    sources:
+      - name: process zip_inventaire_marais_bergeronnes
+        script: prc_zip_inventaire_marais_bergeronnes
+        input_files:
+          - Evenements echantillonnage
+          - Mesures abiotiques
+          - Occurrences biologiques
+          - Donnees abondance
+        output_files:
+          - marais_bergeronnes_events.csv
+          - marais_bergeronnes_abiotic.csv
+          - marais_bergeronnes_occurrences.csv
+          - marais_bergeronnes_abundance.csv
+
+  output:
+    output_dir: "workspace/data/harvested/"
+    log_dir: "workspace/logs/"
+    archive_raw: true

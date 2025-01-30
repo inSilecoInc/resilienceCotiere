@@ -129,6 +129,34 @@ list(
             "workspace/data/harvested/zip_inventaire_marais_baie_mille_vaches-1.0.0/processed/marais_bmv_abundance.csv"
             )
         }, format = "file")),
+    list(tarchetypes::tar_download(tg_e0f4140b_48b8_47d4_8006_af63af48a1c2_Rapport_de_caracterisation, 
+    url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_a5125bd3-60e3-4c89-89b6-2d3a8728d10f/Portrait_ZIPRNE_bergeronnes_2022.pdf", 
+    path = "workspace/data/harvested/zip_inventaire_marais_bergeronnes-1.0.0/raw/portrait_bergeronnes_2022.pdf"), 
+    tarchetypes::tar_download(tg_e0f4140b_48b8_47d4_8006_af63af48a1c2_Evenements_echantillonnage, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_a5125bd3-60e3-4c89-89b6-2d3a8728d10f/zip-rne_marais-bergeronnes_event_2021.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_bergeronnes-1.0.0/raw/marais_bergeronnes_events.csv"), 
+    tarchetypes::tar_download(tg_e0f4140b_48b8_47d4_8006_af63af48a1c2_Mesures_abiotiques, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_a5125bd3-60e3-4c89-89b6-2d3a8728d10f/zip-rne_marais-bergeronnes_event-emof_2021.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_bergeronnes-1.0.0/raw/marais_bergeronnes_abiotic.csv"), 
+    tarchetypes::tar_download(tg_e0f4140b_48b8_47d4_8006_af63af48a1c2_Occurrences_biologiques, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_a5125bd3-60e3-4c89-89b6-2d3a8728d10f/zip-rne_marais-bergeronnes_occurrence_2021.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_bergeronnes-1.0.0/raw/marais_bergeronnes_occurrences.csv"), 
+    tarchetypes::tar_download(tg_e0f4140b_48b8_47d4_8006_af63af48a1c2_Donnees_abondance, 
+        url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_a5125bd3-60e3-4c89-89b6-2d3a8728d10f/zip-rne_marais-bergeronnes_occurrence-emof_2021.csv", 
+        path = "workspace/data/harvested/zip_inventaire_marais_bergeronnes-1.0.0/raw/marais_bergeronnes_abundance.csv"), 
+    tar_target(tg_e0f4140b_48b8_47d4_8006_af63af48a1c2_process_zip_inventaire_marais_bergeronnes, 
+        {
+            prc_zip_inventaire_marais_bergeronnes(output_path = "workspace/data/harvested/zip_inventaire_marais_bergeronnes-1.0.0/processed", 
+                input_files = list(tg_e0f4140b_48b8_47d4_8006_af63af48a1c2_Evenements_echantillonnage, 
+                  tg_e0f4140b_48b8_47d4_8006_af63af48a1c2_Mesures_abiotiques, 
+                  tg_e0f4140b_48b8_47d4_8006_af63af48a1c2_Occurrences_biologiques, 
+                  tg_e0f4140b_48b8_47d4_8006_af63af48a1c2_Donnees_abondance))
+            c("workspace/data/harvested/zip_inventaire_marais_bergeronnes-1.0.0/processed/marais_bergeronnes_events.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_bergeronnes-1.0.0/processed/marais_bergeronnes_abiotic.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_bergeronnes-1.0.0/processed/marais_bergeronnes_occurrences.csv", 
+            "workspace/data/harvested/zip_inventaire_marais_bergeronnes-1.0.0/processed/marais_bergeronnes_abundance.csv"
+            )
+        }, format = "file")),
     list(tarchetypes::tar_download(tg_1a7d4967_4a9d_446c_a080_c93755a24be9_Rapport_de_caracterisation, 
     url = "https://catalogue.ogsl.ca/data/zip-rne/ca-cioos_46d3ba2e-2fd3-4aad-a51a-f8343fbe6a73/Portrait_PAO_2022_ZIPRNE.pdf", 
     path = "workspace/data/harvested/zip_inventaire_marais_pointe_aux_outardes-1.0.0/raw/portrait_pao_2022.pdf"), 

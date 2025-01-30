@@ -613,5 +613,91 @@ Les données sont déjà disponibles dans un format standardisé; un effort mini
 
 
 
+## Caractérisation des marais des Bergeronnes {#sec-inventaire_marais_bergeronnes}
+
+Les données proviennent d'un projet de caractérisation des habitats littoraux des marais situés dans les baies des Grandes et Petites Bergeronnes, sur la rive nord de l’estuaire maritime du Saint-Laurent. Ce projet, réalisé en 2021, visait à générer des données écologiques de référence sur l'état de ces marais en intégrant des inventaires floristiques, ichtyologiques et benthiques, ainsi que des mesures abiotiques (ex. température, salinité, type de substrat) [@ziprne2023; @desrochers2022b].
+
+- **Source** : [Les marais des Bergeronnes - Caractérisation des habitats littoraux](https://doi.org/10.26071/ogsl-a5125bd3-60e3)  
+- **Accessibilité** : Libre, Creative Commons Attribution 4.0 (CC-BY-4.0)  
+- **Type de données** : Fichiers CSV et PDF  
+- **Couverture géographique** : Les marais des Bergeronnes, Québec, Canada (latitude : 48.22 à 48.24, longitude : -69.6 à -69.53)  
+- **Script de traitement** : `prc_zip_inventaire_marais_bergeronnes`  
+- **Fichiers de sortie** :  
+  - `marais_bergeronnes_events.csv`  
+  - `marais_bergeronnes_abiotic.csv`  
+  - `marais_bergeronnes_occurrences.csv`  
+  - `marais_bergeronnes_abundance.csv`
+
+### Étapes de traitement des données
+
+Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Ces données ont été formatées conformément aux standards Darwin Core, permettant leur intégration dans des bases de données de biodiversité. Nous avons uniquement standardisé les noms de colonnes en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
+
+
+### Structure des données traitées
+
+#### Table des événements d’échantillonnage
+
+| Variable               | Description                                                 |
+|------------------------|-------------------------------------------------------------|
+| `dataset_id`          | Identifiant du jeu de données                               |
+| `event_id`            | Identifiant unique de l’événement                          |
+| `country_code`        | Code du pays (CA pour Canada)                              |
+| `station`             | Nom de la station d'échantillonnage                        |
+| `sampling_protocol`   | Protocole d’échantillonnage utilisé                        |
+| `decimal_latitude`    | Latitude décimale                                          |
+| `decimal_longitude`   | Longitude décimale                                         |
+| `event_date`          | Date et heure de l’échantillonnage                         |
+| `date_pose`           | Date de pose du matériel d’échantillonnage                 |
+| `date_levee`          | Date de levée du matériel d’échantillonnage                |
+| `habitat`             | Type d’habitat observé                                     |
+| `profondeur_cm`       | Profondeur mesurée en cm                                  |
+| `commentaire`         | Remarques additionnelles                                   |
+
+#### Table des mesures abiotiques
+
+| Variable               | Description                                                 |
+|------------------------|-------------------------------------------------------------|
+| `event_id`            | Identifiant unique de l’événement                          |
+| `measurement_id`      | Identifiant unique de la mesure                            |
+| `measurement_type`    | Type de mesure (ex. température, salinité, substrat)       |
+| `measurement_value`   | Valeur mesurée                                             |
+| `measurement_unit`    | Unité de mesure (ex. °C, psu)                              |
+
+#### Table des occurrences biologiques
+
+| Variable               | Description                                                 |
+|------------------------|-------------------------------------------------------------|
+| `event_id`            | Identifiant unique de l’événement                          |
+| `occurrence_id`       | Identifiant unique de l’occurrence                         |
+| `organism_scope`      | Catégorie de l’organisme (ex. flore, faune benthique)      |
+| `kingdom`             | Règne biologique                                           |
+| `station`             | Nom de la station d’échantillonnage                        |
+| `num_echantillon`     | Numéro de l’échantillon                                    |
+| `taxon_rank`          | Niveau taxonomique de l’organisme                          |
+| `scientific_name`     | Nom scientifique de l’organisme                           |
+| `scientific_name_id`  | Identifiant WoRMS ou ITIS du taxon                        |
+| `taxonomic_status`    | Statut taxonomique (ex. accepté, synonyme)                 |
+| `accepted_name_usage` | Nom scientifique accepté                                   |
+| `accepted_name_usage_id` | Identifiant unique du nom accepté                      |
+| `taxon_id`           | URL du taxon dans GBIF                                      |
+| `occurrence_status`  | Statut de l’occurrence (présent/absent)                     |
+| `basis_of_record`    | Type d’enregistrement (ex. observation humaine)             |
+| `organism_quantity_type` | Type de mesure de l'abondance (ex. nombre d’individus)  |
+| `organism_quantity`  | Valeur de l'abondance mesurée                              |
+| `occurrence_remarks` | Remarques sur l’occurrence                                 |
+
+#### Table des données d’abondance
+
+| Variable               | Description                                                 |
+|------------------------|-------------------------------------------------------------|
+| `event_id`            | Identifiant unique de l’événement                          |
+| `occurrence_id`       | Identifiant unique de l’occurrence                         |
+| `measurement_id`      | Identifiant unique de la mesure                            |
+| `num_echantillon`     | Numéro de l’échantillon                                    |
+| `measurement_type`    | Type de mesure (ex. longueur, poids, nombre d’individus)  |
+| `measurement_value`   | Valeur mesurée                                             |
+| `measurement_unit`    | Unité de mesure (ex. mm, g)                               |
+
+
 
 ## Références
