@@ -1,0 +1,79 @@
+pipeline:
+  id: e7c1ea73-41f3-4bf0-a5f0-16ad97416965
+  name: biome_recharge_pointe-aux-loups
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-01-30 16:23:39
+  last_modified: 2025-01-30 16:23:39
+  description: >
+    Ce pipeline collecte des données de biodiversité et de suivi logistique du site de recharge de Pointe-aux-Loups.
+
+  metadata:
+    source_name: "BIOME - Recharge Pointe-aux-Loups"
+    data_type: "CSV"
+    file_size: "Inconnu"
+    license: "Données en accès restreint"
+    last_updated: "2024"
+    geographic_coverage:
+      region: "Site de recharge Pointe-aux-Loups"
+      bounding_box:
+        - null
+        - null
+        - null
+        - null
+    temporal_coverage:
+      start_date: "2021-01-01"
+      end_date: "2024-12-31"
+    variables:
+      - biodiversité
+      - logbook
+    data_quality: 
+      - "Données validées par le laboratoire BIOME"
+
+  bibliography:
+    - "@TechReport{biome_pointe-aux-loups_2024,
+        title = {Suivi de la recharge de plage à Pointe-aux-Loups},
+        author = {{BIOME}},
+        year = {2024},
+        institution = {{Université Laval}},
+      }"
+
+  download:
+    sources:
+      - name: pointe-aux-loups_biodiversity 2023
+        description: Données de biodiversité de Pointe-aux-Loups
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "pointe-aux-loups/biodiversity/pal_biodiversity_2023.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+
+      - name: pointe-aux-loups_logbook 2023
+        description: Données logistiques du site de Pointe-aux-Loups
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "pointe-aux-loups/logbook/pal_logbook_2023.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+
+      - name: pointe-aux-loups_logbook 2024
+        description: Données logistiques du site de Pointe-aux-Loups
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "pointe-aux-loups/logbook/pal_logbook_2024.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+
+  processing:
+    sources:
+      - name: processing biome_recharge_pointe-aux-loups
+        script: prc_biome_recharge_pointe_aux_loups
+        input_files:
+          - pointe-aux-loups_biodiversity 2023
+          - pointe-aux-loups_logbook 2023
+          - pointe-aux-loups_logbook 2024
+        output_files: 
+          - biome_recharge_pointe-aux-loups_logbooks.csv
+          - biome_recharge_pointe-aux-loups_biodiversity.csv
+
+  output:
+    output_dir: "workspace/data/harvested/recharge_pointe-aux-loups/"
+    log_dir: "workspace/logs/"
+    archive_raw: true

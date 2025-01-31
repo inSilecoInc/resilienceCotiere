@@ -165,7 +165,14 @@ div.csl-indent {
   <li><a href="#sec-inventaire_marais_bergeronnes" id="toc-sec-inventaire_marais_bergeronnes" class="nav-link" data-scroll-target="#sec-inventaire_marais_bergeronnes"><span class="header-section-number">3.10</span> Caractérisation des marais des Bergeronnes</a></li>
   <li><a href="#sec-inventaire_marais_hickey" id="toc-sec-inventaire_marais_hickey" class="nav-link" data-scroll-target="#sec-inventaire_marais_hickey"><span class="header-section-number">3.11</span> Caractérisation du marais à Hickey</a></li>
   <li><a href="#sec-cabin_aquatic_biomonitoring" id="toc-sec-cabin_aquatic_biomonitoring" class="nav-link" data-scroll-target="#sec-cabin_aquatic_biomonitoring"><span class="header-section-number">3.12</span> Caractérisation du Réseau Canadien de Biosurveillance Aquatique (RCBA)</a></li>
-  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">3.13</span> Références</a></li>
+  <li><a href="#sec-biome_recharge_io_herbier_benthos" id="toc-sec-biome_recharge_io_herbier_benthos" class="nav-link" data-scroll-target="#sec-biome_recharge_io_herbier_benthos"><span class="header-section-number">3.13</span> Site de recharge de plage de l’Île d’Orléans</a></li>
+  <li><a href="#sec-biome_recharge_lagrave" id="toc-sec-biome_recharge_lagrave" class="nav-link" data-scroll-target="#sec-biome_recharge_lagrave"><span class="header-section-number">3.14</span> Site de recharge de de plage de La Grave</a></li>
+  <li><a href="#sec-biome_recharge_maria" id="toc-sec-biome_recharge_maria" class="nav-link" data-scroll-target="#sec-biome_recharge_maria"><span class="header-section-number">3.15</span> Site de recharge de plage de Maria</a></li>
+  <li><a href="#sec-biome_recharge_pointe_aux_loups" id="toc-sec-biome_recharge_pointe_aux_loups" class="nav-link" data-scroll-target="#sec-biome_recharge_pointe_aux_loups"><span class="header-section-number">3.16</span> Site de recharge de plage de Pointe-aux-Loups</a></li>
+  <li><a href="#sec-biome_recharge_pointe_aux_outardes" id="toc-sec-biome_recharge_pointe_aux_outardes" class="nav-link" data-scroll-target="#sec-biome_recharge_pointe_aux_outardes"><span class="header-section-number">3.17</span> Site de recharge de plage de Pointe-aux-Outardes</a></li>
+  <li><a href="#sec-biome_recharge_sainte_flavie" id="toc-sec-biome_recharge_sainte_flavie" class="nav-link" data-scroll-target="#sec-biome_recharge_sainte_flavie"><span class="header-section-number">3.18</span> Site de recharge de plage de Sainte-Flavie</a></li>
+  <li><a href="#sec-biome_recharge_sainte_luce" id="toc-sec-biome_recharge_sainte_luce" class="nav-link" data-scroll-target="#sec-biome_recharge_sainte_luce"><span class="header-section-number">3.19</span> Suivi de la recharge de plage à Sainte-Luce</a></li>
+  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">3.20</span> Références</a></li>
   </ul>
 </nav>
     </div>
@@ -2703,8 +2710,1250 @@ div.csl-indent {
 </section>
 </section>
 </section>
-<section id="références" class="level2" data-number="3.13">
-<h2 data-number="3.13" class="anchored" data-anchor-id="références"><span class="header-section-number">3.13</span> Références</h2>
+<section id="sec-biome_recharge_io_herbier_benthos" class="level2" data-number="3.13">
+<h2 data-number="3.13" class="anchored" data-anchor-id="sec-biome_recharge_io_herbier_benthos"><span class="header-section-number">3.13</span> Site de recharge de plage de l’Île d’Orléans</h2>
+<p>Les données proviennent du suivi des herbiers et du benthos du site de recharge de l’Île d’Orléas, réalisé par le laboratoire BIOME en 2023 <span class="citation" data-cites="biome_io_2023">(<a href="#ref-biome_io_2023" role="doc-biblioref">BIOME, 2023</a>)</span>. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de travaux de recharges de plage.</p>
+<p><em>Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.</em></p>
+<ul>
+<li><strong>Source</strong> : <strong>BIOME - Suivi des herbiers et du benthos au site de recharge IO</strong><br>
+</li>
+<li><strong>Accessibilité</strong> : Accès restreint<br>
+</li>
+<li><strong>Type de données</strong> : Fichier CSV<br>
+</li>
+<li><strong>Couverture géographique</strong> : Site de recharge IO (coordonnées précises à confirmer)<br>
+</li>
+<li><strong>Période couverte</strong> : 2023<br>
+</li>
+<li><strong>Script de traitement</strong> : <code>prc_biome_recharge_io_herbier_benthos</code><br>
+</li>
+<li><strong>Fichier de sortie</strong> :
+<ul>
+<li><code>biome_recharge_io_herbier_benthos_logbooks.csv</code></li>
+</ul></li>
+</ul>
+<section id="étapes-de-traitement-des-données-12" class="level3" data-number="3.13.1">
+<h3 data-number="3.13.1" class="anchored" data-anchor-id="étapes-de-traitement-des-données-12"><span class="header-section-number">3.13.1</span> Étapes de traitement des données</h3>
+<p>Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en utilisant <code>janitor::clean_names()</code> pour garantir des noms uniformes à travers le projet.</p>
+</section>
+<section id="structure-des-données-traitées-12" class="level3" data-number="3.13.2">
+<h3 data-number="3.13.2" class="anchored" data-anchor-id="structure-des-données-traitées-12"><span class="header-section-number">3.13.2</span> Structure des données traitées</h3>
+<section id="table-des-relevés-déchantillonnage" class="level4" data-number="3.13.2.1">
+<h4 data-number="3.13.2.1" class="anchored" data-anchor-id="table-des-relevés-déchantillonnage"><span class="header-section-number">3.13.2.1</span> Table des relevés d’échantillonnage</h4>
+<table class="table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>project_id</code></td>
+<td>Identifiant du projet (ex. <code>io-benthos</code>)</td>
+</tr>
+<tr class="even">
+<td><code>parent_event_id</code></td>
+<td>Identifiant principal de l’événement</td>
+</tr>
+<tr class="odd">
+<td><code>event_id</code></td>
+<td>Identifiant unique de l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>station</code></td>
+<td>Nom/code de la station d’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>latitude</code></td>
+<td>Latitude du site (degrés décimaux)</td>
+</tr>
+<tr class="even">
+<td><code>longitude</code></td>
+<td>Longitude du site (degrés décimaux)</td>
+</tr>
+<tr class="odd">
+<td><code>date</code></td>
+<td>Date de l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>methode_echantillonnage</code></td>
+<td>Méthode utilisée (ex. <code>Cylindre</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>pots_125ml</code></td>
+<td>Nombre d’échantillons conservés en pots de 125 ml</td>
+</tr>
+<tr class="even">
+<td><code>pots_500ml</code></td>
+<td>Nombre d’échantillons conservés en pots de 500 ml</td>
+</tr>
+<tr class="odd">
+<td><code>pots_1l</code></td>
+<td>Nombre d’échantillons conservés en pots de 1 L</td>
+</tr>
+<tr class="even">
+<td><code>mo</code></td>
+<td>Nombre d’échantillons pour matière organique</td>
+</tr>
+<tr class="odd">
+<td><code>granulo</code></td>
+<td>Nombre d’échantillons pour analyse granulométrique</td>
+</tr>
+<tr class="even">
+<td><code>commentaires</code></td>
+<td>Observations particulières du relevé</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="sec-biome_recharge_lagrave" class="level2" data-number="3.14">
+<h2 data-number="3.14" class="anchored" data-anchor-id="sec-biome_recharge_lagrave"><span class="header-section-number">3.14</span> Site de recharge de de plage de La Grave</h2>
+<p>Les données proviennent du suivi de la recharge de plage au site de La Grave, réalisé par le laboratoire BIOME entre 2021 et 2024 <span class="citation" data-cites="biome_lagrave_2024">(<a href="#ref-biome_lagrave_2024" role="doc-biblioref">BIOME, 2024a</a>)</span>. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de travaux de recharges de plage.</p>
+<p><em>Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.</em></p>
+<ul>
+<li><strong>Source</strong> : <strong>BIOME - Suivi de la recharge de plage à La Grave</strong><br>
+</li>
+<li><strong>Accessibilité</strong> : Accès restreint<br>
+</li>
+<li><strong>Type de données</strong> : Fichiers CSV<br>
+</li>
+<li><strong>Couverture géographique</strong> : Site de recharge de La Grave (coordonnées précises à confirmer)<br>
+</li>
+<li><strong>Période couverte</strong> : 2021 - 2024<br>
+</li>
+<li><strong>Script de traitement</strong> : <code>prc_biome_recharge_lagrave</code><br>
+</li>
+<li><strong>Fichiers de sortie</strong> :
+<ul>
+<li><code>biome_recharge_lagrave_logbooks.csv</code><br>
+</li>
+<li><code>biome_recharge_lagrave_biodiversity.csv</code></li>
+</ul></li>
+</ul>
+<section id="étapes-de-traitement-des-données-13" class="level3" data-number="3.14.1">
+<h3 data-number="3.14.1" class="anchored" data-anchor-id="étapes-de-traitement-des-données-13"><span class="header-section-number">3.14.1</span> Étapes de traitement des données</h3>
+<p>Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en utilisant <code>janitor::clean_names()</code> pour garantir des noms uniformes à travers le projet.</p>
+</section>
+<section id="structure-des-données-traitées-13" class="level3" data-number="3.14.2">
+<h3 data-number="3.14.2" class="anchored" data-anchor-id="structure-des-données-traitées-13"><span class="header-section-number">3.14.2</span> Structure des données traitées</h3>
+<section id="table-des-relevés-déchantillonnage-logbooks" class="level4" data-number="3.14.2.1">
+<h4 data-number="3.14.2.1" class="anchored" data-anchor-id="table-des-relevés-déchantillonnage-logbooks"><span class="header-section-number">3.14.2.1</span> Table des relevés d’échantillonnage (logbooks)</h4>
+<table class="table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>project_id</code></td>
+<td>Identifiant du projet (<code>lg</code>)</td>
+</tr>
+<tr class="even">
+<td><code>parent_event_id</code></td>
+<td>Identifiant principal de l’événement</td>
+</tr>
+<tr class="odd">
+<td><code>event_id</code></td>
+<td>Identifiant unique de l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>site</code></td>
+<td>Nom/code du site d’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>station</code></td>
+<td>Code de la station d’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>latitude</code></td>
+<td>Latitude du site (degrés décimaux)</td>
+</tr>
+<tr class="odd">
+<td><code>longitude</code></td>
+<td>Longitude du site (degrés décimaux)</td>
+</tr>
+<tr class="even">
+<td><code>date</code></td>
+<td>Date de l’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>methode_echantillonnage</code></td>
+<td>Méthode utilisée pour l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>pots_150ml</code></td>
+<td>Nombre d’échantillons stockés en pots de 150 ml</td>
+</tr>
+<tr class="odd">
+<td><code>pots_250ml</code></td>
+<td>Nombre d’échantillons stockés en pots de 250 ml</td>
+</tr>
+<tr class="even">
+<td><code>pots_500ml</code></td>
+<td>Nombre d’échantillons stockés en pots de 500 ml</td>
+</tr>
+<tr class="odd">
+<td><code>pots_1l</code></td>
+<td>Nombre d’échantillons stockés en pots de 1 L</td>
+</tr>
+<tr class="even">
+<td><code>mo</code></td>
+<td>Nombre d’échantillons pour analyse de matière organique</td>
+</tr>
+<tr class="odd">
+<td><code>granulo</code></td>
+<td>Nombre d’échantillons pour analyse granulométrique</td>
+</tr>
+<tr class="even">
+<td><code>commentaires</code></td>
+<td>Observations et notes additionnelles</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="table-des-observations-de-biodiversité" class="level4" data-number="3.14.2.2">
+<h4 data-number="3.14.2.2" class="anchored" data-anchor-id="table-des-observations-de-biodiversité"><span class="header-section-number">3.14.2.2</span> Table des observations de biodiversité</h4>
+<table class="table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>project_id</code></td>
+<td>Identifiant du projet (<code>lg</code>)</td>
+</tr>
+<tr class="even">
+<td><code>event_id</code></td>
+<td>Identifiant unique de l’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>date</code></td>
+<td>Date de l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>latitude</code></td>
+<td>Latitude du site (degrés décimaux)</td>
+</tr>
+<tr class="odd">
+<td><code>longitude</code></td>
+<td>Longitude du site (degrés décimaux)</td>
+</tr>
+<tr class="even">
+<td><code>valid_aphiaid</code></td>
+<td>Identifiant taxonomique AphiaID</td>
+</tr>
+<tr class="odd">
+<td><code>valid_name</code></td>
+<td>Nom scientifique de l’espèce validé</td>
+</tr>
+<tr class="even">
+<td><code>valid_authority</code></td>
+<td>Autorité taxonomique</td>
+</tr>
+<tr class="odd">
+<td><code>scientific_name</code></td>
+<td>Nom scientifique de l’espèce observée</td>
+</tr>
+<tr class="even">
+<td><code>aphiaid</code></td>
+<td>Identifiant taxonomique original</td>
+</tr>
+<tr class="odd">
+<td><code>status</code></td>
+<td>Statut taxonomique (<code>accepted</code>, <code>synonym</code>, etc.)</td>
+</tr>
+<tr class="even">
+<td><code>abundance_m2</code></td>
+<td>Densité d’individus par mètre carré</td>
+</tr>
+<tr class="odd">
+<td><code>biomass_m2</code></td>
+<td>Biomasse en g/m²</td>
+</tr>
+<tr class="even">
+<td><code>occurrence</code></td>
+<td>Présence/absence de l’espèce</td>
+</tr>
+<tr class="odd">
+<td><code>rank</code></td>
+<td>Rang taxonomique (ex. Espèce, Famille)</td>
+</tr>
+<tr class="even">
+<td><code>kingdom</code></td>
+<td>Règne biologique</td>
+</tr>
+<tr class="odd">
+<td><code>phylum</code></td>
+<td>Embranchement biologique</td>
+</tr>
+<tr class="even">
+<td><code>class</code></td>
+<td>Classe biologique</td>
+</tr>
+<tr class="odd">
+<td><code>order</code></td>
+<td>Ordre biologique</td>
+</tr>
+<tr class="even">
+<td><code>family</code></td>
+<td>Famille biologique</td>
+</tr>
+<tr class="odd">
+<td><code>genus</code></td>
+<td>Genre biologique</td>
+</tr>
+<tr class="even">
+<td><code>species</code></td>
+<td>Espèce biologique</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="sec-biome_recharge_maria" class="level2" data-number="3.15">
+<h2 data-number="3.15" class="anchored" data-anchor-id="sec-biome_recharge_maria"><span class="header-section-number">3.15</span> Site de recharge de plage de Maria</h2>
+<p>Les données proviennent du suivi de la recharge de plage au site de Maria, réalisé par le laboratoire BIOME en 2024 <span class="citation" data-cites="biome_maria_2024">(<a href="#ref-biome_maria_2024" role="doc-biblioref">BIOME, 2024b</a>)</span>. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de travaux de recharges de plage.</p>
+<p><em>Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.</em></p>
+<ul>
+<li><strong>Source</strong> : <strong>BIOME - Suivi de la recharge de plage à Maria</strong><br>
+</li>
+<li><strong>Accessibilité</strong> : Accès restreint<br>
+</li>
+<li><strong>Type de données</strong> : Fichier CSV<br>
+</li>
+<li><strong>Couverture géographique</strong> : Site de recharge de Maria (coordonnées précises à confirmer)<br>
+</li>
+<li><strong>Période couverte</strong> : 2024<br>
+</li>
+<li><strong>Script de traitement</strong> : <code>prc_biome_recharge_maria</code><br>
+</li>
+<li><strong>Fichier de sortie</strong> :
+<ul>
+<li><code>biome_recharge_maria_logbooks.csv</code></li>
+</ul></li>
+</ul>
+<section id="étapes-de-traitement-des-données-14" class="level3" data-number="3.15.1">
+<h3 data-number="3.15.1" class="anchored" data-anchor-id="étapes-de-traitement-des-données-14"><span class="header-section-number">3.15.1</span> Étapes de traitement des données</h3>
+<p>Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en convertissant des caractères spéciaux (<code>µ</code> remplacé par <code>u</code>) et en utilisant <code>janitor::clean_names()</code> pour garantir des noms uniformes à travers le projet.</p>
+</section>
+<section id="structure-des-données-traitées-14" class="level3" data-number="3.15.2">
+<h3 data-number="3.15.2" class="anchored" data-anchor-id="structure-des-données-traitées-14"><span class="header-section-number">3.15.2</span> Structure des données traitées</h3>
+<section id="table-des-relevés-déchantillonnage-logbooks-1" class="level4" data-number="3.15.2.1">
+<h4 data-number="3.15.2.1" class="anchored" data-anchor-id="table-des-relevés-déchantillonnage-logbooks-1"><span class="header-section-number">3.15.2.1</span> Table des relevés d’échantillonnage (logbooks)</h4>
+<table class="table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>project_id</code></td>
+<td>Identifiant du projet (<code>maria</code>)</td>
+</tr>
+<tr class="even">
+<td><code>parent_event_id</code></td>
+<td>Identifiant principal de l’événement</td>
+</tr>
+<tr class="odd">
+<td><code>event_id</code></td>
+<td>Identifiant unique de l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>site</code></td>
+<td>Nom/code du site d’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>station</code></td>
+<td>Code de la station d’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>latitude</code></td>
+<td>Latitude du site (degrés décimaux)</td>
+</tr>
+<tr class="odd">
+<td><code>longitude</code></td>
+<td>Longitude du site (degrés décimaux)</td>
+</tr>
+<tr class="even">
+<td><code>date</code></td>
+<td>Date de l’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>saisie_par</code></td>
+<td>Nom du responsable de la saisie</td>
+</tr>
+<tr class="even">
+<td><code>couverture_vegetation</code></td>
+<td>Pourcentage de couverture végétale</td>
+</tr>
+<tr class="odd">
+<td><code>creusage</code></td>
+<td>Profondeur de creusage dans le sédiment</td>
+</tr>
+<tr class="even">
+<td><code>methode_echantillonnage</code></td>
+<td>Méthode utilisée pour l’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>trie_500um</code></td>
+<td>Indicateur du tri à 500 µm</td>
+</tr>
+<tr class="even">
+<td><code>pots_125ml</code></td>
+<td>Nombre d’échantillons stockés en pots de 125 ml</td>
+</tr>
+<tr class="odd">
+<td><code>pots_250ml</code></td>
+<td>Nombre d’échantillons stockés en pots de 250 ml</td>
+</tr>
+<tr class="even">
+<td><code>pots_500ml</code></td>
+<td>Nombre d’échantillons stockés en pots de 500 ml</td>
+</tr>
+<tr class="odd">
+<td><code>pots_1l</code></td>
+<td>Nombre d’échantillons stockés en pots de 1 L</td>
+</tr>
+<tr class="even">
+<td><code>mo</code></td>
+<td>Nombre d’échantillons pour analyse de matière organique</td>
+</tr>
+<tr class="odd">
+<td><code>granulo</code></td>
+<td>Nombre d’échantillons pour analyse granulométrique</td>
+</tr>
+<tr class="even">
+<td><code>commentaires</code></td>
+<td>Observations et notes additionnelles</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="sec-biome_recharge_pointe_aux_loups" class="level2" data-number="3.16">
+<h2 data-number="3.16" class="anchored" data-anchor-id="sec-biome_recharge_pointe_aux_loups"><span class="header-section-number">3.16</span> Site de recharge de plage de Pointe-aux-Loups</h2>
+<p>Les données proviennent du suivi de la recharge de plage au site de Pointe-aux-Loups, réalisé par le laboratoire BIOME en 2023 et 2024 <span class="citation" data-cites="biome_pointe-aux-loups_2024">(<a href="#ref-biome_pointe-aux-loups_2024" role="doc-biblioref">BIOME, 2024c</a>)</span>. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de travaux de recharges de plage.</p>
+<p><em>Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.</em></p>
+<ul>
+<li><strong>Source</strong> : <strong>BIOME - Suivi de la recharge de plage à Pointe-aux-Loups</strong><br>
+</li>
+<li><strong>Accessibilité</strong> : Accès restreint<br>
+</li>
+<li><strong>Type de données</strong> : Fichiers CSV<br>
+</li>
+<li><strong>Couverture géographique</strong> : Site de recharge de Pointe-aux-Loups (coordonnées précises à confirmer)<br>
+</li>
+<li><strong>Période couverte</strong> : 2023 - 2024<br>
+</li>
+<li><strong>Script de traitement</strong> : <code>prc_biome_recharge_pointe_aux_loups</code><br>
+</li>
+<li><strong>Fichiers de sortie</strong> :
+<ul>
+<li><code>biome_recharge_pointe-aux-loups_logbooks.csv</code><br>
+</li>
+<li><code>biome_recharge_pointe-aux-loups_biodiversity.csv</code></li>
+</ul></li>
+</ul>
+<section id="étapes-de-traitement-des-données-15" class="level3" data-number="3.16.1">
+<h3 data-number="3.16.1" class="anchored" data-anchor-id="étapes-de-traitement-des-données-15"><span class="header-section-number">3.16.1</span> Étapes de traitement des données</h3>
+<p>Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en utilisant <code>janitor::clean_names()</code> pour garantir des noms uniformes à travers le projet.</p>
+</section>
+<section id="structure-des-données-traitées-15" class="level3" data-number="3.16.2">
+<h3 data-number="3.16.2" class="anchored" data-anchor-id="structure-des-données-traitées-15"><span class="header-section-number">3.16.2</span> Structure des données traitées</h3>
+<section id="table-des-relevés-déchantillonnage-logbooks-2" class="level4" data-number="3.16.2.1">
+<h4 data-number="3.16.2.1" class="anchored" data-anchor-id="table-des-relevés-déchantillonnage-logbooks-2"><span class="header-section-number">3.16.2.1</span> Table des relevés d’échantillonnage (logbooks)</h4>
+<table class="table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>project_id</code></td>
+<td>Identifiant du projet (<code>pal</code>)</td>
+</tr>
+<tr class="even">
+<td><code>parent_event_id</code></td>
+<td>Identifiant principal de l’événement</td>
+</tr>
+<tr class="odd">
+<td><code>event_id</code></td>
+<td>Identifiant unique de l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>site</code></td>
+<td>Nom/code du site d’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>distance</code></td>
+<td>Distance par rapport à un point de référence</td>
+</tr>
+<tr class="even">
+<td><code>profil</code></td>
+<td>Code de profil</td>
+</tr>
+<tr class="odd">
+<td><code>station</code></td>
+<td>Code de la station d’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>latitude</code></td>
+<td>Latitude du site (degrés décimaux)</td>
+</tr>
+<tr class="odd">
+<td><code>longitude</code></td>
+<td>Longitude du site (degrés décimaux)</td>
+</tr>
+<tr class="even">
+<td><code>date</code></td>
+<td>Date de l’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>methode_echantillonnage</code></td>
+<td>Méthode utilisée pour l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>pots_125ml</code></td>
+<td>Nombre d’échantillons stockés en pots de 125 ml</td>
+</tr>
+<tr class="odd">
+<td><code>pots_250ml</code></td>
+<td>Nombre d’échantillons stockés en pots de 250 ml</td>
+</tr>
+<tr class="even">
+<td><code>pots_500ml</code></td>
+<td>Nombre d’échantillons stockés en pots de 500 ml</td>
+</tr>
+<tr class="odd">
+<td><code>pots_1l</code></td>
+<td>Nombre d’échantillons stockés en pots de 1 L</td>
+</tr>
+<tr class="even">
+<td><code>mo</code></td>
+<td>Nombre d’échantillons pour analyse de matière organique</td>
+</tr>
+<tr class="odd">
+<td><code>granulo</code></td>
+<td>Nombre d’échantillons pour analyse granulométrique</td>
+</tr>
+<tr class="even">
+<td><code>commentaires</code></td>
+<td>Observations et notes additionnelles</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="table-des-observations-de-biodiversité-1" class="level4" data-number="3.16.2.2">
+<h4 data-number="3.16.2.2" class="anchored" data-anchor-id="table-des-observations-de-biodiversité-1"><span class="header-section-number">3.16.2.2</span> Table des observations de biodiversité</h4>
+<table class="table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>project_id</code></td>
+<td>Identifiant du projet (<code>pal</code>)</td>
+</tr>
+<tr class="even">
+<td><code>event_id</code></td>
+<td>Identifiant unique de l’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>date</code></td>
+<td>Date de l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>latitude</code></td>
+<td>Latitude du site (degrés décimaux)</td>
+</tr>
+<tr class="odd">
+<td><code>longitude</code></td>
+<td>Longitude du site (degrés décimaux)</td>
+</tr>
+<tr class="even">
+<td><code>valid_aphiaid</code></td>
+<td>Identifiant taxonomique AphiaID</td>
+</tr>
+<tr class="odd">
+<td><code>valid_name</code></td>
+<td>Nom scientifique de l’espèce validé</td>
+</tr>
+<tr class="even">
+<td><code>valid_authority</code></td>
+<td>Autorité taxonomique</td>
+</tr>
+<tr class="odd">
+<td><code>scientific_name</code></td>
+<td>Nom scientifique de l’espèce observée</td>
+</tr>
+<tr class="even">
+<td><code>aphiaid</code></td>
+<td>Identifiant taxonomique original</td>
+</tr>
+<tr class="odd">
+<td><code>status</code></td>
+<td>Statut taxonomique (<code>accepted</code>, <code>synonym</code>, etc.)</td>
+</tr>
+<tr class="even">
+<td><code>abundance_m2</code></td>
+<td>Densité d’individus par mètre carré</td>
+</tr>
+<tr class="odd">
+<td><code>biomass_m2</code></td>
+<td>Biomasse en g/m²</td>
+</tr>
+<tr class="even">
+<td><code>occurrence</code></td>
+<td>Présence/absence de l’espèce</td>
+</tr>
+<tr class="odd">
+<td><code>rank</code></td>
+<td>Rang taxonomique (ex. Espèce, Famille)</td>
+</tr>
+<tr class="even">
+<td><code>kingdom</code></td>
+<td>Règne biologique</td>
+</tr>
+<tr class="odd">
+<td><code>phylum</code></td>
+<td>Embranchement biologique</td>
+</tr>
+<tr class="even">
+<td><code>class</code></td>
+<td>Classe biologique</td>
+</tr>
+<tr class="odd">
+<td><code>order</code></td>
+<td>Ordre biologique</td>
+</tr>
+<tr class="even">
+<td><code>family</code></td>
+<td>Famille biologique</td>
+</tr>
+<tr class="odd">
+<td><code>genus</code></td>
+<td>Genre biologique</td>
+</tr>
+<tr class="even">
+<td><code>species</code></td>
+<td>Espèce biologique</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="sec-biome_recharge_pointe_aux_outardes" class="level2" data-number="3.17">
+<h2 data-number="3.17" class="anchored" data-anchor-id="sec-biome_recharge_pointe_aux_outardes"><span class="header-section-number">3.17</span> Site de recharge de plage de Pointe-aux-Outardes</h2>
+<p>Les données proviennent du suivi de la recharge de plage au site de Pointe-aux-Outardes, réalisé par le laboratoire BIOME entre 2021 et 2024 <span class="citation" data-cites="biome_pointe-aux-outardes_2024">(<a href="#ref-biome_pointe-aux-outardes_2024" role="doc-biblioref">BIOME, 2024d</a>)</span>. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de travaux de recharges de plage.</p>
+<p><em>Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.</em></p>
+<ul>
+<li><strong>Source</strong> : <strong>BIOME - Suivi de la recharge de plage à Pointe-aux-Outardes</strong><br>
+</li>
+<li><strong>Accessibilité</strong> : Accès restreint<br>
+</li>
+<li><strong>Type de données</strong> : Fichiers CSV<br>
+</li>
+<li><strong>Couverture géographique</strong> : Site de recharge de Pointe-aux-Outardes (coordonnées précises à confirmer)<br>
+</li>
+<li><strong>Période couverte</strong> : 2021 - 2024<br>
+</li>
+<li><strong>Script de traitement</strong> : <code>prc_biome_recharge_pointe_aux_outardes</code><br>
+</li>
+<li><strong>Fichiers de sortie</strong> :
+<ul>
+<li><code>biome_recharge_pointe-aux-outardes_logbooks.csv</code><br>
+</li>
+<li><code>biome_recharge_pointe-aux-outardes_biodiversity.csv</code></li>
+</ul></li>
+</ul>
+<section id="étapes-de-traitement-des-données-16" class="level3" data-number="3.17.1">
+<h3 data-number="3.17.1" class="anchored" data-anchor-id="étapes-de-traitement-des-données-16"><span class="header-section-number">3.17.1</span> Étapes de traitement des données</h3>
+<p>Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en convertissant des caractères spéciaux (<code>µ</code> remplacé par <code>u</code>) et en utilisant <code>janitor::clean_names()</code> pour garantir des noms uniformes à travers le projet.</p>
+</section>
+<section id="structure-des-données-traitées-16" class="level3" data-number="3.17.2">
+<h3 data-number="3.17.2" class="anchored" data-anchor-id="structure-des-données-traitées-16"><span class="header-section-number">3.17.2</span> Structure des données traitées</h3>
+<section id="table-des-relevés-déchantillonnage-logbooks-3" class="level4" data-number="3.17.2.1">
+<h4 data-number="3.17.2.1" class="anchored" data-anchor-id="table-des-relevés-déchantillonnage-logbooks-3"><span class="header-section-number">3.17.2.1</span> Table des relevés d’échantillonnage (logbooks)</h4>
+<table class="table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>project_id</code></td>
+<td>Identifiant du projet (<code>pao</code>)</td>
+</tr>
+<tr class="even">
+<td><code>parent_event_id</code></td>
+<td>Identifiant principal de l’événement</td>
+</tr>
+<tr class="odd">
+<td><code>event_id</code></td>
+<td>Identifiant unique de l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>site</code></td>
+<td>Nom/code du site d’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>profil</code></td>
+<td>Profil topographique</td>
+</tr>
+<tr class="even">
+<td><code>distance</code></td>
+<td>Distance par rapport à un point de référence</td>
+</tr>
+<tr class="odd">
+<td><code>station</code></td>
+<td>Code de la station d’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>latitude</code></td>
+<td>Latitude du site (degrés décimaux)</td>
+</tr>
+<tr class="odd">
+<td><code>longitude</code></td>
+<td>Longitude du site (degrés décimaux)</td>
+</tr>
+<tr class="even">
+<td><code>date</code></td>
+<td>Date de l’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>saisie_par</code></td>
+<td>Nom du responsable de la saisie</td>
+</tr>
+<tr class="even">
+<td><code>couverture_sable</code></td>
+<td>Pourcentage de couverture en sable</td>
+</tr>
+<tr class="odd">
+<td><code>couverture_vegetation</code></td>
+<td>Pourcentage de couverture végétale</td>
+</tr>
+<tr class="even">
+<td><code>creusage</code></td>
+<td>Profondeur de creusage dans le sédiment</td>
+</tr>
+<tr class="odd">
+<td><code>methode_echantillonnage</code></td>
+<td>Méthode utilisée pour l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>trie_2mm</code></td>
+<td>Présence de tri à 2 mm</td>
+</tr>
+<tr class="odd">
+<td><code>trie_500um</code></td>
+<td>Présence de tri à 500 µm</td>
+</tr>
+<tr class="even">
+<td><code>pots_250ml</code></td>
+<td>Nombre d’échantillons stockés en pots de 250 ml</td>
+</tr>
+<tr class="odd">
+<td><code>pots_500ml</code></td>
+<td>Nombre d’échantillons stockés en pots de 500 ml</td>
+</tr>
+<tr class="even">
+<td><code>pots_1l</code></td>
+<td>Nombre d’échantillons stockés en pots de 1 L</td>
+</tr>
+<tr class="odd">
+<td><code>mo</code></td>
+<td>Nombre d’échantillons pour analyse de matière organique</td>
+</tr>
+<tr class="even">
+<td><code>granulo</code></td>
+<td>Nombre d’échantillons pour analyse granulométrique</td>
+</tr>
+<tr class="odd">
+<td><code>commentaires</code></td>
+<td>Observations et notes additionnelles</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="table-des-observations-de-biodiversité-2" class="level4" data-number="3.17.2.2">
+<h4 data-number="3.17.2.2" class="anchored" data-anchor-id="table-des-observations-de-biodiversité-2"><span class="header-section-number">3.17.2.2</span> Table des observations de biodiversité</h4>
+<table class="table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>project_id</code></td>
+<td>Identifiant du projet (<code>pao</code>)</td>
+</tr>
+<tr class="even">
+<td><code>event_id</code></td>
+<td>Identifiant unique de l’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>date</code></td>
+<td>Date de l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>latitude</code></td>
+<td>Latitude du site (degrés décimaux)</td>
+</tr>
+<tr class="odd">
+<td><code>longitude</code></td>
+<td>Longitude du site (degrés décimaux)</td>
+</tr>
+<tr class="even">
+<td><code>valid_aphiaid</code></td>
+<td>Identifiant taxonomique AphiaID</td>
+</tr>
+<tr class="odd">
+<td><code>valid_name</code></td>
+<td>Nom scientifique de l’espèce validé</td>
+</tr>
+<tr class="even">
+<td><code>valid_authority</code></td>
+<td>Autorité taxonomique</td>
+</tr>
+<tr class="odd">
+<td><code>scientific_name</code></td>
+<td>Nom scientifique de l’espèce observée</td>
+</tr>
+<tr class="even">
+<td><code>aphiaid</code></td>
+<td>Identifiant taxonomique original</td>
+</tr>
+<tr class="odd">
+<td><code>status</code></td>
+<td>Statut taxonomique (<code>accepted</code>, <code>synonym</code>, etc.)</td>
+</tr>
+<tr class="even">
+<td><code>abundance_m2</code></td>
+<td>Densité d’individus par mètre carré</td>
+</tr>
+<tr class="odd">
+<td><code>biomass_m2</code></td>
+<td>Biomasse en g/m²</td>
+</tr>
+<tr class="even">
+<td><code>occurrence</code></td>
+<td>Présence/absence de l’espèce</td>
+</tr>
+<tr class="odd">
+<td><code>rank</code></td>
+<td>Rang taxonomique (ex. Espèce, Famille)</td>
+</tr>
+<tr class="even">
+<td><code>kingdom</code></td>
+<td>Règne biologique</td>
+</tr>
+<tr class="odd">
+<td><code>phylum</code></td>
+<td>Embranchement biologique</td>
+</tr>
+<tr class="even">
+<td><code>class</code></td>
+<td>Classe biologique</td>
+</tr>
+<tr class="odd">
+<td><code>order</code></td>
+<td>Ordre biologique</td>
+</tr>
+<tr class="even">
+<td><code>family</code></td>
+<td>Famille biologique</td>
+</tr>
+<tr class="odd">
+<td><code>genus</code></td>
+<td>Genre biologique</td>
+</tr>
+<tr class="even">
+<td><code>species</code></td>
+<td>Espèce biologique</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="sec-biome_recharge_sainte_flavie" class="level2" data-number="3.18">
+<h2 data-number="3.18" class="anchored" data-anchor-id="sec-biome_recharge_sainte_flavie"><span class="header-section-number">3.18</span> Site de recharge de plage de Sainte-Flavie</h2>
+<p>Les données proviennent du suivi de la recharge de plage au site de <strong>Sainte-Flavie</strong>, réalisé par le laboratoire <strong>BIOME</strong> en 2024 <span class="citation" data-cites="biome_sainte-flavie_2024">(<a href="#ref-biome_sainte-flavie_2024" role="doc-biblioref">BIOME, 2024e</a>)</span>. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de travaux de recharges de plage.</p>
+<p><em>Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.</em></p>
+<ul>
+<li><strong>Source</strong> : <strong>BIOME - Suivi de la recharge de plage à Sainte-Flavie</strong><br>
+</li>
+<li><strong>Accessibilité</strong> : Accès restreint<br>
+</li>
+<li><strong>Type de données</strong> : Fichiers CSV<br>
+</li>
+<li><strong>Couverture géographique</strong> : Site de recharge de Sainte-Flavie (coordonnées précises à confirmer)<br>
+</li>
+<li><strong>Période couverte</strong> : 2024<br>
+</li>
+<li><strong>Script de traitement</strong> : <code>prc_biome_recharge_sainte_flavie</code><br>
+</li>
+<li><strong>Fichiers de sortie</strong> :
+<ul>
+<li><code>biome_recharge_sainte-flavie_logbooks.csv</code></li>
+</ul></li>
+</ul>
+<section id="étapes-de-traitement-des-données-17" class="level3" data-number="3.18.1">
+<h3 data-number="3.18.1" class="anchored" data-anchor-id="étapes-de-traitement-des-données-17"><span class="header-section-number">3.18.1</span> Étapes de traitement des données</h3>
+<p>Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en convertissant des caractères spéciaux (<code>µ</code> remplacé par <code>u</code>) et en utilisant <code>janitor::clean_names()</code> pour garantir des noms uniformes à travers le projet.</p>
+</section>
+<section id="structure-des-données-traitées-17" class="level3" data-number="3.18.2">
+<h3 data-number="3.18.2" class="anchored" data-anchor-id="structure-des-données-traitées-17"><span class="header-section-number">3.18.2</span> Structure des données traitées</h3>
+<section id="table-des-relevés-déchantillonnage-logbooks-4" class="level4" data-number="3.18.2.1">
+<h4 data-number="3.18.2.1" class="anchored" data-anchor-id="table-des-relevés-déchantillonnage-logbooks-4"><span class="header-section-number">3.18.2.1</span> Table des relevés d’échantillonnage (logbooks)</h4>
+<table class="table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>project_id</code></td>
+<td>Identifiant du projet (<code>sf</code>)</td>
+</tr>
+<tr class="even">
+<td><code>parent_event_id</code></td>
+<td>Identifiant principal de l’événement</td>
+</tr>
+<tr class="odd">
+<td><code>event_id</code></td>
+<td>Identifiant unique de l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>site</code></td>
+<td>Nom/code du site d’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>station</code></td>
+<td>Code de la station d’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>latitude</code></td>
+<td>Latitude du site (degrés décimaux)</td>
+</tr>
+<tr class="odd">
+<td><code>longitude</code></td>
+<td>Longitude du site (degrés décimaux)</td>
+</tr>
+<tr class="even">
+<td><code>elevation</code></td>
+<td>Altitude du site (mètres)</td>
+</tr>
+<tr class="odd">
+<td><code>date</code></td>
+<td>Date de l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>saisie_par</code></td>
+<td>Nom du responsable de la saisie</td>
+</tr>
+<tr class="odd">
+<td><code>couverture_sable</code></td>
+<td>Pourcentage de couverture en sable</td>
+</tr>
+<tr class="even">
+<td><code>couverture_vegetation</code></td>
+<td>Pourcentage de couverture végétale</td>
+</tr>
+<tr class="odd">
+<td><code>substrat</code></td>
+<td>Type de substrat dominant</td>
+</tr>
+<tr class="even">
+<td><code>creusage</code></td>
+<td>Indicateur de creusage dans le sédiment</td>
+</tr>
+<tr class="odd">
+<td><code>fouillage</code></td>
+<td>Présence d’indices de fouissage</td>
+</tr>
+<tr class="even">
+<td><code>methode_echantillonnage</code></td>
+<td>Méthode utilisée pour l’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>trie_2mm</code></td>
+<td>Indicateur du tri à 2 mm</td>
+</tr>
+<tr class="even">
+<td><code>trie_500um</code></td>
+<td>Indicateur du tri à 500 µm</td>
+</tr>
+<tr class="odd">
+<td><code>pots_125ml</code></td>
+<td>Nombre d’échantillons stockés en pots de 125 ml</td>
+</tr>
+<tr class="even">
+<td><code>pots_250ml</code></td>
+<td>Nombre d’échantillons stockés en pots de 250 ml</td>
+</tr>
+<tr class="odd">
+<td><code>pots_500ml</code></td>
+<td>Nombre d’échantillons stockés en pots de 500 ml</td>
+</tr>
+<tr class="even">
+<td><code>pots_1l</code></td>
+<td>Nombre d’échantillons stockés en pots de 1 L</td>
+</tr>
+<tr class="odd">
+<td><code>benthos_algue</code></td>
+<td>Présence d’algues benthiques</td>
+</tr>
+<tr class="even">
+<td><code>benthos_roche</code></td>
+<td>Présence de substrat rocheux</td>
+</tr>
+<tr class="odd">
+<td><code>benthos_moules</code></td>
+<td>Présence de moules</td>
+</tr>
+<tr class="even">
+<td><code>benthos_balanes</code></td>
+<td>Présence de balanes</td>
+</tr>
+<tr class="odd">
+<td><code>mo</code></td>
+<td>Nombre d’échantillons pour analyse de matière organique</td>
+</tr>
+<tr class="even">
+<td><code>granulo</code></td>
+<td>Nombre d’échantillons pour analyse granulométrique</td>
+</tr>
+<tr class="odd">
+<td><code>commentaires</code></td>
+<td>Observations et notes additionnelles</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="sec-biome_recharge_sainte_luce" class="level2" data-number="3.19">
+<h2 data-number="3.19" class="anchored" data-anchor-id="sec-biome_recharge_sainte_luce"><span class="header-section-number">3.19</span> Suivi de la recharge de plage à Sainte-Luce</h2>
+<p>Les données proviennent du suivi de la recharge de plage au site de <strong>Sainte-Luce</strong>, réalisé par le laboratoire <strong>BIOME</strong> en 2024 <span class="citation" data-cites="biome_sainte-luce_2024">(<a href="#ref-biome_sainte-luce_2024" role="doc-biblioref">BIOME, 2024f</a>)</span>. Ce suivi vise à analyser la dynamique des communautés benthiques et végétales ainsi que les conditions environnementales du site de recharge.</p>
+<p><em>Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.</em></p>
+<ul>
+<li><strong>Source</strong> : <strong>BIOME - Suivi de la recharge de plage à Sainte-Luce</strong><br>
+</li>
+<li><strong>Accessibilité</strong> : Accès restreint<br>
+</li>
+<li><strong>Type de données</strong> : Fichiers CSV<br>
+</li>
+<li><strong>Couverture géographique</strong> : Site de recharge de Sainte-Luce (coordonnées précises à confirmer)<br>
+</li>
+<li><strong>Période couverte</strong> : 2024<br>
+</li>
+<li><strong>Script de traitement</strong> : <code>prc_biome_recharge_sainte_luce</code><br>
+</li>
+<li><strong>Fichiers de sortie</strong> :
+<ul>
+<li><code>biome_recharge_sainte-luce_logbooks.csv</code></li>
+</ul></li>
+</ul>
+<section id="étapes-de-traitement-des-données-18" class="level3" data-number="3.19.1">
+<h3 data-number="3.19.1" class="anchored" data-anchor-id="étapes-de-traitement-des-données-18"><span class="header-section-number">3.19.1</span> Étapes de traitement des données</h3>
+<p>Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en convertissant des caractères spéciaux (<code>µ</code> remplacé par <code>u</code>) et en utilisant <code>janitor::clean_names()</code> pour garantir des noms uniformes à travers le projet.</p>
+</section>
+<section id="structure-des-données-traitées-18" class="level3" data-number="3.19.2">
+<h3 data-number="3.19.2" class="anchored" data-anchor-id="structure-des-données-traitées-18"><span class="header-section-number">3.19.2</span> Structure des données traitées</h3>
+<section id="table-des-relevés-déchantillonnage-logbooks-5" class="level4" data-number="3.19.2.1">
+<h4 data-number="3.19.2.1" class="anchored" data-anchor-id="table-des-relevés-déchantillonnage-logbooks-5"><span class="header-section-number">3.19.2.1</span> Table des relevés d’échantillonnage (logbooks)</h4>
+<table class="table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>project_id</code></td>
+<td>Identifiant du projet (<code>sl</code>)</td>
+</tr>
+<tr class="even">
+<td><code>parent_event_id</code></td>
+<td>Identifiant principal de l’événement</td>
+</tr>
+<tr class="odd">
+<td><code>event_id</code></td>
+<td>Identifiant unique de l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>site</code></td>
+<td>Nom/code du site d’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>station</code></td>
+<td>Code de la station d’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>latitude</code></td>
+<td>Latitude du site (degrés décimaux)</td>
+</tr>
+<tr class="odd">
+<td><code>longitude</code></td>
+<td>Longitude du site (degrés décimaux)</td>
+</tr>
+<tr class="even">
+<td><code>elevation</code></td>
+<td>Altitude du site (mètres)</td>
+</tr>
+<tr class="odd">
+<td><code>date</code></td>
+<td>Date de l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>saisie_par</code></td>
+<td>Nom du responsable de la saisie</td>
+</tr>
+<tr class="odd">
+<td><code>couverture_sable</code></td>
+<td>Pourcentage de couverture en sable</td>
+</tr>
+<tr class="even">
+<td><code>couverture_vegetation</code></td>
+<td>Pourcentage de couverture végétale</td>
+</tr>
+<tr class="odd">
+<td><code>substrat</code></td>
+<td>Type de substrat dominant</td>
+</tr>
+<tr class="even">
+<td><code>creusage</code></td>
+<td>Indicateur de creusage dans le sédiment</td>
+</tr>
+<tr class="odd">
+<td><code>methode_echantillonnage</code></td>
+<td>Méthode utilisée pour l’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>trie_2mm</code></td>
+<td>Indicateur du tri à 2 mm</td>
+</tr>
+<tr class="odd">
+<td><code>trie_500um</code></td>
+<td>Indicateur du tri à 500 µm</td>
+</tr>
+<tr class="even">
+<td><code>pots_125ml</code></td>
+<td>Nombre d’échantillons stockés en pots de 125 ml</td>
+</tr>
+<tr class="odd">
+<td><code>pots_250ml</code></td>
+<td>Nombre d’échantillons stockés en pots de 250 ml</td>
+</tr>
+<tr class="even">
+<td><code>pots_500ml</code></td>
+<td>Nombre d’échantillons stockés en pots de 500 ml</td>
+</tr>
+<tr class="odd">
+<td><code>pots_1l</code></td>
+<td>Nombre d’échantillons stockés en pots de 1 L</td>
+</tr>
+<tr class="even">
+<td><code>benthos_algue</code></td>
+<td>Présence d’algues benthiques</td>
+</tr>
+<tr class="odd">
+<td><code>benthos_roche</code></td>
+<td>Présence de substrat rocheux</td>
+</tr>
+<tr class="even">
+<td><code>benthos_moules</code></td>
+<td>Présence de moules</td>
+</tr>
+<tr class="odd">
+<td><code>benthos_balanes</code></td>
+<td>Présence de balanes</td>
+</tr>
+<tr class="even">
+<td><code>mo</code></td>
+<td>Nombre d’échantillons pour analyse de matière organique</td>
+</tr>
+<tr class="odd">
+<td><code>granulo</code></td>
+<td>Nombre d’échantillons pour analyse granulométrique</td>
+</tr>
+<tr class="even">
+<td><code>commentaires</code></td>
+<td>Observations et notes additionnelles</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="références" class="level2" data-number="3.20">
+<h2 data-number="3.20" class="anchored" data-anchor-id="références"><span class="header-section-number">3.20</span> Références</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="1" data-line-spacing="5" role="list">
@@ -2713,6 +3962,27 @@ Belley, R., Fisheries, and Canada, O. (2021). Characterization of the batture-au
 </div>
 <div id="ref-benaiteau2020" class="csl-entry" role="listitem">
 Benaiteau, M., Bélanger-Deschênes, S., Bérubé, A., Valcourt, C., and Maltais, M. K. (2020). Caractérisation et plan d’intervention - marais salé de portneuf-sur-mer. Baie-Comeau, Québec: <span>Comité ZIP de la Rive Nord de l’Estuaire</span>.
+</div>
+<div id="ref-biome_io_2023" class="csl-entry" role="listitem">
+BIOME (2023). Suivi des herbiers et du benthos au site de recharge IO. <span>Université Laval</span>.
+</div>
+<div id="ref-biome_lagrave_2024" class="csl-entry" role="listitem">
+BIOME (2024a). Suivi de la recharge de plage à la grave. <span>Université Laval</span>.
+</div>
+<div id="ref-biome_maria_2024" class="csl-entry" role="listitem">
+BIOME (2024b). Suivi de la recharge de plage à maria. <span>Université Laval</span>.
+</div>
+<div id="ref-biome_pointe-aux-loups_2024" class="csl-entry" role="listitem">
+BIOME (2024c). Suivi de la recharge de plage à pointe-aux-loups. <span>Université Laval</span>.
+</div>
+<div id="ref-biome_pointe-aux-outardes_2024" class="csl-entry" role="listitem">
+BIOME (2024d). Suivi de la recharge de plage à pointe-aux-outardes. <span>Université Laval</span>.
+</div>
+<div id="ref-biome_sainte-flavie_2024" class="csl-entry" role="listitem">
+BIOME (2024e). Suivi de la recharge de plage à sainte-flavie. <span>Université Laval</span>.
+</div>
+<div id="ref-biome_sainte-luce_2024" class="csl-entry" role="listitem">
+BIOME (2024f). Suivi de la recharge de plage à sainte-luce. <span>Université Laval</span>.
 </div>
 <div id="ref-ziprne2022" class="csl-entry" role="listitem">
 Comité ZIP de la Rive Nord de l’Estuaire (2022a). The pointe des fortin marsh - characterization of important coastal habitats on the north shore of the st. Lawrence estuary. Available at: <a href="https://doi.org/10.26071/ogsl-3b8c6d97-6eb8">https://doi.org/10.26071/ogsl-3b8c6d97-6eb8</a>.

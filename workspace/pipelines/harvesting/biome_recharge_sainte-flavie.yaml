@@ -1,0 +1,61 @@
+pipeline:
+  id: 23daffc4-dd6a-441b-8897-19aaa8972abf
+  name: biome_recharge_sainte-flavie
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-01-30 16:23:39
+  description: >
+    Ce pipeline collecte des données de biodiversité et de suivi logistique du site de recharge de Sainte-Flavie.
+
+  metadata:
+    source_name: "BIOME - Recharge Sainte-Flavie"
+    data_type: "CSV"
+    file_size: "Inconnu"
+    license: "Données en accès restreint"
+    last_updated: "2024"
+    geographic_coverage:
+      region: "Site de recharge Sainte-Flavie"
+      bounding_box:
+        - null
+        - null
+        - null
+        - null
+    temporal_coverage:
+      start_date: "2021-01-01"
+      end_date: "2024-12-31"
+    variables:
+      - biodiversité
+      - logbook
+    data_quality: 
+      - "Données validées par le laboratoire BIOME"
+
+  bibliography:
+    - "@TechReport{biome_sainte-flavie_2024,
+        title = {Suivi de la recharge de plage à Sainte-Flavie},
+        author = {{BIOME}},
+        year = {2024},
+        institution = {{Université Laval}},
+      }"
+
+  download:
+    sources:
+      - name: sainte-flavie_logbook 2024
+        description: Données logistiques du site de Sainte-Flavie
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "sainte-flavie/logbook/sf_logbook_2024.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+
+  processing:
+    sources:
+      - name: processing biome_recharge_sainte-flavie
+        script: prc_biome_recharge_sainte_flavie
+        input_files:
+          - sainte-flavie_logbook 2024
+        output_files: 
+          - biome_recharge_sainte-flavie_logbooks.csv
+
+  output:
+    output_dir: "workspace/data/harvested/recharge_sainte-flavie/"
+    log_dir: "workspace/logs/"
+    archive_raw: true

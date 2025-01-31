@@ -1,0 +1,62 @@
+pipeline:
+  id: c6b58e09-2b7e-4f24-a1d1-3826acbf5840
+  name: biome_recharge_maria
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-01-30 16:23:39
+  last_modified: 2025-01-30 16:23:39
+  description: >
+    Ce pipeline collecte des données de biodiversité et de suivi logistique du site de recharge de Maria.
+
+  metadata:
+    source_name: "BIOME - Recharge Maria"
+    data_type: "CSV"
+    file_size: "Inconnu"
+    license: "Données en accès restreint"
+    last_updated: "2024"
+    geographic_coverage:
+      region: "Site de recharge Maria"
+      bounding_box:
+        - null
+        - null
+        - null
+        - null
+    temporal_coverage:
+      start_date: "2021-01-01"
+      end_date: "2024-12-31"
+    variables:
+      - biodiversité
+      - logbook
+    data_quality: 
+      - "Données validées par le laboratoire BIOME"
+
+  bibliography:
+    - "@TechReport{biome_maria_2024,
+        title = {Suivi de la recharge de plage à Maria},
+        author = {{BIOME}},
+        year = {2024},
+        institution = {{Université Laval}},
+      }"
+
+  download:
+    sources:
+      - name: maria_logbook 2024
+        description: Données logistiques du site de Maria
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "maria/logbook/maria_logbook_2024.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+
+  processing:
+    sources:
+      - name: processing biome_recharge_maria
+        script: prc_biome_recharge_maria
+        input_files:
+          - maria_logbook 2024
+        output_files: 
+          - biome_recharge_maria_logbooks.csv
+
+  output:
+    output_dir: "workspace/data/harvested/recharge_maria/"
+    log_dir: "workspace/logs/"
+    archive_raw: true

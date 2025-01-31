@@ -1,0 +1,111 @@
+pipeline:
+  id: 0eeaf1d9-5b3f-4c57-82db-0d8e6036619e
+  name: biome_recharge_pointe-aux-outardes
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-01-30 16:23:39
+  last_modified: 2025-01-30 16:23:39
+  description: >
+    Ce pipeline collecte des données de biodiversité et de suivi logistique du site de recharge de Pointe-aux-Outardes.
+
+  metadata:
+    source_name: "BIOME - Recharge Pointe-aux-Outardes"
+    data_type: "CSV"
+    file_size: "Inconnu"
+    license: "Données en accès restreint"
+    last_updated: "2024"
+    geographic_coverage:
+      region: "Site de recharge Pointe-aux-Outardes"
+      bounding_box:
+        - null
+        - null
+        - null
+        - null
+    temporal_coverage:
+      start_date: "2021-01-01"
+      end_date: "2024-12-31"
+    variables:
+      - biodiversité
+      - logbook
+    data_quality: 
+      - "Données validées par le laboratoire BIOME"
+
+  bibliography:
+    - "@TechReport{biome_pointe-aux-outardes_2024,
+        title = {Suivi de la recharge de plage à Pointe-aux-Outardes},
+        author = {{BIOME}},
+        year = {2024},
+        institution = {{Université Laval}},
+      }"
+
+  download:
+    sources:
+      - name: pointe-aux-outardes_biodiversity 2021
+        description: Données de biodiversité de Pointe-aux-Outardes
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "pointe-aux-outardes/biodiversity/pao_biodiversity_2021.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+
+      - name: pointe-aux-outardes_biodiversity 2022
+        description: Données de biodiversité de Pointe-aux-Outardes
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "pointe-aux-outardes/biodiversity/pao_biodiversity_2022.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+
+      - name: pointe-aux-outardes_biodiversity 2023
+        description: Données de biodiversité de Pointe-aux-Outardes
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "pointe-aux-outardes/biodiversity/pao_biodiversity_2023.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+
+      - name: pointe-aux-outardes_logbook 2021
+        description: Données logistiques du site de Pointe-aux-Outardes
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "pointe-aux-outardes/logbook/pao_logbook_2021.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+
+      - name: pointe-aux-outardes_logbook 2022
+        description: Données logistiques du site de Pointe-aux-Outardes
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "pointe-aux-outardes/logbook/pao_logbook_2022.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+
+      - name: pointe-aux-outardes_logbook 2023
+        description: Données logistiques du site de Pointe-aux-Outardes
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "pointe-aux-outardes/logbook/pao_logbook_2023.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+
+      - name: pointe-aux-outardes_logbook 2024
+        description: Données logistiques du site de Pointe-aux-Outardes
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "pointe-aux-outardes/logbook/pao_logbook_2024.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+
+  processing:
+    sources:
+      - name: processing biome_recharge_pointe-aux-outardes
+        script: prc_biome_recharge_pointe_aux_outardes
+        input_files:
+          - pointe-aux-outardes_biodiversity 2021
+          - pointe-aux-outardes_biodiversity 2022
+          - pointe-aux-outardes_biodiversity 2023
+          - pointe-aux-outardes_logbook 2021
+          - pointe-aux-outardes_logbook 2022
+          - pointe-aux-outardes_logbook 2023
+          - pointe-aux-outardes_logbook 2024
+        output_files: 
+          - biome_recharge_pointe-aux-outardes_logbooks.csv
+          - biome_recharge_pointe-aux-outardes_biodiversity.csv
+
+  output:
+    output_dir: "workspace/data/harvested/recharge_pointe-aux-outardes/"
+    log_dir: "workspace/logs/"
+    archive_raw: true

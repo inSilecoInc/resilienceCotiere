@@ -30,6 +30,236 @@ list(
             "workspace/data/harvested/biodiversite_piei-1.0.0/processed/occurrences_piei.csv"
             )
         }, format = "file")),
+    list(list(tar_target(tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_io_herbier_benthos, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "io_herbier_benthos/logbook/io_herbiers_benthos_2023.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/raw/io_herbiers_benthos_2023.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/raw/io_herbiers_benthos_2023.csv"
+    }, format = "file")), tar_target(tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_processing_biome_recharge_io_herbier_benthos, 
+    {
+        prc_biome_recharge_io_herbier_benthos(output_path = "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/processed", 
+            input_files = list(tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_io_herbier_benthos))
+        "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/processed/biome_recharge_io_herbier_benthos_logbooks.csv"
+    }, format = "file")),
+    list(list(tar_target(tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_lagrave_biodiversity_2021, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "lagrave/biodiversity/lg_biodiversity_2021.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_lagrave-1.0.0/raw/lg_biodiversity_2021.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_lagrave-1.0.0/raw/lg_biodiversity_2021.csv"
+    }, format = "file")), list(tar_target(tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_lagrave_biodiversity_2022, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "lagrave/biodiversity/lg_biodiversity_2022.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_lagrave-1.0.0/raw/lg_biodiversity_2022.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_lagrave-1.0.0/raw/lg_biodiversity_2022.csv"
+    }, format = "file")), list(tar_target(tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_lagrave_biodiversity_2023, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "lagrave/biodiversity/lg_biodiversity_2023.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_lagrave-1.0.0/raw/lg_biodiversity_2023.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_lagrave-1.0.0/raw/lg_biodiversity_2023.csv"
+    }, format = "file")), list(tar_target(tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_lagrave_logbook_2021, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "lagrave/logbook/lg_logbook_2021.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_lagrave-1.0.0/raw/lg_logbook_2021.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_lagrave-1.0.0/raw/lg_logbook_2021.csv"
+    }, format = "file")), list(tar_target(tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_lagrave_logbook_2022, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "lagrave/logbook/lg_logbook_2022.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_lagrave-1.0.0/raw/lg_logbook_2022.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_lagrave-1.0.0/raw/lg_logbook_2022.csv"
+    }, format = "file")), list(tar_target(tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_lagrave_logbook_2023, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "lagrave/logbook/lg_logbook_2023.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_lagrave-1.0.0/raw/lg_logbook_2023.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_lagrave-1.0.0/raw/lg_logbook_2023.csv"
+    }, format = "file")), list(tar_target(tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_lagrave_logbook_2024, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "lagrave/logbook/lg_logbook_2024.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_lagrave-1.0.0/raw/lg_logbook_2024.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_lagrave-1.0.0/raw/lg_logbook_2024.csv"
+    }, format = "file")), tar_target(tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_processing_biome_recharge_lagrave, 
+    {
+        prc_biome_recharge_lagrave(output_path = "workspace/data/harvested/biome_recharge_lagrave-1.0.0/processed", 
+            input_files = list(tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_lagrave_biodiversity_2021, 
+                tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_lagrave_biodiversity_2022, 
+                tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_lagrave_biodiversity_2023, 
+                tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_lagrave_logbook_2021, 
+                tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_lagrave_logbook_2022, 
+                tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_lagrave_logbook_2023, 
+                tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_lagrave_logbook_2024))
+        c("workspace/data/harvested/biome_recharge_lagrave-1.0.0/processed/biome_recharge_lagrave_logbooks.csv", 
+        "workspace/data/harvested/biome_recharge_lagrave-1.0.0/processed/biome_recharge_lagrave_biodiversity.csv"
+        )
+    }, format = "file")),
+    list(list(tar_target(tg_c6b58e09_2b7e_4f24_a1d1_3826acbf5840_maria_logbook_2024, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "maria/logbook/maria_logbook_2024.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_maria-1.0.0/raw/maria_logbook_2024.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_maria-1.0.0/raw/maria_logbook_2024.csv"
+    }, format = "file")), tar_target(tg_c6b58e09_2b7e_4f24_a1d1_3826acbf5840_processing_biome_recharge_maria, 
+    {
+        prc_biome_recharge_maria(output_path = "workspace/data/harvested/biome_recharge_maria-1.0.0/processed", 
+            input_files = list(tg_c6b58e09_2b7e_4f24_a1d1_3826acbf5840_maria_logbook_2024))
+        "workspace/data/harvested/biome_recharge_maria-1.0.0/processed/biome_recharge_maria_logbooks.csv"
+    }, format = "file")),
+    list(list(tar_target(tg_e7c1ea73_41f3_4bf0_a5f0_16ad97416965_pointe_aux_loups_biodiversity_2023, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "pointe-aux-loups/biodiversity/pal_biodiversity_2023.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_pointe-aux-loups-1.0.0/raw/pal_biodiversity_2023.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_pointe-aux-loups-1.0.0/raw/pal_biodiversity_2023.csv"
+    }, format = "file")), list(tar_target(tg_e7c1ea73_41f3_4bf0_a5f0_16ad97416965_pointe_aux_loups_logbook_2023, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "pointe-aux-loups/logbook/pal_logbook_2023.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_pointe-aux-loups-1.0.0/raw/pal_logbook_2023.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_pointe-aux-loups-1.0.0/raw/pal_logbook_2023.csv"
+    }, format = "file")), list(tar_target(tg_e7c1ea73_41f3_4bf0_a5f0_16ad97416965_pointe_aux_loups_logbook_2024, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "pointe-aux-loups/logbook/pal_logbook_2024.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_pointe-aux-loups-1.0.0/raw/pal_logbook_2024.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_pointe-aux-loups-1.0.0/raw/pal_logbook_2024.csv"
+    }, format = "file")), tar_target(tg_e7c1ea73_41f3_4bf0_a5f0_16ad97416965_processing_biome_recharge_pointe_aux_loups, 
+    {
+        prc_biome_recharge_pointe_aux_loups(output_path = "workspace/data/harvested/biome_recharge_pointe-aux-loups-1.0.0/processed", 
+            input_files = list(tg_e7c1ea73_41f3_4bf0_a5f0_16ad97416965_pointe_aux_loups_biodiversity_2023, 
+                tg_e7c1ea73_41f3_4bf0_a5f0_16ad97416965_pointe_aux_loups_logbook_2023, 
+                tg_e7c1ea73_41f3_4bf0_a5f0_16ad97416965_pointe_aux_loups_logbook_2024))
+        c("workspace/data/harvested/biome_recharge_pointe-aux-loups-1.0.0/processed/biome_recharge_pointe-aux-loups_logbooks.csv", 
+        "workspace/data/harvested/biome_recharge_pointe-aux-loups-1.0.0/processed/biome_recharge_pointe-aux-loups_biodiversity.csv"
+        )
+    }, format = "file")),
+    list(list(tar_target(tg_0eeaf1d9_5b3f_4c57_82db_0d8e6036619e_pointe_aux_outardes_biodiversity_2021, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "pointe-aux-outardes/biodiversity/pao_biodiversity_2021.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_pointe-aux-outardes-1.0.0/raw/pao_biodiversity_2021.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_pointe-aux-outardes-1.0.0/raw/pao_biodiversity_2021.csv"
+    }, format = "file")), list(tar_target(tg_0eeaf1d9_5b3f_4c57_82db_0d8e6036619e_pointe_aux_outardes_biodiversity_2022, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "pointe-aux-outardes/biodiversity/pao_biodiversity_2022.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_pointe-aux-outardes-1.0.0/raw/pao_biodiversity_2022.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_pointe-aux-outardes-1.0.0/raw/pao_biodiversity_2022.csv"
+    }, format = "file")), list(tar_target(tg_0eeaf1d9_5b3f_4c57_82db_0d8e6036619e_pointe_aux_outardes_biodiversity_2023, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "pointe-aux-outardes/biodiversity/pao_biodiversity_2023.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_pointe-aux-outardes-1.0.0/raw/pao_biodiversity_2023.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_pointe-aux-outardes-1.0.0/raw/pao_biodiversity_2023.csv"
+    }, format = "file")), list(tar_target(tg_0eeaf1d9_5b3f_4c57_82db_0d8e6036619e_pointe_aux_outardes_logbook_2021, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "pointe-aux-outardes/logbook/pao_logbook_2021.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_pointe-aux-outardes-1.0.0/raw/pao_logbook_2021.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_pointe-aux-outardes-1.0.0/raw/pao_logbook_2021.csv"
+    }, format = "file")), list(tar_target(tg_0eeaf1d9_5b3f_4c57_82db_0d8e6036619e_pointe_aux_outardes_logbook_2022, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "pointe-aux-outardes/logbook/pao_logbook_2022.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_pointe-aux-outardes-1.0.0/raw/pao_logbook_2022.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_pointe-aux-outardes-1.0.0/raw/pao_logbook_2022.csv"
+    }, format = "file")), list(tar_target(tg_0eeaf1d9_5b3f_4c57_82db_0d8e6036619e_pointe_aux_outardes_logbook_2023, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "pointe-aux-outardes/logbook/pao_logbook_2023.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_pointe-aux-outardes-1.0.0/raw/pao_logbook_2023.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_pointe-aux-outardes-1.0.0/raw/pao_logbook_2023.csv"
+    }, format = "file")), list(tar_target(tg_0eeaf1d9_5b3f_4c57_82db_0d8e6036619e_pointe_aux_outardes_logbook_2024, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "pointe-aux-outardes/logbook/pao_logbook_2024.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_pointe-aux-outardes-1.0.0/raw/pao_logbook_2024.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_pointe-aux-outardes-1.0.0/raw/pao_logbook_2024.csv"
+    }, format = "file")), tar_target(tg_0eeaf1d9_5b3f_4c57_82db_0d8e6036619e_processing_biome_recharge_pointe_aux_outardes, 
+    {
+        prc_biome_recharge_pointe_aux_outardes(output_path = "workspace/data/harvested/biome_recharge_pointe-aux-outardes-1.0.0/processed", 
+            input_files = list(tg_0eeaf1d9_5b3f_4c57_82db_0d8e6036619e_pointe_aux_outardes_biodiversity_2021, 
+                tg_0eeaf1d9_5b3f_4c57_82db_0d8e6036619e_pointe_aux_outardes_biodiversity_2022, 
+                tg_0eeaf1d9_5b3f_4c57_82db_0d8e6036619e_pointe_aux_outardes_biodiversity_2023, 
+                tg_0eeaf1d9_5b3f_4c57_82db_0d8e6036619e_pointe_aux_outardes_logbook_2021, 
+                tg_0eeaf1d9_5b3f_4c57_82db_0d8e6036619e_pointe_aux_outardes_logbook_2022, 
+                tg_0eeaf1d9_5b3f_4c57_82db_0d8e6036619e_pointe_aux_outardes_logbook_2023, 
+                tg_0eeaf1d9_5b3f_4c57_82db_0d8e6036619e_pointe_aux_outardes_logbook_2024))
+        c("workspace/data/harvested/biome_recharge_pointe-aux-outardes-1.0.0/processed/biome_recharge_pointe-aux-outardes_logbooks.csv", 
+        "workspace/data/harvested/biome_recharge_pointe-aux-outardes-1.0.0/processed/biome_recharge_pointe-aux-outardes_biodiversity.csv"
+        )
+    }, format = "file")),
+    list(list(tar_target(tg_23daffc4_dd6a_441b_8897_19aaa8972abf_sainte_flavie_logbook_2024, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "sainte-flavie/logbook/sf_logbook_2024.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_sainte-flavie-1.0.0/raw/sf_logbook_2024.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_sainte-flavie-1.0.0/raw/sf_logbook_2024.csv"
+    }, format = "file")), tar_target(tg_23daffc4_dd6a_441b_8897_19aaa8972abf_processing_biome_recharge_sainte_flavie, 
+    {
+        prc_biome_recharge_sainte_flavie(output_path = "workspace/data/harvested/biome_recharge_sainte-flavie-1.0.0/processed", 
+            input_files = list(tg_23daffc4_dd6a_441b_8897_19aaa8972abf_sainte_flavie_logbook_2024))
+        "workspace/data/harvested/biome_recharge_sainte-flavie-1.0.0/processed/biome_recharge_sainte-flavie_logbooks.csv"
+    }, format = "file")),
+    list(list(tar_target(tg_bae62dca_7abd_4c98_939e_5d2882d21329_sainte_luce_logbook_2024, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "sainte-luce/logbook/sl_logbook_2024.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_sainte-luce-1.0.0/raw/sl_logbook_2024.csv", 
+            overwrite = TRUE)
+        "workspace/data/harvested/biome_recharge_sainte-luce-1.0.0/raw/sl_logbook_2024.csv"
+    }, format = "file")), tar_target(tg_bae62dca_7abd_4c98_939e_5d2882d21329_processing_biome_recharge_sainte_luce, 
+    {
+        prc_biome_recharge_sainte_luce(output_path = "workspace/data/harvested/biome_recharge_sainte-luce-1.0.0/processed", 
+            input_files = list(tg_bae62dca_7abd_4c98_939e_5d2882d21329_sainte_luce_logbook_2024))
+        "workspace/data/harvested/biome_recharge_sainte-luce-1.0.0/processed/biome_recharge_sainte-luce_logbooks.csv"
+    }, format = "file")),
     list(tarchetypes::tar_download(tg_1cac3c56_ed56_49f5_897c_1b7cf40605c5_Metadata_on_Study_Sites___Maritimes, 
     url = "https://cabin-rcba.ec.gc.ca/Cabin/opendata/cabin_study_data_mda01_1987-present.csv", 
     path = "workspace/data/harvested/cabin_aquatic_biomonitoring-1.0.0/raw/cabin_study_data_maritimes.csv"), 

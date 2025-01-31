@@ -875,6 +875,424 @@ Les données de CABIN sont publiées sous format CSV avec une double nomenclatur
 
 
 
+## Site de recharge de plage de l'Île d'Orléans {#sec-biome_recharge_io_herbier_benthos}
+
+Les données proviennent du suivi des herbiers et du benthos du site de recharge de l'Île d'Orléas, réalisé par le laboratoire BIOME en 2023 [@biome_io_2023]. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de travaux de recharges de plage.  
+
+*Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.*
+
+- **Source** : **BIOME - Suivi des herbiers et du benthos au site de recharge IO**  
+- **Accessibilité** : Accès restreint  
+- **Type de données** : Fichier CSV  
+- **Couverture géographique** : Site de recharge IO (coordonnées précises à confirmer)  
+- **Période couverte** : 2023  
+- **Script de traitement** : `prc_biome_recharge_io_herbier_benthos`  
+- **Fichier de sortie** :  
+  - `biome_recharge_io_herbier_benthos_logbooks.csv`  
+
+### Étapes de traitement des données  
+
+Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
+
+### Structure des données traitées  
+
+#### Table des relevés d’échantillonnage  
+
+| Variable                 | Description                                          |
+|--------------------------|------------------------------------------------------|
+| `project_id`            | Identifiant du projet (ex. `io-benthos`)             |
+| `parent_event_id`       | Identifiant principal de l’événement                 |
+| `event_id`              | Identifiant unique de l’échantillonnage              |
+| `station`               | Nom/code de la station d’échantillonnage             |
+| `latitude`              | Latitude du site (degrés décimaux)                   |
+| `longitude`             | Longitude du site (degrés décimaux)                  |
+| `date`                  | Date de l’échantillonnage                            |
+| `methode_echantillonnage` | Méthode utilisée (ex. `Cylindre`)                  |
+| `pots_125ml`            | Nombre d’échantillons conservés en pots de 125 ml   |
+| `pots_500ml`            | Nombre d’échantillons conservés en pots de 500 ml   |
+| `pots_1l`               | Nombre d’échantillons conservés en pots de 1 L      |
+| `mo`                    | Nombre d’échantillons pour matière organique        |
+| `granulo`               | Nombre d’échantillons pour analyse granulométrique  |
+| `commentaires`          | Observations particulières du relevé                |
+
+
+## Site de recharge de de plage de La Grave {#sec-biome_recharge_lagrave}
+
+Les données proviennent du suivi de la recharge de plage au site de La Grave, réalisé par le laboratoire BIOME entre 2021 et 2024 [@biome_lagrave_2024]. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de travaux de recharges de plage.
+
+*Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.*
+
+- **Source** : **BIOME - Suivi de la recharge de plage à La Grave**  
+- **Accessibilité** : Accès restreint  
+- **Type de données** : Fichiers CSV  
+- **Couverture géographique** : Site de recharge de La Grave (coordonnées précises à confirmer)  
+- **Période couverte** : 2021 - 2024  
+- **Script de traitement** : `prc_biome_recharge_lagrave`  
+- **Fichiers de sortie** :  
+  - `biome_recharge_lagrave_logbooks.csv`  
+  - `biome_recharge_lagrave_biodiversity.csv`  
+
+### Étapes de traitement des données  
+
+Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
+
+### Structure des données traitées  
+
+#### Table des relevés d’échantillonnage (logbooks)  
+
+| Variable                 | Description                                          |
+|--------------------------|------------------------------------------------------|
+| `project_id`            | Identifiant du projet (`lg`)                         |
+| `parent_event_id`       | Identifiant principal de l’événement                 |
+| `event_id`              | Identifiant unique de l’échantillonnage              |
+| `site`                  | Nom/code du site d’échantillonnage                   |
+| `station`               | Code de la station d’échantillonnage                 |
+| `latitude`              | Latitude du site (degrés décimaux)                   |
+| `longitude`             | Longitude du site (degrés décimaux)                  |
+| `date`                  | Date de l’échantillonnage                            |
+| `methode_echantillonnage` | Méthode utilisée pour l’échantillonnage             |
+| `pots_150ml`            | Nombre d’échantillons stockés en pots de 150 ml      |
+| `pots_250ml`            | Nombre d’échantillons stockés en pots de 250 ml      |
+| `pots_500ml`            | Nombre d’échantillons stockés en pots de 500 ml      |
+| `pots_1l`               | Nombre d’échantillons stockés en pots de 1 L         |
+| `mo`                    | Nombre d’échantillons pour analyse de matière organique |
+| `granulo`               | Nombre d’échantillons pour analyse granulométrique   |
+| `commentaires`          | Observations et notes additionnelles                 |
+
+#### Table des observations de biodiversité  
+
+| Variable                 | Description                                          |
+|--------------------------|------------------------------------------------------|
+| `project_id`            | Identifiant du projet (`lg`)                         |
+| `event_id`              | Identifiant unique de l’échantillonnage              |
+| `date`                  | Date de l’échantillonnage                            |
+| `latitude`              | Latitude du site (degrés décimaux)                   |
+| `longitude`             | Longitude du site (degrés décimaux)                  |
+| `valid_aphiaid`         | Identifiant taxonomique AphiaID                      |
+| `valid_name`            | Nom scientifique de l’espèce validé                  |
+| `valid_authority`       | Autorité taxonomique                                 |
+| `scientific_name`       | Nom scientifique de l’espèce observée                |
+| `aphiaid`               | Identifiant taxonomique original                     |
+| `status`                | Statut taxonomique (`accepted`, `synonym`, etc.)     |
+| `abundance_m2`         | Densité d’individus par mètre carré                   |
+| `biomass_m2`           | Biomasse en g/m²                                     |
+| `occurrence`           | Présence/absence de l’espèce                         |
+| `rank`                 | Rang taxonomique (ex. Espèce, Famille)                |
+| `kingdom`              | Règne biologique                                      |
+| `phylum`               | Embranchement biologique                              |
+| `class`                | Classe biologique                                     |
+| `order`                | Ordre biologique                                      |
+| `family`               | Famille biologique                                    |
+| `genus`                | Genre biologique                                      |
+| `species`              | Espèce biologique                                     |
+
+## Site de recharge de plage de Maria {#sec-biome_recharge_maria}
+
+Les données proviennent du suivi de la recharge de plage au site de Maria, réalisé par le laboratoire BIOME en 2024 [@biome_maria_2024]. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de travaux de recharges de plage.
+
+*Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.*
+
+- **Source** : **BIOME - Suivi de la recharge de plage à Maria**  
+- **Accessibilité** : Accès restreint  
+- **Type de données** : Fichier CSV  
+- **Couverture géographique** : Site de recharge de Maria (coordonnées précises à confirmer)  
+- **Période couverte** : 2024  
+- **Script de traitement** : `prc_biome_recharge_maria`  
+- **Fichier de sortie** :  
+  - `biome_recharge_maria_logbooks.csv`  
+
+### Étapes de traitement des données  
+
+Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en convertissant des caractères spéciaux (`µ` remplacé par `u`) et en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
+
+
+### Structure des données traitées  
+
+#### Table des relevés d’échantillonnage (logbooks)  
+
+| Variable                 | Description                                          |
+|--------------------------|------------------------------------------------------|
+| `project_id`            | Identifiant du projet (`maria`)                      |
+| `parent_event_id`       | Identifiant principal de l’événement                 |
+| `event_id`              | Identifiant unique de l’échantillonnage              |
+| `site`                  | Nom/code du site d’échantillonnage                   |
+| `station`               | Code de la station d’échantillonnage                 |
+| `latitude`              | Latitude du site (degrés décimaux)                   |
+| `longitude`             | Longitude du site (degrés décimaux)                  |
+| `date`                  | Date de l’échantillonnage                            |
+| `saisie_par`            | Nom du responsable de la saisie                      |
+| `couverture_vegetation` | Pourcentage de couverture végétale                  |
+| `creusage`              | Profondeur de creusage dans le sédiment              |
+| `methode_echantillonnage` | Méthode utilisée pour l’échantillonnage             |
+| `trie_500um`            | Indicateur du tri à 500 µm                           |
+| `pots_125ml`            | Nombre d’échantillons stockés en pots de 125 ml      |
+| `pots_250ml`            | Nombre d’échantillons stockés en pots de 250 ml      |
+| `pots_500ml`            | Nombre d’échantillons stockés en pots de 500 ml      |
+| `pots_1l`               | Nombre d’échantillons stockés en pots de 1 L         |
+| `mo`                    | Nombre d’échantillons pour analyse de matière organique |
+| `granulo`               | Nombre d’échantillons pour analyse granulométrique   |
+| `commentaires`          | Observations et notes additionnelles                 |
+
+
+## Site de recharge de plage de Pointe-aux-Loups {#sec-biome_recharge_pointe_aux_loups}
+
+Les données proviennent du suivi de la recharge de plage au site de Pointe-aux-Loups, réalisé par le laboratoire BIOME en 2023 et 2024 [@biome_pointe-aux-loups_2024]. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de travaux de recharges de plage.
+
+*Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.*
+
+- **Source** : **BIOME - Suivi de la recharge de plage à Pointe-aux-Loups**  
+- **Accessibilité** : Accès restreint  
+- **Type de données** : Fichiers CSV  
+- **Couverture géographique** : Site de recharge de Pointe-aux-Loups (coordonnées précises à confirmer)  
+- **Période couverte** : 2023 - 2024  
+- **Script de traitement** : `prc_biome_recharge_pointe_aux_loups`  
+- **Fichiers de sortie** :  
+  - `biome_recharge_pointe-aux-loups_logbooks.csv`  
+  - `biome_recharge_pointe-aux-loups_biodiversity.csv`  
+
+### Étapes de traitement des données  
+
+Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
+
+### Structure des données traitées  
+
+#### Table des relevés d’échantillonnage (logbooks)  
+
+| Variable                 | Description                                          |
+|--------------------------|------------------------------------------------------|
+| `project_id`            | Identifiant du projet (`pal`)                        |
+| `parent_event_id`       | Identifiant principal de l’événement                 |
+| `event_id`              | Identifiant unique de l’échantillonnage              |
+| `site`                  | Nom/code du site d’échantillonnage                   |
+| `distance`              | Distance par rapport à un point de référence         |
+| `profil`                | Code de profil                                       |
+| `station`               | Code de la station d’échantillonnage                 |
+| `latitude`              | Latitude du site (degrés décimaux)                   |
+| `longitude`             | Longitude du site (degrés décimaux)                  |
+| `date`                  | Date de l’échantillonnage                            |
+| `methode_echantillonnage` | Méthode utilisée pour l’échantillonnage             |
+| `pots_125ml`            | Nombre d’échantillons stockés en pots de 125 ml      |
+| `pots_250ml`            | Nombre d’échantillons stockés en pots de 250 ml      |
+| `pots_500ml`            | Nombre d’échantillons stockés en pots de 500 ml      |
+| `pots_1l`               | Nombre d’échantillons stockés en pots de 1 L         |
+| `mo`                    | Nombre d’échantillons pour analyse de matière organique |
+| `granulo`               | Nombre d’échantillons pour analyse granulométrique   |
+| `commentaires`          | Observations et notes additionnelles                 |
+
+#### Table des observations de biodiversité  
+
+| Variable                 | Description                                          |
+|--------------------------|------------------------------------------------------|
+| `project_id`            | Identifiant du projet (`pal`)                        |
+| `event_id`              | Identifiant unique de l’échantillonnage              |
+| `date`                  | Date de l’échantillonnage                            |
+| `latitude`              | Latitude du site (degrés décimaux)                   |
+| `longitude`             | Longitude du site (degrés décimaux)                  |
+| `valid_aphiaid`         | Identifiant taxonomique AphiaID                      |
+| `valid_name`            | Nom scientifique de l’espèce validé                  |
+| `valid_authority`       | Autorité taxonomique                                 |
+| `scientific_name`       | Nom scientifique de l’espèce observée                |
+| `aphiaid`               | Identifiant taxonomique original                     |
+| `status`                | Statut taxonomique (`accepted`, `synonym`, etc.)     |
+| `abundance_m2`         | Densité d’individus par mètre carré                   |
+| `biomass_m2`           | Biomasse en g/m²                                     |
+| `occurrence`           | Présence/absence de l’espèce                         |
+| `rank`                 | Rang taxonomique (ex. Espèce, Famille)                |
+| `kingdom`              | Règne biologique                                      |
+| `phylum`               | Embranchement biologique                              |
+| `class`                | Classe biologique                                     |
+| `order`                | Ordre biologique                                      |
+| `family`               | Famille biologique                                    |
+| `genus`                | Genre biologique                                      |
+| `species`              | Espèce biologique                                     |
+
+
+## Site de recharge de plage de Pointe-aux-Outardes {#sec-biome_recharge_pointe_aux_outardes}
+
+Les données proviennent du suivi de la recharge de plage au site de Pointe-aux-Outardes, réalisé par le laboratoire BIOME entre 2021 et 2024 [@biome_pointe-aux-outardes_2024]. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de travaux de recharges de plage.
+
+*Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.*
+
+- **Source** : **BIOME - Suivi de la recharge de plage à Pointe-aux-Outardes**  
+- **Accessibilité** : Accès restreint  
+- **Type de données** : Fichiers CSV  
+- **Couverture géographique** : Site de recharge de Pointe-aux-Outardes (coordonnées précises à confirmer)  
+- **Période couverte** : 2021 - 2024  
+- **Script de traitement** : `prc_biome_recharge_pointe_aux_outardes`  
+- **Fichiers de sortie** :  
+  - `biome_recharge_pointe-aux-outardes_logbooks.csv`  
+  - `biome_recharge_pointe-aux-outardes_biodiversity.csv`  
+
+### Étapes de traitement des données  
+
+Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en convertissant des caractères spéciaux (`µ` remplacé par `u`) et en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
+
+### Structure des données traitées  
+
+#### Table des relevés d’échantillonnage (logbooks)  
+
+| Variable                 | Description                                          |
+|--------------------------|------------------------------------------------------|
+| `project_id`            | Identifiant du projet (`pao`)                        |
+| `parent_event_id`       | Identifiant principal de l’événement                 |
+| `event_id`              | Identifiant unique de l’échantillonnage              |
+| `site`                  | Nom/code du site d’échantillonnage                   |
+| `profil`                | Profil topographique                                 |
+| `distance`              | Distance par rapport à un point de référence         |
+| `station`               | Code de la station d’échantillonnage                 |
+| `latitude`              | Latitude du site (degrés décimaux)                   |
+| `longitude`             | Longitude du site (degrés décimaux)                  |
+| `date`                  | Date de l’échantillonnage                            |
+| `saisie_par`            | Nom du responsable de la saisie                      |
+| `couverture_sable`      | Pourcentage de couverture en sable                   |
+| `couverture_vegetation` | Pourcentage de couverture végétale                   |
+| `creusage`              | Profondeur de creusage dans le sédiment              |
+| `methode_echantillonnage` | Méthode utilisée pour l’échantillonnage             |
+| `trie_2mm`              | Présence de tri à 2 mm                               |
+| `trie_500um`            | Présence de tri à 500 µm                             |
+| `pots_250ml`            | Nombre d’échantillons stockés en pots de 250 ml      |
+| `pots_500ml`            | Nombre d’échantillons stockés en pots de 500 ml      |
+| `pots_1l`               | Nombre d’échantillons stockés en pots de 1 L         |
+| `mo`                    | Nombre d’échantillons pour analyse de matière organique |
+| `granulo`               | Nombre d’échantillons pour analyse granulométrique   |
+| `commentaires`          | Observations et notes additionnelles                 |
+
+#### Table des observations de biodiversité  
+
+| Variable                 | Description                                          |
+|--------------------------|------------------------------------------------------|
+| `project_id`            | Identifiant du projet (`pao`)                        |
+| `event_id`              | Identifiant unique de l’échantillonnage              |
+| `date`                  | Date de l’échantillonnage                            |
+| `latitude`              | Latitude du site (degrés décimaux)                   |
+| `longitude`             | Longitude du site (degrés décimaux)                  |
+| `valid_aphiaid`         | Identifiant taxonomique AphiaID                      |
+| `valid_name`            | Nom scientifique de l’espèce validé                  |
+| `valid_authority`       | Autorité taxonomique                                 |
+| `scientific_name`       | Nom scientifique de l’espèce observée                |
+| `aphiaid`               | Identifiant taxonomique original                     |
+| `status`                | Statut taxonomique (`accepted`, `synonym`, etc.)     |
+| `abundance_m2`         | Densité d’individus par mètre carré                   |
+| `biomass_m2`           | Biomasse en g/m²                                     |
+| `occurrence`           | Présence/absence de l’espèce                         |
+| `rank`                 | Rang taxonomique (ex. Espèce, Famille)                |
+| `kingdom`              | Règne biologique                                      |
+| `phylum`               | Embranchement biologique                              |
+| `class`                | Classe biologique                                     |
+| `order`                | Ordre biologique                                      |
+| `family`               | Famille biologique                                    |
+| `genus`                | Genre biologique                                      |
+| `species`              | Espèce biologique                                     |
+
+
+## Site de recharge de plage de Sainte-Flavie {#sec-biome_recharge_sainte_flavie}
+
+Les données proviennent du suivi de la recharge de plage au site de **Sainte-Flavie**, réalisé par le laboratoire **BIOME** en 2024 [@biome_sainte-flavie_2024]. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de travaux de recharges de plage.
+
+*Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.*
+
+- **Source** : **BIOME - Suivi de la recharge de plage à Sainte-Flavie**  
+- **Accessibilité** : Accès restreint  
+- **Type de données** : Fichiers CSV  
+- **Couverture géographique** : Site de recharge de Sainte-Flavie (coordonnées précises à confirmer)  
+- **Période couverte** : 2024  
+- **Script de traitement** : `prc_biome_recharge_sainte_flavie`  
+- **Fichiers de sortie** :  
+  - `biome_recharge_sainte-flavie_logbooks.csv`  
+
+### Étapes de traitement des données  
+
+Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en convertissant des caractères spéciaux (`µ` remplacé par `u`) et en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
+
+### Structure des données traitées  
+
+#### Table des relevés d’échantillonnage (logbooks)  
+
+| Variable                 | Description                                          |
+|--------------------------|------------------------------------------------------|
+| `project_id`            | Identifiant du projet (`sf`)                         |
+| `parent_event_id`       | Identifiant principal de l’événement                 |
+| `event_id`              | Identifiant unique de l’échantillonnage              |
+| `site`                  | Nom/code du site d’échantillonnage                   |
+| `station`               | Code de la station d’échantillonnage                 |
+| `latitude`              | Latitude du site (degrés décimaux)                   |
+| `longitude`             | Longitude du site (degrés décimaux)                  |
+| `elevation`             | Altitude du site (mètres)                            |
+| `date`                  | Date de l’échantillonnage                            |
+| `saisie_par`            | Nom du responsable de la saisie                      |
+| `couverture_sable`      | Pourcentage de couverture en sable                   |
+| `couverture_vegetation` | Pourcentage de couverture végétale                   |
+| `substrat`              | Type de substrat dominant                            |
+| `creusage`              | Indicateur de creusage dans le sédiment              |
+| `fouillage`             | Présence d’indices de fouissage                      |
+| `methode_echantillonnage` | Méthode utilisée pour l’échantillonnage             |
+| `trie_2mm`              | Indicateur du tri à 2 mm                             |
+| `trie_500um`            | Indicateur du tri à 500 µm                           |
+| `pots_125ml`            | Nombre d’échantillons stockés en pots de 125 ml      |
+| `pots_250ml`            | Nombre d’échantillons stockés en pots de 250 ml      |
+| `pots_500ml`            | Nombre d’échantillons stockés en pots de 500 ml      |
+| `pots_1l`               | Nombre d’échantillons stockés en pots de 1 L         |
+| `benthos_algue`         | Présence d’algues benthiques                         |
+| `benthos_roche`         | Présence de substrat rocheux                         |
+| `benthos_moules`        | Présence de moules                                   |
+| `benthos_balanes`       | Présence de balanes                                  |
+| `mo`                    | Nombre d’échantillons pour analyse de matière organique |
+| `granulo`               | Nombre d’échantillons pour analyse granulométrique   |
+| `commentaires`          | Observations et notes additionnelles                 |
+
+## Suivi de la recharge de plage à Sainte-Luce {#sec-biome_recharge_sainte_luce}
+
+Les données proviennent du suivi de la recharge de plage au site de **Sainte-Luce**, réalisé par le laboratoire **BIOME** en 2024 [@biome_sainte-luce_2024]. Ce suivi vise à analyser la dynamique des communautés benthiques et végétales ainsi que les conditions environnementales du site de recharge.
+
+*Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.*
+
+- **Source** : **BIOME - Suivi de la recharge de plage à Sainte-Luce**  
+- **Accessibilité** : Accès restreint  
+- **Type de données** : Fichiers CSV  
+- **Couverture géographique** : Site de recharge de Sainte-Luce (coordonnées précises à confirmer)  
+- **Période couverte** : 2024  
+- **Script de traitement** : `prc_biome_recharge_sainte_luce`  
+- **Fichiers de sortie** :  
+  - `biome_recharge_sainte-luce_logbooks.csv`  
+
+### Étapes de traitement des données  
+
+Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en convertissant des caractères spéciaux (`µ` remplacé par `u`) et en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
+
+### Structure des données traitées  
+
+#### Table des relevés d’échantillonnage (logbooks)  
+
+| Variable                 | Description                                          |
+|--------------------------|------------------------------------------------------|
+| `project_id`            | Identifiant du projet (`sl`)                         |
+| `parent_event_id`       | Identifiant principal de l’événement                 |
+| `event_id`              | Identifiant unique de l’échantillonnage              |
+| `site`                  | Nom/code du site d’échantillonnage                   |
+| `station`               | Code de la station d’échantillonnage                 |
+| `latitude`              | Latitude du site (degrés décimaux)                   |
+| `longitude`             | Longitude du site (degrés décimaux)                  |
+| `elevation`             | Altitude du site (mètres)                            |
+| `date`                  | Date de l’échantillonnage                            |
+| `saisie_par`            | Nom du responsable de la saisie                      |
+| `couverture_sable`      | Pourcentage de couverture en sable                   |
+| `couverture_vegetation` | Pourcentage de couverture végétale                   |
+| `substrat`              | Type de substrat dominant                            |
+| `creusage`              | Indicateur de creusage dans le sédiment              |
+| `methode_echantillonnage` | Méthode utilisée pour l’échantillonnage             |
+| `trie_2mm`              | Indicateur du tri à 2 mm                             |
+| `trie_500um`            | Indicateur du tri à 500 µm                           |
+| `pots_125ml`            | Nombre d’échantillons stockés en pots de 125 ml      |
+| `pots_250ml`            | Nombre d’échantillons stockés en pots de 250 ml      |
+| `pots_500ml`            | Nombre d’échantillons stockés en pots de 500 ml      |
+| `pots_1l`               | Nombre d’échantillons stockés en pots de 1 L         |
+| `benthos_algue`         | Présence d’algues benthiques                         |
+| `benthos_roche`         | Présence de substrat rocheux                         |
+| `benthos_moules`        | Présence de moules                                   |
+| `benthos_balanes`       | Présence de balanes                                  |
+| `mo`                    | Nombre d’échantillons pour analyse de matière organique |
+| `granulo`               | Nombre d’échantillons pour analyse granulométrique   |
+| `commentaires`          | Observations et notes additionnelles                 |
 
 
 ## Références
