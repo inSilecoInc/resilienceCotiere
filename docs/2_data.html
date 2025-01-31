@@ -172,7 +172,8 @@ div.csl-indent {
   <li><a href="#sec-biome_recharge_pointe_aux_outardes" id="toc-sec-biome_recharge_pointe_aux_outardes" class="nav-link" data-scroll-target="#sec-biome_recharge_pointe_aux_outardes"><span class="header-section-number">3.17</span> Site de recharge de plage de Pointe-aux-Outardes</a></li>
   <li><a href="#sec-biome_recharge_sainte_flavie" id="toc-sec-biome_recharge_sainte_flavie" class="nav-link" data-scroll-target="#sec-biome_recharge_sainte_flavie"><span class="header-section-number">3.18</span> Site de recharge de plage de Sainte-Flavie</a></li>
   <li><a href="#sec-biome_recharge_sainte_luce" id="toc-sec-biome_recharge_sainte_luce" class="nav-link" data-scroll-target="#sec-biome_recharge_sainte_luce"><span class="header-section-number">3.19</span> Suivi de la recharge de plage à Sainte-Luce</a></li>
-  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">3.20</span> Références</a></li>
+  <li><a href="#sec-yanick_gendreau" id="toc-sec-yanick_gendreau" class="nav-link" data-scroll-target="#sec-yanick_gendreau"><span class="header-section-number">3.20</span> Données intertidales et subtidales de Yanick Gendreau</a></li>
+  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">3.21</span> Références</a></li>
   </ul>
 </nav>
     </div>
@@ -3952,8 +3953,162 @@ div.csl-indent {
 </section>
 </section>
 </section>
-<section id="références" class="level2" data-number="3.20">
-<h2 data-number="3.20" class="anchored" data-anchor-id="références"><span class="header-section-number">3.20</span> Références</h2>
+<section id="sec-yanick_gendreau" class="level2" data-number="3.20">
+<h2 data-number="3.20" class="anchored" data-anchor-id="sec-yanick_gendreau"><span class="header-section-number">3.20</span> Données intertidales et subtidales de Yanick Gendreau</h2>
+<p>Les données proviennent de relevés intertidaux et subtidaux réalisés en 2016 par Yanick Gendreau dans le cadre de plusieurs projets d’étude des communautés benthiques au Québec <span class="citation" data-cites="gendreau2016">(<a href="#ref-gendreau2016" role="doc-biblioref">Gendreau, 2016</a>)</span>. Ces jeux de données comprennent :</p>
+<ul>
+<li><strong>Données intertidales</strong> : relevés bruts d’abondance et de recouvrement d’espèces dans des habitats intertidaux.</li>
+<li><strong>Données intertidales + subtidales</strong> : compilation de plusieurs projets de suivi, incluant des données présence/absence, qui ont notamment été utilisées dans des analyses de modélisation avec <em>MaxEnt</em>.</li>
+</ul>
+<p><em>Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.</em></p>
+<ul>
+<li><strong>Source</strong> : <strong>Données intertidales et subtidales (Gendreau)</strong><br>
+</li>
+<li><strong>Accessibilité</strong> : Accès restreint<br>
+</li>
+<li><strong>Type de données</strong> : Fichiers CSV<br>
+</li>
+<li><strong>Couverture géographique</strong> : Sites intertidaux et subtidaux du Québec (coordonnées précises à confirmer)<br>
+</li>
+<li><strong>Période couverte</strong> : 2016<br>
+</li>
+<li><strong>Script de traitement</strong> : <code>prc_yanick_gendreau</code><br>
+</li>
+<li><strong>Fichiers de sortie</strong> :
+<ul>
+<li><code>yanick_gendreau_intertidal.csv</code><br>
+</li>
+<li><code>yanick_gendreau_intertidal_subtidal.csv</code></li>
+</ul></li>
+</ul>
+<section id="étapes-de-traitement-des-données-19" class="level3" data-number="3.20.1">
+<h3 data-number="3.20.1" class="anchored" data-anchor-id="étapes-de-traitement-des-données-19"><span class="header-section-number">3.20.1</span> Étapes de traitement des données</h3>
+<p>Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en utilisant <code>janitor::clean_names()</code> pour garantir des noms uniformes à travers le projet.</p>
+</section>
+<section id="structure-des-données-traitées-19" class="level3" data-number="3.20.2">
+<h3 data-number="3.20.2" class="anchored" data-anchor-id="structure-des-données-traitées-19"><span class="header-section-number">3.20.2</span> Structure des données traitées</h3>
+<section id="table-des-relevés-intertidaux" class="level4" data-number="3.20.2.1">
+<h4 data-number="3.20.2.1" class="anchored" data-anchor-id="table-des-relevés-intertidaux"><span class="header-section-number">3.20.2.1</span> Table des relevés intertidaux</h4>
+<table class="table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>secteur</code></td>
+<td>Nom du secteur d’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>date</code></td>
+<td>Date du relevé</td>
+</tr>
+<tr class="odd">
+<td><code>transect</code></td>
+<td>Code du transect</td>
+</tr>
+<tr class="even">
+<td><code>lat_debut</code></td>
+<td>Latitude de début (degrés décimaux)</td>
+</tr>
+<tr class="odd">
+<td><code>lon_debut</code></td>
+<td>Longitude de début (degrés décimaux)</td>
+</tr>
+<tr class="even">
+<td><code>lat_fin</code></td>
+<td>Latitude de fin (degrés décimaux)</td>
+</tr>
+<tr class="odd">
+<td><code>lon_fin</code></td>
+<td>Longitude de fin (degrés décimaux)</td>
+</tr>
+<tr class="even">
+<td><code>forme_lintertidal</code></td>
+<td>Type d’habitat intertidal (ex. marais, roche)</td>
+</tr>
+<tr class="odd">
+<td><code>substrat_quadrat</code></td>
+<td>Type de substrat du quadrat</td>
+</tr>
+<tr class="even">
+<td><code>species</code></td>
+<td>Nom scientifique de l’espèce</td>
+</tr>
+<tr class="odd">
+<td><code>recouvrement_percent</code></td>
+<td>Pourcentage de recouvrement</td>
+</tr>
+<tr class="even">
+<td><code>biomasse_g</code></td>
+<td>Biomasse mesurée en grammes</td>
+</tr>
+<tr class="odd">
+<td><code>abondance</code></td>
+<td>Nombre d’individus observés</td>
+</tr>
+<tr class="even">
+<td><code>presence</code></td>
+<td>Indicateur de présence/absence</td>
+</tr>
+<tr class="odd">
+<td><code>note</code></td>
+<td>Remarques additionnelles</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="table-des-données-intertidales-subtidales" class="level4" data-number="3.20.2.2">
+<h4 data-number="3.20.2.2" class="anchored" data-anchor-id="table-des-données-intertidales-subtidales"><span class="header-section-number">3.20.2.2</span> Table des données intertidales + subtidales</h4>
+<table class="table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>id_en_st</code></td>
+<td>Identifiant unique du relevé</td>
+</tr>
+<tr class="even">
+<td><code>aphia_id_accepted</code></td>
+<td>Identifiant taxonomique AphiaID</td>
+</tr>
+<tr class="odd">
+<td><code>nom_original</code></td>
+<td>Nom scientifique de l’espèce</td>
+</tr>
+<tr class="even">
+<td><code>latitude</code></td>
+<td>Latitude du site (degrés décimaux)</td>
+</tr>
+<tr class="odd">
+<td><code>longitude</code></td>
+<td>Longitude du site (degrés décimaux)</td>
+</tr>
+<tr class="even">
+<td><code>annee</code></td>
+<td>Année du relevé</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="références" class="level2" data-number="3.21">
+<h2 data-number="3.21" class="anchored" data-anchor-id="références"><span class="header-section-number">3.21</span> Références</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="1" data-line-spacing="5" role="list">
@@ -4013,6 +4168,9 @@ Desrochers, V., Quiec, F., Marée, S., D’Amours-Leclerc, F., and Maltais, M. K
 </div>
 <div id="ref-cabin2024" class="csl-entry" role="listitem">
 Environment and Climate Change Canada (2024). CABIN - canadian aquatic biomonitoring network. Available at: <a href="https://open.canada.ca/data/en/dataset/13564ca4-e330-40a5-9521-bfb1be767147">https://open.canada.ca/data/en/dataset/13564ca4-e330-40a5-9521-bfb1be767147</a>.
+</div>
+<div id="ref-gendreau2016" class="csl-entry" role="listitem">
+Gendreau, Y. (2016). Relevés intertidaux et subtidaux - compilation de plusieurs projets. <span>Fisheries and Oceans Canada</span>.
 </div>
 <div id="ref-gregoire2024" class="csl-entry" role="listitem">
 Grégoire, B. (2024). Biodiversity of the planning for integrated environmental response coastal survey in the st. Lawrence estuary and gulf (2017–2021). Available at: <a href="https://doi.org/10.26071/ogsl-90c40dba">https://doi.org/10.26071/ogsl-90c40dba</a>.

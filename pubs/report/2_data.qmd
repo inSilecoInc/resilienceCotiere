@@ -1295,4 +1295,65 @@ Les données sont déjà disponibles dans un format standardisé; un effort mini
 | `commentaires`          | Observations et notes additionnelles                 |
 
 
+
+## Données intertidales et subtidales de Yanick Gendreau {#sec-yanick_gendreau}
+
+Les données proviennent de relevés intertidaux et subtidaux réalisés en 2016 par Yanick Gendreau dans le cadre de plusieurs projets d’étude des communautés benthiques au Québec [@gendreau2016]. Ces jeux de données comprennent :
+
+- **Données intertidales** : relevés bruts d’abondance et de recouvrement d’espèces dans des habitats intertidaux.
+- **Données intertidales + subtidales** : compilation de plusieurs projets de suivi, incluant des données présence/absence, qui ont notamment été utilisées dans des analyses de modélisation avec *MaxEnt*.
+
+*Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.*
+
+- **Source** : **Données intertidales et subtidales (Gendreau)**  
+- **Accessibilité** : Accès restreint  
+- **Type de données** : Fichiers CSV  
+- **Couverture géographique** : Sites intertidaux et subtidaux du Québec (coordonnées précises à confirmer)  
+- **Période couverte** : 2016  
+- **Script de traitement** : `prc_yanick_gendreau`  
+- **Fichiers de sortie** :  
+  - `yanick_gendreau_intertidal.csv`  
+  - `yanick_gendreau_intertidal_subtidal.csv`  
+
+
+### Étapes de traitement des données  
+
+Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
+
+### Structure des données traitées  
+
+#### Table des relevés intertidaux  
+
+| Variable                 | Description                                          |
+|--------------------------|------------------------------------------------------|
+| `secteur`               | Nom du secteur d’échantillonnage                     |
+| `date`                  | Date du relevé                                        |
+| `transect`              | Code du transect                                      |
+| `lat_debut`             | Latitude de début (degrés décimaux)                  |
+| `lon_debut`             | Longitude de début (degrés décimaux)                 |
+| `lat_fin`               | Latitude de fin (degrés décimaux)                    |
+| `lon_fin`               | Longitude de fin (degrés décimaux)                   |
+| `forme_lintertidal`     | Type d’habitat intertidal (ex. marais, roche)        |
+| `substrat_quadrat`      | Type de substrat du quadrat                          |
+| `species`              | Nom scientifique de l’espèce                          |
+| `recouvrement_percent`  | Pourcentage de recouvrement                          |
+| `biomasse_g`            | Biomasse mesurée en grammes                          |
+| `abondance`             | Nombre d’individus observés                          |
+| `presence`             | Indicateur de présence/absence                       |
+| `note`                  | Remarques additionnelles                             |
+
+
+#### Table des données intertidales + subtidales  
+
+| Variable                 | Description                                          |
+|--------------------------|------------------------------------------------------|
+| `id_en_st`              | Identifiant unique du relevé                         |
+| `aphia_id_accepted`     | Identifiant taxonomique AphiaID                      |
+| `nom_original`          | Nom scientifique de l’espèce                         |
+| `latitude`              | Latitude du site (degrés décimaux)                   |
+| `longitude`             | Longitude du site (degrés décimaux)                  |
+| `annee`                 | Année du relevé                                       |
+
+
+
 ## Références

@@ -1,0 +1,75 @@
+pipeline:
+  id: 860d96c4-efd7-4d76-a6d7-207c0b927815
+  name: yanick_gendreau
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-01-31 09:57:03
+  last_modified: 2025-01-31 09:57:03
+  description: >
+    Ce pipeline collecte des données intertidales et subtidales issues de plusieurs projets réalisés par 
+    Yanick Gendreau en 2016. Les données "intertidal" incluent des relevés bruts d'abondance et de 
+    recouvrement, tandis que les données "intertidal + subtidal" sont un ensemble de présence/absence utilisé 
+    dans des analyses MaxEnt.
+
+  metadata:
+    source_name: "BIOME - Données intertidales et subtidales (Gendreau)"
+    data_type: "CSV"
+    file_size: "Inconnu"
+    license: "Données en accès restreint"
+    last_updated: "2024"
+    geographic_coverage:
+      region: "Sites intertidaux et subtidaux du Québec"
+      bounding_box:
+        - null
+        - null
+        - null
+        - null
+    temporal_coverage:
+      start_date: "2016-01-01"
+      end_date: "2016-12-31"
+    variables:
+      - intertidal: Données de relevés d'espèces intertidales avec abondance et recouvrement
+      - intertidal_subtidal: Données de présence/absence d'espèces combinant plusieurs projets
+    data_quality: 
+      - "Données brutes avec incertitudes sur certaines mesures d’abondance."
+      - "Données de présence/absence utilisées dans des modèles MaxEnt."
+
+  bibliography:
+    - "@TechReport{gendreau2016,
+        title = {Relevés intertidaux et subtidaux - Compilation de plusieurs projets},
+        author = {Gendreau, Y},
+        year = {2016},
+        institution = {{Fisheries and Oceans Canada}},
+      }"
+
+  download:
+    sources:
+      - name: intertidal
+        description: Données brutes intertidales récoltées en 2016 par Yanick Gendreau et Lisa
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "yanick_gendreau/yanick_intertidal_data_abundance.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+
+      - name: intertidal_subtidal
+        description: Compilation des données de présence/absence pour analyses MaxEnt
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "yanick_gendreau/Liste_Sp_CindyGrant.txt"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+
+  processing:
+    sources:
+      - name: processing yanick_gendreau
+        script: prc_yanick_gendreau
+        input_files:
+          - intertidal
+          - intertidal_subtidal
+        output_files: 
+          - yanick_gendreau_intertidal.csv
+          - yanick_gendreau_intertidal_subtidal.csv
+
+  output:
+    output_dir: "workspace/data/harvested/intertidal_gendreau/"
+    log_dir: "workspace/logs/"
+    archive_raw: true
