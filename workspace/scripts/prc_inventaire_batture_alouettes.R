@@ -14,7 +14,12 @@ prc_inventaire_batture_alouettes <- function(input_files, output_path) {
   suppressWarnings({
     events <- input_files[grepl("kelp_event-data_2018-2019.csv", input_files)] |>
       vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
-      janitor::clean_names()
+      janitor::clean_names() |>
+      dplyr::mutate(
+        project_id = "inventaire_batture_alouettes",
+        depth_value = as.numeric(depth_value),
+        sample_size_value = as.numeric(sample_size_value)
+      )
   })
 
   # Occurrences

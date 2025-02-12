@@ -1,0 +1,108 @@
+---
+title: "Intégration des données"
+---
+
+L'objectif de cette section est de définir une organisation cohérente des données à travers des tables thématiques facilitant les analyses ultérieures. Les jeux de données considérés incluent des informations sur les stations d'échantillonnage, la biodiversité et les paramètres abiotiques, en plus des métadonnées et des références taxonomiques. La structure retenue permet une meilleure organisation et exploitation des informations issues de différentes campagnes d'échantillonnage. L'utilisation de tables relationnelles assure la traçabilité et l'interopérabilité des données, facilite les croisements entre paramètres biotiques et abiotiques, et améliore la reproductibilité des analyses. 
+
+## Structure des données
+
+L'intégration repose sur la création de plusieurs tables thématiques qui regroupent les informations selon leur nature : 
+
+### 1. Événements (`events`)
+
+
+| **Nom du champ**        | **Type de données** | **Description** |
+|-------------------------|---------------------|-----------------|
+| `project_id`           | `chr` (texte)       | Identifiant du projet associé à l'événement |
+| `event_id`             | `chr` (texte)       | Identifiant unique de l'événement (Clé primaire) |
+| `longitude`            | `num` (nombre)      | Coordonnée géographique (longitude) |
+| `latitude`             | `num` (nombre)      | Coordonnée géographique (latitude) |
+| `sampling_protocol`    | `chr` (texte)       | Méthode ou protocole utilisé pour l'échantillonnage |
+| `geodetic_datum`       | `chr` (texte)       | Référence du système géodésique (ex: WGS84) |
+| `remarks`              | `chr` (texte)       | Commentaires ou remarques sur l'événement |
+| `depth`               | `num` (nombre)      | Profondeur en mètres (si applicable) |
+| `event_date_start`     | `POSIXct` (datetime) | Date et heure de début de l'événement |
+| `event_date_end`       | `POSIXct` (datetime) | Date et heure de fin de l'événement |
+| `parent_event_id`      | `chr` (texte)       | Identifiant de l'événement parent (si applicable) |
+| `site_id`             | `chr` (texte)       | Identifiant du site d'échantillonnage |
+| `elevation`           | `num` (nombre)      | Élévation en mètres (si applicable) |
+| `site_name`           | `chr` (texte)       | Nom du site d'échantillonnage |
+| `sampling_effort`     | `chr` (texte)       | Effort d'échantillonnage décrit (si applicable) |
+| `sample_size_value`   | `num` (nombre)      | Taille de l'échantillon prélevé (si applicable) |
+| `sample_size_unit`    | `chr` (texte)       | Unité de mesure de la taille d'échantillon |
+
+
+### 2. Biodiversité (`biodiversity`)
+
+**Objectif** : Regrouper les observations des espèces identifiées lors des campagnes d'échantillonnage.
+
+- `observation_id` (Clé primaire)
+- `event_id` (Clé étrangère vers `events`)
+- `species_id` (Clé étrangère vers `taxonomy`)
+- `species_name` (Nom de l'espèce)
+- `taxon_rank` (Niveau taxonomique)
+- `metric` (Type de métrique : abondance, biomasse, présence, etc.)
+- `value` (Valeur de la mesure)
+- `unit` (Unité de mesure)
+- `data_source` (Source de l'information)
+
+### 3. Paramètres abiotiques (`abiotic`)
+
+Here is the table structure for the **abiotic_tables** dataset:
+
+| **Nom du champ**               | **Type de données** | **Description** |
+|--------------------------------|---------------------|-----------------|
+| `event_id`                     | `chr` (texte)       | Identifiant unique de l'événement associé à la mesure |
+| `measurement_category`         | `chr` (texte)       | Catégorie de la mesure (ex: Géologie, Qualité de l'eau, etc.) |
+| `measurement_type`             | `chr` (texte)       | Type de mesure effectuée (ex: Intrusive, Métamorphique, Volcanique) |
+| `measurement_type_description` | `chr` (texte)       | Description détaillée du type de mesure |
+| `measurement_value`            | `chr` (texte)       | Valeur mesurée (ex: pourcentage, concentration, etc.) |
+| `measurement_unit`             | `chr` (texte)       | Unité associée à la mesure (ex: %, mg/L, °C) |
+| `measurement_method`           | `chr` (texte)       | Méthode utilisée pour effectuer la mesure |
+| `measurement_remarks`          | `chr` (texte)       | Remarques supplémentaires sur la mesure (si applicable) |
+
+
+
+### 4. Métadonnées (`metadata`)
+
+**Objectif** : Décrire chaque source de données et ses caractéristiques associées.
+
+- `dataset_id` (Clé primaire)
+- `dataset_name` (Nom du jeu de données)
+- `source_url` (Lien vers la source originale)
+- `license` (Type de licence et conditions d'utilisation)
+- `geographic_extent` (Zone géographique couverte)
+- `processing_script` (Nom du script de traitement appliqué aux données)
+- `update_frequency` (Fréquence de mise à jour des données)
+
+### 5. Taxonomie (`taxonomy`)
+
+**Objectif** : Standardiser la nomenclature taxonomique et assurer une cohérence des données biologiques.
+
+- `species_id` (Clé primaire)
+- `species_name` (Nom scientifique de l'espèce)
+- `genus`, `family`, `order`, `class`, `phylum`, `kingdom` (Hiérarchie taxonomique)
+- `taxonomic_authority` (Source de la classification taxonomique)
+
+### 6. Effort d'échantillonnage (`effort`, optionnelle)
+
+**Objectif** : Enregistrer les paramètres d'effort pour comparer les différentes campagnes d'échantillonnage.
+
+- `event_id` (Clé étrangère vers `events`)
+- `gear_type` (Type d'engin de prélèvement)
+- `duration` (Durée de l'échantillonnage)
+- `area_sampled` (Surface d'échantillonnage)
+- `volume_sampled` (Volume d'eau échantillonné)
+- `num_replicates` (Nombre de réplications par station)
+
+### 7. Références (`references`)
+
+**Objectif** : Documenter les sources bibliographiques associées à chaque jeu de données.
+
+- `reference_id` (Clé primaire)
+- `dataset_id` (Clé étrangère vers `metadata`)
+- `citation` (Référence bibliographique complète)
+- `doi` (Identifiant DOI si disponible)
+- `source_type` (Type de source : article scientifique, rapport technique, etc.)
+
+

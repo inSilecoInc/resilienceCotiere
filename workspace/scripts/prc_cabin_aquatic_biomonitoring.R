@@ -17,6 +17,7 @@ prc_cabin_aquatic_biomonitoring <- function(input_files, output_path) {
   # Function to import the cabin data
   import_cabin <- function(input_path) {
     readr::read_lines(input_path, locale = readr::locale(encoding = "UTF-16LE")) |>
+      stringr::str_replace_all('(?<!")\\,(?!")', " ") |> # Remove unnecessary quotes
       stringr::str_replace_all('\\\"', "") |> # Remove unnecessary quotes
       paste0(collapse = "\n") |>
       textConnection() |>
@@ -40,25 +41,39 @@ prc_cabin_aquatic_biomonitoring <- function(input_files, output_path) {
           dplyr::mutate(bassin = "st_lawrence") |>
           dplyr::relocate(bassin)
       ) |>
-        dplyr::bind_rows()
+        dplyr::bind_rows() |>
+        dplyr::mutate(
+          event_id = glue::glue("{bassin}-{site}-{site_visit_id}")
+        )
     })
   })
+
   # Habitat
   suppressMessages({
     suppressWarnings({
       habitat <- list(
         input_files[grepl("cabin_habitat_data_maritimes.csv", input_files)] |>
           import_cabin() |>
-          dplyr::mutate(bassin = "maritimes") |>
+          dplyr::mutate(
+            bassin = "maritimes",
+            site_visit_id = as.character(site_visit_id)
+          ) |>
           dplyr::relocate(bassin),
         input_files[grepl("cabin_habitat_data_st_lawrence.csv", input_files)] |>
           import_cabin() |>
-          dplyr::mutate(bassin = "st_lawrence") |>
+          dplyr::mutate(
+            bassin = "st_lawrence",
+            site_visit_id = as.character(site_visit_id)
+          ) |>
           dplyr::relocate(bassin)
       ) |>
-        dplyr::bind_rows()
+        dplyr::bind_rows() |>
+        dplyr::mutate(
+          event_id = glue::glue("{bassin}-{site}-{site_visit_id}")
+        )
     })
   })
+
   # Study
   # Function to import the cabin data
   import_cabin <- function(input_path) {
@@ -93,7 +108,12 @@ prc_cabin_aquatic_biomonitoring <- function(input_files, output_path) {
           dplyr::mutate(bassin = "st_lawrence") |>
           dplyr::relocate(bassin)
       ) |>
-        dplyr::bind_rows()
+        dplyr::bind_rows() |>
+        dplyr::mutate(
+          project_id = "cabin_aquatic_biomonitoring",
+          event_id = glue::glue("{bassin}-{site}-{site_visit_id}"),
+          event_date = as.Date(julian_day - 1, origin = paste0(year, "-01-01"))
+        )
     })
   })
 

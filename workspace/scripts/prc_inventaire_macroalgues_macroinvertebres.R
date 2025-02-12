@@ -23,7 +23,7 @@ prc_inventaire_macroalgues_macroinvertebres <- function(input_files, output_path
 
   # abiotic
   abiotic <- input_files[grepl("macroalgae-macroinvertebrates_abiotic-measurement_2019.csv", input_files)] |>
-    vroom::vroom(progress = FALSE, show_col_types = FALSE, skip = 1, delim = ";") |>
+    vroom::vroom(progress = FALSE, show_col_types = FALSE, delim = ",") |>
     janitor::clean_names()
 
   # Export

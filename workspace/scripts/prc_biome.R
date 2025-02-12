@@ -1,4 +1,12 @@
 prc_biome_recharge_io_herbier_benthos <- function(input_files, output_path) {
+  # output_path <- "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/processed/"
+  # input_path <- "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/raw/"
+  # input_files <- file.path(
+  #   input_path,
+  #   c(
+  #     "io_herbiers_benthos_2023.csv"
+  #    )
+  # )
   input_files <- unlist(input_files)
 
   # Events
@@ -184,13 +192,16 @@ prc_biome_recharge_sainte_flavie <- function(input_files, output_path) {
   input_files <- unlist(input_files)
 
   # Events
-  logbooks <- input_files[grepl("sf_logbook_2024.csv", input_files)] |>
-    lapply(function(x) {
-      vroom::vroom(x, progress = FALSE, show_col_types = FALSE) |>
-        dplyr::rename_with(~ stringr::str_replace_all(.x, "\u00b5", "u")) |>
-        janitor::clean_names()
-    }) |>
-    dplyr::bind_rows()
+  suppressWarnings({
+    logbooks <- input_files[grepl("sf_logbook_2024.csv", input_files)] |>
+      lapply(function(x) {
+        vroom::vroom(x, progress = FALSE, show_col_types = FALSE) |>
+          dplyr::rename_with(~ stringr::str_replace_all(.x, "\u00b5", "u")) |>
+          janitor::clean_names()
+      }) |>
+      dplyr::bind_rows() |>
+      dplyr::mutate(couverture_vegetation = as.numeric(couverture_vegetation))
+  })
 
   # Export
   vroom::vroom_write(logbooks, file.path(output_path, "biome_recharge_sainte-flavie_logbooks.csv"), delim = ",")

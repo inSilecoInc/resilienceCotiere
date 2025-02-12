@@ -1,0 +1,58 @@
+pipeline:
+  id: 93c9fa26-0a59-4d41-b037-2bad00e2b97c
+  name: biodiversity_data
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-02-05 18:18:30
+  last_modified: 2025-02-05 18:18:30
+  description: 'Pipeline for analytical data: biodiversity_data'
+
+  analysis:
+    sources:
+    - name: integrate biodiversity data
+      description: integration des données de biodiversity au sein d'une base de données relationnelle
+      script: int_biodiversity_data
+      input_files:
+      - id: 2b9ea288-e863-4cf3-9196-2dc19a5f5def
+        name: process biodiversite_piei
+      - id: db49664a-0e7d-47e8-a3a1-63bc29881c61
+        name: processing biome_recharge_io_herbier_benthos
+      - id: 39dc578d-4b4d-465f-819f-4aac5b86ee7d
+        name: processing biome_recharge_lagrave
+      - id: c6b58e09-2b7e-4f24-a1d1-3826acbf5840
+        name: processing biome_recharge_maria
+      - id: e7c1ea73-41f3-4bf0-a5f0-16ad97416965
+        name: processing biome_recharge_pointe-aux-loups
+      - id: 0eeaf1d9-5b3f-4c57-82db-0d8e6036619e
+        name: processing biome_recharge_pointe-aux-outardes
+      - id: 23daffc4-dd6a-441b-8897-19aaa8972abf
+        name: processing biome_recharge_sainte-flavie
+      - id: bae62dca-7abd-4c98-939e-5d2882d21329
+        name: processing biome_recharge_sainte-luce
+      - id: 1cac3c56-ed56-49f5-897c-1b7cf40605c5
+        name: process_cabin_aquatic_biomonitoring
+      - id: dfbfc2d7-697f-4801-b859-91bf4c1575df
+        name: process inventaire_batture_alouettes
+      - id: 71e5ee2d-2433-455d-8434-9a9fa26afde6
+        name: process inventaire_macroalgues_macroinvertebres
+      - id: 0a5569d7-5b9c-44df-9fba-1cc19c95f2ab
+        name: processing inventaire_pointe_john
+      - id: d66fe58a-b279-4e2c-8a81-71ab068f2a04
+        name: process invertebres_vegetation_saint_laurent
+      - id: 860d96c4-efd7-4d76-a6d7-207c0b927815
+        name: processing yanick_gendreau
+      - id: 66ac503f-ead2-46a4-afc9-e658e459efef
+        name: process zip_inventaire_marais_baie_mille_vaches
+      - id: e0f4140b-48b8-47d4-8006-af63af48a1c2
+        name: process zip_inventaire_marais_bergeronnes
+      - id: 645bee2a-0a34-460a-9062-cb276213ce96
+        name: process zip_inventaire_marais_hickey
+      - id: 1a7d4967-4a9d-446c-a080-c93755a24be9
+        name: process zip_inventaire_marais_pointe_aux_outardes
+      - id: 01fab37f-efbc-433d-8a08-d717200c0ff7
+        name: process zip_inventaire_marais_pointe_fortin
+      - id: 36f7af6b-8d9c-439f-a838-a25a9c08efe3
+        name: process zip_inventaire_marais_portneuf_sur_mer
+      output_files:  
+      - biodiversity_data.sqlite
+      - biodiversity_data.svg

@@ -68,7 +68,9 @@ prc_zip_inventaire_marais_bergeronnes <- function(input_files, output_path) {
   # Events
   events <- input_files[grepl("marais_bergeronnes_events.csv", input_files)] |>
     vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
-    janitor::clean_names()
+    janitor::clean_names() |>
+    dplyr::mutate(profondeur_m = profondeur_cm / 100) |>
+    dplyr::select(-profondeur_cm)
 
   # Occurrences
   occurrences <- input_files[grepl("marais_bergeronnes_occurrences.csv", input_files)] |>
@@ -157,7 +159,8 @@ prc_zip_inventaire_marais_pointe_aux_outardes <- function(input_files, output_pa
   # Events
   events <- input_files[grepl("marais_pao_events.csv", input_files)] |>
     vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
-    janitor::clean_names()
+    janitor::clean_names() |>
+    dplyr::mutate(unite = "heure")
 
   # Occurrences
   suppressWarnings({
