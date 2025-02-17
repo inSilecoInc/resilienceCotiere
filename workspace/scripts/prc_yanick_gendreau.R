@@ -63,7 +63,8 @@ prc_yanick_gendreau <- function(input_files, output_path) {
   suppressWarnings({
     intertidal_subtidal <- input_files[grepl("Liste_Sp_CindyGrant.txt", input_files)] |>
       vroom::vroom(progress = FALSE, show_col_types = FALSE, delim = "\t") |>
-      janitor::clean_names()
+      janitor::clean_names() |>
+      dplyr::mutate(id_en_st = stringr::str_replace_all(id_en_st, "[^\\w\\s-]", ""))
   })
 
   # Export

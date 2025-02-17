@@ -169,8 +169,75 @@ ul.task-list li input[type="checkbox"] {
 <section id="structure-des-données" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="structure-des-données"><span class="header-section-number">4.1</span> Structure des données</h2>
 <p>L’intégration repose sur la création de plusieurs tables thématiques qui regroupent les informations selon leur nature :</p>
-<section id="événements-events" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="événements-events"><span class="header-section-number">4.1.1</span> 1. Événements (<code>events</code>)</h3>
+<section id="métadonnées-metadata" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="métadonnées-metadata"><span class="header-section-number">4.1.1</span> Métadonnées (<code>metadata</code>)</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Bonifier métadonnées
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La table des métadonnées devra être élargie pour inclure des informations supplémentaires qui ne sont pas encore prises en compte. Toutefois, à ce stade du projet, la priorité est de poursuivre les prochaines étapes avant d’approfondir cet aspect. Une structuration plus détaillée des métadonnées sera envisagée dans une phase ultérieure afin d’améliorer la documentation et l’interopérabilité des données.</p>
+</div>
+</div>
+<table class="table">
+<colgroup>
+<col style="width: 39%">
+<col style="width: 33%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Nom du champ</strong></th>
+<th><strong>Type de données</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>project_id</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Identifiant unique du projet associé aux données</td>
+</tr>
+<tr class="even">
+<td><code>longitude_min</code></td>
+<td><code>num</code> (nombre)</td>
+<td>Coordonnée minimale en longitude du projet</td>
+</tr>
+<tr class="odd">
+<td><code>longitude_max</code></td>
+<td><code>num</code> (nombre)</td>
+<td>Coordonnée maximale en longitude du projet</td>
+</tr>
+<tr class="even">
+<td><code>latitude_min</code></td>
+<td><code>num</code> (nombre)</td>
+<td>Coordonnée minimale en latitude du projet</td>
+</tr>
+<tr class="odd">
+<td><code>latitude_max</code></td>
+<td><code>num</code> (nombre)</td>
+<td>Coordonnée maximale en latitude du projet</td>
+</tr>
+<tr class="even">
+<td><code>date_start</code></td>
+<td><code>POSIXct</code> (datetime)</td>
+<td>Date et heure de début de la collecte des données</td>
+</tr>
+<tr class="odd">
+<td><code>date_end</code></td>
+<td><code>POSIXct</code> (datetime)</td>
+<td>Date et heure de fin de la collecte des données</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="événements-events" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="événements-events"><span class="header-section-number">4.1.2</span> Événements (<code>events</code>)</h3>
 <table class="table">
 <colgroup>
 <col style="width: 39%">
@@ -273,24 +340,8 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </section>
-<section id="biodiversité-biodiversity" class="level3" data-number="4.1.2">
-<h3 data-number="4.1.2" class="anchored" data-anchor-id="biodiversité-biodiversity"><span class="header-section-number">4.1.2</span> 2. Biodiversité (<code>biodiversity</code>)</h3>
-<p><strong>Objectif</strong> : Regrouper les observations des espèces identifiées lors des campagnes d’échantillonnage.</p>
-<ul>
-<li><code>observation_id</code> (Clé primaire)</li>
-<li><code>event_id</code> (Clé étrangère vers <code>events</code>)</li>
-<li><code>species_id</code> (Clé étrangère vers <code>taxonomy</code>)</li>
-<li><code>species_name</code> (Nom de l’espèce)</li>
-<li><code>taxon_rank</code> (Niveau taxonomique)</li>
-<li><code>metric</code> (Type de métrique : abondance, biomasse, présence, etc.)</li>
-<li><code>value</code> (Valeur de la mesure)</li>
-<li><code>unit</code> (Unité de mesure)</li>
-<li><code>data_source</code> (Source de l’information)</li>
-</ul>
-</section>
 <section id="paramètres-abiotiques-abiotic" class="level3" data-number="4.1.3">
-<h3 data-number="4.1.3" class="anchored" data-anchor-id="paramètres-abiotiques-abiotic"><span class="header-section-number">4.1.3</span> 3. Paramètres abiotiques (<code>abiotic</code>)</h3>
-<p>Here is the table structure for the <strong>abiotic_tables</strong> dataset:</p>
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="paramètres-abiotiques-abiotic"><span class="header-section-number">4.1.3</span> Paramètres abiotiques (<code>abiotic</code>)</h3>
 <table class="table">
 <colgroup>
 <col style="width: 45%">
@@ -348,51 +399,146 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </section>
-<section id="métadonnées-metadata" class="level3" data-number="4.1.4">
-<h3 data-number="4.1.4" class="anchored" data-anchor-id="métadonnées-metadata"><span class="header-section-number">4.1.4</span> 4. Métadonnées (<code>metadata</code>)</h3>
-<p><strong>Objectif</strong> : Décrire chaque source de données et ses caractéristiques associées.</p>
-<ul>
-<li><code>dataset_id</code> (Clé primaire)</li>
-<li><code>dataset_name</code> (Nom du jeu de données)</li>
-<li><code>source_url</code> (Lien vers la source originale)</li>
-<li><code>license</code> (Type de licence et conditions d’utilisation)</li>
-<li><code>geographic_extent</code> (Zone géographique couverte)</li>
-<li><code>processing_script</code> (Nom du script de traitement appliqué aux données)</li>
-<li><code>update_frequency</code> (Fréquence de mise à jour des données)</li>
-</ul>
+<section id="taxonomie-taxonomy" class="level3" data-number="4.1.4">
+<h3 data-number="4.1.4" class="anchored" data-anchor-id="taxonomie-taxonomy"><span class="header-section-number">4.1.4</span> Taxonomie (<code>taxonomy</code>)</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Consolider listes taxonomiques
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La normalisation des données taxonomiques est un travail de grande ampleur qui devra être réalisé afin d’obtenir une liste unique d’espèces pour l’ensemble des projets et jeux de données intégrés. Cette tâche nécessitant un effort important, il a été décidé de ne pas approfondir cet aspect dans cette itération du projet. Par conséquent, lorsqu’on combine plusieurs projets pour des analyses intégrées, la biodiversité pourrait être surestimée en raison des variations de nomenclature des espèces, tandis que l’abondance, la biomasse et le recouvrement des espèces pourraient être sous-estimés faute de consolidation des données.</p>
+</div>
+</div>
+<table class="table">
+<colgroup>
+<col style="width: 42%">
+<col style="width: 31%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Nom du champ</strong></th>
+<th><strong>Type de données</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>species_id</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Identifiant unique de l’espèce</td>
+</tr>
+<tr class="even">
+<td><code>scientific_name</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Nom scientifique de l’espèce</td>
+</tr>
+<tr class="odd">
+<td><code>scientific_name_id</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Identifiant taxonomique dans la base de données spécifiée</td>
+</tr>
+<tr class="even">
+<td><code>scientific_name_id_db</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Base de données d’origine pour l’identifiant taxonomique (<code>itis</code>, <code>worms</code>, etc.)</td>
+</tr>
+<tr class="odd">
+<td><code>gbif_url</code></td>
+<td><code>glue</code> (texte)</td>
+<td>Lien vers la fiche de l’espèce sur GBIF (si disponible)</td>
+</tr>
+<tr class="even">
+<td><code>taxon_rank</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Rang taxonomique de l’espèce (ex: Espèce, Genre, Famille)</td>
+</tr>
+<tr class="odd">
+<td><code>kingdom</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Règne de classification de l’espèce</td>
+</tr>
+<tr class="even">
+<td><code>phylum</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Embranchement de l’espèce</td>
+</tr>
+<tr class="odd">
+<td><code>class</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Classe taxonomique de l’espèce</td>
+</tr>
+<tr class="even">
+<td><code>order</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Ordre taxonomique de l’espèce</td>
+</tr>
+<tr class="odd">
+<td><code>family</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Famille taxonomique de l’espèce</td>
+</tr>
+<tr class="even">
+<td><code>genus</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Genre taxonomique de l’espèce</td>
+</tr>
+<tr class="odd">
+<td><code>species</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Nom complet de l’espèce (si applicable)</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="taxonomie-taxonomy" class="level3" data-number="4.1.5">
-<h3 data-number="4.1.5" class="anchored" data-anchor-id="taxonomie-taxonomy"><span class="header-section-number">4.1.5</span> 5. Taxonomie (<code>taxonomy</code>)</h3>
-<p><strong>Objectif</strong> : Standardiser la nomenclature taxonomique et assurer une cohérence des données biologiques.</p>
-<ul>
-<li><code>species_id</code> (Clé primaire)</li>
-<li><code>species_name</code> (Nom scientifique de l’espèce)</li>
-<li><code>genus</code>, <code>family</code>, <code>order</code>, <code>class</code>, <code>phylum</code>, <code>kingdom</code> (Hiérarchie taxonomique)</li>
-<li><code>taxonomic_authority</code> (Source de la classification taxonomique)</li>
-</ul>
-</section>
-<section id="effort-déchantillonnage-effort-optionnelle" class="level3" data-number="4.1.6">
-<h3 data-number="4.1.6" class="anchored" data-anchor-id="effort-déchantillonnage-effort-optionnelle"><span class="header-section-number">4.1.6</span> 6. Effort d’échantillonnage (<code>effort</code>, optionnelle)</h3>
-<p><strong>Objectif</strong> : Enregistrer les paramètres d’effort pour comparer les différentes campagnes d’échantillonnage.</p>
-<ul>
-<li><code>event_id</code> (Clé étrangère vers <code>events</code>)</li>
-<li><code>gear_type</code> (Type d’engin de prélèvement)</li>
-<li><code>duration</code> (Durée de l’échantillonnage)</li>
-<li><code>area_sampled</code> (Surface d’échantillonnage)</li>
-<li><code>volume_sampled</code> (Volume d’eau échantillonné)</li>
-<li><code>num_replicates</code> (Nombre de réplications par station)</li>
-</ul>
-</section>
-<section id="références-references" class="level3" data-number="4.1.7">
-<h3 data-number="4.1.7" class="anchored" data-anchor-id="références-references"><span class="header-section-number">4.1.7</span> 7. Références (<code>references</code>)</h3>
-<p><strong>Objectif</strong> : Documenter les sources bibliographiques associées à chaque jeu de données.</p>
-<ul>
-<li><code>reference_id</code> (Clé primaire)</li>
-<li><code>dataset_id</code> (Clé étrangère vers <code>metadata</code>)</li>
-<li><code>citation</code> (Référence bibliographique complète)</li>
-<li><code>doi</code> (Identifiant DOI si disponible)</li>
-<li><code>source_type</code> (Type de source : article scientifique, rapport technique, etc.)</li>
-</ul>
+<section id="biodiversité-biodiversity" class="level3" data-number="4.1.5">
+<h3 data-number="4.1.5" class="anchored" data-anchor-id="biodiversité-biodiversity"><span class="header-section-number">4.1.5</span> Biodiversité (<code>biodiversity</code>)</h3>
+<table class="table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 32%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Nom du champ</strong></th>
+<th><strong>Type de données</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>event_id</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Identifiant unique de l’événement d’échantillonnage</td>
+</tr>
+<tr class="even">
+<td><code>species_id</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Identifiant unique de l’espèce associée à l’événement</td>
+</tr>
+<tr class="odd">
+<td><code>measurement_type</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Type de mesure associée à l’espèce (<code>abundance</code>, <code>biomass</code>, <code>occurrence</code>)</td>
+</tr>
+<tr class="even">
+<td><code>measurement_value</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Valeur mesurée (ex: nombre d’individus, poids)</td>
+</tr>
+<tr class="odd">
+<td><code>measurement_unit</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Unité de mesure correspondante (<code>n/m2</code>, <code>g/m2</code>, ou aucune unité)</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>

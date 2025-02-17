@@ -8,7 +8,27 @@ L'objectif de cette section est de définir une organisation cohérente des donn
 
 L'intégration repose sur la création de plusieurs tables thématiques qui regroupent les informations selon leur nature : 
 
-### 1. Événements (`events`)
+### Métadonnées (`metadata`)
+
+
+::: {.callout-warning}
+## Bonifier métadonnées
+
+La table des métadonnées devra être élargie pour inclure des informations supplémentaires qui ne sont pas encore prises en compte. Toutefois, à ce stade du projet, la priorité est de poursuivre les prochaines étapes avant d’approfondir cet aspect. Une structuration plus détaillée des métadonnées sera envisagée dans une phase ultérieure afin d’améliorer la documentation et l’interopérabilité des données.
+:::
+
+| **Nom du champ**        | **Type de données** | **Description** |
+|-------------------------|---------------------|-----------------|
+| `project_id`           | `chr` (texte)       | Identifiant unique du projet associé aux données |
+| `longitude_min`        | `num` (nombre)      | Coordonnée minimale en longitude du projet |
+| `longitude_max`        | `num` (nombre)      | Coordonnée maximale en longitude du projet |
+| `latitude_min`         | `num` (nombre)      | Coordonnée minimale en latitude du projet |
+| `latitude_max`         | `num` (nombre)      | Coordonnée maximale en latitude du projet |
+| `date_start`           | `POSIXct` (datetime) | Date et heure de début de la collecte des données |
+| `date_end`             | `POSIXct` (datetime) | Date et heure de fin de la collecte des données |
+
+
+### Événements (`events`)
 
 
 | **Nom du champ**        | **Type de données** | **Description** |
@@ -32,23 +52,8 @@ L'intégration repose sur la création de plusieurs tables thématiques qui regr
 | `sample_size_unit`    | `chr` (texte)       | Unité de mesure de la taille d'échantillon |
 
 
-### 2. Biodiversité (`biodiversity`)
+### Paramètres abiotiques (`abiotic`)
 
-**Objectif** : Regrouper les observations des espèces identifiées lors des campagnes d'échantillonnage.
-
-- `observation_id` (Clé primaire)
-- `event_id` (Clé étrangère vers `events`)
-- `species_id` (Clé étrangère vers `taxonomy`)
-- `species_name` (Nom de l'espèce)
-- `taxon_rank` (Niveau taxonomique)
-- `metric` (Type de métrique : abondance, biomasse, présence, etc.)
-- `value` (Valeur de la mesure)
-- `unit` (Unité de mesure)
-- `data_source` (Source de l'information)
-
-### 3. Paramètres abiotiques (`abiotic`)
-
-Here is the table structure for the **abiotic_tables** dataset:
 
 | **Nom du champ**               | **Type de données** | **Description** |
 |--------------------------------|---------------------|-----------------|
@@ -62,47 +67,38 @@ Here is the table structure for the **abiotic_tables** dataset:
 | `measurement_remarks`          | `chr` (texte)       | Remarques supplémentaires sur la mesure (si applicable) |
 
 
+### Taxonomie (`taxonomy`)
 
-### 4. Métadonnées (`metadata`)
+::: {.callout-warning}
+## Consolider listes taxonomiques
 
-**Objectif** : Décrire chaque source de données et ses caractéristiques associées.
+La normalisation des données taxonomiques est un travail de grande ampleur qui devra être réalisé afin d’obtenir une liste unique d'espèces pour l’ensemble des projets et jeux de données intégrés. Cette tâche nécessitant un effort important, il a été décidé de ne pas approfondir cet aspect dans cette itération du projet. Par conséquent, lorsqu'on combine plusieurs projets pour des analyses intégrées, la biodiversité pourrait être surestimée en raison des variations de nomenclature des espèces, tandis que l’abondance, la biomasse et le recouvrement des espèces pourraient être sous-estimés faute de consolidation des données.
+:::
 
-- `dataset_id` (Clé primaire)
-- `dataset_name` (Nom du jeu de données)
-- `source_url` (Lien vers la source originale)
-- `license` (Type de licence et conditions d'utilisation)
-- `geographic_extent` (Zone géographique couverte)
-- `processing_script` (Nom du script de traitement appliqué aux données)
-- `update_frequency` (Fréquence de mise à jour des données)
+| **Nom du champ**           | **Type de données** | **Description** |
+|----------------------------|---------------------|-----------------|
+| `species_id`              | `chr` (texte)       | Identifiant unique de l'espèce |
+| `scientific_name`         | `chr` (texte)       | Nom scientifique de l'espèce |
+| `scientific_name_id`      | `chr` (texte)       | Identifiant taxonomique dans la base de données spécifiée |
+| `scientific_name_id_db`   | `chr` (texte)       | Base de données d'origine pour l'identifiant taxonomique (`itis`, `worms`, etc.) |
+| `gbif_url`               | `glue` (texte)      | Lien vers la fiche de l'espèce sur GBIF (si disponible) |
+| `taxon_rank`             | `chr` (texte)       | Rang taxonomique de l'espèce (ex: Espèce, Genre, Famille) |
+| `kingdom`                | `chr` (texte)       | Règne de classification de l'espèce |
+| `phylum`                 | `chr` (texte)       | Embranchement de l'espèce |
+| `class`                  | `chr` (texte)       | Classe taxonomique de l'espèce |
+| `order`                  | `chr` (texte)       | Ordre taxonomique de l'espèce |
+| `family`                 | `chr` (texte)       | Famille taxonomique de l'espèce |
+| `genus`                  | `chr` (texte)       | Genre taxonomique de l'espèce |
+| `species`                | `chr` (texte)       | Nom complet de l'espèce (si applicable) |
 
-### 5. Taxonomie (`taxonomy`)
 
-**Objectif** : Standardiser la nomenclature taxonomique et assurer une cohérence des données biologiques.
+### Biodiversité (`biodiversity`)
 
-- `species_id` (Clé primaire)
-- `species_name` (Nom scientifique de l'espèce)
-- `genus`, `family`, `order`, `class`, `phylum`, `kingdom` (Hiérarchie taxonomique)
-- `taxonomic_authority` (Source de la classification taxonomique)
-
-### 6. Effort d'échantillonnage (`effort`, optionnelle)
-
-**Objectif** : Enregistrer les paramètres d'effort pour comparer les différentes campagnes d'échantillonnage.
-
-- `event_id` (Clé étrangère vers `events`)
-- `gear_type` (Type d'engin de prélèvement)
-- `duration` (Durée de l'échantillonnage)
-- `area_sampled` (Surface d'échantillonnage)
-- `volume_sampled` (Volume d'eau échantillonné)
-- `num_replicates` (Nombre de réplications par station)
-
-### 7. Références (`references`)
-
-**Objectif** : Documenter les sources bibliographiques associées à chaque jeu de données.
-
-- `reference_id` (Clé primaire)
-- `dataset_id` (Clé étrangère vers `metadata`)
-- `citation` (Référence bibliographique complète)
-- `doi` (Identifiant DOI si disponible)
-- `source_type` (Type de source : article scientifique, rapport technique, etc.)
-
+| **Nom du champ**         | **Type de données** | **Description** |
+|--------------------------|---------------------|-----------------|
+| `event_id`              | `chr` (texte)       | Identifiant unique de l'événement d'échantillonnage |
+| `species_id`            | `chr` (texte)       | Identifiant unique de l'espèce associée à l'événement |
+| `measurement_type`      | `chr` (texte)       | Type de mesure associée à l'espèce (`abundance`, `biomass`, `occurrence`) |
+| `measurement_value`     | `chr` (texte)       | Valeur mesurée (ex: nombre d'individus, poids) |
+| `measurement_unit`      | `chr` (texte)       | Unité de mesure correspondante (`n/m2`, `g/m2`, ou aucune unité) |
 
