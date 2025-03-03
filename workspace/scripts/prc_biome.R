@@ -4,7 +4,12 @@ prc_biome_recharge_io_herbier_benthos <- function(input_files, output_path) {
   # input_files <- file.path(
   #   input_path,
   #   c(
-  #     "io_herbiers_benthos_2023.csv"
+  #     "io_herbiers_benthos_2023.csv",
+  #     "io_biodiversity_2023_abondance_m2.csv",
+  #     "io_biodiversity_2023_biomasse_m2.csv",
+  #     "io_biodiversity_2023_classification.csv",
+  #     "io_biodiversity_2023_presence.csv",
+  #     "io_biodiversity_2023_stations.csv"
   #    )
   # )
   input_files <- unlist(input_files)
@@ -17,8 +22,63 @@ prc_biome_recharge_io_herbier_benthos <- function(input_files, output_path) {
     }) |>
     dplyr::bind_rows()
 
+  # Biodiversity
+  stations <- input_files[grepl("io_biodiversity_2023_stations.csv", input_files)] |>
+    vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
+    janitor::clean_names() |>
+    dplyr::mutate(station = stringr::str_replace_all(station, "[()]", ""))
+
+  classification <- input_files[grepl("io_biodiversity_2023_classification.csv", input_files)] |>
+    vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
+    janitor::clean_names() |>
+    dplyr::rename(
+      phylum = embranchement,
+      class = classe,
+      order = ordre,
+      family = famille,
+      genus = genre,
+      species = espece,
+      scientific_name = noms_scientifiques
+    )
+
+  biodiversity <- list(
+    occurrence = input_files[grepl("io_biodiversity_2023_presence.csv", input_files)] |>
+      vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
+      janitor::clean_names() |>
+      dplyr::rename(scientific_name = x1) |>
+      tidyr::pivot_longer(cols = -c(scientific_name), names_to = "station", values_to = "occurrence"),
+    abondance = input_files[grepl("io_biodiversity_2023_abondance_m2.csv", input_files)] |>
+      vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
+      janitor::clean_names() |>
+      dplyr::rename(scientific_name = x1) |>
+      tidyr::pivot_longer(cols = -c(scientific_name), names_to = "station", values_to = "abundance_m2"),
+    biomasse = input_files[grepl("io_biodiversity_2023_biomasse_m2.csv", input_files)] |>
+      vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
+      janitor::clean_names() |>
+      dplyr::rename(scientific_name = x1) |>
+      tidyr::pivot_longer(cols = -c(scientific_name), names_to = "station", values_to = "biomass_m2")
+  ) |>
+    purrr::reduce(dplyr::left_join, by = c("scientific_name", "station")) |>
+    dplyr::mutate(
+      station = toupper(station) |>
+        stringr::str_replace_all(c("_" = "-", "L-A" = "L A", "L-B" = "L B"))
+    ) |>
+    dplyr::left_join(
+      logbooks |>
+        dplyr::select(project_id, parent_event_id, event_id, station),
+      by = "station"
+    ) |>
+    dplyr::left_join(classification, by = "scientific_name") |>
+    dplyr::rename(valid_name = scientific_name)
+
+
   # Export
   vroom::vroom_write(logbooks, file.path(output_path, "biome_recharge_io_herbier_benthos_logbooks.csv"), delim = ",")
+  vroom::vroom_write(
+    biodiversity,
+    file.path(output_path, "biome_recharge_io_herbier_benthos_biodiversity.csv"),
+    delim = ","
+  )
 }
 
 prc_biome_recharge_lagrave <- function(input_files, output_path) {

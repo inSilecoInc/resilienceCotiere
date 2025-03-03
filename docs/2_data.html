@@ -2720,8 +2720,7 @@ div.csl-indent {
 </section>
 <section id="sec-biome_recharge_io_herbier_benthos" class="level2" data-number="3.13">
 <h2 data-number="3.13" class="anchored" data-anchor-id="sec-biome_recharge_io_herbier_benthos"><span class="header-section-number">3.13</span> Site de recharge de plage de l’Île d’Orléans</h2>
-<p>Les données proviennent du suivi des herbiers et du benthos du site de recharge de l’Île d’Orléas, réalisé par le laboratoire BIOME en 2023 <span class="citation" data-cites="biome_io_2023">(<a href="#ref-biome_io_2023" role="doc-biblioref">BIOME, 2023</a>)</span>. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de travaux de recharges de plage.</p>
-<p><em>Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.</em></p>
+<p>Les données proviennent du suivi des herbiers et du benthos du site de recharge de l’Île d’Orléans, réalisé par le laboratoire BIOME en 2023 <span class="citation" data-cites="biome_io_2023">(<a href="#ref-biome_io_2023" role="doc-biblioref">BIOME, 2023</a>)</span>. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de travaux de recharges de plage.</p>
 <ul>
 <li><strong>Source</strong> : <strong>BIOME - Suivi des herbiers et du benthos au site de recharge IO</strong><br>
 </li>
@@ -2735,14 +2734,17 @@ div.csl-indent {
 </li>
 <li><strong>Script de traitement</strong> : <code>prc_biome_recharge_io_herbier_benthos</code><br>
 </li>
-<li><strong>Fichier de sortie</strong> :
+<li><strong>Fichiers de sortie</strong> :
 <ul>
-<li><code>biome_recharge_io_herbier_benthos_logbooks.csv</code></li>
+<li><code>biome_recharge_io_herbier_benthos_logbooks.csv</code><br>
+</li>
+<li><code>biome_recharge_io_herbier_benthos_biodiversity.csv</code></li>
 </ul></li>
 </ul>
 <section id="étapes-de-traitement-des-données-12" class="level3" data-number="3.13.1">
 <h3 data-number="3.13.1" class="anchored" data-anchor-id="étapes-de-traitement-des-données-12"><span class="header-section-number">3.13.1</span> Étapes de traitement des données</h3>
-<p>Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en utilisant <code>janitor::clean_names()</code> pour garantir des noms uniformes à travers le projet.</p>
+<p>Les données ont été standardisées en utilisant <code>janitor::clean_names()</code> pour uniformiser les noms de colonnes. De plus, la colonne <code>station</code> a été formatée pour assurer une cohérence entre les différentes sources de données.</p>
+<p>Les fichiers de biodiversité ont été intégrés via un processus de transformation structuré : - <code>tidyr::pivot_longer()</code> a été utilisé pour convertir les fichiers d’abondance, de biomasse et de présence en un format long. - Une harmonisation des noms de stations a été effectuée pour s’assurer d’une correspondance avec les autres jeux de données. - Les taxons ont été enrichis avec des données de classification taxonomique. - Un joint principal a été effectué pour lier les observations de biodiversité avec les métadonnées des événements d’échantillonnage.</p>
 </section>
 <section id="structure-des-données-traitées-12" class="level3" data-number="3.13.2">
 <h3 data-number="3.13.2" class="anchored" data-anchor-id="structure-des-données-traitées-12"><span class="header-section-number">3.13.2</span> Structure des données traitées</h3>
@@ -2815,6 +2817,79 @@ div.csl-indent {
 <tr class="even">
 <td><code>commentaires</code></td>
 <td>Observations particulières du relevé</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="table-de-biodiversité" class="level4" data-number="3.13.2.2">
+<h4 data-number="3.13.2.2" class="anchored" data-anchor-id="table-de-biodiversité"><span class="header-section-number">3.13.2.2</span> Table de biodiversité</h4>
+<table class="table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>valid_name</code></td>
+<td>Nom scientifique validé</td>
+</tr>
+<tr class="even">
+<td><code>station</code></td>
+<td>Nom/code de la station d’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>occurrence</code></td>
+<td>Présence/absence (0 = absent, 1 = présent)</td>
+</tr>
+<tr class="even">
+<td><code>abundance_m2</code></td>
+<td>Abondance par mètre carré</td>
+</tr>
+<tr class="odd">
+<td><code>biomass_m2</code></td>
+<td>Biomasse par mètre carré</td>
+</tr>
+<tr class="even">
+<td><code>project_id</code></td>
+<td>Identifiant du projet (ex. <code>io-benthos</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>parent_event_id</code></td>
+<td>Identifiant principal de l’événement</td>
+</tr>
+<tr class="even">
+<td><code>event_id</code></td>
+<td>Identifiant unique de l’échantillonnage</td>
+</tr>
+<tr class="odd">
+<td><code>phylum</code></td>
+<td>Embranchement taxonomique</td>
+</tr>
+<tr class="even">
+<td><code>class</code></td>
+<td>Classe taxonomique</td>
+</tr>
+<tr class="odd">
+<td><code>order</code></td>
+<td>Ordre taxonomique</td>
+</tr>
+<tr class="even">
+<td><code>family</code></td>
+<td>Famille taxonomique</td>
+</tr>
+<tr class="odd">
+<td><code>genus</code></td>
+<td>Genre taxonomique</td>
+</tr>
+<tr class="even">
+<td><code>species</code></td>
+<td>Espèce taxonomique (si disponible)</td>
 </tr>
 </tbody>
 </table>

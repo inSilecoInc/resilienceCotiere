@@ -47,6 +47,36 @@ pipeline:
         urls: "biome-resilience-cotiere"
         asset: "io_herbier_benthos/logbook/io_herbiers_benthos_2023.csv"
         credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+      - name: io_herbier_benthos biodiversity abondance
+        description: Données d'abondance sur les herbiers et le benthos du site IO 
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "io_herbier_benthos/biodiversity/io_biodiversity_2023_abondance_m2.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+      - name: io_herbier_benthos biodiversity biomasse
+        description: Données de biomasse sur les herbiers et le benthos du site IO 
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "io_herbier_benthos/biodiversity/io_biodiversity_2023_biomasse_m2.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+      - name: io_herbier_benthos biodiversity classification
+        description: Données de classification taxonomique sur les herbiers et le benthos du site IO 
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "io_herbier_benthos/biodiversity/io_biodiversity_2023_classification.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+      - name: io_herbier_benthos biodiversity presence
+        description: Données de presence absence sur les herbiers et le benthos du site IO 
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "io_herbier_benthos/biodiversity/io_biodiversity_2023_presence.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+      - name: io_herbier_benthos biodiversity stations
+        description: Données sur les stations du site IO 
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "io_herbier_benthos/biodiversity/io_biodiversity_2023_stations.csv"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
 
   processing:
     sources:
@@ -54,8 +84,14 @@ pipeline:
         script: prc_biome_recharge_io_herbier_benthos
         input_files:
           - io_herbier_benthos
+          - io_herbier_benthos biodiversity abondance
+          - io_herbier_benthos biodiversity biomasse
+          - io_herbier_benthos biodiversity classification
+          - io_herbier_benthos biodiversity presence
+          - io_herbier_benthos biodiversity stations
         output_files: 
           - biome_recharge_io_herbier_benthos_logbooks.csv
+          - biome_recharge_io_herbier_benthos_biodiversity.csv
 
   output:
     output_dir: "workspace/data/harvested/recharge_io_herbier_benthos/"

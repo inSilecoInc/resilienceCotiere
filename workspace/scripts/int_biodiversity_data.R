@@ -7,6 +7,7 @@ int_biodiversity_data <- function(input_files, output_path) {
   #     "biodiversite_piei-1.0.0/processed/events_piei.csv",
   #     "biodiversite_piei-1.0.0/processed/occurrences_piei.csv",
   #     "biome_recharge_io_herbier_benthos-1.0.0/processed/biome_recharge_io_herbier_benthos_logbooks.csv",
+  #     "biome_recharge_io_herbier_benthos-1.0.0/processed/biome_recharge_io_herbier_benthos_biodiversity.csv",
   #     "biome_recharge_lagrave-1.0.0/processed/biome_recharge_lagrave_biodiversity.csv",
   #     "biome_recharge_lagrave-1.0.0/processed/biome_recharge_lagrave_logbooks.csv",
   #     "biome_recharge_maria-1.0.0/processed/biome_recharge_maria_logbooks.csv",
@@ -60,35 +61,6 @@ int_biodiversity_data <- function(input_files, output_path) {
   #   )
   # )
   input_files <- unlist(input_files)
-
-  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  # Data sources
-
-  # -------------------------------------------------------
-  # Data tables
-  dat <- list()
-
-  # Iterate over input files and populate the dat list
-  for (file in input_files) {
-    # Extract database name
-    db_name <- stringr::str_extract(file, "(?<=harvested/|analyzed/)[^/]+")
-    db_name <- stringr::str_remove(db_name, "-\\d+\\.\\d+\\.\\d+$") # Remove version
-
-    # Extract table name
-    table_name <- stringr::str_remove(basename(file), "\\.csv$") # Remove file extension
-
-    # Load data using vroom
-    suppressWarnings({
-      df <- vroom::vroom(file, progress = FALSE, show_col_types = FALSE, delim = ",")
-    })
-
-    # Store in nested list
-    if (!db_name %in% names(dat)) {
-      dat[[db_name]] <- list()
-    }
-    dat[[db_name]][[table_name]] <- df
-  }
-
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # Tables

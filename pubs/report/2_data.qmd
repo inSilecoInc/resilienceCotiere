@@ -877,9 +877,7 @@ Les données de CABIN sont publiées sous format CSV avec une double nomenclatur
 
 ## Site de recharge de plage de l'Île d'Orléans {#sec-biome_recharge_io_herbier_benthos}
 
-Les données proviennent du suivi des herbiers et du benthos du site de recharge de l'Île d'Orléas, réalisé par le laboratoire BIOME en 2023 [@biome_io_2023]. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de travaux de recharges de plage.  
-
-*Des détails supplémentaires sur la méthodologie et l’interprétation des résultats seront ajoutés dans une version ultérieure du rapport.*
+Les données proviennent du suivi des herbiers et du benthos du site de recharge de l'Île d'Orléans, réalisé par le laboratoire BIOME en 2023 [@biome_io_2023]. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de travaux de recharges de plage.  
 
 - **Source** : **BIOME - Suivi des herbiers et du benthos au site de recharge IO**  
 - **Accessibilité** : Accès restreint  
@@ -887,12 +885,19 @@ Les données proviennent du suivi des herbiers et du benthos du site de recharge
 - **Couverture géographique** : Site de recharge IO (coordonnées précises à confirmer)  
 - **Période couverte** : 2023  
 - **Script de traitement** : `prc_biome_recharge_io_herbier_benthos`  
-- **Fichier de sortie** :  
+- **Fichiers de sortie** :  
   - `biome_recharge_io_herbier_benthos_logbooks.csv`  
+  - `biome_recharge_io_herbier_benthos_biodiversity.csv`  
 
 ### Étapes de traitement des données  
 
-Les données sont déjà disponibles dans un format standardisé; un effort minimal de traitement de données est ainsi nécessaire. Nous avons uniquement standardisé les noms de colonnes en utilisant `janitor::clean_names()` pour garantir des noms uniformes à travers le projet.
+Les données ont été standardisées en utilisant `janitor::clean_names()` pour uniformiser les noms de colonnes. De plus, la colonne `station` a été formatée pour assurer une cohérence entre les différentes sources de données.
+
+Les fichiers de biodiversité ont été intégrés via un processus de transformation structuré :
+- `tidyr::pivot_longer()` a été utilisé pour convertir les fichiers d'abondance, de biomasse et de présence en un format long.
+- Une harmonisation des noms de stations a été effectuée pour s'assurer d'une correspondance avec les autres jeux de données.
+- Les taxons ont été enrichis avec des données de classification taxonomique.
+- Un joint principal a été effectué pour lier les observations de biodiversité avec les métadonnées des événements d'échantillonnage.
 
 ### Structure des données traitées  
 
@@ -914,6 +919,26 @@ Les données sont déjà disponibles dans un format standardisé; un effort mini
 | `mo`                    | Nombre d’échantillons pour matière organique        |
 | `granulo`               | Nombre d’échantillons pour analyse granulométrique  |
 | `commentaires`          | Observations particulières du relevé                |
+
+#### Table de biodiversité  
+
+| Variable                 | Description                                          |
+|--------------------------|------------------------------------------------------|
+| `valid_name`            | Nom scientifique validé                              |
+| `station`               | Nom/code de la station d’échantillonnage             |
+| `occurrence`            | Présence/absence (0 = absent, 1 = présent)           |
+| `abundance_m2`         | Abondance par mètre carré                             |
+| `biomass_m2`           | Biomasse par mètre carré                             |
+| `project_id`           | Identifiant du projet (ex. `io-benthos`)             |
+| `parent_event_id`      | Identifiant principal de l’événement                 |
+| `event_id`             | Identifiant unique de l’échantillonnage              |
+| `phylum`               | Embranchement taxonomique                            |
+| `class`                | Classe taxonomique                                   |
+| `order`                | Ordre taxonomique                                    |
+| `family`               | Famille taxonomique                                  |
+| `genus`                | Genre taxonomique                                    |
+| `species`              | Espèce taxonomique (si disponible)                   |
+
 
 
 ## Site de recharge de de plage de La Grave {#sec-biome_recharge_lagrave}

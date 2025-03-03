@@ -102,3 +102,10 @@ La normalisation des données taxonomiques est un travail de grande ampleur qui 
 | `measurement_value`     | `chr` (texte)       | Valeur mesurée (ex: nombre d'individus, poids) |
 | `measurement_unit`      | `chr` (texte)       | Unité de mesure correspondante (`n/m2`, `g/m2`, ou aucune unité) |
 
+
+
+## Schéma de la Base de Données
+
+Le schéma de la base de données est conçu pour garantir l'intégrité référentielle grâce aux contraintes de clés primaires et étrangères. Le diagramme entité-relation (ERD) visualise ces relations, assurant ainsi la cohérence et l’efficacité de la récupération des données.
+
+![Schéma de la base de données relationnelle sur la biodiversité benthique au sein du Saint-Laurent](../../workspace/data/analyzed/biodiversity_data-1.0.0/biodiversity_data.png")
