@@ -1,6 +1,4 @@
----
-title: "Intégration des données"
----
+# Intégration des données {#sec-integration}
 
 L'objectif de cette section est de définir une organisation cohérente des données à travers des tables thématiques facilitant les analyses ultérieures. Les jeux de données considérés incluent des informations sur les stations d'échantillonnage, la biodiversité et les paramètres abiotiques, en plus des métadonnées et des références taxonomiques. La structure retenue permet une meilleure organisation et exploitation des informations issues de différentes campagnes d'échantillonnage. L'utilisation de tables relationnelles assure la traçabilité et l'interopérabilité des données, facilite les croisements entre paramètres biotiques et abiotiques, et améliore la reproductibilité des analyses. 
 

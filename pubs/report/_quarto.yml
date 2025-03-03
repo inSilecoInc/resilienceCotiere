@@ -3,8 +3,8 @@ project:
   output-dir: ../../docs
 
 book:
-  title: Résilience Côtière
-  subtitle: Rapport d'activité
+  title: Projet Résilience Côtière
+  subtitle: Utilisation des communautés benthiques comme indicateurs de l’état écologique des écosystèmes côtiers du Saint-Laurent
   author: 
     - name: David Beauchesne
       degrees: PhD
@@ -15,8 +15,11 @@ book:
     - 1_research_compendium.qmd
     - 2_data.qmd
     - 3_integration.qmd
+    - 4_indicateurs.qmd
+    - 5_structure_communautes.qmd
+    - 6_modelisation.qmd
 
-bibliography: [references.bib, ../../workspace/bibliographies/data.bib]
+bibliography: [ResilienceCotiere.bib, ../../workspace/bibliographies/data.bib]
 csl: frontiers.csl
 
 format:

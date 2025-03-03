@@ -5,29 +5,59 @@ title: "Introduction"
 
 # Introduction
 
-## Background 
+## Contexte et objectifs 
+
+Suivre le mouvement des côtes est essentiel si on souhaite conserver les écosystèmes côtiers. Cependant, bien que le suivi des composantes biotiques d’un écosystème soit tout autant important, très peu d'information concernant le benthos en zone côtière au Québec n’a été recensée jusqu’à présent. En effet, les efforts de caractérisation à grande échelle du benthos marin sont largement concentrés au large des côtes et se limitent à l’épifaune [@moritz2013; @isabel2021]. En zone côtière, malgré quelques initiatives notables, les projets sont habituellement très concentrés dans l’espace et conçus pour répondre à des objectifs spécifiques.
+
+Le but global du projet est d’investiguer la possibilité d’utiliser les communautés benthiques (endofaune, épifaune et algues) comme indicateurs de l’état écologique des écosystèmes côtiers du Saint-Laurent. La réalisation de ce mandat sera découpée en 2 objectifs:
+
+OBJECTIF 1. Développer une méthode d’évaluation de l’état écologique des écosystèmes côtiers du Saint-Laurent pour un temps donné, ainsi qu’une méthode de suivi temporel de cet état.
+
+OBJECTIF 2. Développer une méthode permettant la caractérisation à large échelle des communautés benthiques des écosystèmes côtiers du Saint-Laurent.
+
+## Site d'étude
+
+Dans le cadre du [projet Résilience côtière](https://ldgizc.uqar.ca/Web/projets/projet-resilience-cotiere#description-resilience) présenté au ministère de l’Environnement et de la Lutte contre les changements climatiques (MELCC) en 2021, une équipe sous la direction de Pascal Bernatchez du Laboratoire de dynamique et de gestion intégrée des zones côtières (LDGIZC, UQAR) a effectué un travail colossal de cartographie des types de côtes du Québec maritime [@Arsenault2021]. Grâce à l’interprétation d’images et de validations terrain, ils ont notamment caractérisé puis divisé les régions côtières allant de Québec jusqu’à la Basse-Côte-Nord (en incluant les Îles-de-la-Madeleine et la Baie-des-Chaleurs) en 12 grands types de côtes (@fig-site_etude). Ceux-ci sont définis en fonction du substrat et du profil côtier: terrasse de plage, terrasse de plage à base rocheuse, flèche littorale, tombolo/cordon littoral, meuble sans falaise, falaise meuble, falaise rocheuse, rocheuse sans falaise, versant rocheux, marais maritime, côte artificielle, côte dunaire [@Arsenault2021].
 
 
+Des caractérisations antérieures avaient été effectuées par le LDGIZC basées sur des données allant de 2001 à 2015. La nouvelle caractérisation s’est faite à partir des données disponibles depuis 2015.  Dans ce dernier rapport, on souligne l’importance d’utiliser les relevés les plus récents possible, notamment pour prendre en compte l’impact des tempêtes (comme celles aux îles de la Madeleine en novembre 2018 ou, plus récemment, à l’hiver 2023) et ainsi suivre les processus d’érosion et d’accumulation du sédiment côtier.
 
-## Objective & scope
+Le site d’étude proposé dans le cadre du présent mandat correspond à la rive cartographiée au cours du projet Résilience côtière (@fig-site_etude): sur la rive nord du Saint-Laurent, de Québec à Natashquan et sur la rive sud du Saint-Laurent, de Québec jusqu’en Gaspésie, incluant la baie des Chaleurs jusqu’à la MRC d’Avignon et les îles de la Madeleine.
 
+De plus, le tronçon fluvial de Québec jusqu’au lac Saint-Pierre, rives sud et nord, sera inclus, bien que non illustré sur la @fig-site_etude.
 
-### Specific tasks
+La zone intertidale, soit celle soumise au balancement des marées, sera la zone côtière considérée dans le cadre de ce projet.
 
+![Côtes cartographiées par l’équipe du LDGIZC dans le cadre du projet Résilience côtière. Figure tirée de @Arsenault2021 et site d’étude proposé dans le cadre de ce projet.](RC_site_etude.jpg){#fig-site_etude}
 
+## Livrables
 
-## Area of interest {#sec-aoi}
+Le présent rapport se concentre sur la descriptions des livrables suivants: 
 
-```{r aoiarea, echo = FALSE}
-# aoi <- sf::st_read("../../workspace/data/harvested/aoi-1.0.0/processed/aoi.gpkg", quiet = TRUE)
-# aoi_area <- aoi |>
-#   sf::st_make_valid() |>
-#   sf::st_area() |>
-#   units::set_units(km^2) |>
-#   sum() |>
-#   as.numeric() |>
-#   round(0)
-```
+### Livrable 1
 
+#### Acquisition, préparation, et intégration de bases de données relatives à la distribution de communautés en milieu côtier du Saint-Laurent
 
-## Notes & references
+Une recherche a été menée afin de répertorier et rassembler les données existantes sur la biodiversité benthique en zone côtière pour l’aire d’étude. Les différents chercheurs ont été contactés et, si nécessaire, des ententes de partage de données ont été négociées et mises en place. Toutes les données collectées ont été listées (@sec-data_sources) et organisées sous forme d’une base de données relationnelle (@sec-integration) afin de faciliter leur utilisation ultérieure. 
+
+### Livrable 2
+
+#### Calcul d'indicateurs de l'état des écosystèmes côtiers du Saint-Laurent
+
+Les données acquises ont permis d’identifier les écosystèmes appropriés pour les communautés benthiques (@sec-indicateurs)
+
+### Livrable 3
+
+#### Prédiction de la structure des communautés côtières au sein d'habitats côtiers
+
+Les données disponibles ont déterminé l’étendue du projet et la sélection des écosystèmes à analyser. Pour ces écosystèmes, des communautés distinctes ont été définies à l’aide d’une matrice de similarité de Bray-Curtis (Bray et Curtis 1957). L’identification des communautés typiques pour chaque écosystème a été réalisée par une analyse de redondance (Legendre et Legendre 1998), qui a permis d’évaluer la corrélation entre la présence d’une communauté et d’autres écosystèmes étudiés (voir @sec-structure_communautes).
+
+### Livrable 4
+
+#### Modélisation de la distribution des espèces et des communautés côtières du Saint-Laurent
+
+Lorsque les données le permettaient, la phase suivante a consisté à modéliser la probabilité de présence de chaque communauté en utilisant des modèles spatiaux. Les prédicteurs considérés ont inclus la température, la salinité et la composition des sédiments. Cette approche a fourni des estimations de la qualité de l’habitat pour chaque communauté sur l’ensemble de la zone d’étude (voir @sec-modelisation).
+
+Parallèlement, une modélisation similaire a été réalisée à l’échelle de l’espèce, permettant ainsi d’évaluer des indicateurs écologiques au niveau de l’espèce en complément de ceux évalués au niveau de la communauté. L’identification des communautés typiques pour chaque écosystème a facilité le suivi temporel et la gestion des territoires de grande envergure en réduisant la nécessité d’un échantillonnage exhaustif. Les prédictions obtenues ont contribué au développement d’indicateurs écologiques pertinents, renforçant ainsi la compréhension et la gestion des écosystèmes côtiers du Saint-Laurent.
+
+## Références

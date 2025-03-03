@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="David Beauchesne">
-<meta name="author" content="Kevin Cazelles">
 
-<title>Projet Résilience Côtière</title>
+<title>Projet Résilience Côtière - 7&nbsp; Modélisation des espèces et des communautés</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 1em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -52,7 +30,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./1_research_compendium.html" rel="next">
+<link href="./5_structure_communautes.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,7 +80,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./6_modelisation.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Modélisation des espèces et des communautés</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -129,7 +107,7 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
@@ -165,7 +143,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./6_modelisation.html" class="sidebar-item-text sidebar-link">
+  <a href="./6_modelisation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Modélisation des espèces et des communautés</span></span></a>
   </div>
 </li>
@@ -175,40 +153,20 @@ div.csl-indent {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul class="collapse">
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
-  <ul class="collapse">
-  <li><a href="#contexte-et-objectifs" id="toc-contexte-et-objectifs" class="nav-link" data-scroll-target="#contexte-et-objectifs"><span class="header-section-number">1.1</span> Contexte et objectifs</a></li>
-  <li><a href="#site-détude" id="toc-site-détude" class="nav-link" data-scroll-target="#site-détude"><span class="header-section-number">1.2</span> Site d’étude</a></li>
-  <li><a href="#livrables" id="toc-livrables" class="nav-link" data-scroll-target="#livrables"><span class="header-section-number">1.3</span> Livrables</a></li>
-  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">1.4</span> Références</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Projet Résilience Côtière</h1>
-<p class="subtitle lead">Utilisation des communautés benthiques comme indicateurs de l’état écologique des écosystèmes côtiers du Saint-Laurent</p>
+<h1 class="title"><span id="sec-modelisation" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Modélisation des espèces et des communautés</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-contents">
-             <p>David Beauchesne, PhD </p>
-             <p>Kevin Cazelles, PhD </p>
-          </div>
-  </div>
     
   
     
@@ -219,83 +177,8 @@ div.csl-indent {
 </header>
 
 
-<section id="introduction" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
-<section id="contexte-et-objectifs" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="contexte-et-objectifs"><span class="header-section-number">1.1</span> Contexte et objectifs</h2>
-<p>Suivre le mouvement des côtes est essentiel si on souhaite conserver les écosystèmes côtiers. Cependant, bien que le suivi des composantes biotiques d’un écosystème soit tout autant important, très peu d’information concernant le benthos en zone côtière au Québec n’a été recensée jusqu’à présent. En effet, les efforts de caractérisation à grande échelle du benthos marin sont largement concentrés au large des côtes et se limitent à l’épifaune <span class="citation" data-cites="moritz2013 isabel2021">(<a href="#ref-isabel2021" role="doc-biblioref">Isabel et al., 2021</a>; <a href="#ref-moritz2013" role="doc-biblioref">Moritz et al., 2013</a>)</span>. En zone côtière, malgré quelques initiatives notables, les projets sont habituellement très concentrés dans l’espace et conçus pour répondre à des objectifs spécifiques.</p>
-<p>Le but global du projet est d’investiguer la possibilité d’utiliser les communautés benthiques (endofaune, épifaune et algues) comme indicateurs de l’état écologique des écosystèmes côtiers du Saint-Laurent. La réalisation de ce mandat sera découpée en 2 objectifs:</p>
-<p>OBJECTIF 1. Développer une méthode d’évaluation de l’état écologique des écosystèmes côtiers du Saint-Laurent pour un temps donné, ainsi qu’une méthode de suivi temporel de cet état.</p>
-<p>OBJECTIF 2. Développer une méthode permettant la caractérisation à large échelle des communautés benthiques des écosystèmes côtiers du Saint-Laurent.</p>
-</section>
-<section id="site-détude" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="site-détude"><span class="header-section-number">1.2</span> Site d’étude</h2>
-<p>Dans le cadre du <a href="https://ldgizc.uqar.ca/Web/projets/projet-resilience-cotiere#description-resilience">projet Résilience côtière</a> présenté au ministère de l’Environnement et de la Lutte contre les changements climatiques (MELCC) en 2021, une équipe sous la direction de Pascal Bernatchez du Laboratoire de dynamique et de gestion intégrée des zones côtières (LDGIZC, UQAR) a effectué un travail colossal de cartographie des types de côtes du Québec maritime <span class="citation" data-cites="Arsenault2021">(<a href="#ref-Arsenault2021" role="doc-biblioref">Arsenault et al., 2021</a>)</span>. Grâce à l’interprétation d’images et de validations terrain, ils ont notamment caractérisé puis divisé les régions côtières allant de Québec jusqu’à la Basse-Côte-Nord (en incluant les Îles-de-la-Madeleine et la Baie-des-Chaleurs) en 12 grands types de côtes (<a href="#fig-site_etude" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>). Ceux-ci sont définis en fonction du substrat et du profil côtier: terrasse de plage, terrasse de plage à base rocheuse, flèche littorale, tombolo/cordon littoral, meuble sans falaise, falaise meuble, falaise rocheuse, rocheuse sans falaise, versant rocheux, marais maritime, côte artificielle, côte dunaire <span class="citation" data-cites="Arsenault2021">(<a href="#ref-Arsenault2021" role="doc-biblioref">Arsenault et al., 2021</a>)</span>.</p>
-<p>Des caractérisations antérieures avaient été effectuées par le LDGIZC basées sur des données allant de 2001 à 2015. La nouvelle caractérisation s’est faite à partir des données disponibles depuis 2015. Dans ce dernier rapport, on souligne l’importance d’utiliser les relevés les plus récents possible, notamment pour prendre en compte l’impact des tempêtes (comme celles aux îles de la Madeleine en novembre 2018 ou, plus récemment, à l’hiver 2023) et ainsi suivre les processus d’érosion et d’accumulation du sédiment côtier.</p>
-<p>Le site d’étude proposé dans le cadre du présent mandat correspond à la rive cartographiée au cours du projet Résilience côtière (<a href="#fig-site_etude" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>): sur la rive nord du Saint-Laurent, de Québec à Natashquan et sur la rive sud du Saint-Laurent, de Québec jusqu’en Gaspésie, incluant la baie des Chaleurs jusqu’à la MRC d’Avignon et les îles de la Madeleine.</p>
-<p>De plus, le tronçon fluvial de Québec jusqu’au lac Saint-Pierre, rives sud et nord, sera inclus, bien que non illustré sur la <a href="#fig-site_etude" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>.</p>
-<p>La zone intertidale, soit celle soumise au balancement des marées, sera la zone côtière considérée dans le cadre de ce projet.</p>
-<div id="fig-site_etude" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-site_etude-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="RC_site_etude.jpg" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-site_etude-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.1: Côtes cartographiées par l’équipe du LDGIZC dans le cadre du projet Résilience côtière. Figure tirée de <span class="citation" data-cites="Arsenault2021">Arsenault et al. (<a href="#ref-Arsenault2021" role="doc-biblioref">2021</a>)</span> et site d’étude proposé dans le cadre de ce projet.
-</figcaption>
-</figure>
-</div>
-</section>
-<section id="livrables" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="livrables"><span class="header-section-number">1.3</span> Livrables</h2>
-<p>Le présent rapport se concentre sur la descriptions des livrables suivants:</p>
-<section id="livrable-1" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="livrable-1"><span class="header-section-number">1.3.1</span> Livrable 1</h3>
-<section id="acquisition-préparation-et-intégration-de-bases-de-données-relatives-à-la-distribution-de-communautés-en-milieu-côtier-du-saint-laurent" class="level4" data-number="1.3.1.1">
-<h4 data-number="1.3.1.1" class="anchored" data-anchor-id="acquisition-préparation-et-intégration-de-bases-de-données-relatives-à-la-distribution-de-communautés-en-milieu-côtier-du-saint-laurent"><span class="header-section-number">1.3.1.1</span> Acquisition, préparation, et intégration de bases de données relatives à la distribution de communautés en milieu côtier du Saint-Laurent</h4>
-<p>Une recherche a été menée afin de répertorier et rassembler les données existantes sur la biodiversité benthique en zone côtière pour l’aire d’étude. Les différents chercheurs ont été contactés et, si nécessaire, des ententes de partage de données ont été négociées et mises en place. Toutes les données collectées ont été listées (<a href="2_data.html" class="quarto-xref"><span>Chapter 3</span></a>) et organisées sous forme d’une base de données relationnelle (<a href="3_integration.html" class="quarto-xref"><span>Chapter 4</span></a>) afin de faciliter leur utilisation ultérieure.</p>
-</section>
-</section>
-<section id="livrable-2" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="livrable-2"><span class="header-section-number">1.3.2</span> Livrable 2</h3>
-<section id="calcul-dindicateurs-de-létat-des-écosystèmes-côtiers-du-saint-laurent" class="level4" data-number="1.3.2.1">
-<h4 data-number="1.3.2.1" class="anchored" data-anchor-id="calcul-dindicateurs-de-létat-des-écosystèmes-côtiers-du-saint-laurent"><span class="header-section-number">1.3.2.1</span> Calcul d’indicateurs de l’état des écosystèmes côtiers du Saint-Laurent</h4>
-<p>Les données acquises ont permis d’identifier les écosystèmes appropriés pour les communautés benthiques (<a href="4_indicateurs.html" class="quarto-xref"><span>Chapter 5</span></a>)</p>
-</section>
-</section>
-<section id="livrable-3" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="livrable-3"><span class="header-section-number">1.3.3</span> Livrable 3</h3>
-<section id="prédiction-de-la-structure-des-communautés-côtières-au-sein-dhabitats-côtiers" class="level4" data-number="1.3.3.1">
-<h4 data-number="1.3.3.1" class="anchored" data-anchor-id="prédiction-de-la-structure-des-communautés-côtières-au-sein-dhabitats-côtiers"><span class="header-section-number">1.3.3.1</span> Prédiction de la structure des communautés côtières au sein d’habitats côtiers</h4>
-<p>Les données disponibles ont déterminé l’étendue du projet et la sélection des écosystèmes à analyser. Pour ces écosystèmes, des communautés distinctes ont été définies à l’aide d’une matrice de similarité de Bray-Curtis (Bray et Curtis 1957). L’identification des communautés typiques pour chaque écosystème a été réalisée par une analyse de redondance (Legendre et Legendre 1998), qui a permis d’évaluer la corrélation entre la présence d’une communauté et d’autres écosystèmes étudiés (voir <a href="5_structure_communautes.html" class="quarto-xref"><span>Chapter 6</span></a>).</p>
-</section>
-</section>
-<section id="livrable-4" class="level3" data-number="1.3.4">
-<h3 data-number="1.3.4" class="anchored" data-anchor-id="livrable-4"><span class="header-section-number">1.3.4</span> Livrable 4</h3>
-<section id="modélisation-de-la-distribution-des-espèces-et-des-communautés-côtières-du-saint-laurent" class="level4" data-number="1.3.4.1">
-<h4 data-number="1.3.4.1" class="anchored" data-anchor-id="modélisation-de-la-distribution-des-espèces-et-des-communautés-côtières-du-saint-laurent"><span class="header-section-number">1.3.4.1</span> Modélisation de la distribution des espèces et des communautés côtières du Saint-Laurent</h4>
-<p>Lorsque les données le permettaient, la phase suivante a consisté à modéliser la probabilité de présence de chaque communauté en utilisant des modèles spatiaux. Les prédicteurs considérés ont inclus la température, la salinité et la composition des sédiments. Cette approche a fourni des estimations de la qualité de l’habitat pour chaque communauté sur l’ensemble de la zone d’étude (voir <a href="6_modelisation.html" class="quarto-xref"><span>Chapter 7</span></a>).</p>
-<p>Parallèlement, une modélisation similaire a été réalisée à l’échelle de l’espèce, permettant ainsi d’évaluer des indicateurs écologiques au niveau de l’espèce en complément de ceux évalués au niveau de la communauté. L’identification des communautés typiques pour chaque écosystème a facilité le suivi temporel et la gestion des territoires de grande envergure en réduisant la nécessité d’un échantillonnage exhaustif. Les prédictions obtenues ont contribué au développement d’indicateurs écologiques pertinents, renforçant ainsi la compréhension et la gestion des écosystèmes côtiers du Saint-Laurent.</p>
-</section>
-</section>
-</section>
-<section id="références" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="références"><span class="header-section-number">1.4</span> Références</h2>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="1" data-line-spacing="5" role="list">
-<div id="ref-Arsenault2021" class="csl-entry" role="listitem">
-Arsenault, E., Drejza, S., Friesinger, S., Blain, M., Savoie-Ferron, F., Houde-Poirier, M., et al. (2021). Cartographie des types de côtes du <span>Québec</span> maritime – <span>Rapport</span> méthodologique. Chaire de recherche en géoscience côtière, Laboratoire de dynamique et de gestion intégrée des zones côtières, Université du Québec à Rimouski.
-</div>
-<div id="ref-isabel2021" class="csl-entry" role="listitem">
-Isabel, L., Beauchesne, D., McKindsey, C., and Archambault, P. (2021). Detection of <span>Ecological Thresholds</span> and <span>Selection</span> of <span>Indicator Taxa</span> for <span>Epibenthic Communities Exposed</span> to <span>Multiple Pressures</span>. <em>Front. Mar. Sci.</em> 8. doi:<a href="https://doi.org/10.3389/fmars.2021.720710">10.3389/fmars.2021.720710</a>.
-</div>
-<div id="ref-moritz2013" class="csl-entry" role="listitem">
-Moritz, C., Lévesque, M., Gravel, D., Vaz, S., Archambault, D., and Archambault, P. (2013). Modelling spatial distribution of epibenthic communities in the <span>Gulf</span> of <span>St</span>. <span>Lawrence</span> (<span>Canada</span>). <em>Journal of Sea Research</em> 78, 75–84. doi:<a href="https://doi.org/10.1016/j.seares.2012.10.009">10.1016/j.seares.2012.10.009</a>.
-</div>
-</div>
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -709,11 +592,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./5_structure_communautes.html" class="pagination-link" aria-label="Structure des communautés côtières">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Structure des communautés côtières</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./1_research_compendium.html" class="pagination-link" aria-label="Research compendium">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Research compendium</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
