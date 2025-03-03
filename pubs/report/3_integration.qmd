@@ -108,4 +108,4 @@ La normalisation des données taxonomiques est un travail de grande ampleur qui 
 
 Le schéma de la base de données est conçu pour garantir l'intégrité référentielle grâce aux contraintes de clés primaires et étrangères. Le diagramme entité-relation (ERD) visualise ces relations, assurant ainsi la cohérence et l’efficacité de la récupération des données.
 
-![Schéma de la base de données relationnelle sur la biodiversité benthique au sein du Saint-Laurent](../../workspace/data/analyzed/biodiversity_data-1.0.0/biodiversity_data.png")
+![Schéma de la base de données relationnelle sur la biodiversité benthique au sein du Saint-Laurent](https://github.com/inSilecoInc/resilienceCotiere/blob/main/workspace/data/analyzed/biodiversity_data-1.0.0/biodiversity_data.png?raw=true){width=50%}
