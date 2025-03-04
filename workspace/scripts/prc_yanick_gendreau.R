@@ -31,6 +31,7 @@ prc_yanick_gendreau <- function(input_files, output_path) {
         lon_fin = stringr::str_replace_all(lon_fin, ",", ".") |> as.numeric(),
         maree_basse_m = stringr::str_replace_all(maree_basse_m, ",", ".") |> as.numeric(),
         project_id = "Gendreau_integration",
+        project_name = "Intégration de données de Yanick Gendreau effectuée en 2016",
         event_date = dplyr::if_else(
           stringr::str_detect(date, "[a-zA-Z]"), # Detects month names
           readr::parse_date(as.character(date), format = "%d-%b-%y", locale = readr::locale("fr")),
@@ -51,7 +52,7 @@ prc_yanick_gendreau <- function(input_files, output_path) {
       ) |>
       dplyr::ungroup() |>
       dplyr::select(
-        project_id, event_id, event_date, longitude, latitude,
+        project_id, project_name, event_id, event_date, longitude, latitude,
         site_name = secteur,
         transect, forme_lintertidal, maree_basse_m, maree_basse_hr,
         heure_debut, distance_quadrat_m, substrat_quadrat, species,

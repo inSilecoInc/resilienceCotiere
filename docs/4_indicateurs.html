@@ -154,7 +154,13 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#tableau-des-indicateurs" id="toc-tableau-des-indicateurs" class="nav-link active" data-scroll-target="#tableau-des-indicateurs"><span class="header-section-number">5.1</span> Tableau des Indicateurs</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -178,8 +184,233 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="tableau-des-indicateurs" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="tableau-des-indicateurs"><span class="header-section-number">5.1</span> Tableau des Indicateurs</h2>
+<table class="table">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 15%">
+<col style="width: 26%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Milieu</th>
+<th>Acronyme</th>
+<th>Nom de l’indicateur</th>
+<th>Description</th>
+<th>Référence</th>
+<th>Packages/Fonctions nécessaires</th>
+<th>Format des données requises</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>M; D; T</td>
+<td>A</td>
+<td>Abondance (A)</td>
+<td>Quantifie les peuplements par le nombre d’espèces.</td>
+<td>Barnes et al., 1991</td>
+<td><code>vegan::specnumber</code></td>
+<td>Data frame avec espèces en colonnes, échantillons en lignes, et abondances.</td>
+</tr>
+<tr class="even">
+<td>M; D; T</td>
+<td>B</td>
+<td>Biomasse (B)</td>
+<td>Quantifie les peuplements par le poids des espèces.</td>
+<td>Barnes et al., 1991</td>
+<td>À implémenter</td>
+<td>Data frame avec poids des espèces et superficie échantillonnée.</td>
+</tr>
+<tr class="odd">
+<td>M; D; T</td>
+<td>DOM</td>
+<td>Dominance</td>
+<td>Quantifie la proportion des différentes espèces.</td>
+<td>Barnes et al., 1991</td>
+<td><code>vegan::diversity</code></td>
+<td>Abondances relatives des espèces par échantillon.</td>
+</tr>
+<tr class="even">
+<td>M; D; T</td>
+<td>S</td>
+<td>Richesse spécifique (S)</td>
+<td>Nombre d’espèces par unité de surface.</td>
+<td>Peet, 1974</td>
+<td><code>vegan::specnumber</code></td>
+<td>Nombre total ou moyen d’espèces par unité de surface.</td>
+</tr>
+<tr class="odd">
+<td>M; D; T</td>
+<td>J’</td>
+<td>Indice d’équitabilité de Piélou (J’)</td>
+<td>Mesure la répartition des individus entre les espèces.</td>
+<td>Piélou, 1966</td>
+<td><code>vegan::diversity</code></td>
+<td>Nombre total d’espèces et leur abondance.</td>
+</tr>
+<tr class="even">
+<td>M; D; T</td>
+<td>H’</td>
+<td>Indice de Shannon-Wiener (H’)</td>
+<td>Mesure la diversité en fonction du nombre d’espèces et de leur abondance.</td>
+<td>Gray et al., 1982</td>
+<td><code>vegan::diversity</code></td>
+<td>Proportion de chaque espèce.</td>
+</tr>
+<tr class="odd">
+<td>M; D; T</td>
+<td>SIMP</td>
+<td>Indice de Simpson (λ)</td>
+<td>Probabilité que deux individus aléatoires soient de la même espèce.</td>
+<td>Simpson, 1949</td>
+<td><code>vegan::diversity</code></td>
+<td>Proportions et effectifs des espèces.</td>
+</tr>
+<tr class="even">
+<td>M; D; T</td>
+<td>HILL</td>
+<td>Série d’indices de Hill</td>
+<td>Combine les indices de Simpson et de Shannon-Wiener.</td>
+<td>Hill, 1973</td>
+<td><code>vegan::hillR</code></td>
+<td>Proportion de chaque espèce.</td>
+</tr>
+<tr class="odd">
+<td>M; D; T</td>
+<td>HURB</td>
+<td>Méthode de raréfaction de Hurlbert</td>
+<td>Standardise le nombre d’espèces attendues par taille d’échantillon.</td>
+<td>Peet, 1974</td>
+<td><code>vegan::rarefy</code></td>
+<td>Effectifs des espèces par échantillon.</td>
+</tr>
+<tr class="even">
+<td>M; D; T</td>
+<td>BC</td>
+<td>Indice de dissimilarité Bray-Curtis</td>
+<td>Mesure la dissimilarité entre échantillons.</td>
+<td>Bray &amp; Curtis, 1957</td>
+<td><code>vegan::vegdist</code></td>
+<td>Abondance des espèces par échantillon.</td>
+</tr>
+<tr class="odd">
+<td>M; D; T</td>
+<td>TAXD</td>
+<td>Indice de diversité taxonomique</td>
+<td>Diversité basée sur la parenté taxonomique.</td>
+<td>Warwick &amp; Clarke, 1995</td>
+<td>À implémenter</td>
+<td>Relations taxonomiques des espèces.</td>
+</tr>
+<tr class="even">
+<td>M; D; T</td>
+<td>FR</td>
+<td>Indice de diversité fonctionnelle (FR)</td>
+<td>Mesure la richesse fonctionnelle.</td>
+<td>Mason et al., 2005</td>
+<td><code>FD::dbFD</code></td>
+<td>Matrice de traits biologiques et abondance.</td>
+</tr>
+<tr class="odd">
+<td>M; D; T</td>
+<td>FE</td>
+<td>Indice de diversité fonctionnelle (FE)</td>
+<td>Mesure l’uniformité fonctionnelle.</td>
+<td>Mason et al., 2005</td>
+<td><code>FD::dbFD</code></td>
+<td>Matrice de traits biologiques et abondance.</td>
+</tr>
+<tr class="even">
+<td>M; D; T</td>
+<td>FD</td>
+<td>Indice de diversité fonctionnelle (FD)</td>
+<td>Mesure la divergence fonctionnelle.</td>
+<td>Mason et al., 2005</td>
+<td><code>FD::dbFD</code></td>
+<td>Matrice de traits biologiques et abondance.</td>
+</tr>
+<tr class="odd">
+<td>M</td>
+<td>BENTIX</td>
+<td>Bentix</td>
+<td>Pondération des groupes selon leur réponse aux perturbations.</td>
+<td>Simboura &amp; Zenetos, 2002</td>
+<td>À implémenter</td>
+<td>Abondance relative des groupes.</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>ISBg/ISBm</td>
+<td>Indice de Suivi du Benthos (ISBg/ISBm)</td>
+<td>Évalue l’état écologique des cours d’eau.</td>
+<td>Pelletier &amp; Moisan, 2012</td>
+<td>À implémenter</td>
+<td>Nombre total de taxons, % EPT, % Chironomidae, etc.</td>
+</tr>
+<tr class="odd">
+<td>M; T</td>
+<td>BO2A</td>
+<td>Benthic Opportunistic Annelida Amphipod (BO2A)</td>
+<td>Évalue la proportion d’annélides opportunistes et d’amphipodes.</td>
+<td>Dauvin &amp; Ruellet, 2009</td>
+<td>À implémenter</td>
+<td>Présence/abondance d’annélides et amphipodes.</td>
+</tr>
+<tr class="even">
+<td>M; T</td>
+<td>BOPA</td>
+<td>Benthic Opportunistic Polychaetes/Amphipods Index (BOPA)</td>
+<td>Ratio polychètes/amphipodes pour évaluer l’écosystème.</td>
+<td>Dauvin &amp; Ruellet, 2007</td>
+<td>À implémenter</td>
+<td>Fréquence de polychètes et amphipodes opportunistes.</td>
+</tr>
+<tr class="odd">
+<td>M</td>
+<td>BRI</td>
+<td>Benthic Response Index (BRI)</td>
+<td>Indice de tolérance des espèces à la pollution.</td>
+<td>Smith et al., 2001</td>
+<td>À implémenter</td>
+<td>Abondance des espèces et valeur de tolérance.</td>
+</tr>
+<tr class="even">
+<td>M</td>
+<td>BQI</td>
+<td>Benthic Quality Index (BQI)</td>
+<td>Combine tolérance, abondance et diversité.</td>
+<td>Rosenberg et al., 2004</td>
+<td>À implémenter</td>
+<td>Sensibilité des espèces, abondance relative et effectif total.</td>
+</tr>
+<tr class="odd">
+<td>D</td>
+<td>ASPT</td>
+<td>Average Score Per Taxon (ASPT)</td>
+<td>Sensibilité des invertébrés à l’oxygène dissous.</td>
+<td>Armitage et al., 1983</td>
+<td><code>bio.infer::calc_biotic_index</code></td>
+<td>Score BMWP et nombre de taxons identifiés.</td>
+</tr>
+<tr class="even">
+<td>M; T</td>
+<td>FUCOID</td>
+<td>Fucoid presence</td>
+<td>Indicateur de pollution basé sur les algues fucoïdes.</td>
+<td>Wilkinson et al., 2007</td>
+<td>À implémenter</td>
+<td>Présence/absence et extension des algues dans l’estuaire.</td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

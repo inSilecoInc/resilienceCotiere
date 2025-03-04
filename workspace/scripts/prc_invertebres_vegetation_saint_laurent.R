@@ -14,7 +14,11 @@ prc_invertebres_vegetation_saint_laurent <- function(input_files, output_path) {
   # Events
   events <- input_files[grepl("evenements_cpd.csv", input_files)] |>
     vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
-    janitor::clean_names()
+    janitor::clean_names() |>
+    dplyr::mutate(
+      jeu_donnee_id = "dfo_egsl_inv_vege",
+      project_name = "Assemblages d’invertébrés et végétation aquatique submergée en milieux côtiers dans l’estuaire et le golfe du Saint-Laurent"
+    )
 
 
   # Occurrences

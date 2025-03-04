@@ -1,4 +1,32 @@
+---
+execute: 
+  echo: false
+  warning: false
+---
+
 # Intégration des données {#sec-integration}
+
+```{r}
+# Connect to relational database
+con <- DBI::dbConnect(
+  RSQLite::SQLite(),
+  "../../workspace/data/analyzed/biodiversity_data-1.0.0/biodiversity_data.sqlite"
+)
+
+# Function to create polygons from bounding box
+create_bbox_polygon <- function(lon_min, lon_max, lat_min, lat_max) {
+  coords <- matrix(c(
+    lon_min, lat_min, # Bottom-left
+    lon_min, lat_max, # Top-left
+    lon_max, lat_max, # Top-right
+    lon_max, lat_min, # Bottom-right
+    lon_min, lat_min # Close the polygon
+  ), ncol = 2, byrow = TRUE)
+
+  sf::st_polygon(list(coords))
+}
+```
+
 
 L'objectif de cette section est de définir une organisation cohérente des données à travers des tables thématiques facilitant les analyses ultérieures. Les jeux de données considérés incluent des informations sur les stations d'échantillonnage, la biodiversité et les paramètres abiotiques, en plus des métadonnées et des références taxonomiques. La structure retenue permet une meilleure organisation et exploitation des informations issues de différentes campagnes d'échantillonnage. L'utilisation de tables relationnelles assure la traçabilité et l'interopérabilité des données, facilite les croisements entre paramètres biotiques et abiotiques, et améliore la reproductibilité des analyses. 
 
@@ -15,18 +43,88 @@ L'intégration repose sur la création de plusieurs tables thématiques qui regr
 La table des métadonnées devra être élargie pour inclure des informations supplémentaires qui ne sont pas encore prises en compte. Toutefois, à ce stade du projet, la priorité est de poursuivre les prochaines étapes avant d’approfondir cet aspect. Une structuration plus détaillée des métadonnées sera envisagée dans une phase ultérieure afin d’améliorer la documentation et l’interopérabilité des données.
 :::
 
+La table `metadata` regroupe les informations essentielles sur les projets d’échantillonnage. Elle fournit un cadre structuré permettant de contextualiser les événements enregistrés, en décrivant notamment l’étendue spatiale et temporelle des campagnes de terrain.
+
+#### Extraction des données à partir de la table `events`
+
+Les métadonnées sont générées à partir des événements d’échantillonnage contenus dans la table `events`. Seules les informations essentielles sont conservées, notamment :
+
+- L’identifiant du projet (`project_id`) pour assurer la liaison entre les données d’échantillonnage et leurs sources respectives.
+- Le nom du projet (`project_name`).
+- Les coordonnées géographiques (`longitude`, `latitude`) afin de définir l’étendue spatiale du projet.
+- Les dates d’échantillonnage (`event_date_start`, `event_date_end`) permettant d’établir la période couverte par le projet.
+
+#### Calcul des Étendues Spatiales et Temporelles
+
+Une agrégation est effectuée pour résumer les informations spatiales et temporelles associées à chaque projet :
+
+- Longitude et latitude minimales et maximales, permettant de définir les limites géographiques du projet.
+- Date de début et de fin des événements d’échantillonnage, offrant une vue d’ensemble de la période couverte.
+- Nombre total d’événements enregistrés (`n_events`), facilitant l’analyse de la couverture échantillonnée.
+
+#### Table finale
+
+Les résultats sont consolidés en une table unique, où chaque ligne correspond à un projet distinct, avec ses coordonnées géographiques, sa période d’échantillonnage et son nombre total d’événements. 
+
+
 | **Nom du champ**        | **Type de données** | **Description** |
 |-------------------------|---------------------|-----------------|
-| `project_id`           | `chr` (texte)       | Identifiant unique du projet associé aux données |
-| `longitude_min`        | `num` (nombre)      | Coordonnée minimale en longitude du projet |
-| `longitude_max`        | `num` (nombre)      | Coordonnée maximale en longitude du projet |
-| `latitude_min`         | `num` (nombre)      | Coordonnée minimale en latitude du projet |
-| `latitude_max`         | `num` (nombre)      | Coordonnée maximale en latitude du projet |
+| `project_id`           | `chr` (texte)        | Identifiant unique du projet associé aux données |
+| `project_name`         | `chr` (texte)        | Nom du projet associé aux données |
+| `longitude_min`        | `num` (nombre)       | Coordonnée minimale en longitude du projet |
+| `longitude_max`        | `num` (nombre)       | Coordonnée maximale en longitude du projet |
+| `latitude_min`         | `num` (nombre)       | Coordonnée minimale en latitude du projet |
+| `latitude_max`         | `num` (nombre)       | Coordonnée maximale en latitude du projet |
 | `date_start`           | `POSIXct` (datetime) | Date et heure de début de la collecte des données |
 | `date_end`             | `POSIXct` (datetime) | Date et heure de fin de la collecte des données |
+| `n_event`              | `num` (nombre)       | Nombre d'évènements uniques d'échantillonnage du projet |
 
+<br/>
+
+```{r}
+# Data
+meta <- dplyr::tbl(con, "metadata") |>
+  dplyr::collect()
+
+# Table
+knitr::kable(meta)
+
+# # Map
+# meta <- meta |>
+#   dplyr::rowwise() |>
+#   dplyr::mutate(geometry = list(create_bbox_polygon(longitude_min, longitude_max, latitude_min, latitude_max))) |>
+#   dplyr::ungroup() |>
+#   sf::st_as_sf(crs = 4326)
+# mapview::mapview(meta)
+```
+
+<br/>
 
 ### Événements (`events`)
+
+::: {.callout-warning}
+## Filtre spatial
+
+Les données ont été filtrées pour inclure uniquement les événements situés dans l’Estuaire et le Golfe du Saint-Laurent, jusqu’à Montréal à l’ouest. Certains évènements d'échantillonnage ont potentiellement des coordonnées éronnées. L'application de ce filtre spatial pourrait ainsi retirer des évènements valides nécessitant une correction manuelle des coordonnées. Nous avons toutefois considéré que ce travail manuel devrait être effectué par les auteurs des bases de données intégrées, ou lors d'une phase ultérieure du projet actuel.
+:::
+
+La table `events` regroupe les informations relatives aux stations d'échantillonnage et aux campagnes de terrain provenant de plusieurs sources de données. Son élaboration repose sur un processus d’intégration standardisé visant à harmoniser les formats, à uniformiser les noms de colonnes et à structurer les informations temporelles.
+
+#### Harmonisation des colonnes
+
+Afin de garantir une cohérence entre les différentes sources, un processus de mappage des colonnes est appliqué. Celui-ci permet de renommer les champs en fonction d’une nomenclature standardisée, d’unifier les différentes appellations rencontrées dans les jeux de données et de s’assurer de la présence des colonnes essentielles, notamment l’identifiant du projet, l’identifiant de l’événement, les coordonnées géographiques et la date d’échantillonnage.
+
+#### Filtrage spatial pour l'Estuaire et le Golfe du Saint-Laurent
+
+Un filtrage géographique est appliqué afin de ne conserver que les événements situés dans la région de l’estuaire et du golfe du Saint-Laurent, en prenant Montréal comme limite occidentale. Ce filtre restreint les événements aux stations comprises entre une longitude de -74° et -57° et une latitude de 45° à 51°. Ce choix garantit que seules les données situées dans la zone d’intérêt sont incluses dans l’analyse.
+
+#### Traitement et formatage des données
+
+Une fois les colonnes harmonisées et les données filtrées, plusieurs transformations sont effectuées. Les colonnes sont sélectionnées selon un format standardisé, et les dates sont converties afin d’extraire les dates de début et de fin des événements, lorsque ces informations sont disponibles. 
+
+#### Table finale
+
+Les différentes sources d'événements sont combinées en une seule table afin d’obtenir un jeu de données unique et structuré. Ce processus permet d’obtenir un cadre cohérent et reproductible pour les analyses futures, tout en assurant une traçabilité complète des informations issues des divers projets. 
 
 
 | **Nom du champ**        | **Type de données** | **Description** |
@@ -52,6 +150,28 @@ La table des métadonnées devra être élargie pour inclure des informations su
 
 ### Paramètres abiotiques (`abiotic`)
 
+La table `abiotic` regroupe les informations sur les paramètres abiotiques et les caractéristiques environnementales associées aux événements d’échantillonnage. Ces données, issues de plusieurs sources, incluent des mesures physiques et chimiques permettant d’analyser les conditions environnementales des stations d’échantillonnage. 
+
+#### Harmonisation des colonnes  
+
+Une standardisation des colonnes est appliquée pour garantir la cohérence entre les différentes sources de données. Ce processus comprend :
+
+- Renommer des colonnes pour correspondre à une nomenclature unifiée (`event_id`, `measurement_type`, `measurement_value`, etc.).
+- Unifier les termes et formats issus de différentes bases de données (ex.`variable` devient `measurement_type`, `protocol` devient `measurement_method`, etc.).
+- Vérifier la présence des champs essentiels, notamment l’identifiant de l’événement (`event_id`), permettant d’assurer l’intégrité des correspondances entre les jeux de données.
+
+#### Filtrage et sélection des données  
+
+Une fois les colonnes harmonisées, plusieurs étapes de transformation sont réalisées :
+
+- Filtrage des événements : seuls les enregistrements associés à des événements d’échantillonnage présents dans la table `events` sont conservés, assurant ainsi la cohérence entre les bases de données.
+- Sélection des colonnes pertinentes afin de garantir une structure homogène.
+- Conversion des valeurs mesurées (`measurement_value`) en caractères pour éviter des erreurs de format et préserver l’intégrité des données lors de leur traitement ultérieur.
+
+#### Table finale  
+
+Les différentes sources d’informations abiotiques sont agrégées en une seule table à l’aide d’une concaténation structurée, garantissant l’uniformité des données au sein d'une base de données intégrée et standardisée.
+
 
 | **Nom du champ**               | **Type de données** | **Description** |
 |--------------------------------|---------------------|-----------------|
@@ -73,6 +193,32 @@ La table des métadonnées devra être élargie pour inclure des informations su
 La normalisation des données taxonomiques est un travail de grande ampleur qui devra être réalisé afin d’obtenir une liste unique d'espèces pour l’ensemble des projets et jeux de données intégrés. Cette tâche nécessitant un effort important, il a été décidé de ne pas approfondir cet aspect dans cette itération du projet. Par conséquent, lorsqu'on combine plusieurs projets pour des analyses intégrées, la biodiversité pourrait être surestimée en raison des variations de nomenclature des espèces, tandis que l’abondance, la biomasse et le recouvrement des espèces pourraient être sous-estimés faute de consolidation des données.
 :::
 
+La table `taxonomy` regroupe les informations taxonomiques des espèces identifiées dans la base de biodiversité. Son objectif est d’uniformiser les identifiants taxonomiques et de structurer les données de classification afin de faciliter l’analyse et la comparaison entre les différents jeux de données.
+
+#### Extraction et normalisation des données
+
+Les informations taxonomiques sont extraites de la table `biodiversity`, en sélectionnant uniquement les colonnes pertinentes à la classification des espèces :
+
+- Nom scientifique (`scientific_name`)
+- Identifiant taxonomique (`scientific_name_id`)
+- Base de données d’origine (`scientific_name_id_db`)
+- Hiérarchie taxonomique (`kingdom`, `phylum`, `class`, `order`, `family`, `genus`, `species`)
+
+#### Élimination des duplications
+
+Comme plusieurs sources de données peuvent contenir des informations redondantes ou incomplètes, un processus de déduplication est appliqué :
+
+- Priorisation des enregistrements avec un identifiant taxonomique (`scientific_name_id` non nul).
+- Sélection de la ligne avec le moins de valeurs manquantes (`NA`).
+- Ajout d’un identifiant unique (`species_id`) pour chaque espèce.
+
+
+#### Table finale
+
+Les données taxonomiques sont consolidées dans une table unique afin d’assurer une correspondance fiable entre les identifiants des espèces et leur classification taxonomique. Cette normalisation facilite l’analyse des espèces à travers l’ensemble des projets; il est toutefois important de noter qu'un travail plus important de consolidation des données taxonomiques devrait être effectué afin d'harmoniser convenablement les listes taxonomiques issues des différents projets considérés (voir avertissement plus haut).
+
+
+
 | **Nom du champ**           | **Type de données** | **Description** |
 |----------------------------|---------------------|-----------------|
 | `species_id`              | `chr` (texte)       | Identifiant unique de l'espèce |
@@ -91,6 +237,28 @@ La normalisation des données taxonomiques est un travail de grande ampleur qui 
 
 
 ### Biodiversité (`biodiversity`)
+
+La table `biodiversity` regroupe les données sur la biodiversité provenant de différentes sources. Elle permet de documenter la présence, l’abondance et la biomasse des espèces observées dans les divers projets d’échantillonnage. 
+
+#### Transformation et harmonisation des colonnes
+
+Une série de transformations est appliquée aux données brutes afin de garantir la cohérence entre les différentes sources :
+
+- Renommer les colonnes pour assurer une standardisation (`event_id`, `scientific_name`, `taxon_rank`, etc.).
+- Réorganisation des unités de mesure, notamment pour l'abondance (`n/m²`), la biomasse (`g/m²`) et la présence/absence d'espèces.
+- Conversion des données au format long, où chaque enregistrement correspond à un type de mesure (abondance, biomasse ou occurrence).
+
+#### Traitement Spécifique de Certaines Sources
+
+Les jeux de données issus des milieux marécageux et du projet *Inventaire Pointe-John* ont des formats distincts et nécessitent un prétraitement spécifique pour harmoniser leurs colonnes avec le reste de la base. Ces étapes incluent :
+
+- L’agrégation des valeurs d’abondance et de biomasse lorsque plusieurs mesures sont disponibles pour un même événement.
+- La conversion des statuts d’occurrence (`present/absent`) en valeurs binaires (`1` pour présence, `0` pour absence).
+
+#### Table finale
+
+Les différentes sources de biodiversité sont fusionnées en une table unique contenant les événements, les identifiants taxonomiques et les mesures associées aux espèces. 
+
 
 | **Nom du champ**         | **Type de données** | **Description** |
 |--------------------------|---------------------|-----------------|

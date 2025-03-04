@@ -20,7 +20,11 @@ prc_biome_recharge_io_herbier_benthos <- function(input_files, output_path) {
       vroom::vroom(x, progress = FALSE, show_col_types = FALSE) |>
         janitor::clean_names()
     }) |>
-    dplyr::bind_rows()
+    dplyr::bind_rows() |>
+    dplyr::mutate(
+      project_id = glue::glue("biome-{project_id}"),
+      project_name = "Inventaires de biodiversité benthique à l'Île d'Orléans"
+    )
 
   # Biodiversity
   stations <- input_files[grepl("io_biodiversity_2023_stations.csv", input_files)] |>
@@ -106,7 +110,11 @@ prc_biome_recharge_lagrave <- function(input_files, output_path) {
           janitor::clean_names() |>
           dplyr::mutate(date = lubridate::as_date(date, format = "%y-%m-%d"))
       }) |>
-      dplyr::bind_rows()
+      dplyr::bind_rows() |>
+      dplyr::mutate(
+        project_id = glue::glue("biome-{project_id}"),
+        project_name = "Suivi du site de recharge de plage de La Grave"
+      )
   })
 
   # Occurrences
@@ -154,7 +162,11 @@ prc_biome_recharge_pointe_aux_outardes <- function(input_files, output_path) {
             couverture_vegetation = as.numeric(couverture_vegetation)
           )
       }) |>
-      dplyr::bind_rows()
+      dplyr::bind_rows() |>
+      dplyr::mutate(
+        project_id = glue::glue("biome-{project_id}"),
+        project_name = "Suivi du site de recharge de plage de Pointe-aux-Outardes"
+      )
   })
 
   # Occurrences
@@ -191,7 +203,11 @@ prc_biome_recharge_maria <- function(input_files, output_path) {
         dplyr::rename_with(~ stringr::str_replace_all(.x, "\u00b5", "u")) |>
         janitor::clean_names()
     }) |>
-    dplyr::bind_rows()
+    dplyr::bind_rows() |>
+    dplyr::mutate(
+      project_id = glue::glue("biome-{project_id}"),
+      project_name = "Suivi du site de recharge de plage de Maria"
+    )
 
   # Export
   vroom::vroom_write(logbooks, file.path(output_path, "biome_recharge_maria_logbooks.csv"), delim = ",")
@@ -216,7 +232,11 @@ prc_biome_recharge_pointe_aux_loups <- function(input_files, output_path) {
       vroom::vroom(x, progress = FALSE, show_col_types = FALSE) |>
         janitor::clean_names()
     }) |>
-    dplyr::bind_rows()
+    dplyr::bind_rows() |>
+    dplyr::mutate(
+      project_id = glue::glue("biome-{project_id}"),
+      project_name = "Suivi du site de recharge de plage de Pointe aux Loups"
+    )
 
   # Occurrences
   biodiversity <- input_files[grepl("biodiversity", input_files)] |>
@@ -260,7 +280,11 @@ prc_biome_recharge_sainte_flavie <- function(input_files, output_path) {
           janitor::clean_names()
       }) |>
       dplyr::bind_rows() |>
-      dplyr::mutate(couverture_vegetation = as.numeric(couverture_vegetation))
+      dplyr::mutate(couverture_vegetation = as.numeric(couverture_vegetation)) |>
+      dplyr::mutate(
+        project_id = glue::glue("biome-{project_id}"),
+        project_name = "Suivi du site de recharge de plage de Sainte-Flavie"
+      )
   })
 
   # Export
@@ -286,7 +310,11 @@ prc_biome_recharge_sainte_luce <- function(input_files, output_path) {
           dplyr::rename_with(~ stringr::str_replace_all(.x, "\u00b5", "u")) |>
           janitor::clean_names()
       }) |>
-      dplyr::bind_rows()
+      dplyr::bind_rows() |>
+      dplyr::mutate(
+        project_id = glue::glue("biome-{project_id}"),
+        project_name = "Suivi du site de recharge de plage de Sainte-Luce"
+      )
   })
 
   # Export

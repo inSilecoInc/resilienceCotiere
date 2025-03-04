@@ -14,7 +14,8 @@ prc_inventaire_macroalgues_macroinvertebres <- function(input_files, output_path
   # Events
   events <- input_files[grepl("macroalgae-macroinvertebrates_event-data_2019.csv", input_files)] |>
     vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
-    janitor::clean_names()
+    janitor::clean_names() |>
+    dplyr::mutate(project_name = "Inventaire des macroalgues et des macroinvertébrés benthiques selon un gradient de stress")
 
   # Occurrences
   occurrences <- input_files[grepl("macroalgae-macroinvertebrates_occurrence-data_2019.csv", input_files)] |>

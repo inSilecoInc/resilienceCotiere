@@ -15,8 +15,8 @@ prc_inventaire_pointe_john <- function(input_files, output_path) {
   # Events
   events <- input_files[grepl("events_pointe_john.csv", input_files)] |>
     vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
-    janitor::clean_names()
-
+    janitor::clean_names() |>
+    dplyr::mutate(project_name = "Inventaires annuels de poissons et de macroinvertébrés benthiques de la zone médiolittorale près de la Pointe à John")
 
   # Occurrences
   occurrences <- input_files[grepl("occurrences_pointe_john.csv", input_files)] |>

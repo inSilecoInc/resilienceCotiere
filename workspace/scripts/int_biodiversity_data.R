@@ -79,7 +79,7 @@ int_biodiversity_data <- function(input_files, output_path) {
         "project_id", "dataset_id", "jeu_donnee_id"
       ),
       project_name = c(
-        "dataset_name", "nom_jeu_donnee", "study"
+        "project_name", "dataset_name", "nom_jeu_donnee"
       ),
       parent_event_id = c(
         "parent_event_id"
@@ -203,9 +203,16 @@ int_biodiversity_data <- function(input_files, output_path) {
     event_tables <- dplyr::bind_rows(
       event_tables,
       gendreau |>
-        dplyr::select(project_id, event_id, event_date_start = event_date, site_name, longitude, latitude) |>
+        dplyr::select(project_id, project_name, event_id, event_date_start = event_date, site_name, longitude, latitude) |>
         dplyr::mutate(event_date_end = event_date_start)
     )
+
+    # Add spatial filtering to remove erroneous data or data falling outside of the area of interest for this project
+    event_tables <- event_tables |>
+      dplyr::filter(
+        longitude >= -74 & longitude <= -57 &
+          latitude >= 45 & latitude <= 51
+      )
 
     return(event_tables)
   }
@@ -809,17 +816,18 @@ int_biodiversity_data <- function(input_files, output_path) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # Events table
   events <- event_tables |>
-    dplyr::select(-project_name) |>
     dplyr::distinct()
 
   # ----------------------------------------------------------------------
   # Abiotic table
   abiotic <- abiotic_tables |>
-    dplyr::distinct()
+    dplyr::distinct() |>
+    dplyr::filter(event_id %in% events$event_id)
 
   # ----------------------------------------------------------------------
   # Taxonomy
   taxonomy <- biodiversity_tables |>
+    dplyr::filter(event_id %in% events$event_id) |>
     dplyr::select(
       scientific_name, scientific_name_id, scientific_name_id_db, gbif_url,
       taxon_rank, kingdom, phylum, class, order, family, genus, species
@@ -853,20 +861,35 @@ int_biodiversity_data <- function(input_files, output_path) {
         dplyr::select(species_id, scientific_name),
       by = "scientific_name"
     ) |>
-    dplyr::select(event_id, species_id, measurement_type, measurement_value, measurement_unit)
+    dplyr::select(event_id, species_id, measurement_type, measurement_value, measurement_unit) |>
+    dplyr::filter(event_id %in% events$event_id)
 
   # ----------------------------------------------------------------------
   # Metadata
   metadata <- event_tables |>
-    dplyr::select(project_id, longitude, latitude, event_date_start, event_date_end) |>
-    dplyr::group_by(project_id) |>
+    dplyr::select(project_id, project_name, longitude, latitude, event_date_start, event_date_end) |>
+    dplyr::mutate(project_id = tolower(project_id)) |>
+    dplyr::group_by(project_id, project_name) |>
     dplyr::summarize(
       longitude_min = min(longitude, na.rm = TRUE),
       longitude_max = max(longitude, na.rm = TRUE),
       latitude_min = min(latitude, na.rm = TRUE),
       latitude_max = max(latitude, na.rm = TRUE),
-      date_start = min(event_date_start, na.rm = TRUE),
-      date_end = max(event_date_end, na.rm = TRUE)
+      date_start = dplyr::if_else(
+        all(is.na(event_date_start)),
+        NA,
+        min(event_date_start, na.rm = TRUE) |>
+          lubridate::as_date() |>
+          as.character()
+      ),
+      date_end = dplyr::if_else(
+        all(is.na(event_date_end)),
+        NA,
+        min(event_date_end, na.rm = TRUE) |>
+          lubridate::as_date() |>
+          as.character()
+      ),
+      n_events = dplyr::n()
     )
 
 

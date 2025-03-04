@@ -204,6 +204,29 @@ Bonifier métadonnées
 <p>La table des métadonnées devra être élargie pour inclure des informations supplémentaires qui ne sont pas encore prises en compte. Toutefois, à ce stade du projet, la priorité est de poursuivre les prochaines étapes avant d’approfondir cet aspect. Une structuration plus détaillée des métadonnées sera envisagée dans une phase ultérieure afin d’améliorer la documentation et l’interopérabilité des données.</p>
 </div>
 </div>
+<p>La table <code>metadata</code> regroupe les informations essentielles sur les projets d’échantillonnage. Elle fournit un cadre structuré permettant de contextualiser les événements enregistrés, en décrivant notamment l’étendue spatiale et temporelle des campagnes de terrain.</p>
+<section id="extraction-des-données-à-partir-de-la-table-events" class="level4" data-number="4.1.1.1">
+<h4 data-number="4.1.1.1" class="anchored" data-anchor-id="extraction-des-données-à-partir-de-la-table-events"><span class="header-section-number">4.1.1.1</span> Extraction des données à partir de la table <code>events</code></h4>
+<p>Les métadonnées sont générées à partir des événements d’échantillonnage contenus dans la table <code>events</code>. Seules les informations essentielles sont conservées, notamment :</p>
+<ul>
+<li>L’identifiant du projet (<code>project_id</code>) pour assurer la liaison entre les données d’échantillonnage et leurs sources respectives.</li>
+<li>Le nom du projet (<code>project_name</code>).</li>
+<li>Les coordonnées géographiques (<code>longitude</code>, <code>latitude</code>) afin de définir l’étendue spatiale du projet.</li>
+<li>Les dates d’échantillonnage (<code>event_date_start</code>, <code>event_date_end</code>) permettant d’établir la période couverte par le projet.</li>
+</ul>
+</section>
+<section id="calcul-des-étendues-spatiales-et-temporelles" class="level4" data-number="4.1.1.2">
+<h4 data-number="4.1.1.2" class="anchored" data-anchor-id="calcul-des-étendues-spatiales-et-temporelles"><span class="header-section-number">4.1.1.2</span> Calcul des Étendues Spatiales et Temporelles</h4>
+<p>Une agrégation est effectuée pour résumer les informations spatiales et temporelles associées à chaque projet :</p>
+<ul>
+<li>Longitude et latitude minimales et maximales, permettant de définir les limites géographiques du projet.</li>
+<li>Date de début et de fin des événements d’échantillonnage, offrant une vue d’ensemble de la période couverte.</li>
+<li>Nombre total d’événements enregistrés (<code>n_events</code>), facilitant l’analyse de la couverture échantillonnée.</li>
+</ul>
+</section>
+<section id="table-finale" class="level4" data-number="4.1.1.3">
+<h4 data-number="4.1.1.3" class="anchored" data-anchor-id="table-finale"><span class="header-section-number">4.1.1.3</span> Table finale</h4>
+<p>Les résultats sont consolidés en une table unique, où chaque ligne correspond à un projet distinct, avec ses coordonnées géographiques, sa période d’échantillonnage et son nombre total d’événements.</p>
 <table class="table">
 <colgroup>
 <col style="width: 39%">
@@ -224,40 +247,334 @@ Bonifier métadonnées
 <td>Identifiant unique du projet associé aux données</td>
 </tr>
 <tr class="even">
+<td><code>project_name</code></td>
+<td><code>chr</code> (texte)</td>
+<td>Nom du projet associé aux données</td>
+</tr>
+<tr class="odd">
 <td><code>longitude_min</code></td>
 <td><code>num</code> (nombre)</td>
 <td>Coordonnée minimale en longitude du projet</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>longitude_max</code></td>
 <td><code>num</code> (nombre)</td>
 <td>Coordonnée maximale en longitude du projet</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>latitude_min</code></td>
 <td><code>num</code> (nombre)</td>
 <td>Coordonnée minimale en latitude du projet</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>latitude_max</code></td>
 <td><code>num</code> (nombre)</td>
 <td>Coordonnée maximale en latitude du projet</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>date_start</code></td>
 <td><code>POSIXct</code> (datetime)</td>
 <td>Date et heure de début de la collecte des données</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>date_end</code></td>
 <td><code>POSIXct</code> (datetime)</td>
 <td>Date et heure de fin de la collecte des données</td>
 </tr>
+<tr class="odd">
+<td><code>n_event</code></td>
+<td><code>num</code> (nombre)</td>
+<td>Nombre d’évènements uniques d’échantillonnage du projet</td>
+</tr>
 </tbody>
 </table>
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 53%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 3%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">project_id</th>
+<th style="text-align: left;">project_name</th>
+<th style="text-align: right;">longitude_min</th>
+<th style="text-align: right;">longitude_max</th>
+<th style="text-align: right;">latitude_min</th>
+<th style="text-align: right;">latitude_max</th>
+<th style="text-align: left;">date_start</th>
+<th style="text-align: left;">date_end</th>
+<th style="text-align: right;">n_events</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">biome-io-benthos</td>
+<td style="text-align: left;">Inventaires de biodiversité benthique à l’Île d’Orléans</td>
+<td style="text-align: right;">-71.16458</td>
+<td style="text-align: right;">-71.08982</td>
+<td style="text-align: right;">46.84975</td>
+<td style="text-align: right;">46.90895</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">161</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">biome-lg</td>
+<td style="text-align: left;">Suivi du site de recharge de plage de La Grave</td>
+<td style="text-align: right;">-61.84908</td>
+<td style="text-align: right;">-61.83447</td>
+<td style="text-align: right;">47.23683</td>
+<td style="text-align: right;">47.23930</td>
+<td style="text-align: left;">2023-08-21</td>
+<td style="text-align: left;">2023-08-21</td>
+<td style="text-align: right;">723</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">biome-maria</td>
+<td style="text-align: left;">Suivi du site de recharge de plage de Maria</td>
+<td style="text-align: right;">-66.02403</td>
+<td style="text-align: right;">-65.93033</td>
+<td style="text-align: right;">48.14177</td>
+<td style="text-align: right;">48.20001</td>
+<td style="text-align: left;">2024-08-17</td>
+<td style="text-align: left;">2024-08-17</td>
+<td style="text-align: right;">392</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">biome-pal</td>
+<td style="text-align: left;">Suivi du site de recharge de plage de Pointe aux Loups</td>
+<td style="text-align: right;">-61.69509</td>
+<td style="text-align: right;">-61.64496</td>
+<td style="text-align: right;">47.54086</td>
+<td style="text-align: right;">47.57257</td>
+<td style="text-align: left;">2023-06-18</td>
+<td style="text-align: left;">2023-06-18</td>
+<td style="text-align: right;">388</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">biome-pao</td>
+<td style="text-align: left;">Suivi du site de recharge de plage de Pointe-aux-Outardes</td>
+<td style="text-align: right;">-68.45789</td>
+<td style="text-align: right;">-68.37121</td>
+<td style="text-align: right;">49.03987</td>
+<td style="text-align: right;">49.05998</td>
+<td style="text-align: left;">2023-06-02</td>
+<td style="text-align: left;">2023-06-02</td>
+<td style="text-align: right;">1070</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">biome-sf</td>
+<td style="text-align: left;">Suivi du site de recharge de plage de Sainte-Flavie</td>
+<td style="text-align: right;">-68.26945</td>
+<td style="text-align: right;">-68.19358</td>
+<td style="text-align: right;">48.59461</td>
+<td style="text-align: right;">48.62930</td>
+<td style="text-align: left;">2024-07-22</td>
+<td style="text-align: left;">2024-07-22</td>
+<td style="text-align: right;">201</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">biome-sl</td>
+<td style="text-align: left;">Suivi du site de recharge de plage de Sainte-Luce</td>
+<td style="text-align: right;">-68.41671</td>
+<td style="text-align: right;">-68.31927</td>
+<td style="text-align: right;">48.53545</td>
+<td style="text-align: right;">48.56932</td>
+<td style="text-align: left;">2024-07-22</td>
+<td style="text-align: left;">2024-07-22</td>
+<td style="text-align: right;">200</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cabin_aquatic_biomonitoring</td>
+<td style="text-align: left;">Base de données du Réseau canadien de biosurveillance aquatique (RCBA)</td>
+<td style="text-align: right;">-73.95361</td>
+<td style="text-align: right;">-57.00228</td>
+<td style="text-align: right;">45.00167</td>
+<td style="text-align: right;">50.64722</td>
+<td style="text-align: left;">1987-09-29</td>
+<td style="text-align: left;">1987-09-29</td>
+<td style="text-align: right;">2232</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cegep-sherbrooke_pointe-john</td>
+<td style="text-align: left;">Inventaires annuels de poissons et de macroinvertébrés benthiques de la zone médiolittorale près de la Pointe à John</td>
+<td style="text-align: right;">-69.55703</td>
+<td style="text-align: right;">-69.54604</td>
+<td style="text-align: right;">48.22383</td>
+<td style="text-align: right;">48.68781</td>
+<td style="text-align: left;">2021-07-10</td>
+<td style="text-align: left;">2021-07-10</td>
+<td style="text-align: right;">154</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">czip-rne-marais-bergeronnes</td>
+<td style="text-align: left;">Caractérisation du marais des Bergeronnes</td>
+<td style="text-align: right;">-69.59714</td>
+<td style="text-align: right;">-69.54767</td>
+<td style="text-align: right;">48.22651</td>
+<td style="text-align: right;">48.24625</td>
+<td style="text-align: left;">2021-06-25</td>
+<td style="text-align: left;">2021-06-25</td>
+<td style="text-align: right;">104</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">czip-rne-marais-bmv</td>
+<td style="text-align: left;">Caractérisation du marais de la Baie de Mille-Vaches</td>
+<td style="text-align: right;">-69.22476</td>
+<td style="text-align: right;">-69.13094</td>
+<td style="text-align: right;">48.56724</td>
+<td style="text-align: right;">48.58397</td>
+<td style="text-align: left;">2019-07-29</td>
+<td style="text-align: left;">2019-07-29</td>
+<td style="text-align: right;">120</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">czip-rne-marais-hickey</td>
+<td style="text-align: left;">Caractérisation du marais à Hickey</td>
+<td style="text-align: right;">-68.78537</td>
+<td style="text-align: right;">-68.75671</td>
+<td style="text-align: right;">48.88933</td>
+<td style="text-align: right;">48.90168</td>
+<td style="text-align: left;">2022-07-04</td>
+<td style="text-align: left;">2022-07-04</td>
+<td style="text-align: right;">80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">czip-rne-marais-pao</td>
+<td style="text-align: left;">Caractérisation du marais de la Pointe-aux-Outardes</td>
+<td style="text-align: right;">-68.46389</td>
+<td style="text-align: right;">-68.39394</td>
+<td style="text-align: right;">49.04725</td>
+<td style="text-align: right;">49.09817</td>
+<td style="text-align: left;">2020-06-18</td>
+<td style="text-align: left;">2020-06-18</td>
+<td style="text-align: right;">180</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">czip-rne-marais-pf</td>
+<td style="text-align: left;">Caractérisation du marais de la Pointe des Fortin</td>
+<td style="text-align: right;">-69.10319</td>
+<td style="text-align: right;">-69.08583</td>
+<td style="text-align: right;">48.63536</td>
+<td style="text-align: right;">48.64712</td>
+<td style="text-align: left;">2019-08-08</td>
+<td style="text-align: left;">2019-08-08</td>
+<td style="text-align: right;">73</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">czip-rne-marais-psm</td>
+<td style="text-align: left;">Caractérisation du marais salé de Portneuf-sur-Mer</td>
+<td style="text-align: right;">-69.12200</td>
+<td style="text-align: right;">-69.08538</td>
+<td style="text-align: right;">48.60000</td>
+<td style="text-align: right;">48.63497</td>
+<td style="text-align: left;">2017-07-30</td>
+<td style="text-align: left;">2017-07-30</td>
+<td style="text-align: right;">60</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dfo_egsl_inv_vege</td>
+<td style="text-align: left;">Assemblages d’invertébrés et végétation aquatique submergée en milieux côtiers dans l’estuaire et le golfe du Saint-Laurent</td>
+<td style="text-align: right;">-69.11068</td>
+<td style="text-align: right;">-66.40097</td>
+<td style="text-align: right;">48.55227</td>
+<td style="text-align: right;">50.11880</td>
+<td style="text-align: left;">2019-06-28</td>
+<td style="text-align: left;">2019-06-28</td>
+<td style="text-align: right;">1745</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dfo_qc_hypoosmo_uns</td>
+<td style="text-align: left;">Inventaire des macroalgues et des macroinvertébrés benthiques selon un gradient de stress</td>
+<td style="text-align: right;">-68.90144</td>
+<td style="text-align: right;">-67.78468</td>
+<td style="text-align: right;">48.82257</td>
+<td style="text-align: right;">49.31560</td>
+<td style="text-align: left;">2019-09-26</td>
+<td style="text-align: left;">2019-09-26</td>
+<td style="text-align: right;">151</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dfo_que_piei_bio</td>
+<td style="text-align: left;">Biodiversity of the Planning for Integrated Environmental Response Coastal Survey in the St.&nbsp;Lawrence Estuary and Gulf (2017-2021)</td>
+<td style="text-align: right;">-70.32351</td>
+<td style="text-align: right;">-61.82350</td>
+<td style="text-align: right;">47.41102</td>
+<td style="text-align: right;">50.29962</td>
+<td style="text-align: left;">2017-07-31</td>
+<td style="text-align: left;">2017-07-31</td>
+<td style="text-align: right;">2959</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gendreau_integration</td>
+<td style="text-align: left;">Intégration de données de Yanick Gendreau effectuée en 2016</td>
+<td style="text-align: right;">-66.97350</td>
+<td style="text-align: right;">-57.61100</td>
+<td style="text-align: right;">47.82225</td>
+<td style="text-align: right;">50.29250</td>
+<td style="text-align: left;">2016-08-27</td>
+<td style="text-align: left;">2016-08-27</td>
+<td style="text-align: right;">1968</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">inventaire_batture_alouettes</td>
+<td style="text-align: left;">Caractérisation du banc de laminaires de la Batture-aux-Alouettes</td>
+<td style="text-align: right;">-69.76380</td>
+<td style="text-align: right;">-69.65023</td>
+<td style="text-align: right;">48.02032</td>
+<td style="text-align: right;">48.10975</td>
+<td style="text-align: left;">2018-08-21</td>
+<td style="text-align: left;">2018-08-21</td>
+<td style="text-align: right;">487</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br></p>
+</section>
 </section>
 <section id="événements-events" class="level3" data-number="4.1.2">
 <h3 data-number="4.1.2" class="anchored" data-anchor-id="événements-events"><span class="header-section-number">4.1.2</span> Événements (<code>events</code>)</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Filtre spatial
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Les données ont été filtrées pour inclure uniquement les événements situés dans l’Estuaire et le Golfe du Saint-Laurent, jusqu’à Montréal à l’ouest. Certains évènements d’échantillonnage ont potentiellement des coordonnées éronnées. L’application de ce filtre spatial pourrait ainsi retirer des évènements valides nécessitant une correction manuelle des coordonnées. Nous avons toutefois considéré que ce travail manuel devrait être effectué par les auteurs des bases de données intégrées, ou lors d’une phase ultérieure du projet actuel.</p>
+</div>
+</div>
+<p>La table <code>events</code> regroupe les informations relatives aux stations d’échantillonnage et aux campagnes de terrain provenant de plusieurs sources de données. Son élaboration repose sur un processus d’intégration standardisé visant à harmoniser les formats, à uniformiser les noms de colonnes et à structurer les informations temporelles.</p>
+<section id="harmonisation-des-colonnes" class="level4" data-number="4.1.2.1">
+<h4 data-number="4.1.2.1" class="anchored" data-anchor-id="harmonisation-des-colonnes"><span class="header-section-number">4.1.2.1</span> Harmonisation des colonnes</h4>
+<p>Afin de garantir une cohérence entre les différentes sources, un processus de mappage des colonnes est appliqué. Celui-ci permet de renommer les champs en fonction d’une nomenclature standardisée, d’unifier les différentes appellations rencontrées dans les jeux de données et de s’assurer de la présence des colonnes essentielles, notamment l’identifiant du projet, l’identifiant de l’événement, les coordonnées géographiques et la date d’échantillonnage.</p>
+</section>
+<section id="filtrage-spatial-pour-lestuaire-et-le-golfe-du-saint-laurent" class="level4" data-number="4.1.2.2">
+<h4 data-number="4.1.2.2" class="anchored" data-anchor-id="filtrage-spatial-pour-lestuaire-et-le-golfe-du-saint-laurent"><span class="header-section-number">4.1.2.2</span> Filtrage spatial pour l’Estuaire et le Golfe du Saint-Laurent</h4>
+<p>Un filtrage géographique est appliqué afin de ne conserver que les événements situés dans la région de l’estuaire et du golfe du Saint-Laurent, en prenant Montréal comme limite occidentale. Ce filtre restreint les événements aux stations comprises entre une longitude de -74° et -57° et une latitude de 45° à 51°. Ce choix garantit que seules les données situées dans la zone d’intérêt sont incluses dans l’analyse.</p>
+</section>
+<section id="traitement-et-formatage-des-données" class="level4" data-number="4.1.2.3">
+<h4 data-number="4.1.2.3" class="anchored" data-anchor-id="traitement-et-formatage-des-données"><span class="header-section-number">4.1.2.3</span> Traitement et formatage des données</h4>
+<p>Une fois les colonnes harmonisées et les données filtrées, plusieurs transformations sont effectuées. Les colonnes sont sélectionnées selon un format standardisé, et les dates sont converties afin d’extraire les dates de début et de fin des événements, lorsque ces informations sont disponibles.</p>
+</section>
+<section id="table-finale-1" class="level4" data-number="4.1.2.4">
+<h4 data-number="4.1.2.4" class="anchored" data-anchor-id="table-finale-1"><span class="header-section-number">4.1.2.4</span> Table finale</h4>
+<p>Les différentes sources d’événements sont combinées en une seule table afin d’obtenir un jeu de données unique et structuré. Ce processus permet d’obtenir un cadre cohérent et reproductible pour les analyses futures, tout en assurant une traçabilité complète des informations issues des divers projets.</p>
 <table class="table">
 <colgroup>
 <col style="width: 39%">
@@ -360,8 +677,31 @@ Bonifier métadonnées
 </tbody>
 </table>
 </section>
+</section>
 <section id="paramètres-abiotiques-abiotic" class="level3" data-number="4.1.3">
 <h3 data-number="4.1.3" class="anchored" data-anchor-id="paramètres-abiotiques-abiotic"><span class="header-section-number">4.1.3</span> Paramètres abiotiques (<code>abiotic</code>)</h3>
+<p>La table <code>abiotic</code> regroupe les informations sur les paramètres abiotiques et les caractéristiques environnementales associées aux événements d’échantillonnage. Ces données, issues de plusieurs sources, incluent des mesures physiques et chimiques permettant d’analyser les conditions environnementales des stations d’échantillonnage.</p>
+<section id="harmonisation-des-colonnes-1" class="level4" data-number="4.1.3.1">
+<h4 data-number="4.1.3.1" class="anchored" data-anchor-id="harmonisation-des-colonnes-1"><span class="header-section-number">4.1.3.1</span> Harmonisation des colonnes</h4>
+<p>Une standardisation des colonnes est appliquée pour garantir la cohérence entre les différentes sources de données. Ce processus comprend :</p>
+<ul>
+<li>Renommer des colonnes pour correspondre à une nomenclature unifiée (<code>event_id</code>, <code>measurement_type</code>, <code>measurement_value</code>, etc.).</li>
+<li>Unifier les termes et formats issus de différentes bases de données (ex.<code>variable</code> devient <code>measurement_type</code>, <code>protocol</code> devient <code>measurement_method</code>, etc.).</li>
+<li>Vérifier la présence des champs essentiels, notamment l’identifiant de l’événement (<code>event_id</code>), permettant d’assurer l’intégrité des correspondances entre les jeux de données.</li>
+</ul>
+</section>
+<section id="filtrage-et-sélection-des-données" class="level4" data-number="4.1.3.2">
+<h4 data-number="4.1.3.2" class="anchored" data-anchor-id="filtrage-et-sélection-des-données"><span class="header-section-number">4.1.3.2</span> Filtrage et sélection des données</h4>
+<p>Une fois les colonnes harmonisées, plusieurs étapes de transformation sont réalisées :</p>
+<ul>
+<li>Filtrage des événements : seuls les enregistrements associés à des événements d’échantillonnage présents dans la table <code>events</code> sont conservés, assurant ainsi la cohérence entre les bases de données.</li>
+<li>Sélection des colonnes pertinentes afin de garantir une structure homogène.</li>
+<li>Conversion des valeurs mesurées (<code>measurement_value</code>) en caractères pour éviter des erreurs de format et préserver l’intégrité des données lors de leur traitement ultérieur.</li>
+</ul>
+</section>
+<section id="table-finale-2" class="level4" data-number="4.1.3.3">
+<h4 data-number="4.1.3.3" class="anchored" data-anchor-id="table-finale-2"><span class="header-section-number">4.1.3.3</span> Table finale</h4>
+<p>Les différentes sources d’informations abiotiques sont agrégées en une seule table à l’aide d’une concaténation structurée, garantissant l’uniformité des données au sein d’une base de données intégrée et standardisée.</p>
 <table class="table">
 <colgroup>
 <col style="width: 45%">
@@ -419,6 +759,7 @@ Bonifier métadonnées
 </tbody>
 </table>
 </section>
+</section>
 <section id="taxonomie-taxonomy" class="level3" data-number="4.1.4">
 <h3 data-number="4.1.4" class="anchored" data-anchor-id="taxonomie-taxonomy"><span class="header-section-number">4.1.4</span> Taxonomie (<code>taxonomy</code>)</h3>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -434,6 +775,29 @@ Consolider listes taxonomiques
 <p>La normalisation des données taxonomiques est un travail de grande ampleur qui devra être réalisé afin d’obtenir une liste unique d’espèces pour l’ensemble des projets et jeux de données intégrés. Cette tâche nécessitant un effort important, il a été décidé de ne pas approfondir cet aspect dans cette itération du projet. Par conséquent, lorsqu’on combine plusieurs projets pour des analyses intégrées, la biodiversité pourrait être surestimée en raison des variations de nomenclature des espèces, tandis que l’abondance, la biomasse et le recouvrement des espèces pourraient être sous-estimés faute de consolidation des données.</p>
 </div>
 </div>
+<p>La table <code>taxonomy</code> regroupe les informations taxonomiques des espèces identifiées dans la base de biodiversité. Son objectif est d’uniformiser les identifiants taxonomiques et de structurer les données de classification afin de faciliter l’analyse et la comparaison entre les différents jeux de données.</p>
+<section id="extraction-et-normalisation-des-données" class="level4" data-number="4.1.4.1">
+<h4 data-number="4.1.4.1" class="anchored" data-anchor-id="extraction-et-normalisation-des-données"><span class="header-section-number">4.1.4.1</span> Extraction et normalisation des données</h4>
+<p>Les informations taxonomiques sont extraites de la table <code>biodiversity</code>, en sélectionnant uniquement les colonnes pertinentes à la classification des espèces :</p>
+<ul>
+<li>Nom scientifique (<code>scientific_name</code>)</li>
+<li>Identifiant taxonomique (<code>scientific_name_id</code>)</li>
+<li>Base de données d’origine (<code>scientific_name_id_db</code>)</li>
+<li>Hiérarchie taxonomique (<code>kingdom</code>, <code>phylum</code>, <code>class</code>, <code>order</code>, <code>family</code>, <code>genus</code>, <code>species</code>)</li>
+</ul>
+</section>
+<section id="élimination-des-duplications" class="level4" data-number="4.1.4.2">
+<h4 data-number="4.1.4.2" class="anchored" data-anchor-id="élimination-des-duplications"><span class="header-section-number">4.1.4.2</span> Élimination des duplications</h4>
+<p>Comme plusieurs sources de données peuvent contenir des informations redondantes ou incomplètes, un processus de déduplication est appliqué :</p>
+<ul>
+<li>Priorisation des enregistrements avec un identifiant taxonomique (<code>scientific_name_id</code> non nul).</li>
+<li>Sélection de la ligne avec le moins de valeurs manquantes (<code>NA</code>).</li>
+<li>Ajout d’un identifiant unique (<code>species_id</code>) pour chaque espèce.</li>
+</ul>
+</section>
+<section id="table-finale-3" class="level4" data-number="4.1.4.3">
+<h4 data-number="4.1.4.3" class="anchored" data-anchor-id="table-finale-3"><span class="header-section-number">4.1.4.3</span> Table finale</h4>
+<p>Les données taxonomiques sont consolidées dans une table unique afin d’assurer une correspondance fiable entre les identifiants des espèces et leur classification taxonomique. Cette normalisation facilite l’analyse des espèces à travers l’ensemble des projets; il est toutefois important de noter qu’un travail plus important de consolidation des données taxonomiques devrait être effectué afin d’harmoniser convenablement les listes taxonomiques issues des différents projets considérés (voir avertissement plus haut).</p>
 <table class="table">
 <colgroup>
 <col style="width: 42%">
@@ -516,8 +880,30 @@ Consolider listes taxonomiques
 </tbody>
 </table>
 </section>
+</section>
 <section id="biodiversité-biodiversity" class="level3" data-number="4.1.5">
 <h3 data-number="4.1.5" class="anchored" data-anchor-id="biodiversité-biodiversity"><span class="header-section-number">4.1.5</span> Biodiversité (<code>biodiversity</code>)</h3>
+<p>La table <code>biodiversity</code> regroupe les données sur la biodiversité provenant de différentes sources. Elle permet de documenter la présence, l’abondance et la biomasse des espèces observées dans les divers projets d’échantillonnage.</p>
+<section id="transformation-et-harmonisation-des-colonnes" class="level4" data-number="4.1.5.1">
+<h4 data-number="4.1.5.1" class="anchored" data-anchor-id="transformation-et-harmonisation-des-colonnes"><span class="header-section-number">4.1.5.1</span> Transformation et harmonisation des colonnes</h4>
+<p>Une série de transformations est appliquée aux données brutes afin de garantir la cohérence entre les différentes sources :</p>
+<ul>
+<li>Renommer les colonnes pour assurer une standardisation (<code>event_id</code>, <code>scientific_name</code>, <code>taxon_rank</code>, etc.).</li>
+<li>Réorganisation des unités de mesure, notamment pour l’abondance (<code>n/m²</code>), la biomasse (<code>g/m²</code>) et la présence/absence d’espèces.</li>
+<li>Conversion des données au format long, où chaque enregistrement correspond à un type de mesure (abondance, biomasse ou occurrence).</li>
+</ul>
+</section>
+<section id="traitement-spécifique-de-certaines-sources" class="level4" data-number="4.1.5.2">
+<h4 data-number="4.1.5.2" class="anchored" data-anchor-id="traitement-spécifique-de-certaines-sources"><span class="header-section-number">4.1.5.2</span> Traitement Spécifique de Certaines Sources</h4>
+<p>Les jeux de données issus des milieux marécageux et du projet <em>Inventaire Pointe-John</em> ont des formats distincts et nécessitent un prétraitement spécifique pour harmoniser leurs colonnes avec le reste de la base. Ces étapes incluent :</p>
+<ul>
+<li>L’agrégation des valeurs d’abondance et de biomasse lorsque plusieurs mesures sont disponibles pour un même événement.</li>
+<li>La conversion des statuts d’occurrence (<code>present/absent</code>) en valeurs binaires (<code>1</code> pour présence, <code>0</code> pour absence).</li>
+</ul>
+</section>
+<section id="table-finale-4" class="level4" data-number="4.1.5.3">
+<h4 data-number="4.1.5.3" class="anchored" data-anchor-id="table-finale-4"><span class="header-section-number">4.1.5.3</span> Table finale</h4>
+<p>Les différentes sources de biodiversité sont fusionnées en une table unique contenant les événements, les identifiants taxonomiques et les mesures associées aux espèces.</p>
 <table class="table">
 <colgroup>
 <col style="width: 40%">
@@ -559,6 +945,7 @@ Consolider listes taxonomiques
 </tr>
 </tbody>
 </table>
+</section>
 </section>
 </section>
 <section id="schéma-de-la-base-de-données" class="level2" data-number="4.2">

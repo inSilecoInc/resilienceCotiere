@@ -111,6 +111,7 @@ prc_cabin_aquatic_biomonitoring <- function(input_files, output_path) {
         dplyr::bind_rows() |>
         dplyr::mutate(
           project_id = "cabin_aquatic_biomonitoring",
+          project_name = "Base de données du Réseau canadien de biosurveillance aquatique (RCBA)",
           event_id = glue::glue("{bassin}-{site}-{site_visit_id}"),
           event_date = as.Date(julian_day - 1, origin = paste0(year, "-01-01"))
         )

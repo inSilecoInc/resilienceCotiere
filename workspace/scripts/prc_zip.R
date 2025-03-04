@@ -22,7 +22,8 @@ prc_zip_inventaire_marais_baie_mille_vaches <- function(input_files, output_path
   # Events
   events <- input_files[grepl("zip-rne_marais-bmv_event_2019-2021.csv", input_files)] |>
     vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
-    janitor::clean_names()
+    janitor::clean_names() |>
+    dplyr::mutate(project_name = "Caractérisation du marais de la Baie de Mille-Vaches")
 
   # Occurrences
   occurrences <- input_files[grepl("zip-rne_marais-bmv_occurrence_2019-2021.csv", input_files)] |>
@@ -70,7 +71,8 @@ prc_zip_inventaire_marais_bergeronnes <- function(input_files, output_path) {
     vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
     janitor::clean_names() |>
     dplyr::mutate(profondeur_m = profondeur_cm / 100) |>
-    dplyr::select(-profondeur_cm)
+    dplyr::select(-profondeur_cm) |>
+    dplyr::mutate(project_name = "Caractérisation du marais des Bergeronnes")
 
   # Occurrences
   occurrences <- input_files[grepl("marais_bergeronnes_occurrences.csv", input_files)] |>
@@ -114,7 +116,16 @@ prc_zip_inventaire_marais_hickey <- function(input_files, output_path) {
   suppressMessages({
     events <- input_files[grepl("marais_hick_events.csv", input_files)] |>
       vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
-      janitor::clean_names()
+      janitor::clean_names() |>
+      dplyr::mutate(
+        temps_total_de_peche_13 = as.numeric(temps_total_de_peche_13),
+        project_name = "Caractérisation du marais à Hickey"
+      ) |>
+      dplyr::mutate(
+        temps_total_de_peche_13 = units::set_units(as.numeric(sub(" secs", "", temps_total_de_peche_13)), "s"),
+        temps_total_de_peche_13 = units::set_units(temps_total_de_peche_13, "hours", mode = "standard") |>
+          as.numeric()
+      )
   })
 
   # Occurrences
@@ -160,7 +171,13 @@ prc_zip_inventaire_marais_pointe_aux_outardes <- function(input_files, output_pa
   events <- input_files[grepl("marais_pao_events.csv", input_files)] |>
     vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
     janitor::clean_names() |>
-    dplyr::mutate(unite = "heure")
+    dplyr::mutate(unite = "heure") |>
+    dplyr::mutate(project_name = "Caractérisation du marais de la Pointe-aux-Outardes") |>
+    dplyr::mutate(
+      temps_total_peche_heure = units::set_units(as.numeric(sub(" secs", "", temps_total_peche_heure)), "s"),
+      temps_total_peche_heure = units::set_units(temps_total_peche_heure, "hours", mode = "standard") |>
+        as.numeric()
+    )
 
   # Occurrences
   suppressWarnings({
@@ -204,7 +221,8 @@ prc_zip_inventaire_marais_pointe_fortin <- function(input_files, output_path) {
   # Events
   events <- input_files[grepl("marais_pointe_fortin_events.csv", input_files)] |>
     vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
-    janitor::clean_names()
+    janitor::clean_names() |>
+    dplyr::mutate(project_name = "Caractérisation du marais de la Pointe des Fortin")
 
   # Occurrences
   occurrences <- input_files[grepl("marais_pointe_fortin_abiotic.csv", input_files)] |>
@@ -248,7 +266,8 @@ prc_zip_inventaire_marais_portneuf_sur_mer <- function(input_files, output_path)
   # Events
   events <- input_files[grepl("marais_portneuf_sur_mer_events.csv", input_files)] |>
     vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
-    janitor::clean_names()
+    janitor::clean_names() |>
+    dplyr::mutate(project_name = "Caractérisation du marais salé de Portneuf-sur-Mer")
 
   # Occurrences
   occurrences <- input_files[grepl("marais_portneuf_sur_mer_occurrences.csv", input_files)] |>

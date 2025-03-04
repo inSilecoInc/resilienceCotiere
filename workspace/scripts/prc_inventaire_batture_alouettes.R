@@ -17,6 +17,7 @@ prc_inventaire_batture_alouettes <- function(input_files, output_path) {
       janitor::clean_names() |>
       dplyr::mutate(
         project_id = "inventaire_batture_alouettes",
+        project_name = "Caractérisation du banc de laminaires de la Batture-aux-Alouettes",
         depth_value = as.numeric(depth_value),
         sample_size_value = as.numeric(sample_size_value)
       )
