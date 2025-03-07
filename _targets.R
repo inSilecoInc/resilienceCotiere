@@ -597,6 +597,62 @@ list(
             "workspace/data/harvested/zip_inventaire_marais_portneuf_sur_mer-1.0.0/processed/marais_portneuf_sur_mer_abundance.csv"
             )
         }, format = "file")),
+    list(tar_target(tg_ff15a782_7ee4_4327_a72c_a23d640d219b_abondance, 
+    {
+        ana_abondance(output_path = "workspace/data/analyzed/indicateurs-1.0.0", 
+            input_files = list(tg_93c9fa26_0a59_4d41_b037_2bad00e2b97c_integrate_biodiversity_data))
+        "workspace/data/analyzed/indicateurs-1.0.0/abondance.csv"
+    }, format = "file"), tar_target(tg_ff15a782_7ee4_4327_a72c_a23d640d219b_biomasse, 
+    {
+        ana_biomasse(output_path = "workspace/data/analyzed/indicateurs-1.0.0", 
+            input_files = list(tg_93c9fa26_0a59_4d41_b037_2bad00e2b97c_integrate_biodiversity_data))
+        "workspace/data/analyzed/indicateurs-1.0.0/biomasse.csv"
+    }, format = "file"), tar_target(tg_ff15a782_7ee4_4327_a72c_a23d640d219b_dominance, 
+    {
+        ana_dominance(output_path = "workspace/data/analyzed/indicateurs-1.0.0", 
+            input_files = list(tg_93c9fa26_0a59_4d41_b037_2bad00e2b97c_integrate_biodiversity_data))
+        "workspace/data/analyzed/indicateurs-1.0.0/dominance.csv"
+    }, format = "file"), tar_target(tg_ff15a782_7ee4_4327_a72c_a23d640d219b_richesse_specifique, 
+    {
+        ana_richesse_specifique(output_path = "workspace/data/analyzed/indicateurs-1.0.0", 
+            input_files = list(tg_93c9fa26_0a59_4d41_b037_2bad00e2b97c_integrate_biodiversity_data))
+        "workspace/data/analyzed/indicateurs-1.0.0/richesse_specifique.csv"
+    }, format = "file"), tar_target(tg_ff15a782_7ee4_4327_a72c_a23d640d219b_diversite_shannon, 
+    {
+        ana_diversite_shannon(output_path = "workspace/data/analyzed/indicateurs-1.0.0", 
+            input_files = list(tg_93c9fa26_0a59_4d41_b037_2bad00e2b97c_integrate_biodiversity_data))
+        "workspace/data/analyzed/indicateurs-1.0.0/diversite_shannon.csv"
+    }, format = "file"), tar_target(tg_ff15a782_7ee4_4327_a72c_a23d640d219b_equitabilite_pielou, 
+    {
+        ana_equitabilite_pielou(output_path = "workspace/data/analyzed/indicateurs-1.0.0", 
+            input_files = list(tg_93c9fa26_0a59_4d41_b037_2bad00e2b97c_integrate_biodiversity_data))
+        "workspace/data/analyzed/indicateurs-1.0.0/equitabilite_pielou.csv"
+    }, format = "file"), tar_target(tg_ff15a782_7ee4_4327_a72c_a23d640d219b_diversite_simpson, 
+    {
+        ana_diversite_simpson(output_path = "workspace/data/analyzed/indicateurs-1.0.0", 
+            input_files = list(tg_93c9fa26_0a59_4d41_b037_2bad00e2b97c_integrate_biodiversity_data))
+        "workspace/data/analyzed/indicateurs-1.0.0/diversite_simpson.csv"
+    }, format = "file"), tar_target(tg_ff15a782_7ee4_4327_a72c_a23d640d219b_indices_hill, 
+    {
+        ana_indices_hill(output_path = "workspace/data/analyzed/indicateurs-1.0.0", 
+            input_files = list(tg_93c9fa26_0a59_4d41_b037_2bad00e2b97c_integrate_biodiversity_data))
+        "workspace/data/analyzed/indicateurs-1.0.0/indices_hill.csv"
+    }, format = "file"), tar_target(tg_ff15a782_7ee4_4327_a72c_a23d640d219b_rarefaction_hurlbert, 
+    {
+        ana_rarefaction_hurlbert(output_path = "workspace/data/analyzed/indicateurs-1.0.0", 
+            input_files = list(tg_93c9fa26_0a59_4d41_b037_2bad00e2b97c_integrate_biodiversity_data))
+        "workspace/data/analyzed/indicateurs-1.0.0/rarefaction_hurlbert.csv"
+    }, format = "file"), tar_target(tg_ff15a782_7ee4_4327_a72c_a23d640d219b_dissimilarite_bray_curtis, 
+    {
+        ana_dissimilarite_bray_curtis(output_path = "workspace/data/analyzed/indicateurs-1.0.0", 
+            input_files = list(tg_93c9fa26_0a59_4d41_b037_2bad00e2b97c_integrate_biodiversity_data))
+        "workspace/data/analyzed/indicateurs-1.0.0/dissimilarite_bray_curtis.csv"
+    }, format = "file"), tar_target(tg_ff15a782_7ee4_4327_a72c_a23d640d219b_diversite_taxonomique, 
+    {
+        ana_diversite_taxonomique(output_path = "workspace/data/analyzed/indicateurs-1.0.0", 
+            input_files = list(tg_93c9fa26_0a59_4d41_b037_2bad00e2b97c_integrate_biodiversity_data))
+        "workspace/data/analyzed/indicateurs-1.0.0/diversite_taxonomique.csv"
+    }, format = "file")),
     list(tar_target(tg_93c9fa26_0a59_4d41_b037_2bad00e2b97c_integrate_biodiversity_data, 
     {
         int_biodiversity_data(output_path = "workspace/data/analyzed/biodiversity_data-1.0.0", 

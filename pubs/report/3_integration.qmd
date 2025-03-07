@@ -185,7 +185,7 @@ Les différentes sources d’informations abiotiques sont agrégées en une seul
 | `measurement_remarks`          | `chr` (texte)       | Remarques supplémentaires sur la mesure (si applicable) |
 
 
-### Taxonomie (`taxonomy`)
+### Taxonomie (`taxonomy`) {#sec-taxonomy}
 
 ::: {.callout-warning}
 ## Consolider listes taxonomiques

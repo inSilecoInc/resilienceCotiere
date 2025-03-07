@@ -1,0 +1,98 @@
+pipeline:
+  id: ff15a782-7ee4-4327-a72c-a23d640d219b
+  name: indicateurs
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-03-04 10:55:27
+  last_modified: 2025-03-04 10:55:27
+  description: 'Pipeline for analytical data: indicateurs'
+  analysis:
+    sources:
+    - name: abondance 
+      description: Quantifie les peuplements par le nombre d’espèces
+      script: ana_abondance
+      input_files:
+      - id: 93c9fa26-0a59-4d41-b037-2bad00e2b97c
+        name: integrate biodiversity data
+      output_files: 
+      - abondance.csv
+    - name: biomasse
+      description: Quantifie les peuplements par le poids des espèces.
+      script: ana_biomasse
+      input_files:
+      - id: 93c9fa26-0a59-4d41-b037-2bad00e2b97c
+        name: integrate biodiversity data
+      output_files: 
+      - biomasse.csv    
+    - name: dominance
+      description: Quantifie la proportion des différentes espèces.	
+      script: ana_dominance
+      input_files:
+      - id: 93c9fa26-0a59-4d41-b037-2bad00e2b97c
+        name: integrate biodiversity data
+      output_files: 
+      - dominance.csv
+    - name: richesse specifique
+      description: Nombre d’espèces par unité de surface.	
+      script: ana_richesse_specifique
+      input_files:
+      - id: 93c9fa26-0a59-4d41-b037-2bad00e2b97c
+        name: integrate biodiversity data
+      output_files: 
+      - richesse_specifique.csv
+    - name: diversite shannon
+      description: Mesure la diversité en fonction du nombre d’espèces et de leur abondance.
+      script: ana_diversite_shannon
+      input_files:
+      - id: 93c9fa26-0a59-4d41-b037-2bad00e2b97c
+        name: integrate biodiversity data
+      output_files: 
+      - diversite_shannon.csv
+    - name: equitabilite pielou
+      description: Mesure la répartition des individus entre les espèces.	
+      script: ana_equitabilite_pielou
+      input_files:
+      - id: 93c9fa26-0a59-4d41-b037-2bad00e2b97c
+        name: integrate biodiversity data
+      output_files: 
+      - equitabilite_pielou.csv
+    - name: diversite simpson
+      description: Probabilité que deux individus aléatoires soient de la même espèce.	
+      script: ana_diversite_simpson
+      input_files:
+      - id: 93c9fa26-0a59-4d41-b037-2bad00e2b97c
+        name: integrate biodiversity data
+      output_files: 
+      - diversite_simpson.csv
+    - name: indices hill
+      description: Proportion de chaque espèce; proportion et nombre d’individus de l’espèce i
+      script: ana_indices_hill
+      input_files:
+      - id: 93c9fa26-0a59-4d41-b037-2bad00e2b97c
+        name: integrate biodiversity data
+      output_files: 
+      - indices_hill.csv
+    - name: rarefaction hurlbert
+      description: Standardise le nombre d’espèces attendues par taille d’échantillon.	
+      script: ana_rarefaction_hurlbert
+      input_files: 
+      - id: 93c9fa26-0a59-4d41-b037-2bad00e2b97c
+        name: integrate biodiversity data
+      output_files: 
+      - rarefaction_hurlbert.csv
+    - name: dissimilarite_bray_curtis
+      description: Mesure la dissimilarité entre échantillons.	
+      script: ana_dissimilarite_bray_curtis
+      input_files: 
+      - id: 93c9fa26-0a59-4d41-b037-2bad00e2b97c
+        name: integrate biodiversity data
+      output_files: 
+      - dissimilarite_bray_curtis.csv
+    - name: diversite_taxonomique
+      description: Indice de diversité taxonomique.
+      script: ana_diversite_taxonomique
+      input_files: 
+      - id: 93c9fa26-0a59-4d41-b037-2bad00e2b97c
+        name: integrate biodiversity data
+      output_files: 
+      - diversite_taxonomique.csv

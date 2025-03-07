@@ -1,31 +1,527 @@
+
 # Indicateurs de biodiversité {#sec-indicateurs}
 
+:::{.callout-warning}
+## Références indicateurs
+
+Trouver et ajouter les références pour les indicateurs.
+:::
 
 
-## Tableau des Indicateurs
 
-| Milieu | Acronyme | Nom de l'indicateur                          | Description                                                                 | Référence                          | Packages/Fonctions nécessaires        | Format des données requises                                             |
-|--------|---------|---------------------------------------------|-----------------------------------------------------------------------------|-------------------------------------|--------------------------------------|-------------------------------------------------------------------------|
-| M; D; T | A       | Abondance (A)                           | Quantifie les peuplements par le nombre d'espèces.                         | Barnes et al., 1991                | `vegan::specnumber`                  | Data frame avec espèces en colonnes, échantillons en lignes, et abondances. |
-| M; D; T | B       | Biomasse (B)                            | Quantifie les peuplements par le poids des espèces.                         | Barnes et al., 1991                | À implémenter                        | Data frame avec poids des espèces et superficie échantillonnée.         |
-| M; D; T | DOM     | Dominance                               | Quantifie la proportion des différentes espèces.                            | Barnes et al., 1991                | `vegan::diversity`                   | Abondances relatives des espèces par échantillon.                       |
-| M; D; T | S       | Richesse spécifique (S)                 | Nombre d'espèces par unité de surface.                                      | Peet, 1974                         | `vegan::specnumber`                  | Nombre total ou moyen d'espèces par unité de surface.                   |
-| M; D; T | J'      | Indice d’équitabilité de Piélou (J’)     | Mesure la répartition des individus entre les espèces.                      | Piélou, 1966                       | `vegan::diversity`                   | Nombre total d'espèces et leur abondance.                               |
-| M; D; T | H'      | Indice de Shannon-Wiener (H’)           | Mesure la diversité en fonction du nombre d’espèces et de leur abondance.  | Gray et al., 1982                  | `vegan::diversity`                   | Proportion de chaque espèce.                                           |
-| M; D; T | SIMP    | Indice de Simpson (λ)                   | Probabilité que deux individus aléatoires soient de la même espèce.         | Simpson, 1949                      | `vegan::diversity`                   | Proportions et effectifs des espèces.                                  |
-| M; D; T | HILL    | Série d’indices de Hill                 | Combine les indices de Simpson et de Shannon-Wiener.                       | Hill, 1973                         | `vegan::hillR`                       | Proportion de chaque espèce.                                           |
-| M; D; T | HURB    | Méthode de raréfaction de Hurlbert       | Standardise le nombre d’espèces attendues par taille d’échantillon.        | Peet, 1974                         | `vegan::rarefy`                      | Effectifs des espèces par échantillon.                                 |
-| M; D; T | BC      | Indice de dissimilarité Bray-Curtis     | Mesure la dissimilarité entre échantillons.                                | Bray & Curtis, 1957                | `vegan::vegdist`                     | Abondance des espèces par échantillon.                                |
-| M; D; T | TAXD    | Indice de diversité taxonomique         | Diversité basée sur la parenté taxonomique.                               | Warwick & Clarke, 1995             | À implémenter                        | Relations taxonomiques des espèces.                                   |
-| M; D; T | FR      | Indice de diversité fonctionnelle (FR)  | Mesure la richesse fonctionnelle.                                         | Mason et al., 2005                 | `FD::dbFD`                           | Matrice de traits biologiques et abondance.                           |
-| M; D; T | FE      | Indice de diversité fonctionnelle (FE)  | Mesure l’uniformité fonctionnelle.                                       | Mason et al., 2005                 | `FD::dbFD`                           | Matrice de traits biologiques et abondance.                           |
-| M; D; T | FD      | Indice de diversité fonctionnelle (FD)  | Mesure la divergence fonctionnelle.                                      | Mason et al., 2005                 | `FD::dbFD`                           | Matrice de traits biologiques et abondance.                           |
-| M | BENTIX | Bentix                                     | Pondération des groupes selon leur réponse aux perturbations.            | Simboura & Zenetos, 2002           | À implémenter                        | Abondance relative des groupes.                                      |
-| D | ISBg/ISBm | Indice de Suivi du Benthos (ISBg/ISBm)    | Évalue l’état écologique des cours d’eau.                               | Pelletier & Moisan, 2012           | À implémenter                        | Nombre total de taxons, % EPT, % Chironomidae, etc.                   |
-| M; T | BO2A  | Benthic Opportunistic Annelida Amphipod (BO2A) | Évalue la proportion d’annélides opportunistes et d’amphipodes.   | Dauvin & Ruellet, 2009            | À implémenter                        | Présence/abondance d’annélides et amphipodes.                         |
-| M; T | BOPA  | Benthic Opportunistic Polychaetes/Amphipods Index (BOPA) | Ratio polychètes/amphipodes pour évaluer l’écosystème. | Dauvin & Ruellet, 2007            | À implémenter                        | Fréquence de polychètes et amphipodes opportunistes.                  |
-| M | BRI    | Benthic Response Index (BRI)              | Indice de tolérance des espèces à la pollution.                         | Smith et al., 2001                 | À implémenter                        | Abondance des espèces et valeur de tolérance.                        |
-| M | BQI    | Benthic Quality Index (BQI)               | Combine tolérance, abondance et diversité.                              | Rosenberg et al., 2004             | À implémenter                        | Sensibilité des espèces, abondance relative et effectif total.       |
-| D | ASPT   | Average Score Per Taxon (ASPT)            | Sensibilité des invertébrés à l’oxygène dissous.                        | Armitage et al., 1983              | `bio.infer::calc_biotic_index`       | Score BMWP et nombre de taxons identifiés.                           |
-| M; T | FUCOID | Fucoid presence                         | Indicateur de pollution basé sur les algues fucoïdes.                  | Wilkinson et al., 2007             | À implémenter                        | Présence/absence et extension des algues dans l’estuaire.            |
+::: {style="font-size: 80%;"}
+
+| Milieu | Acronyme | Nom de l'indicateur                          | Description                                                                 | Référence                          | Statut |
+|--------|---------|---------------------------------------------|-----------------------------------------------------------------------------|-------------------------------------|------------|
+| M; D; T | A       | Abondance (A)           | Quantifie les peuplements par le nombre d'espèces.                         | Barnes et al., 1991                | ✅ |
+| M; D; T | B       | Biomasse (B)                               | Quantifie les peuplements par le poids des espèces.                         | Barnes et al., 1991                | ✅ |
+| M; D; T | DOM     | Dominance                                  | Quantifie la proportion des différentes espèces.                            | Barnes et al., 1991                | ✅ |
+| M; D; T | S       | Richesse spécifique (S)                    | Nombre d'espèces par unité de surface.                                      | Peet, 1974                         | ✅ |
+| M; D; T | H'      | Indice de Shannon-Wiener (H’)              | Mesure la diversité en fonction du nombre d’espèces et de leur abondance.  | Gray et al., 1982                  | ✅ |
+| M; D; T | J'      | Indice d’équitabilité de Piélou (J’)       | Mesure la répartition des individus entre les espèces.                      | Piélou, 1966                       | ✅ |
+| M; D; T | SIMP    | Indice de Simpson (λ)                      | Probabilité que deux individus aléatoires soient de la même espèce.         | Simpson, 1949                      | ✅ |
+| M; D; T | HILL    | Série d’indices de Hill                    | Combine les indices de Simpson et de Shannon-Wiener.                       | Hill, 1973                         | ✅ |
+| M; D; T | HURB    | Méthode de raréfaction de Hurlbert         | Standardise le nombre d’espèces attendues par taille d’échantillon.        | Peet, 1974                         | ✅ |
+| M; D; T | TAXD    | Indice de diversité taxonomique            | Diversité basée sur la parenté taxonomique.                               | Warwick & Clarke, 1995             | ✅ |
+| M; D; T | BC      | Indice de dissimilarité Bray-Curtis        | Mesure la dissimilarité entre échantillons.                                | Bray & Curtis, 1957                | ✅ |
+| M; D; T | FR      | Indice de diversité fonctionnelle (FR)     | Mesure la richesse fonctionnelle.                                         | Mason et al., 2005                 | ❌ |
+| M; D; T | FE      | Indice de diversité fonctionnelle (FE)     | Mesure l’uniformité fonctionnelle.                                       | Mason et al., 2005                 | ❌ |
+| M; D; T | FD      | Indice de diversité fonctionnelle (FD)     | Mesure la divergence fonctionnelle.                                      | Mason et al., 2005                 | ❌ |
+| M | BENTIX | Bentix                                      | Pondération des groupes selon leur réponse aux perturbations.            | Simboura & Zenetos, 2002           | ❌ |
+| D | ISBg/ISBm | Indice de Suivi du Benthos (ISBg/ISBm)       | Évalue l’état écologique des cours d’eau.                               | Pelletier & Moisan, 2012           | ❌ |
+| M; T | BO2A  | Benthic Opportunistic Annelida Amphipod (BO2A) | Évalue la proportion d’annélides opportunistes et d’amphipodes.   | Dauvin & Ruellet, 2009            | ❌ |
+| M; T | BOPA  | Benthic Opportunistic Polychaetes/Amphipods Index (BOPA) | Ratio polychètes/amphipodes pour évaluer l’écosystème. | Dauvin & Ruellet, 2007 | ❌ |
+| M | BRI    | Benthic Response Index (BRI)                   | Indice de tolérance des espèces à la pollution.                         | Smith et al., 2001                 | ❌ |
+| M | BQI    | Benthic Quality Index (BQI)                    | Combine tolérance, abondance et diversité.                              | Rosenberg et al., 2004             | ❌ |
+| D | ASPT   | Average Score Per Taxon (ASPT)                 | Sensibilité des invertébrés à l’oxygène dissous.                        | Armitage et al., 1983              | ❌ |
+| M; T | FUCOID | Fucoid presence                              | Indicateur de pollution basé sur les algues fucoïdes.                  | Wilkinson et al., 2007             | ❌ |
+
+
+:::
+
+
+## Abondance (A) {#sec-abondance}
+
+L'abondance est un indicateur qui permet d'évaluer le nombre total d'individus appartenant à différentes espèces dans une unité d'échantillonnage donnée (Barnes et al. 1991). Contrairement à la richesse spécifique, qui se concentre uniquement sur la diversité des espèces, l'abondance mesure le total des individus recensés, indépendamment du nombre d'espèces présentes.
+
+L’abondance totale par événement est calculée comme suit :
+
+$$
+A_i = \sum_{s=1}^{S} X_{i,s}
+$$ {#eq-abundance}
+
+où :
+
+- $A_i$ = Nombre total d'individus recensés lors de l'événement $i$,
+- $S$ = Nombre total d'espèces présentes dans le jeu de données,
+- $X_{i,s}$ = Nombre total d'individus de l'espèce $s$ lors de l’événement $i$.
+
+
+Les étapes spécifiques de l’évaluation de l’indicateur sont les suivantes :
+
+1. Filtrage des données d’abondance  
+   - Les données sont extraites de la table `biodiversity` de la base de données relationnelle SQLite.
+   - Deux sous-ensembles sont créés :
+     - Données en `n` : Nombre total d’individus.
+     - Données en `n/m²` : Nombre d’individus par unité de surface.
+2. Agrégation par événement  
+   - Pour chaque événement d’échantillonnage (`event_id`), la somme des individus recensés pour toutes les espèces est calculée.
+3. Conversion en format matriciel  
+   - Une transformation des données est réalisée afin d’obtenir une table où :
+     - Les événements sont en lignes.
+     - Les espèces sont en colonnes.
+     - Les cellules contiennent l’abondance totale par espèce.
+4. Calcul de l’indicateur d’abondance séparément pour l'abondance (`n`) et la densité (`n/m²`) à partir de @eq-abundance.
+5. Export des résultats  
+   - Les résultats sont sauvegardés sous format `.csv` dans le fichier `abondance.csv`.
+
+## Biomasse (B)
+
+L'indice de biomasse permet d’évaluer la quantité totale de matière vivante dans un échantillon donné (Barnes et al. 1991) et est souvent exprimée en grammes de matière par unité de surface ($g/m^2$). Dans notre contexte, nous avons utilisé des données de biomasse standardisées en g/m² pour assurer la comparabilité entre échantillons. Ceci implique que les données de biomasse rapportées en $g$ uniquement n'ont pas été considérées pour le calcul de cet indicateur. L’indicateur de biomasse pour chaque événement est la somme de la biomasse de toutes les espèces présentes :
+     
+$$
+B_i = \sum_{s=1}^{S} X_{i,s}
+$$ {#eq-biomass}
+
+où :
+
+- $B_i$ est la biomasse totale lors de l’événement $i$.
+- $S$ est le nombre total d'espèces.
+- $X_{i,s}$ est la biomasse mesurée pour l’espèce $s$ lors de l'événement $i$.
+
+
+Les étapes spécifiques sont les suivantes :
+
+1. Filtrage des données de biomasse: 
+   - Les données sont extraites de la table `biodiversity` de la base de données relationnelle SQLite.
+   - Deux sous-ensembles sont créés :
+     - Données en `g` : Biomasse totale.
+     - Données en `n/m²` : Biomasse totale par unité de surface.
+2. Agrégation par événement et espèce: pour chaque événement d’échantillonnage (`event_id`), la biomasse totale par espèce (`species_id`) a été calculée.
+3. Conversion en format matriciel :  
+   Une transformation des données a été réalisée afin d’obtenir une table où :
+   - Les événements sont en lignes.
+   - Les espèces sont en colonnes.
+   - Les cellules contiennent la biomasse totale par espèce.
+4. Calcul de l’indicateur d’abondance séparément pour la biomasse (`g`) et la biomasse par unité de surface (`g/m²`) à partir de @eq-biomass.
+5. Export des résultats: les valeurs calculées sont exportées sous format `.csv` au sein du fichier `biomasse.csv`.
+
+## Dominance (DOM)
+
+L’indice de dominance permet d’évaluer la répartition des espèces au sein d’un échantillon et de quantifier la mesure dans laquelle certaines espèces dominent la communauté (Barnes et al. 1991). Une valeur élevée indique qu’une ou quelques espèces sont très dominantes, tandis qu’une valeur plus faible traduit une répartition plus équilibrée des abondances entre espèces. Cet indicateur est basé sur l’indice de dominance de Simpson, qui est défini comme suit :
+
+$$
+D_i = \sum_{s=1}^{S} p_{i,s}^2
+$$ {#eq-dominance}
+
+où :
+
+- $D_i$ est l’indice de dominance pour l’événement $i$.
+- $S$ est le nombre total d'espèces dans l’événement $i$.
+- $p_{i,s}$ est l’abondance relative de l’espèce $s$ dans l’événement $i$, définie comme :
+
+$$
+p_{i,s} = \frac{X_{i,s}}{\sum_{s=1}^{S} X_{i,s}}
+$$
+
+avec $X_{i,s}$ étant l’abondance de l’espèce $s$ lors de l’événement $i$.
+
+L’indice varie entre 0 et 1, où 1 indique une dominance totale d’une seule espèce et 0 une distribution égale entre les espèces.
+
+Les étapes spécifiques sont les suivantes :
+
+1. Filtrage des données d’abondance  
+   - Les données sont extraites de la table `biodiversity` de la base de données relationnelle SQLite.
+   - Deux sous-ensembles sont créés :
+     - Données en `n` : Nombre total d’individus.
+     - Données en `n/m²` : Nombre d’individus par unité de surface.
+2. Agrégation par événement et espèce :  
+   Pour chaque événement d’échantillonnage (`event_id`), l’abondance totale par espèce (`species_id`) a été calculée.
+3. Conversion en format matriciel :  
+   Une transformation des données a été réalisée afin d’obtenir une table où :
+   - Les événements sont en lignes.
+   - Les espèces sont en colonnes.
+   - Les cellules contiennent l’abondance totale par espèce.
+4. Calcul des abondances relatives :  
+   L’abondance de chaque espèce a été divisée par l’abondance totale de l’événement pour obtenir sa proportion relative.
+5. Calcul de l’indice de dominance :  
+   L’indice de Simpson a été calculé en utilisant `vegan::diversity(index = "simpson")` du package R `vegan` [@vegan2024].
+6. Export des résultats: les valeurs calculées sont exportées sous format `.csv` au sein du fichier `dominance.csv`.
+
+
+## Richesse Spécifique (S)
+
+L’indice de richesse spécifique (S) représente le nombre total d’espèces présentes dans un échantillon donné (Peet, 1974). La richesse spécifique considère uniquement la présence d’espèces, sans pondération par leur quantité. L’indicateur de richesse spécifique pour chaque événement est calculé comme suit :
+
+$$
+S_i = \sum_{s=1}^{S} I(X_{i,s} > 0)
+$$ {#eq-richesse}
+
+où :
+
+- $S_i$ est le nombre total d'espèces recensées lors de l'événement $i$.
+- $S$ est le nombre total d'espèces dans l’ensemble des données.
+- $X_{i,s}$ est l’abondance mesurée de l’espèce $s$ lors de l’événement $i$.
+- $I(X_{i,s} > 0)$ est une fonction indicatrice prenant la valeur 1 si l’espèce est présente et 0 sinon.
+
+Les étapes spécifiques du traitement des données sont les suivantes :
+
+1. Filtrage des données d’abondance  
+   - Les données sont extraites de la table `biodiversity` de la base de données relationnelle SQLite.
+   - Deux sous-ensembles sont créés :
+     - Données en `n` : Nombre total d’individus.
+     - Données en `n/m²` : Nombre d’individus par unité de surface.
+2. Agrégation par événement et espèce :
+   Pour chaque événement d’échantillonnage (`event_id`), la somme des abondances par espèce (`species_id`) a été calculée.
+3. Conversion en format matriciel :
+   Une transformation des données a été réalisée afin d’obtenir une table où :
+     - Les événements sont en lignes.
+     - Les espèces sont en colonnes.
+     - Les cellules contiennent l’abondance totale par espèce.
+4. Calcul de la richesse spécifique :
+   L’indicateur de richesse spécifique a été calculé en appliquant `vegan::specnumber()` du package R `vegan` [@vegan2024], qui compte le nombre total d’espèces présentes par événement.
+5. Export des résultats :
+   Les valeurs calculées sont exportées sous format `.csv` (`richesse_specifique.csv`).
+
+
+## Diversité de Shannon-Wiener (H’) {#sec-shannon}
+
+L’indice de Shannon-Wiener (H') est une mesure de la diversité des espèces qui prend en compte la richesse spécifique et l’équitabilité des abondances (Gray et al. 1982). Contrairement aux indices purement quantitatifs, il pondère la présence d’espèces par leur abondance relative, offrant ainsi une vision plus équilibrée de la structure des communautés. L’indice est défini comme suit :
+
+$$
+H'_i = -\sum_{s=1}^{S_i} p_{i,s} \ln(p_{i,s})
+$$ {#eq-shannon}
+
+où :
+
+- $H'_i$ est l’indice de diversité de Shannon-Wiener pour l’événement $i$.
+- $S_i$ est le nombre total d'espèces dans l’échantillon $i$.
+- $p_{i,s}$ est l’abondance relative de l’espèce $s$ :
+
+  $$
+  p_{i,s} = \frac{X_{i,s}}{\sum_{s=1}^{S_i} X_{i,s}}
+  $$
+
+- $X_{i,s}$ est l’abondance de l’espèce $s$ lors de l’événement $i$.
+
+L’indice de Shannon varie généralement entre 0 et 5 :
+
+- Valeurs faibles ($H' \approx 0$) : Peu d’espèces dominantes, faible diversité.
+- Valeurs élevées ($H' \gg 2$) : Répartition plus homogène des espèces.
+
+Les étapes spécifiques du traitement des données sont les suivantes :
+
+1. Filtrage des données d’abondance  
+   - Les données sont extraites de la table `biodiversity` de la base de données relationnelle SQLite.
+   - Deux sous-ensembles sont créés :
+     - Données en `n` : Nombre total d’individus.
+     - Données en `n/m²` : Nombre d’individus par unité de surface.
+2. Agrégation par événement et espèce  
+   - Pour chaque événement d’échantillonnage (`event_id`), la somme des abondances par espèce (`species_id`) a été calculée.
+3. Conversion en format matriciel  
+   - Une transformation des données a été réalisée afin d’obtenir une table où :
+     - Les événements sont en lignes.
+     - Les espèces sont en colonnes.
+     - Les cellules contiennent l’abondance totale par espèce.
+4. Calcul de l’indice de Shannon (`H'`)  
+   - L’indice a été calculé en appliquant `vegan::diversity(index = "shannon")` du package R `vegan` [@vegan2024].
+5. Export des résultats  
+   - Les valeurs calculées sont exportées sous format `.csv` (`diversite_shannon.csv`).
+
+
+
+## Équitabilité de Piélou (J') {#sec-pielou}
+
+L’indice d’équitabilité de Piélou (J') est une mesure de l’uniformité de la répartition des individus entre les espèces d’un échantillon (Piélou, 1966). Il permet d’évaluer dans quelle mesure les espèces coexistent de manière équilibrée ou si certaines dominent fortement la communauté. Une valeur élevée indique une distribution équitable des abondances, tandis qu’une valeur faible signale la prédominance de quelques espèces sur les autres.
+
+Cet indice est calculé à partir de l’indice de diversité de Shannon (H') et du nombre total d’espèces (S) dans l’échantillon :
+
+$$
+J'_i = \frac{H'_i}{\ln(S_i)}
+$$ {#eq-pielou}
+
+où :
+
+- $J'_i$ est l’indice d’équitabilité de Piélou pour l’événement $i$.
+- $H'_i$ est l’indice de diversité de Shannon-Wiener (voir @sec-shannon).
+- $S_i$ est le nombre total d'espèces dans l’événement $i$.
+- $p_{i,s}$ est l’abondance relative de l’espèce $s$ dans l’échantillon :
+
+  $$
+  p_{i,s} = \frac{X_{i,s}}{\sum_{s=1}^{S_i} X_{i,s}}
+  $$
+
+L’indice de Piélou varie entre 0 et 1 :
+
+- $J' \approx 1$ → Toutes les espèces ont une abondance similaire (équitabilité élevée).
+- $J' \approx 0$ → Une ou quelques espèces dominent fortement (équitabilité faible).
+
+Les étapes spécifiques du traitement des données sont les suivantes :
+
+1. Filtrage des données d’abondance  
+   - Les données sont extraites de la table `biodiversity` de la base de données relationnelle SQLite.
+   - Deux sous-ensembles sont créés :
+     - Données en `n` : Nombre total d’individus.
+     - Données en `n/m²` : Nombre d’individus par unité de surface.
+2. Agrégation par événement et espèce  
+   - Pour chaque événement d’échantillonnage (`event_id`), la somme des abondances par espèce (`species_id`) a été calculée.
+3. Conversion en format matriciel  
+   - Une transformation des données a été réalisée afin d’obtenir une table où :
+     - Les événements sont en lignes.
+     - Les espèces sont en colonnes.
+     - Les cellules contiennent l’abondance totale par espèce.
+4. Calcul de l’indice de Shannon (`H'`)  
+   - L’indice de Shannon a été calculé en appliquant `vegan::diversity(index = "shannon")`.
+5. Calcul de la richesse spécifique (`S`)  
+   - La richesse spécifique a été déterminée avec `vegan::specnumber()`, qui compte le nombre total d’espèces présentes par événement.
+6. Calcul de l’indice d’équitabilité de Piélou (`J'`)  
+   - L’équation $J'_i = H'_i / \ln(S_i)$ a été appliquée.
+   - Pour éviter la division par zéro, si $S = 1$, $J'$ a été attribué à `NA`.
+7. Export des résultats  
+   - Les valeurs calculées sont exportées sous format `.csv` (`equitabilite_pielou.csv`).
+
+
+## Diversité de Simpson (λ)
+
+L’indice de Simpson (λ) est une mesure de la dominance qui reflète la probabilité que deux individus sélectionnés au hasard dans un échantillon appartiennent à la même espèce (Simpson, 1949). Contrairement à l’indice de Shannon qui mesure l’information contenue dans une communauté, l’indice de Simpson met davantage l’accent sur les espèces dominantes.
+
+L’indice est défini comme suit :
+
+$$
+\lambda_i = \sum_{s=1}^{S_i} p_{i,s}^2
+$$ {#eq-simpson}
+
+où :
+
+- $ \lambda_i $ est l’indice de Simpson pour l’événement $i$.
+- $ S_i $ est le nombre total d'espèces dans l’échantillon $i$.
+- $ p_{i,s} $ est l’abondance relative de l’espèce $s$, définie comme :
+
+  $$p_{i,s} = \frac{X_{i,s}}{\sum_{s=1}^{S_i} X_{i,s}}$$
+
+- $ X_{i,s} $ est l’abondance de l’espèce $s$ lors de l’événement $i$.
+
+L’indice varie entre 0 et 1 :
+
+- Valeurs faibles ($\lambda \approx 0$) : Haute diversité, la dominance est répartie sur plusieurs espèces.
+- Valeurs élevées ($\lambda \approx 1$) : Une espèce est dominante, indiquant une faible diversité.
+
+Les étapes spécifiques du traitement des données sont les suivantes :
+
+1. Filtrage des données d’abondance  
+   - Les données sont extraites de la table `biodiversity` de la base de données relationnelle SQLite.
+   - Deux sous-ensembles sont créés :
+     - Données en `n` : Nombre total d’individus.
+     - Données en `n/m²` : Nombre d’individus par unité de surface.
+2. Agrégation par événement et espèce  
+   - Pour chaque événement d’échantillonnage (`event_id`), la somme des abondances par espèce (`species_id`) a été calculée.
+3. Conversion en format matriciel  
+   - Une transformation des données a été réalisée afin d’obtenir une table où :
+     - Les événements sont en lignes.
+     - Les espèces sont en colonnes.
+     - Les cellules contiennent l’abondance totale par espèce.
+4. Calcul de l’indice de Simpson (`λ`)  
+   - L’indice a été calculé en appliquant `vegan::diversity(index = "simpson")`.
+5. Export des résultats  
+   - Les valeurs calculées sont exportées sous format `.csv` (`diversite_simpson.csv`).
+
+
+## Série d’Indices de Hill (HILL)
+
+La série d’indices de Hill est une famille de mesures de diversité permettant d’examiner la structure des communautés biologiques sous différents angles (Hill, 1973). Ces indices prennent en compte à la fois la richesse spécifique, l’équitabilité et la dominance selon une pondération contrôlée par un paramètre $q$.
+
+L’indice général de Hill est défini comme :
+
+$$ 
+{}^qD = \left( \sum_{s=1}^{S} p_s^q \right)^{\frac{1}{1-q}} 
+$$ {#eq-hill}
+
+où :
+
+- ${}^qD$ est l’indice de diversité de Hill d’ordre $q$.
+- $S$ est le nombre total d'espèces dans l’échantillon.
+- $p_s$ est l’abondance relative de l’espèce $s$.
+- $q$ est un paramètre qui contrôle l’importance des espèces dominantes :
+  - $q = 0$ → Nombre total d’espèces (richesse spécifique).
+  - $q = 1$ → Indice de Shannon exponentiel (pondération équilibrée).
+  - $q = 2$ → Inverse de l’indice de Simpson (favorise les espèces dominantes).
+
+
+Les étapes spécifiques du traitement des données sont les suivantes :
+
+1. Filtrage des données d’abondance  
+   - Les données sont extraites de la table `biodiversity` de la base de données relationnelle SQLite.
+   - Deux sous-ensembles sont créés :
+     - Données en `n` : Nombre total d’individus.
+     - Données en `n/m²` : Nombre d’individus par unité de surface.
+2. Agrégation par événement et espèce  
+   - Pour chaque événement d’échantillonnage (`event_id`), la somme des abondances par espèce (`species_id`) a été calculée.
+3. Conversion en format matriciel  
+   - Une transformation des données a été réalisée afin d’obtenir une table où :
+     - Les événements sont en lignes.
+     - Les espèces sont en colonnes.
+     - Les cellules contiennent l’abondance totale par espèce.
+4. Calcul des indices de Hill  
+   - $D_0$ : Richesse spécifique (`vegan::specnumber()`)
+   - $D_1$ : Exponentielle de l’indice de Shannon (`exp(vegan::diversity("shannon"))`)
+   - $D_2$ : Inverse de l’indice de Simpson (`1 / vegan::diversity("invsimpson")`)
+5. Export des résultats  
+   - Les valeurs calculées sont exportées sous format `.csv` (`indices_hill.csv`).
+
+
+## Raréfaction de Hurlbert (HURB)
+
+::: {.callout-warning}
+## Vérifier valeurs d'abondance
+
+Il faudra vérifier les données d'abondance puisque certaines semblent avoir des valeurs après la décimales, bien qu'il s'agisse de décompte d'individus. Pour l'instant, les données d'abondance sont arrondies afin de permettre d'appliquer la méthode. Il faudra cependant vérifier les données afin de valider leurs valeurs. 
+:::
+
+
+La raréfaction de Hurlbert est une approche permettant de standardiser la richesse spécifique en fonction de la taille de l’échantillon, corrigeant ainsi les biais dus aux différences d’effort d’échantillonnage. Elle est particulièrement utile pour comparer des communautés échantillonnées à des intensités variables.
+
+L’indicateur est défini comme suit :
+
+$$E(S_n) = S - \sum_{s=1}^{S} \left( 1 - \frac{{N - X_s}}{{N}} \right)^n$$
+
+où :
+
+- $E(S_n)$ est le nombre d’espèces attendu pour un échantillon de taille $n$.
+- $S$ est le nombre total d’espèces observées dans l’échantillon.
+- $X_s$ est l’abondance de l’espèce $s$.
+- $N$ est le nombre total d’individus dans l’échantillon.
+- $n$ est le seuil d’échantillonnage choisi.
+
+L'idée principale est de simuler un processus de sous-échantillonnage et d'estimer combien d'espèces seraient observées si tous les échantillons avaient la même taille.
+
+Les étapes spécifiques du traitement des données sont les suivantes :
+
+1. Filtrage des données d’abondance  
+   - Les données sont extraites de la table `biodiversity` de la base de données relationnelle SQLite.
+   - Deux sous-ensembles sont créés :
+     - Données en `n` : Nombre total d’individus.
+     - Données en `n/m²` : Nombre d’individus par unité de surface.
+2. Agrégation par événement et espèce  
+   - Pour chaque événement d’échantillonnage (`event_id`), la somme des abondances par espèce (`species_id`) a été calculée.
+3. Conversion en format matriciel  
+   - Une transformation des données a été réalisée afin d’obtenir une table où :
+     - Les événements sont en lignes.
+     - Les espèces sont en colonnes.
+     - Les cellules contiennent l’abondance totale par espèce.
+4. Application de la raréfaction de Hurlbert  
+   - L’indicateur est calculé en appliquant `vegan::rarefy(data, sample = n)`, où $n$ est la taille d’échantillon standardisée.
+5. Export des résultats  
+   - Les valeurs calculées sont exportées sous format `.csv` (`rarefaction_hurlbert.csv`).
+
+
+## Diversité Taxonomique (TAXD)
+
+::: {.callout-warning} 
+## Consolidation de la taxonomie
+
+Comme mentionné à la @sec-taxonomy, plus de travail est nécessaire afin d'obtenir une table taxonomique convenable. Les résultats de cette analyse devraient ainsi être revisités une fois la liste taxonomique convenablement consilidée.
+:::
+
+::: {.callout-warning}
+## NA distance taxonomique
+
+Des `NA` sont présents au sein de l'analyse de distance taxonomique effectuée avec la fonction `vegan::taxa2dist`. Pour l'instant, les distances manquantes sont remplacées par une valeur de 1, représentant une distance maximale. Cette supposition devra toutefois être vérifée si les `NA` persistent une fois la consolidation de la taxonomie effectuée.
+:::
+
+L’indice de diversité taxonomique, développé par Warwick & Clarke (1995, 1998), évalue la biodiversité en tenant compte des relations évolutives entre espèces plutôt que de se baser uniquement sur leur nombre ou leur abondance. Il repose sur les distances taxonomiques entre espèces d'une communauté pour fournir une mesure plus robuste de la diversité biologique. Contrairement aux indices classiques (ex. Shannon, Simpson), cet indice considère l'éloignement taxonomique entre espèces au sein d'un échantillon. Ainsi, une communauté composée d'espèces réparties dans plusieurs phylums sera considérée plus diverse qu'une autre contenant uniquement des espèces du même genre.
+
+L'analyse de diversité taxonomique est effectuée grâce à la fonction `vegan::taxondive` du package R `vegan` [@vegan2024]. Cette dernière retourne six métriques permettant d’évaluer la structure taxonomique d’une communauté :
+
+| Métrique  | Description | Équation | Interprétation |
+|--------------|--------------------------------|-----------------------------|-------------------------------------------|
+| D        | Somme des distances taxonomiques entre toutes les paires d'espèces dans l’échantillon | $D = \sum_{i<j} \omega_{ij}$ | Reflète la diversité taxonomique totale, indépendamment du nombre d’espèces. Un D élevé indique une forte séparation taxonomique. |
+| Dstar    | Version ajustée de $D$ pour le nombre d'espèces | $D^* = \frac{D}{S-1}$ | Corrige l’effet du nombre d’espèces sur $D$. Permet de comparer des échantillons avec des richesses spécifiques différentes. |
+| Lambda   | Variation totale de la diversité taxonomique dans l’échantillon | $\Lambda = \sum_{i<j} (\omega_{ij} - \overline{\omega})^2$ | Mesure la dispersion taxonomique. Un Λ élevé signifie une forte variabilité taxonomique dans l’échantillon. |
+| Δ+ (Dplus) | Distinctivité Taxonomique Moyenne (moyenne des distances taxonomiques entre les espèces présentes) | $\Delta^+ = \frac{\sum_{i<j} \omega_{ij}}{S(S-1)/2}$ | Plus Δ+ est élevé, plus les espèces présentes sont éloignées taxonomiquement, ce qui indique une communauté diversifiée. |
+| sd.Δ+ (sd.Dplus) | Écart-type de Δ+ (dispersion des distances taxonomiques) | $sd(\Delta^+) = \sqrt{\frac{\sum_{i<j} (\omega_{ij} - \Delta^+)^2}{S(S-1)/2}}$ | Mesure la variabilité des distances taxonomiques. Une forte dispersion indique une distribution inégale des taxons. |
+| Λ+ (SDplus) | Variation de la Distinctivité Taxonomique | $\Lambda^+ = \frac{\sum_{i<j} (\omega_{ij} - \Delta^+)^2}{S(S-1)/2}$ | Un Λ+ faible signifie que les distances taxonomiques sont relativement homogènes. Un Λ+ élevé traduit une répartition déséquilibrée des taxons. |
+
+Les étapes spécifiques de l'analyse de diversité taxonomique sont les suivantes :
+
+1. Extraction des espèces présentes  
+   - Les indices sont calculés séparément sur :
+     - Les données d’abondance brute (`n`).
+     - Les données de densité (`n/m²`).
+2. Récupération des informations taxonomiques  
+   - Chaque espèce est associée à sa hiérarchie taxonomique (Règne → Phylum → Classe → Ordre → Famille → Genre).
+   - Ces niveaux sont utilisés pour calculer les distances taxonomiques entre espèces.
+3. Construction de la matrice de distance taxonomique  
+   - `vegan::taxa2dist()` est utilisé pour créer une matrice de distances taxonomiques entre espèces.
+   - La distance entre deux espèces est basée sur leur éloignement taxonomique :
+     - Deux espèces appartenant à un même genre auront une distance faible.
+     - Deux espèces appartenant à des phylums différents auront une distance élevée.
+4. Transformation des occurrences en matrice présence/absence  
+   - Pour chaque type de données, une table de présence/absence ou d’abondance est construite où :
+     - Les événements sont en lignes.
+     - Les espèces sont en colonnes.
+     - Les cellules contiennent 1 (présence) ou une valeur d’abondance.
+5. Calcul des indices taxonomiques  
+   - `vegan::taxondive()` est appliqué séparément pour chaque type de données.
+6. Export des résultats  
+   - Chaque événement (`event_id`) est associé aux six métriques pour les trois types de données.
+   - Les résultats sont sauvegardés sous trois fichiers :
+     - `diversite_taxonomique.csv`
+
+
+## Dissimilarité de Bray-Curtis (BC)
+
+L’indice de Bray-Curtis est une mesure de dissimilarité qui quantifie la différence de composition spécifique entre deux échantillons en fonction de l’abondance ou de la biomasse des espèces. Cet indice permet d’évaluer dans quelle mesure des communautés biologiques diffèrent en termes de composition et de structure.
+
+L’indicateur est défini comme suit :
+
+$$BC_{ij} = 1 - \frac{2 \sum_{s=1}^{S} \min(X_{i,s}, X_{j,s})}{\sum_{s=1}^{S} (X_{i,s} + X_{j,s})}$$
+
+où :
+
+- $BC_{ij}$ est l’indice de dissimilarité entre les événements $i$ et $j$.
+- $S$ est le nombre total d’espèces observées dans les deux échantillons.
+- $X_{i,s}$ et $X_{j,s}$ sont les abondances ou les biomasses de l’espèce $s$ dans les événements $i$ et $j$.
+
+L’indice varie entre 0 et 1 :
+
+- $BC = 0$ → Les deux échantillons sont identiques en composition.
+- $BC = 1$ → Les deux échantillons sont complètement différents.
+
+
+Les étapes spécifiques du traitement des données sont les suivantes :
+
+1. Filtrage des données d’abondance  
+   - Les données sont extraites de la table `biodiversity` de la base de données relationnelle SQLite.
+   - Cinq sous-ensembles sont créés :
+     - Données en `n` : Nombre total d’individus.
+     - Données en `n/m²` : Nombre d’individus par unité de surface.
+     - Données en `g` : Biomasse totale.
+     - Données en `n/m²` : Biomasse totale par unité de surface.
+     - Données d'occurrence
+
+1. Filtrage des données d’abondance (`n/m²`) et de biomasse (`g/m²`)  
+   - Seules les données où le type de mesure (`measurement_type`) est `"abundance"` et `"biomass"` ont été sélectionnées.
+   - Deux ensembles distincts de données ont été générés :
+     - Données en `n/m²` → Reflète la densité des individus.
+     - Données en `g/m²` → Reflète la biomasse par unité de surface.
+2. Agrégation par événement et espèce  
+   - Pour chaque événement d’échantillonnage (`event_id`), la somme des abondances ou des biomasses par espèce (`species_id`) a été calculée séparément pour `n/m²` et `g/m²`.
+3. Conversion en format matriciel  
+   - Les données ont été transformées en matrices communautaires où :
+     - Les événements sont en lignes.
+     - Les espèces sont en colonnes.
+     - Les cellules contiennent l’abondance ou la biomasse totale par espèce.
+   - Les matrices ont été transposées afin d’avoir les espèces en lignes et les événements en colonnes, conforme aux exigences de `vegan::vegdist()`.
+4. Calcul de la matrice de dissimilarité Bray-Curtis  
+   - L’indice de dissimilarité entre tous les événements a été calculé séparément pour `n/m²` et `g/m²` avec `vegan::vegdist(method = "bray")`.
+   - Seule la partie inférieure de la matrice a été conservée pour éviter les doublons.
+   - La dissimilarité des évènements d'échantillonnage où aucune espèce n'a été identifiée a été indiquée à 0. 
+5. Export des résultats  
+   - Les valeurs calculées sont exportées sous format `.csv` :
+     - `dissimilarite_bray_curtis.csv`
+
+
+
+## Références
+
 

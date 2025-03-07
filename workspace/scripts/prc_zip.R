@@ -39,7 +39,11 @@ prc_zip_inventaire_marais_baie_mille_vaches <- function(input_files, output_path
   # Abiotic
   abundance <- input_files[grepl("zip-rne_marais-bmv_occurrence-emof_2019-2021.csv", input_files)] |>
     vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
-    janitor::clean_names()
+    janitor::clean_names() |>
+    dplyr::mutate(
+      measurement_unit = dplyr::if_else(measurement_type == "Nombre d'individu", "n", measurement_unit)
+    )
+
 
 
   # Export
@@ -194,8 +198,10 @@ prc_zip_inventaire_marais_pointe_aux_outardes <- function(input_files, output_pa
   # Abiotic
   abundance <- input_files[grepl("marais_pao_abundance.csv", input_files)] |>
     vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
-    janitor::clean_names()
-
+    janitor::clean_names() |>
+    dplyr::mutate(
+      measurement_unit = dplyr::if_else(measurement_type == "Nombre d'individu", "n", measurement_unit)
+    )
 
   # Export
   vroom::vroom_write(events, file.path(output_path, "marais_pao_events.csv"), delim = ",")
@@ -283,7 +289,14 @@ prc_zip_inventaire_marais_portneuf_sur_mer <- function(input_files, output_path)
   # Abiotic
   abundance <- input_files[grepl("marais_portneuf_sur_mer_abundance.csv", input_files)] |>
     vroom::vroom(progress = FALSE, show_col_types = FALSE) |>
-    janitor::clean_names()
+    janitor::clean_names() |>
+    dplyr::mutate(
+      measurement_unit = dplyr::if_else(
+        measurement_type %in% c("Nombre d'individu", "Nombre de plant"),
+        "n",
+        measurement_unit
+      )
+    )
 
 
   # Export

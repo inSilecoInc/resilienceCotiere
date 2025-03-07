@@ -569,7 +569,8 @@ int_biodiversity_data <- function(input_files, output_path) {
       biodiversity_tables$cabin |>
         dplyr::mutate(
           measurement_type = "occurrence",
-          measurement_value = dplyr::if_else(measurement_value > 0, 1, 0)
+          measurement_value = dplyr::if_else(measurement_value > 0, 1, 0),
+          measurement_unit = "n"
         )
     ) |>
       dplyr::arrange(event_id, scientific_name) |>
@@ -735,6 +736,16 @@ int_biodiversity_data <- function(input_files, output_path) {
           .default = NA
         )
       ))
+
+    # Adjust certain measurement units
+    biodiversity_tables <- biodiversity_tables |>
+      dplyr::mutate(
+        measurement_unit = dplyr::case_when(
+          measurement_type == "abundance" & (measurement_unit == "no unit" | is.na(measurement_unit)) ~ "n",
+          measurement_type == "occurrence" ~ NA_character_,
+          .default = measurement_unit
+        )
+      )
 
     return(biodiversity_tables)
   }
