@@ -39,3 +39,5 @@ raw/
 
 # Specific files & folders
 _targets
+
+delete.R

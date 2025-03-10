@@ -1,0 +1,74 @@
+pipeline:
+  id: e246927f-d1b7-4450-8f91-a6e9b91c0c64
+  name: resilience_cotiere
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-03-10 10:47:53
+  last_modified: 2025-03-10 10:47:53
+  description: >
+    Ce pipeline collecte les données de cartographie des écosystèmes et des côtes du Québec maritime 
+    dans le cadre du projet Résilience côtière.
+
+  metadata:
+    source_name: "Résilience côtière"
+    data_type: "Geodatabase (GDB)"
+    file_size: "Inconnu"
+    license: "Données en accès restreint"
+    last_updated: "2022"
+    geographic_coverage:
+      region: "Québec maritime"
+      bounding_box:
+        - null
+        - null
+        - null
+        - null
+    temporal_coverage:
+      start_date: "2021-01-01"
+      end_date: "2022-03-03"
+    variables:
+      - écosystèmes côtiers
+      - cartographie
+
+  bibliography:
+    - "@TechReport{fraser2021,
+        author = {Fraser, C. and Drejza, S. and Marie, G. and Bernatchez, P.},
+        title = {Projet Résilience côtière : développement d’outils d’adaptation à l'érosion côtière pour les municipalités du Québec maritime},
+        year = {2021},
+        institution = {Chaire de recherche en géoscience côtière, Laboratoire de dynamique et de gestion intégrée des zones côtières, Université du Québec à Rimouski},
+        month = {décembre},
+        pages = {106},
+        note = {Rapport remis au MELCC},
+        url = {https://ldgizc.uqar.ca/Web/docs/default-source/default-document-library/rapportsynthese_finalf62dfa1f379043f0a948f4e90e96c4bc.pdf?sfvrsn=77d3ce72_0}
+      }"
+
+  download:
+    sources:
+      - name: Cartographie Ecosystèmes Qc Maritime 2021
+        description: Cartographie des écosystèmes du Québec maritime (2021)
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "resilience_cotiere/CartographieEcosystemes_QcMaritime_2021.gdb.zip"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+
+      - name: Côtes Qc Maritime 2022
+        description: Données sur les côtes du Québec maritime (2022)
+        source_type: "gcs"
+        urls: "biome-resilience-cotiere"
+        asset: "resilience_cotiere/Cotes_QcMaritime_2022_03_03.gdb.zip"
+        credentials: "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json"
+
+  processing:
+    sources:
+      - name: processing resilience_cotiere
+        script: prc_resilience_cotiere
+        input_files:
+          - Cartographie Ecosystèmes Qc Maritime 2021
+          - Côtes Qc Maritime 2022
+        output_files: 
+          - resilience_cotiere_ecosystemes.gpkg
+          - resilience_cotiere_cotes.gpkg
+
+  output:
+    output_dir: "workspace/data/harvested/resilience_cotiere/"
+    log_dir: "workspace/logs/"
+    archive_raw: true

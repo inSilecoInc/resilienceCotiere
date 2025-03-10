@@ -198,7 +198,8 @@ div.csl-indent {
   <li><a href="#sec-biome_recharge_sainte_flavie" id="toc-sec-biome_recharge_sainte_flavie" class="nav-link" data-scroll-target="#sec-biome_recharge_sainte_flavie"><span class="header-section-number">3.18</span> Site de recharge de plage de Sainte-Flavie</a></li>
   <li><a href="#sec-biome_recharge_sainte_luce" id="toc-sec-biome_recharge_sainte_luce" class="nav-link" data-scroll-target="#sec-biome_recharge_sainte_luce"><span class="header-section-number">3.19</span> Suivi de la recharge de plage à Sainte-Luce</a></li>
   <li><a href="#sec-yanick_gendreau" id="toc-sec-yanick_gendreau" class="nav-link" data-scroll-target="#sec-yanick_gendreau"><span class="header-section-number">3.20</span> Données intertidales et subtidales de Yanick Gendreau</a></li>
-  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">3.21</span> Références</a></li>
+  <li><a href="#sec-resilience_cotiere" id="toc-sec-resilience_cotiere" class="nav-link" data-scroll-target="#sec-resilience_cotiere"><span class="header-section-number">3.21</span> Cartographie des écosystèmes et des côtes du Québec maritime</a></li>
+  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">3.22</span> Références</a></li>
   </ul>
 </nav>
     </div>
@@ -4207,8 +4208,228 @@ div.csl-indent {
 </section>
 </section>
 </section>
-<section id="références" class="level2" data-number="3.21">
-<h2 data-number="3.21" class="anchored" data-anchor-id="références"><span class="header-section-number">3.21</span> Références</h2>
+<section id="sec-resilience_cotiere" class="level2" data-number="3.21">
+<h2 data-number="3.21" class="anchored" data-anchor-id="sec-resilience_cotiere"><span class="header-section-number">3.21</span> Cartographie des écosystèmes et des côtes du Québec maritime</h2>
+<p>Les données proviennent du projet Résilience côtière, qui vise à développer des outils d’adaptation à l’érosion côtière pour les municipalités du Québec maritime. Le projet est réalisé par la Chaire de recherche en géoscience côtière et le Laboratoire de dynamique et de gestion intégrée des zones côtières de l’Université du Québec à Rimouski (UQAR), en collaboration avec le Ministère de l’Environnement et de la Lutte contre les changements climatiques (MELCC) <span class="citation" data-cites="fraser2021">(<a href="#ref-fraser2021" role="doc-biblioref">Fraser et al., 2021</a>)</span>.</p>
+<p>Deux ensembles de données géospatiales sont disponibles :<br>
+1. Cartographie des écosystèmes du Québec maritime (2021), qui représente la distribution des écosystèmes côtiers.<br>
+2. Cartographie des côtes du Québec maritime (2022), qui fournit des informations détaillées sur l’évolution et la structure des côtes.</p>
+<ul>
+<li><strong>Source</strong> : <a href="https://ldgizc.uqar.ca/Web/docs/default-source/default-document-library/rapportsynthese_finalf62dfa1f379043f0a948f4e90e96c4bc.pdf?sfvrsn=77d3ce72_0">Rapport de synthèse du projet Résilience côtière</a><br>
+</li>
+<li><strong>Accessibilité</strong> : Données en accès restreint<br>
+</li>
+<li><strong>Type de données</strong> : Bases de données géospatiales (GDB) compressées (<code>.gdb.zip</code>)<br>
+</li>
+<li><strong>Couverture géographique</strong> : Québec maritime<br>
+</li>
+<li><strong>Traitement script</strong> : <code>prc_resilience_cotiere</code><br>
+</li>
+<li><strong>Fichiers de sortie</strong> :
+<ul>
+<li><code>resilience_cotiere_ecosystemes.gpkg</code><br>
+</li>
+<li><code>resilience_cotiere_cotes.gpkg</code></li>
+</ul></li>
+</ul>
+<section id="étapes-de-traitement-des-données-20" class="level3" data-number="3.21.1">
+<h3 data-number="3.21.1" class="anchored" data-anchor-id="étapes-de-traitement-des-données-20"><span class="header-section-number">3.21.1</span> Étapes de traitement des données</h3>
+<p>Les fichiers GDB compressés sont extraits et transformés en GeoPackage (<code>.gpkg</code>).<br>
+- Cartographie des écosystèmes : Seules les géométries de type MULTIPOLYGON sont conservées, et une validation géométrique (<code>st_make_valid()</code>) est appliquée.<br>
+- Cartographie des côtes : Seules les géométries de type MULTILINESTRING sont conservées, avec une validation géométrique similaire.<br>
+- Les noms des colonnes sont standardisés à l’aide de <code>janitor::clean_names()</code>.<br>
+- Les fichiers résultants sont exportés sous forme de GeoPackage pour assurer la compatibilité avec les outils SIG modernes.<br>
+- Ajout d’un identifiant unique <code>ecosystem_id</code> correspondant à chaque type d’écosystème décrit au sein de la base de données. Consultez la table suivante pour la liste complète des écosystèmes :</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Ecosystem ID</th>
+<th>Ecosystem</th>
+<th>Area (km²)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>eco_01</td>
+<td>Bas estran</td>
+<td>0.97</td>
+</tr>
+<tr class="even">
+<td>eco_02</td>
+<td>Bas estran à macroalgues</td>
+<td>0.20</td>
+</tr>
+<tr class="odd">
+<td>eco_03</td>
+<td>Bas estran meuble</td>
+<td>33.60</td>
+</tr>
+<tr class="even">
+<td>eco_04</td>
+<td>Bas estran meuble à macroalgues</td>
+<td>13.54</td>
+</tr>
+<tr class="odd">
+<td>eco_05</td>
+<td>Bas estran meuble à zostère</td>
+<td>2.98</td>
+</tr>
+<tr class="even">
+<td>eco_06</td>
+<td>Bas estran rocheux</td>
+<td>32.87</td>
+</tr>
+<tr class="odd">
+<td>eco_07</td>
+<td>Bas estran rocheux à macroalgues</td>
+<td>46.14</td>
+</tr>
+<tr class="even">
+<td>eco_08</td>
+<td>Batture</td>
+<td>414.44</td>
+</tr>
+<tr class="odd">
+<td>eco_09</td>
+<td>Batture à macroalgues</td>
+<td>118.64</td>
+</tr>
+<tr class="even">
+<td>eco_10</td>
+<td>Batture à zostère</td>
+<td>99.79</td>
+</tr>
+<tr class="odd">
+<td>eco_11</td>
+<td>Chenal estuarien</td>
+<td>117.45</td>
+</tr>
+<tr class="even">
+<td>eco_12</td>
+<td>Chenal estuarien à macroalgues</td>
+<td>3.35</td>
+</tr>
+<tr class="odd">
+<td>eco_13</td>
+<td>Chenal estuarien à zostère</td>
+<td>2.54</td>
+</tr>
+<tr class="even">
+<td>eco_14</td>
+<td>Delta</td>
+<td>65.57</td>
+</tr>
+<tr class="odd">
+<td>eco_15</td>
+<td>Delta à macroalgues</td>
+<td>1.60</td>
+</tr>
+<tr class="even">
+<td>eco_16</td>
+<td>Delta à zostère</td>
+<td>4.28</td>
+</tr>
+<tr class="odd">
+<td>eco_17</td>
+<td>Ecueil</td>
+<td>3.64</td>
+</tr>
+<tr class="even">
+<td>eco_18</td>
+<td>Ecueil à macroalgues</td>
+<td>3.47</td>
+</tr>
+<tr class="odd">
+<td>eco_19</td>
+<td>Haut estran rocheux</td>
+<td>21.06</td>
+</tr>
+<tr class="even">
+<td>eco_20</td>
+<td>Île</td>
+<td>41.80</td>
+</tr>
+<tr class="odd">
+<td>eco_21</td>
+<td>Infralittoral</td>
+<td>1394.39</td>
+</tr>
+<tr class="even">
+<td>eco_22</td>
+<td>Infralittoral à macroalgues</td>
+<td>23.58</td>
+</tr>
+<tr class="odd">
+<td>eco_23</td>
+<td>Infralittoral à zostère</td>
+<td>0.27</td>
+</tr>
+<tr class="even">
+<td>eco_24</td>
+<td>Infralittoral meuble</td>
+<td>592.62</td>
+</tr>
+<tr class="odd">
+<td>eco_25</td>
+<td>Infralittoral meuble à macroalgues</td>
+<td>84.66</td>
+</tr>
+<tr class="even">
+<td>eco_26</td>
+<td>Infralittoral meuble à zostère</td>
+<td>43.60</td>
+</tr>
+<tr class="odd">
+<td>eco_27</td>
+<td>Infralittoral rocheux</td>
+<td>47.73</td>
+</tr>
+<tr class="even">
+<td>eco_28</td>
+<td>Infralittoral rocheux à macroalgues</td>
+<td>27.46</td>
+</tr>
+<tr class="odd">
+<td>eco_29</td>
+<td>Lagune</td>
+<td>88.88</td>
+</tr>
+<tr class="even">
+<td>eco_30</td>
+<td>Lagune à macroalgues</td>
+<td>4.55</td>
+</tr>
+<tr class="odd">
+<td>eco_31</td>
+<td>Lagune à zostère</td>
+<td>54.01</td>
+</tr>
+<tr class="even">
+<td>eco_32</td>
+<td>Marais maritime</td>
+<td>138.20</td>
+</tr>
+<tr class="odd">
+<td>eco_33</td>
+<td>Marécage intertidal</td>
+<td>8.27</td>
+</tr>
+<tr class="even">
+<td>eco_34</td>
+<td>Plage</td>
+<td>39.22</td>
+</tr>
+<tr class="odd">
+<td>eco_35</td>
+<td>Supralittoral</td>
+<td>12.69</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="références" class="level2" data-number="3.22">
+<h2 data-number="3.22" class="anchored" data-anchor-id="références"><span class="header-section-number">3.22</span> Références</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="1" data-line-spacing="5" role="list">
@@ -4268,6 +4489,9 @@ Desrochers, V., Quiec, F., Marée, S., D’Amours-Leclerc, F., and Maltais, M. K
 </div>
 <div id="ref-cabin2024" class="csl-entry" role="listitem">
 Environment and Climate Change Canada (2024). CABIN - canadian aquatic biomonitoring network. Available at: <a href="https://open.canada.ca/data/en/dataset/13564ca4-e330-40a5-9521-bfb1be767147">https://open.canada.ca/data/en/dataset/13564ca4-e330-40a5-9521-bfb1be767147</a>.
+</div>
+<div id="ref-fraser2021" class="csl-entry" role="listitem">
+Fraser, C., Drejza, S., Marie, G., and Bernatchez, P. (2021). Projet résilience côtière : Développement d’outils d’adaptation à l’érosion côtière pour les municipalités du québec maritime. Chaire de recherche en géoscience côtière, Laboratoire de dynamique et de gestion intégrée des zones côtières, Université du Québec à Rimouski Available at: <a href="https://ldgizc.uqar.ca/Web/docs/default-source/default-document-library/rapportsynthese_finalf62dfa1f379043f0a948f4e90e96c4bc.pdf?sfvrsn=77d3ce72_0">https://ldgizc.uqar.ca/Web/docs/default-source/default-document-library/rapportsynthese_finalf62dfa1f379043f0a948f4e90e96c4bc.pdf?sfvrsn=77d3ce72_0</a>.
 </div>
 <div id="ref-gendreau2016" class="csl-entry" role="listitem">
 Gendreau, Y. (2016). Relevés intertidaux et subtidaux - compilation de plusieurs projets. <span>Fisheries and Oceans Canada</span>.

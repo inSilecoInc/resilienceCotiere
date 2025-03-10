@@ -1378,5 +1378,70 @@ Les données sont déjà disponibles dans un format standardisé; un effort mini
 | `annee`                 | Année du relevé                                       |
 
 
+## Cartographie des écosystèmes et des côtes du Québec maritime {#sec-resilience_cotiere} 
+
+Les données proviennent du projet Résilience côtière, qui vise à développer des outils d’adaptation à l’érosion côtière pour les municipalités du Québec maritime. Le projet est réalisé par la Chaire de recherche en géoscience côtière et le Laboratoire de dynamique et de gestion intégrée des zones côtières de l'Université du Québec à Rimouski (UQAR), en collaboration avec le Ministère de l’Environnement et de la Lutte contre les changements climatiques (MELCC) [@fraser2021].  
+
+Deux ensembles de données géospatiales sont disponibles :  
+1. Cartographie des écosystèmes du Québec maritime (2021), qui représente la distribution des écosystèmes côtiers.  
+2. Cartographie des côtes du Québec maritime (2022), qui fournit des informations détaillées sur l’évolution et la structure des côtes.  
+
+- **Source** : [Rapport de synthèse du projet Résilience côtière](https://ldgizc.uqar.ca/Web/docs/default-source/default-document-library/rapportsynthese_finalf62dfa1f379043f0a948f4e90e96c4bc.pdf?sfvrsn=77d3ce72_0)  
+- **Accessibilité** : Données en accès restreint  
+- **Type de données** : Bases de données géospatiales (GDB) compressées (`.gdb.zip`)  
+- **Couverture géographique** : Québec maritime  
+- **Traitement script** : `prc_resilience_cotiere`  
+- **Fichiers de sortie** :  
+  - `resilience_cotiere_ecosystemes.gpkg`  
+  - `resilience_cotiere_cotes.gpkg`
+
+### Étapes de traitement des données
+
+Les fichiers GDB compressés sont extraits et transformés en GeoPackage (`.gpkg`).  
+- Cartographie des écosystèmes : Seules les géométries de type MULTIPOLYGON sont conservées, et une validation géométrique (`st_make_valid()`) est appliquée.  
+- Cartographie des côtes : Seules les géométries de type MULTILINESTRING sont conservées, avec une validation géométrique similaire.  
+- Les noms des colonnes sont standardisés à l’aide de `janitor::clean_names()`.  
+- Les fichiers résultants sont exportés sous forme de GeoPackage pour assurer la compatibilité avec les outils SIG modernes.  
+- Ajout d'un identifiant unique `ecosystem_id` correspondant à chaque type d'écosystème décrit au sein de la base de données. Consultez la table suivante pour la liste complète des écosystèmes : 
+
+| Ecosystem ID | Ecosystem                              | Area (km²) |
+|-------------|--------------------------------------|------------|
+| eco_01      | Bas estran                           | 0.97       |
+| eco_02      | Bas estran à macroalgues            | 0.20       |
+| eco_03      | Bas estran meuble                   | 33.60      |
+| eco_04      | Bas estran meuble à macroalgues     | 13.54      |
+| eco_05      | Bas estran meuble à zostère         | 2.98       |
+| eco_06      | Bas estran rocheux                  | 32.87      |
+| eco_07      | Bas estran rocheux à macroalgues    | 46.14      |
+| eco_08      | Batture                             | 414.44     |
+| eco_09      | Batture à macroalgues               | 118.64     |
+| eco_10      | Batture à zostère                   | 99.79      |
+| eco_11      | Chenal estuarien                    | 117.45     |
+| eco_12      | Chenal estuarien à macroalgues      | 3.35       |
+| eco_13      | Chenal estuarien à zostère          | 2.54       |
+| eco_14      | Delta                               | 65.57      |
+| eco_15      | Delta à macroalgues                 | 1.60       |
+| eco_16      | Delta à zostère                     | 4.28       |
+| eco_17      | Ecueil                              | 3.64       |
+| eco_18      | Ecueil à macroalgues                | 3.47       |
+| eco_19      | Haut estran rocheux                 | 21.06      |
+| eco_20      | Île                                 | 41.80      |
+| eco_21      | Infralittoral                       | 1394.39    |
+| eco_22      | Infralittoral à macroalgues         | 23.58      |
+| eco_23      | Infralittoral à zostère             | 0.27       |
+| eco_24      | Infralittoral meuble                | 592.62     |
+| eco_25      | Infralittoral meuble à macroalgues  | 84.66      |
+| eco_26      | Infralittoral meuble à zostère      | 43.60      |
+| eco_27      | Infralittoral rocheux               | 47.73      |
+| eco_28      | Infralittoral rocheux à macroalgues | 27.46      |
+| eco_29      | Lagune                              | 88.88      |
+| eco_30      | Lagune à macroalgues                | 4.55       |
+| eco_31      | Lagune à zostère                    | 54.01      |
+| eco_32      | Marais maritime                     | 138.20     |
+| eco_33      | Marécage intertidal                 | 8.27       |
+| eco_34      | Plage                               | 39.22      |
+| eco_35      | Supralittoral                       | 12.69      |
+
+
 
 ## Références

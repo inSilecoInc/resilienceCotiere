@@ -419,6 +419,31 @@ list(
             "workspace/data/harvested/invertebres_vegetation_saint_laurent-1.0.0/processed/dictionnaire_donnees.csv"
             )
         }, format = "file")),
+    list(list(tar_target(tg_e246927f_d1b7_4450_8f91_a6e9b91c0c64_Cartographie_Ecosystèmes_Qc_Maritime_2021, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "resilience_cotiere/CartographieEcosystemes_QcMaritime_2021.gdb.zip", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/resilience_cotiere-1.0.0/raw/CartographieEcosystemes_QcMaritime_2021.gdb.zip", 
+            overwrite = TRUE)
+        "workspace/data/harvested/resilience_cotiere-1.0.0/raw/CartographieEcosystemes_QcMaritime_2021.gdb.zip"
+    }, format = "file")), list(tar_target(tg_e246927f_d1b7_4450_8f91_a6e9b91c0c64_Côtes_Qc_Maritime_2022, 
+    {
+        googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
+        googleCloudStorageR::gcs_get_object(object_name = "resilience_cotiere/Cotes_QcMaritime_2022_03_03.gdb.zip", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/resilience_cotiere-1.0.0/raw/Cotes_QcMaritime_2022_03_03.gdb.zip", 
+            overwrite = TRUE)
+        "workspace/data/harvested/resilience_cotiere-1.0.0/raw/Cotes_QcMaritime_2022_03_03.gdb.zip"
+    }, format = "file")), tar_target(tg_e246927f_d1b7_4450_8f91_a6e9b91c0c64_processing_resilience_cotiere, 
+    {
+        prc_resilience_cotiere(output_path = "workspace/data/harvested/resilience_cotiere-1.0.0/processed", 
+            input_files = list(tg_e246927f_d1b7_4450_8f91_a6e9b91c0c64_Cartographie_Ecosystèmes_Qc_Maritime_2021, 
+                tg_e246927f_d1b7_4450_8f91_a6e9b91c0c64_Côtes_Qc_Maritime_2022))
+        c("workspace/data/harvested/resilience_cotiere-1.0.0/processed/resilience_cotiere_ecosystemes.gpkg", 
+        "workspace/data/harvested/resilience_cotiere-1.0.0/processed/resilience_cotiere_cotes.gpkg"
+        )
+    }, format = "file")),
     list(list(tar_target(tg_860d96c4_efd7_4d76_a6d7_207c0b927815_intertidal, 
     {
         googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")

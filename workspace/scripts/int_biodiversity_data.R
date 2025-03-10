@@ -827,7 +827,11 @@ int_biodiversity_data <- function(input_files, output_path) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # Events table
   events <- event_tables |>
-    dplyr::distinct()
+    dplyr::distinct() |>
+    dplyr::mutate(
+      event_date_start = as.character(event_date_start),
+      event_date_end = as.character(event_date_end)
+    )
 
   # ----------------------------------------------------------------------
   # Abiotic table
