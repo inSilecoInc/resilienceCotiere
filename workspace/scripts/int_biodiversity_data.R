@@ -57,7 +57,8 @@ int_biodiversity_data <- function(input_files, output_path) {
   #     "zip_inventaire_marais_portneuf_sur_mer-1.0.0/processed/marais_portneuf_sur_mer_abiotic.csv",
   #     "zip_inventaire_marais_portneuf_sur_mer-1.0.0/processed/marais_portneuf_sur_mer_abundance.csv",
   #     "zip_inventaire_marais_portneuf_sur_mer-1.0.0/processed/marais_portneuf_sur_mer_events.csv",
-  #     "zip_inventaire_marais_portneuf_sur_mer-1.0.0/processed/marais_portneuf_sur_mer_occurrences.csv"
+  #     "zip_inventaire_marais_portneuf_sur_mer-1.0.0/processed/marais_portneuf_sur_mer_occurrences.csv",
+  #     "resilience_cotiere-1.0.0/processed/resilience_cotiere_ecosystemes.gpkg"
   #   )
   # )
   input_files <- unlist(input_files)
@@ -153,13 +154,12 @@ int_biodiversity_data <- function(input_files, output_path) {
       db_name <- stringr::str_remove(db_name, "-\\d+\\.\\d+\\.\\d+$") # Remove version
       table_name <- stringr::str_remove(basename(file), "\\.csv$") # Remove file extension
 
-      # Load data using vroom
-      suppressWarnings({
-        df <- vroom::vroom(file, progress = FALSE, show_col_types = FALSE, delim = ",")
-      })
-
       # Check if the table name matches any of the event-related patterns
       if (any(stringr::str_detect(table_name, patterns))) {
+        # Load data using vroom
+        suppressWarnings({
+          df <- vroom::vroom(file, progress = FALSE, show_col_types = FALSE, delim = ",")
+        })
         # Standardize column names
         colnames(df) <- tolower(colnames(df))
 
@@ -777,13 +777,14 @@ int_biodiversity_data <- function(input_files, output_path) {
       db_name <- stringr::str_remove(db_name, "-\\d+\\.\\d+\\.\\d+$") # Remove version
       table_name <- stringr::str_remove(basename(file), "\\.csv$") # Remove file extension
 
-      # Load data using vroom
-      suppressWarnings({
-        df <- vroom::vroom(file, progress = FALSE, show_col_types = FALSE, delim = ",")
-      })
 
       # Check if the table name matches any of the event-related patterns
       if (any(stringr::str_detect(table_name, patterns))) {
+        # Load data using vroom
+        suppressWarnings({
+          df <- vroom::vroom(file, progress = FALSE, show_col_types = FALSE, delim = ",")
+        })
+
         # Standardize column names
         colnames(df) <- tolower(colnames(df))
 
@@ -821,6 +822,12 @@ int_biodiversity_data <- function(input_files, output_path) {
   event_tables <- make_events_tables()
   abiotic_tables <- make_abiotic_tables()
   biodiversity_tables <- make_biodiversity_tables()
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # Ecosystems data
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ecosystems <- input_files[grepl("resilience_cotiere_ecosystemes.gpkg", input_files)] |>
+    sf::st_read(quiet = TRUE)
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # Relational database tables
@@ -907,6 +914,22 @@ int_biodiversity_data <- function(input_files, output_path) {
       n_events = dplyr::n()
     )
 
+  # ----------------------------------------------------------------------
+  # Events - ecosystems
+  event_ecosystem <- events |>
+    sf::st_as_sf(coords = c("longitude", "latitude"), crs = 4326) |>
+    sf::st_transform(32198) |>
+    dplyr::select(event_id) |>
+    sf::st_join(ecosystems) |>
+    sf::st_drop_geometry() |>
+    dplyr::select(event_id, ecosystem_id)
+
+  # ----------------------------------------------------------------------
+  # Ecosystems
+  ecosystems <- ecosystems |>
+    sf::st_drop_geometry() |>
+    dplyr::distinct() |>
+    dplyr::arrange(ecosystem_id)
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # Relational database
@@ -920,16 +943,21 @@ int_biodiversity_data <- function(input_files, output_path) {
   DBI::dbWriteTable(con, "biodiversity", biodiversity, overwrite = TRUE)
   DBI::dbWriteTable(con, "taxonomy", taxonomy, overwrite = TRUE)
   DBI::dbWriteTable(con, "metadata", metadata, overwrite = TRUE)
+  DBI::dbWriteTable(con, "ecosystems", ecosystems, overwrite = TRUE)
+  DBI::dbWriteTable(con, "event_ecosystem", event_ecosystem, overwrite = TRUE)
 
   # BD Schema
   dm::dm_from_con(con) |>
     dm::dm_add_pk(table = "events", "event_id") |>
     dm::dm_add_pk(table = "taxonomy", "species_id") |>
     dm::dm_add_pk(table = "metadata", "project_id") |>
+    dm::dm_add_pk(table = "ecosystems", "ecosystem_id") |>
     dm::dm_add_fk(table = "abiotic", "event_id", "events") |>
     dm::dm_add_fk(table = "events", "project_id", "metadata") |>
     dm::dm_add_fk(table = "biodiversity", "event_id", "events") |>
     dm::dm_add_fk(table = "biodiversity", "species_id", "taxonomy") |>
+    dm::dm_add_fk(table = "event_ecosystem", "event_id", "events") |>
+    dm::dm_add_fk(table = "event_ecosystem", "ecosystem_id", "ecosystems") |>
     dm::dm_draw(view_type = "all", rankdir = "BT", column_types = TRUE) |>
     DiagrammeRsvg::export_svg() |>
     write(file.path(output_path, "biodiversity_data.svg"))

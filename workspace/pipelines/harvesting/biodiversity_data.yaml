@@ -53,6 +53,8 @@ pipeline:
         name: process zip_inventaire_marais_pointe_fortin
       - id: 36f7af6b-8d9c-439f-a838-a25a9c08efe3
         name: process zip_inventaire_marais_portneuf_sur_mer
+      - id: e246927f-d1b7-4450-8f91-a6e9b91c0c64
+        name: processing resilience_cotiere
       output_files:  
       - biodiversity_data.sqlite
       - biodiversity_data.svg

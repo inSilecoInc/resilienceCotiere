@@ -700,7 +700,8 @@ list(
                 tg_645bee2a_0a34_460a_9062_cb276213ce96_process_zip_inventaire_marais_hickey, 
                 tg_1a7d4967_4a9d_446c_a080_c93755a24be9_process_zip_inventaire_marais_pointe_aux_outardes, 
                 tg_01fab37f_efbc_433d_8a08_d717200c0ff7_process_zip_inventaire_marais_pointe_fortin, 
-                tg_36f7af6b_8d9c_439f_a838_a25a9c08efe3_process_zip_inventaire_marais_portneuf_sur_mer))
+                tg_36f7af6b_8d9c_439f_a838_a25a9c08efe3_process_zip_inventaire_marais_portneuf_sur_mer, 
+                tg_e246927f_d1b7_4450_8f91_a6e9b91c0c64_processing_resilience_cotiere))
         c("workspace/data/analyzed/biodiversity_data-1.0.0/biodiversity_data.sqlite", 
         "workspace/data/analyzed/biodiversity_data-1.0.0/biodiversity_data.svg"
         )
