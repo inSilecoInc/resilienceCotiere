@@ -35,60 +35,60 @@ list(
         googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
         Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
         googleCloudStorageR::gcs_get_object(object_name = "io_herbier_benthos/logbook/io_herbiers_benthos_2023.csv", 
-            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/raw/io_herbiers_benthos_2023.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_io_herbier_benthos-1.0.0/raw/io_herbiers_benthos_2023.csv", 
             overwrite = TRUE)
-        "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/raw/io_herbiers_benthos_2023.csv"
+        "workspace/data/harvested/biome_io_herbier_benthos-1.0.0/raw/io_herbiers_benthos_2023.csv"
     }, format = "file")), list(tar_target(tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_io_herbier_benthos_biodiversity_abondance, 
     {
         googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
         Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
         googleCloudStorageR::gcs_get_object(object_name = "io_herbier_benthos/biodiversity/io_biodiversity_2023_abondance_m2.csv", 
-            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_abondance_m2.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_abondance_m2.csv", 
             overwrite = TRUE)
-        "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_abondance_m2.csv"
+        "workspace/data/harvested/biome_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_abondance_m2.csv"
     }, format = "file")), list(tar_target(tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_io_herbier_benthos_biodiversity_biomasse, 
     {
         googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
         Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
         googleCloudStorageR::gcs_get_object(object_name = "io_herbier_benthos/biodiversity/io_biodiversity_2023_biomasse_m2.csv", 
-            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_biomasse_m2.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_biomasse_m2.csv", 
             overwrite = TRUE)
-        "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_biomasse_m2.csv"
+        "workspace/data/harvested/biome_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_biomasse_m2.csv"
     }, format = "file")), list(tar_target(tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_io_herbier_benthos_biodiversity_classification, 
     {
         googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
         Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
         googleCloudStorageR::gcs_get_object(object_name = "io_herbier_benthos/biodiversity/io_biodiversity_2023_classification.csv", 
-            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_classification.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_classification.csv", 
             overwrite = TRUE)
-        "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_classification.csv"
+        "workspace/data/harvested/biome_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_classification.csv"
     }, format = "file")), list(tar_target(tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_io_herbier_benthos_biodiversity_presence, 
     {
         googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
         Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
         googleCloudStorageR::gcs_get_object(object_name = "io_herbier_benthos/biodiversity/io_biodiversity_2023_presence.csv", 
-            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_presence.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_presence.csv", 
             overwrite = TRUE)
-        "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_presence.csv"
+        "workspace/data/harvested/biome_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_presence.csv"
     }, format = "file")), list(tar_target(tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_io_herbier_benthos_biodiversity_stations, 
     {
         googleCloudStorageR::gcs_auth("workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
         Sys.setenv(GCS_AUTH_FILE = "workspace/credentials/pof-stac-insileco-5d20b0cb59ef.json")
         googleCloudStorageR::gcs_get_object(object_name = "io_herbier_benthos/biodiversity/io_biodiversity_2023_stations.csv", 
-            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_stations.csv", 
+            bucket = "biome-resilience-cotiere", saveToDisk = "workspace/data/harvested/biome_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_stations.csv", 
             overwrite = TRUE)
-        "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_stations.csv"
-    }, format = "file")), tar_target(tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_processing_biome_recharge_io_herbier_benthos, 
+        "workspace/data/harvested/biome_io_herbier_benthos-1.0.0/raw/io_biodiversity_2023_stations.csv"
+    }, format = "file")), tar_target(tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_processing_biome_io_herbier_benthos, 
     {
-        prc_biome_recharge_io_herbier_benthos(output_path = "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/processed", 
+        prc_biome_io_herbier_benthos(output_path = "workspace/data/harvested/biome_io_herbier_benthos-1.0.0/processed", 
             input_files = list(tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_io_herbier_benthos, 
                 tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_io_herbier_benthos_biodiversity_abondance, 
                 tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_io_herbier_benthos_biodiversity_biomasse, 
                 tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_io_herbier_benthos_biodiversity_classification, 
                 tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_io_herbier_benthos_biodiversity_presence, 
                 tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_io_herbier_benthos_biodiversity_stations))
-        c("workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/processed/biome_recharge_io_herbier_benthos_logbooks.csv", 
-        "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/processed/biome_recharge_io_herbier_benthos_biodiversity.csv"
+        c("workspace/data/harvested/biome_io_herbier_benthos-1.0.0/processed/biome_io_herbier_benthos_logbooks.csv", 
+        "workspace/data/harvested/biome_io_herbier_benthos-1.0.0/processed/biome_io_herbier_benthos_biodiversity.csv"
         )
     }, format = "file")),
     list(list(tar_target(tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_lagrave_biodiversity_2021, 
@@ -626,7 +626,7 @@ list(
     {
         int_biodiversity_data(output_path = "workspace/data/analyzed/biodiversity_data-1.0.0", 
             input_files = list(tg_2b9ea288_e863_4cf3_9196_2dc19a5f5def_process_biodiversite_piei, 
-                tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_processing_biome_recharge_io_herbier_benthos, 
+                tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_processing_biome_io_herbier_benthos, 
                 tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_processing_biome_recharge_lagrave, 
                 tg_c6b58e09_2b7e_4f24_a1d1_3826acbf5840_processing_biome_recharge_maria, 
                 tg_e7c1ea73_41f3_4bf0_a5f0_16ad97416965_processing_biome_recharge_pointe_aux_loups, 

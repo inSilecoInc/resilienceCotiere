@@ -1,6 +1,6 @@
-prc_biome_recharge_io_herbier_benthos <- function(input_files, output_path) {
-  # output_path <- "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/processed/"
-  # input_path <- "workspace/data/harvested/biome_recharge_io_herbier_benthos-1.0.0/raw/"
+prc_biome_io_herbier_benthos <- function(input_files, output_path) {
+  # output_path <- "workspace/data/harvested/biome_io_herbier_benthos-1.0.0/processed/"
+  # input_path <- "workspace/data/harvested/biome_io_herbier_benthos-1.0.0/raw/"
   # input_files <- file.path(
   #   input_path,
   #   c(
@@ -77,10 +77,10 @@ prc_biome_recharge_io_herbier_benthos <- function(input_files, output_path) {
 
 
   # Export
-  vroom::vroom_write(logbooks, file.path(output_path, "biome_recharge_io_herbier_benthos_logbooks.csv"), delim = ",")
+  vroom::vroom_write(logbooks, file.path(output_path, "biome_io_herbier_benthos_logbooks.csv"), delim = ",")
   vroom::vroom_write(
     biodiversity,
-    file.path(output_path, "biome_recharge_io_herbier_benthos_biodiversity.csv"),
+    file.path(output_path, "biome_io_herbier_benthos_biodiversity.csv"),
     delim = ","
   )
 }

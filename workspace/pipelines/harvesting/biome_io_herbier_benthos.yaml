@@ -1,12 +1,12 @@
 pipeline:
   id: db49664a-0e7d-47e8-a3a1-63bc29881c61
-  name: biome_recharge_io_herbier_benthos
+  name: biome_io_herbier_benthos
   version: 1.0.0
   package_version: 0.0.0.9001
   created_at: 2025-01-30 16:23:38
   last_modified: 2025-01-30 16:23:38
   description: >
-    Ce pipeline collecte des données sur l'herbier et le benthos du site de recharge IO, issues du laboratoire BIOME.
+    Ce pipeline collecte des données sur l'herbier et le benthos du site de IO, issues du laboratoire BIOME.
 
   metadata:
     source_name: "BIOME - IO Herbiers et Benthos"
@@ -15,7 +15,7 @@ pipeline:
     license: "Données en accès restreint"
     last_updated: "2023"
     geographic_coverage:
-      region: "Site de recharge IO"
+      region: "Site de IO"
       bounding_box:
         - null
         - null
@@ -80,8 +80,8 @@ pipeline:
 
   processing:
     sources:
-      - name: processing biome_recharge_io_herbier_benthos
-        script: prc_biome_recharge_io_herbier_benthos
+      - name: processing biome_io_herbier_benthos
+        script: prc_biome_io_herbier_benthos
         input_files:
           - io_herbier_benthos
           - io_herbier_benthos biodiversity abondance
@@ -90,10 +90,10 @@ pipeline:
           - io_herbier_benthos biodiversity presence
           - io_herbier_benthos biodiversity stations
         output_files: 
-          - biome_recharge_io_herbier_benthos_logbooks.csv
-          - biome_recharge_io_herbier_benthos_biodiversity.csv
+          - biome_io_herbier_benthos_logbooks.csv
+          - biome_io_herbier_benthos_biodiversity.csv
 
   output:
-    output_dir: "workspace/data/harvested/recharge_io_herbier_benthos/"
+    output_dir: "workspace/data/harvested/io_herbier_benthos/"
     log_dir: "workspace/logs/"
     archive_raw: true

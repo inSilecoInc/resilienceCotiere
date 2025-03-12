@@ -873,19 +873,19 @@ Les données de CABIN sont publiées sous format CSV avec une double nomenclatur
 
 
 
-## Site de recharge de plage de l'Île d'Orléans {#sec-biome_recharge_io_herbier_benthos}
+## Relevé de biodiversité de l'Île d'Orléans {#sec-biome_io_herbier_benthos}
 
-Les données proviennent du suivi des herbiers et du benthos du site de recharge de l'Île d'Orléans, réalisé par le laboratoire BIOME en 2023 [@biome_io_2023]. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de travaux de recharges de plage.  
+Les données proviennent du relevé de biodiversité de l'Île d'Orléans, réalisé par le laboratoire BIOME en 2023 [@biome_io_2023]. Ce suivi vise à caractériser la composition et la distribution des communautés benthiques et herbacées dans le contexte de l'Île d'Orléans.  
 
-- **Source** : **BIOME - Suivi des herbiers et du benthos au site de recharge IO**  
+- **Source** : **BIOME - relevé de biodiversité des herbiers et du benthos au site IO**  
 - **Accessibilité** : Accès restreint  
 - **Type de données** : Fichier CSV  
-- **Couverture géographique** : Site de recharge IO (coordonnées précises à confirmer)  
+- **Couverture géographique** : Site IO (coordonnées précises à confirmer)  
 - **Période couverte** : 2023  
-- **Script de traitement** : `prc_biome_recharge_io_herbier_benthos`  
+- **Script de traitement** : `prc_biome_io_herbier_benthos`  
 - **Fichiers de sortie** :  
-  - `biome_recharge_io_herbier_benthos_logbooks.csv`  
-  - `biome_recharge_io_herbier_benthos_biodiversity.csv`  
+  - `biome_io_herbier_benthos_logbooks.csv`  
+  - `biome_io_herbier_benthos_biodiversity.csv`  
 
 ### Étapes de traitement des données  
 

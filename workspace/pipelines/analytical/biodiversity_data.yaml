@@ -16,7 +16,7 @@ pipeline:
       - id: 2b9ea288-e863-4cf3-9196-2dc19a5f5def
         name: process biodiversite_piei
       - id: db49664a-0e7d-47e8-a3a1-63bc29881c61
-        name: processing biome_recharge_io_herbier_benthos
+        name: processing biome_io_herbier_benthos
       - id: 39dc578d-4b4d-465f-819f-4aac5b86ee7d
         name: processing biome_recharge_lagrave
       - id: c6b58e09-2b7e-4f24-a1d1-3826acbf5840

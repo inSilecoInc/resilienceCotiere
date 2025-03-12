@@ -521,7 +521,6 @@ Les étapes spécifiques du traitement des données sont les suivantes :
      - `dissimilarite_bray_curtis.csv`
 
 
-
 ## Références
 
 
