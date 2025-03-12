@@ -48,3 +48,15 @@ get_taxonomy <- function(input_files) {
 
   return(tx)
 }
+
+get_tbl <- function(input_files, tbl) {
+  # Connexion à la base de données SQLite
+  con <- connect_sqlite(input_files)
+  withr::defer(DBI::dbDisconnect(con))
+
+  # Référencer la table biodiversité et taxonomie
+  ev <- dplyr::tbl(con, tbl) |>
+    dplyr::collect()
+
+  return(ev)
+}

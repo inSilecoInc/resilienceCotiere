@@ -1,0 +1,38 @@
+pipeline:
+  id: d1d4149b-ba3c-40ac-890d-b73c2b619423
+  name: indicateurs_ecosystemes
+  version: 1.0.0
+  package_version: 0.0.0.9001
+  created_at: 2025-03-11 13:50:06
+  last_modified: 2025-03-11 13:50:06
+  description: 'Pipeline for analytical data: indicateurs_ecosystemes'
+  analysis:
+    sources:
+    - name: indicateurs et ecosystemes
+      description: 
+      script: ana_indicateurs_ecosystemes
+      input_files:
+      - id: 93c9fa26-0a59-4d41-b037-2bad00e2b97c
+        name: integrate biodiversity data
+      - id: ff15a782-7ee4-4327-a72c-a23d640d219b
+        name: abondance 
+      - id: ff15a782-7ee4-4327-a72c-a23d640d219b
+        name: biomasse
+      - id: ff15a782-7ee4-4327-a72c-a23d640d219b
+        name: dominance
+      - id: ff15a782-7ee4-4327-a72c-a23d640d219b
+        name: richesse specifique
+      - id: ff15a782-7ee4-4327-a72c-a23d640d219b
+        name: diversite shannon
+      - id: ff15a782-7ee4-4327-a72c-a23d640d219b
+        name: equitabilite pielou
+      - id: ff15a782-7ee4-4327-a72c-a23d640d219b
+        name: diversite simpson
+      - id: ff15a782-7ee4-4327-a72c-a23d640d219b
+        name: indices hill
+      - id: ff15a782-7ee4-4327-a72c-a23d640d219b
+        name: rarefaction hurlbert
+      - id: ff15a782-7ee4-4327-a72c-a23d640d219b
+        name: diversite_taxonomique
+      output_files: 
+      - indicateurs_ecosystemes.csv

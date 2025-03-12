@@ -622,6 +622,50 @@ list(
             "workspace/data/harvested/zip_inventaire_marais_portneuf_sur_mer-1.0.0/processed/marais_portneuf_sur_mer_abundance.csv"
             )
         }, format = "file")),
+    list(tar_target(tg_93c9fa26_0a59_4d41_b037_2bad00e2b97c_integrate_biodiversity_data, 
+    {
+        int_biodiversity_data(output_path = "workspace/data/analyzed/biodiversity_data-1.0.0", 
+            input_files = list(tg_2b9ea288_e863_4cf3_9196_2dc19a5f5def_process_biodiversite_piei, 
+                tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_processing_biome_recharge_io_herbier_benthos, 
+                tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_processing_biome_recharge_lagrave, 
+                tg_c6b58e09_2b7e_4f24_a1d1_3826acbf5840_processing_biome_recharge_maria, 
+                tg_e7c1ea73_41f3_4bf0_a5f0_16ad97416965_processing_biome_recharge_pointe_aux_loups, 
+                tg_0eeaf1d9_5b3f_4c57_82db_0d8e6036619e_processing_biome_recharge_pointe_aux_outardes, 
+                tg_23daffc4_dd6a_441b_8897_19aaa8972abf_processing_biome_recharge_sainte_flavie, 
+                tg_bae62dca_7abd_4c98_939e_5d2882d21329_processing_biome_recharge_sainte_luce, 
+                tg_1cac3c56_ed56_49f5_897c_1b7cf40605c5_process_cabin_aquatic_biomonitoring, 
+                tg_dfbfc2d7_697f_4801_b859_91bf4c1575df_process_inventaire_batture_alouettes, 
+                tg_71e5ee2d_2433_455d_8434_9a9fa26afde6_process_inventaire_macroalgues_macroinvertebres, 
+                tg_0a5569d7_5b9c_44df_9fba_1cc19c95f2ab_processing_inventaire_pointe_john, 
+                tg_d66fe58a_b279_4e2c_8a81_71ab068f2a04_process_invertebres_vegetation_saint_laurent, 
+                tg_860d96c4_efd7_4d76_a6d7_207c0b927815_processing_yanick_gendreau, 
+                tg_66ac503f_ead2_46a4_afc9_e658e459efef_process_zip_inventaire_marais_baie_mille_vaches, 
+                tg_e0f4140b_48b8_47d4_8006_af63af48a1c2_process_zip_inventaire_marais_bergeronnes, 
+                tg_645bee2a_0a34_460a_9062_cb276213ce96_process_zip_inventaire_marais_hickey, 
+                tg_1a7d4967_4a9d_446c_a080_c93755a24be9_process_zip_inventaire_marais_pointe_aux_outardes, 
+                tg_01fab37f_efbc_433d_8a08_d717200c0ff7_process_zip_inventaire_marais_pointe_fortin, 
+                tg_36f7af6b_8d9c_439f_a838_a25a9c08efe3_process_zip_inventaire_marais_portneuf_sur_mer, 
+                tg_e246927f_d1b7_4450_8f91_a6e9b91c0c64_processing_resilience_cotiere))
+        c("workspace/data/analyzed/biodiversity_data-1.0.0/biodiversity_data.sqlite", 
+        "workspace/data/analyzed/biodiversity_data-1.0.0/biodiversity_data.svg"
+        )
+    }, format = "file")),
+    list(tar_target(tg_d1d4149b_ba3c_40ac_890d_b73c2b619423_indicateurs_et_ecosystemes, 
+    {
+        ana_indicateurs_ecosystemes(output_path = "workspace/data/analyzed/indicateurs_ecosystemes-1.0.0", 
+            input_files = list(tg_93c9fa26_0a59_4d41_b037_2bad00e2b97c_integrate_biodiversity_data, 
+                tg_ff15a782_7ee4_4327_a72c_a23d640d219b_abondance, 
+                tg_ff15a782_7ee4_4327_a72c_a23d640d219b_biomasse, 
+                tg_ff15a782_7ee4_4327_a72c_a23d640d219b_dominance, 
+                tg_ff15a782_7ee4_4327_a72c_a23d640d219b_richesse_specifique, 
+                tg_ff15a782_7ee4_4327_a72c_a23d640d219b_diversite_shannon, 
+                tg_ff15a782_7ee4_4327_a72c_a23d640d219b_equitabilite_pielou, 
+                tg_ff15a782_7ee4_4327_a72c_a23d640d219b_diversite_simpson, 
+                tg_ff15a782_7ee4_4327_a72c_a23d640d219b_indices_hill, 
+                tg_ff15a782_7ee4_4327_a72c_a23d640d219b_rarefaction_hurlbert, 
+                tg_ff15a782_7ee4_4327_a72c_a23d640d219b_diversite_taxonomique))
+        "workspace/data/analyzed/indicateurs_ecosystemes-1.0.0/indicateurs_ecosystemes.csv"
+    }, format = "file")),
     list(tar_target(tg_ff15a782_7ee4_4327_a72c_a23d640d219b_abondance, 
     {
         ana_abondance(output_path = "workspace/data/analyzed/indicateurs-1.0.0", 
@@ -677,33 +721,5 @@ list(
         ana_diversite_taxonomique(output_path = "workspace/data/analyzed/indicateurs-1.0.0", 
             input_files = list(tg_93c9fa26_0a59_4d41_b037_2bad00e2b97c_integrate_biodiversity_data))
         "workspace/data/analyzed/indicateurs-1.0.0/diversite_taxonomique.csv"
-    }, format = "file")),
-    list(tar_target(tg_93c9fa26_0a59_4d41_b037_2bad00e2b97c_integrate_biodiversity_data, 
-    {
-        int_biodiversity_data(output_path = "workspace/data/analyzed/biodiversity_data-1.0.0", 
-            input_files = list(tg_2b9ea288_e863_4cf3_9196_2dc19a5f5def_process_biodiversite_piei, 
-                tg_db49664a_0e7d_47e8_a3a1_63bc29881c61_processing_biome_recharge_io_herbier_benthos, 
-                tg_39dc578d_4b4d_465f_819f_4aac5b86ee7d_processing_biome_recharge_lagrave, 
-                tg_c6b58e09_2b7e_4f24_a1d1_3826acbf5840_processing_biome_recharge_maria, 
-                tg_e7c1ea73_41f3_4bf0_a5f0_16ad97416965_processing_biome_recharge_pointe_aux_loups, 
-                tg_0eeaf1d9_5b3f_4c57_82db_0d8e6036619e_processing_biome_recharge_pointe_aux_outardes, 
-                tg_23daffc4_dd6a_441b_8897_19aaa8972abf_processing_biome_recharge_sainte_flavie, 
-                tg_bae62dca_7abd_4c98_939e_5d2882d21329_processing_biome_recharge_sainte_luce, 
-                tg_1cac3c56_ed56_49f5_897c_1b7cf40605c5_process_cabin_aquatic_biomonitoring, 
-                tg_dfbfc2d7_697f_4801_b859_91bf4c1575df_process_inventaire_batture_alouettes, 
-                tg_71e5ee2d_2433_455d_8434_9a9fa26afde6_process_inventaire_macroalgues_macroinvertebres, 
-                tg_0a5569d7_5b9c_44df_9fba_1cc19c95f2ab_processing_inventaire_pointe_john, 
-                tg_d66fe58a_b279_4e2c_8a81_71ab068f2a04_process_invertebres_vegetation_saint_laurent, 
-                tg_860d96c4_efd7_4d76_a6d7_207c0b927815_processing_yanick_gendreau, 
-                tg_66ac503f_ead2_46a4_afc9_e658e459efef_process_zip_inventaire_marais_baie_mille_vaches, 
-                tg_e0f4140b_48b8_47d4_8006_af63af48a1c2_process_zip_inventaire_marais_bergeronnes, 
-                tg_645bee2a_0a34_460a_9062_cb276213ce96_process_zip_inventaire_marais_hickey, 
-                tg_1a7d4967_4a9d_446c_a080_c93755a24be9_process_zip_inventaire_marais_pointe_aux_outardes, 
-                tg_01fab37f_efbc_433d_8a08_d717200c0ff7_process_zip_inventaire_marais_pointe_fortin, 
-                tg_36f7af6b_8d9c_439f_a838_a25a9c08efe3_process_zip_inventaire_marais_portneuf_sur_mer, 
-                tg_e246927f_d1b7_4450_8f91_a6e9b91c0c64_processing_resilience_cotiere))
-        c("workspace/data/analyzed/biodiversity_data-1.0.0/biodiversity_data.sqlite", 
-        "workspace/data/analyzed/biodiversity_data-1.0.0/biodiversity_data.svg"
-        )
     }, format = "file"))
 )

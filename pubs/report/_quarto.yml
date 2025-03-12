@@ -17,7 +17,7 @@ book:
     - 3_integration.qmd
     - 4_indicateurs.qmd
     - 5_structure_communautes.qmd
-    - 6_modelisation.qmd
+    # - 6_modelisation.qmd
 
 bibliography: [Indicateurs.bib, ../../workspace/bibliographies/data.bib]
 csl: frontiers.csl

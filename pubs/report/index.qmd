@@ -46,7 +46,7 @@ Une recherche a été menée afin de répertorier et rassembler les données exi
 
 Les données acquises ont permis d’identifier les écosystèmes appropriés pour les communautés benthiques (@sec-indicateurs)
 
-### Livrable 3
+<!-- ### Livrable 3
 
 #### Prédiction de la structure des communautés côtières au sein d'habitats côtiers
 
@@ -58,6 +58,6 @@ Les données disponibles ont déterminé l’étendue du projet et la sélection
 
 Lorsque les données le permettaient, la phase suivante a consisté à modéliser la probabilité de présence de chaque communauté en utilisant des modèles spatiaux. Les prédicteurs considérés ont inclus la température, la salinité et la composition des sédiments. Cette approche a fourni des estimations de la qualité de l’habitat pour chaque communauté sur l’ensemble de la zone d’étude (voir @sec-modelisation).
 
-Parallèlement, une modélisation similaire a été réalisée à l’échelle de l’espèce, permettant ainsi d’évaluer des indicateurs écologiques au niveau de l’espèce en complément de ceux évalués au niveau de la communauté. L’identification des communautés typiques pour chaque écosystème a facilité le suivi temporel et la gestion des territoires de grande envergure en réduisant la nécessité d’un échantillonnage exhaustif. Les prédictions obtenues ont contribué au développement d’indicateurs écologiques pertinents, renforçant ainsi la compréhension et la gestion des écosystèmes côtiers du Saint-Laurent.
+Parallèlement, une modélisation similaire a été réalisée à l’échelle de l’espèce, permettant ainsi d’évaluer des indicateurs écologiques au niveau de l’espèce en complément de ceux évalués au niveau de la communauté. L’identification des communautés typiques pour chaque écosystème a facilité le suivi temporel et la gestion des territoires de grande envergure en réduisant la nécessité d’un échantillonnage exhaustif. Les prédictions obtenues ont contribué au développement d’indicateurs écologiques pertinents, renforçant ainsi la compréhension et la gestion des écosystèmes côtiers du Saint-Laurent. -->
 
 ## Références

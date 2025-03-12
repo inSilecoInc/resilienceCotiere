@@ -1,4 +1,73 @@
-# Structure des communautés côtières {#sec-structure_communautes}
+# Indicateurs et écosystèmes côtiers {#sec-structure_communautes}
+
+## Analyse des indicateurs par écosystème
+
+Cette section présente une analyse des indicateurs environnementaux en fonction des types d’écosystèmes. L’objectif est d'explorer la distribution des valeurs des indicateurs à l’aide de *boxplots*, permettant ainsi d’identifier les tendances et les variations dans les différents milieux considérés.
+
+### Méthodologie
+
+Les données utilisées proviennent de l’ensemble structuré suivant :  
+
+- `event_id` : Identifiant unique de l’événement d’échantillonnage.  
+- `indicator` : Nom de l’indicateur mesuré (ex. : abondance, biomasse, diversité).  
+- `indicator_value` : Valeur numérique de l’indicateur.  
+- `unit` : Unité de mesure associée à l’indicateur (ex. : nombre, grammes, pourcentage).  
+- `ecosystem_id` : Code d’identification de l’écosystème.  
+- `ecosystem` : Type d’écosystème associé à l’échantillonnage.  
+
+Les données ont été agrégées afin de représenter chaque indicateur en fonction de son unité et de son écosystème d’appartenance. Les *boxplots* permettent d’explorer la distribution des valeurs mesurées et d’identifier les écarts interquartiles ainsi que les valeurs extrêmes.
+
+### Résultats et Interprétation
+
+Pour chaque combinaison indicateur-unité, un diagramme en boîte a été généré, où :
+
+- L’axe des abscisses (x) représente les différents types d’écosystèmes.  
+- L’axe des ordonnées (y) représente les valeurs mesurées de l’indicateur.  
+- Chaque boîte illustre la médiane, les quartiles et l’étendue des valeurs observées.  
+- Les points isolés correspondent aux valeurs extrêmes (*outliers*), suggérant des variations importantes dans certaines conditions d’échantillonnage.
+
+Ces graphiques permettent d’identifier les écosystèmes présentant des valeurs particulièrement élevées ou faibles pour certains indicateurs, ce qui peut orienter les analyses écologiques et la prise de décision en gestion environnementale.
+
+```{r}
+# Load necessary libraries
+library(ggplot2)
+library(dplyr)
+library(purrr)
+
+# Function to generate a box plot for each data frame in the list
+plot_boxplot <- function(df) {
+  # Ensure the data frame has the required columns
+  if (!all(c("indicator", "indicator_value", "unit", "ecosystem_id") %in% colnames(df))) {
+    stop("Data frame is missing required columns: indicator, indicator_value, unit, ecosystem_id")
+  }
+
+  # Extract indicator name and unit
+  title_text <- paste0(unique(df$indicator), " (", unique(df$unit), ")")
+
+  # Generate the box plot
+  ggplot2::ggplot(df, ggplot2::aes(x = ecosystem, y = indicator_value)) +
+    ggplot2::geom_boxplot() +
+    ggplot2::labs(
+      title = title_text,
+      x = "Ecosystem",
+      y = "Indicator Value"
+    ) +
+    ggplot2::theme_minimal() +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
+}
+
+# Data
+df <- vroom::vroom("../../workspace/data/analyzed/indicateurs_ecosystemes-1.0.0/indicateurs_ecosystemes.csv") |>
+  dplyr::group_by(indicator, unit) |>
+  dplyr::group_split()
+
+# Apply the function to each data frame and store plots
+plots <- purrr::map(df, plot_boxplot)
+
+# Display all plots (Optional: You may also save them using ggsave)
+plots
+
+```
 
 
 

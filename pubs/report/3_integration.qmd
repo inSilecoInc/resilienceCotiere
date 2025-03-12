@@ -89,13 +89,13 @@ meta <- dplyr::tbl(con, "metadata") |>
 # Table
 knitr::kable(meta)
 
-# # Map
-# meta <- meta |>
-#   dplyr::rowwise() |>
-#   dplyr::mutate(geometry = list(create_bbox_polygon(longitude_min, longitude_max, latitude_min, latitude_max))) |>
-#   dplyr::ungroup() |>
-#   sf::st_as_sf(crs = 4326)
-# mapview::mapview(meta)
+# Map
+meta <- meta |>
+  dplyr::rowwise() |>
+  dplyr::mutate(geometry = list(create_bbox_polygon(longitude_min, longitude_max, latitude_min, latitude_max))) |>
+  dplyr::ungroup() |>
+  sf::st_as_sf(crs = 4326)
+mapview::mapview(meta, legend = FALSE)
 ```
 
 <br/>
@@ -268,6 +268,39 @@ Les différentes sources de biodiversité sont fusionnées en une table unique c
 | `measurement_value`     | `chr` (texte)       | Valeur mesurée (ex: nombre d'individus, poids) |
 | `measurement_unit`      | `chr` (texte)       | Unité de mesure correspondante (`n/m2`, `g/m2`, ou aucune unité) |
 
+
+### Écosystèmes (`ecosystems`)
+
+La table `ecosystems` regroupe les informations sur la caractérisation des écosysteèmes du Saint-Laurent (voir @sec-resilience_cotiere). Elle permet d'établir une correspondance entre les stations d’échantillonnage et les écosystèmes cartographiés, facilitant ainsi l'analyse des dynamiques écologiques dans des contextes environnementaux variés.
+
+#### Extraction et structuration des données
+
+Les données sur les écosystèmes proviennent du fichier *resilience_cotiere_ecosystemes.gpkg*, qui contient des entités spatiales représentant différents types d'écosystèmes. La table `ecosystems` est simplement la list des ecosystèmes uniques disponibles dans la base de données du projet Résilience Côtière accompagnés d'un identifiant unique. 
+
+#### Table finale
+
+| **Nom du champ**    | **Type de données** | **Description** |
+|---------------------|---------------------|-----------------|
+| `ecosystem_id`     | `chr` (texte)       | Identifiant unique de l'écosystème |
+| `ecosystem`   | `chr` (texte)       | Nom de l'écosystème |
+
+### Correspondance événements-écosystèmes (`event_ecosystem`)
+
+La table `event_ecosystem` établit une relation entre les événements d’échantillonnage et les écosystèmes dans lesquels ils ont eu lieu. Cette correspondance permet d’analyser les données de biodiversité et de paramètres abiotiques en tenant compte des caractéristiques spécifiques des milieux échantillonnés. L’attribution des écosystèmes aux événements repose sur une opération de jointure spatiale entre la table `events` et la table `ecosystems`. Cette opération permet de déterminer, pour chaque station d’échantillonnage, l’écosystème dans lequel elle est située.
+
+- Conversion des événements en objets spatiaux (`sf`).
+- Reprojection des coordonnées des événements vers le système de référence des écosystèmes (`EPSG:32198`).
+- Jointure spatiale entre les points d’échantillonnage et les polygones des écosystèmes pour attribuer un `ecosystem_id` à chaque événement.
+- Suppression de la géométrie pour conserver uniquement les identifiants des événements et des écosystèmes.
+
+#### Table finale
+
+La table `event_ecosystem` fournit une liaison entre les événements d’échantillonnage et les écosystèmes cartographiés.
+
+| **Nom du champ**  | **Type de données** | **Description** |
+|-------------------|---------------------|-----------------|
+| `event_id`       | `chr` (texte)       | Identifiant unique de l'événement d'échantillonnage |
+| `ecosystem_id`   | `chr` (texte)       | Identifiant unique de l'écosystème associé à l'événement |
 
 
 ## Schéma de la Base de Données
