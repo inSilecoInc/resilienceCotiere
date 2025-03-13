@@ -34,5 +34,9 @@ pipeline:
         name: rarefaction hurlbert
       - id: ff15a782-7ee4-4327-a72c-a23d640d219b
         name: diversite_taxonomique
+      - id: ff15a782-7ee4-4327-a72c-a23d640d219b
+        name: bbi
+      - id: ff15a782-7ee4-4327-a72c-a23d640d219b
+        name: bo2a_bopa
       output_files: 
       - indicateurs_ecosystemes.csv

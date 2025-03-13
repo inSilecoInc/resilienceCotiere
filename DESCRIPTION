@@ -18,6 +18,7 @@ Depends:
     R (>= 4.0)
 Imports: 
     archive,
+    BBI,
     data.table,
     DBI,
     dplyr,

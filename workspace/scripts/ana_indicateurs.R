@@ -469,3 +469,208 @@ calculate_dissimilarity <- function(data, method = "bray") {
 
   return(dissimilarity_matrix)
 }
+
+
+ana_bbi <- function(input_files, output_path) {
+  input_files <- unlist(input_files)
+
+  # Data
+  ab <- get_biodiversity(input_files, "abundance", "n")
+  dn <- get_biodiversity(input_files, "abundance", "n/m2")
+  tx <- get_tbl(input_files, "taxonomy")
+
+  # BBI indices, including AMBI, ISI, ITI, Bentix
+  indicator <- dplyr::bind_rows(
+    compute_bbi_indices(ab, tx) |>
+      dplyr::mutate(unit = "n"),
+    compute_bbi_indices(dn, tx) |>
+      dplyr::mutate(unit = "n/m2")
+  )
+
+  # Save results
+  vroom::vroom_write(indicator, file.path(output_path, "bbi.csv"), delim = ",")
+}
+
+
+compute_bbi_indices <- function(abundance, taxonomy) {
+  # Reshape abundance data from wide to long format
+  ab_long <- abundance |>
+    tidyr::pivot_longer(cols = -event_id, names_to = "species_id", values_to = "abundance") |>
+    dplyr::filter(abundance > 0) # Remove absent species
+
+  # Merge taxonomy information
+  ab_tax <- ab_long |>
+    dplyr::left_join(taxonomy, by = "species_id") |>
+    dplyr::filter(!is.na(scientific_name)) |> # Keep only identified species
+    dplyr::select(event_id, scientific_name, abundance)
+
+  # Prepare BBI input format
+  metab <- ab_tax |>
+    tidyr::pivot_wider(names_from = event_id, values_from = abundance, values_fill = 0)
+
+  # Compute BBI indices
+  suppressMessages({
+    suppressWarnings({
+      BI_results <- BBI::BBI(metab)
+    })
+  })
+
+  # Extract indicator results
+  bbi_results <- BI_results$BBI |>
+    data.frame() |>
+    tibble::rownames_to_column(var = "event_id") |>
+    dplyr::select(event_id, AMBI, ISI, ITI, Bentix)
+
+  # Get M-AMBI*
+  mambi <- bbi_results |>
+    dplyr::select(event_id, AMBI) |>
+    compute_mambi_star(abundance, taxonomy)
+
+  # Combine and transform to long format
+  bbi_results |>
+    dplyr::left_join(mambi, by = "event_id") |>
+    tidyr::pivot_longer(cols = -event_id, names_to = "indicator", values_to = "indicator_value") |>
+    dplyr::filter(indicator_value != "NaN")
+}
+
+
+
+compute_mambi_star <- function(ambi, abundance, taxonomy) {
+  # Compute Species Richness (S)
+  S_values <- abundance |>
+    dplyr::mutate(S = vegan::specnumber(dplyr::select(abundance, -event_id))) |>
+    dplyr::select(event_id, S)
+
+  # Compute Shannon-Wiener Index (H')
+  H_values <- abundance |>
+    dplyr::mutate(H = vegan::diversity(dplyr::select(abundance, -event_id), index = "shannon")) |>
+    dplyr::select(event_id, H)
+
+  # Merge with AMBI from BBI results
+  mambi_data <- ambi |>
+    dplyr::left_join(S_values, by = "event_id") |>
+    dplyr::left_join(H_values, by = "event_id")
+
+  # Min-Max Normalization Function
+  normalize <- function(x) (x - min(x, na.rm = TRUE)) / (max(x, na.rm = TRUE) - min(x, na.rm = TRUE))
+
+  # Normalize all three metrics
+  mambi_data <- mambi_data |>
+    dplyr::mutate(
+      AMBI_norm = normalize(AMBI),
+      S_norm = normalize(S),
+      H_norm = normalize(H)
+    )
+
+  # Compute M-AMBI* as the mean of normalized metrics
+  mambi_data <- mambi_data |>
+    dplyr::mutate(M_AMBI_star = (S_norm + H_norm - AMBI_norm) / 3)
+
+  # Ensure values are within 0-1 range
+  mambi_data <- mambi_data |>
+    dplyr::mutate(M_AMBI_star = pmax(0, pmin(1, M_AMBI_star))) |>
+    dplyr::select(event_id, M_AMBI_star)
+
+  return(mambi_data)
+}
+
+
+ana_bo2a_bopa <- function(input_files, output_path) {
+  input_files <- unlist(input_files)
+
+  # Data
+  ab <- get_biodiversity(input_files, "abundance", "n")
+  dn <- get_biodiversity(input_files, "abundance", "n/m2")
+  tx <- get_tbl(input_files, "taxonomy")
+
+  # Indicator
+  indicator <- dplyr::bind_rows(
+    compute_bo2a_bopa(ab, tx) |>
+      dplyr::mutate(unit = "n"),
+    compute_bo2a_bopa(dn, tx) |>
+      dplyr::mutate(unit = "n/m2")
+  )
+
+  # Save results
+  vroom::vroom_write(indicator, file.path(output_path, "bo2a_bopa.csv"), delim = ",")
+}
+
+compute_bo2a_bopa <- function(abundance, taxonomy) {
+  # Identify amphipods and opportunistic annelids in taxonomy data
+  tx_filtered <- taxonomy |>
+    dplyr::mutate(taxa = dplyr::case_when(
+      # order == "Amphipoda" ~ "Amphipoda",
+      (order == "Amphipoda" & family == "Pontoporeiidae") ~ "Amphipoda",
+      (phylum == "Annelida" & family %in% c("Spionidae", "Capitellidae")) ~ "Polycheata",
+      (phylum == "Annelida" & class %in% c("Clitellata")) ~ "Annelida",
+      .default = NA_character_
+    )) |>
+    dplyr::select(species_id, taxa)
+
+  # Merge taxonomy information with abundance data
+  ab_long <- abundance |>
+    tidyr::pivot_longer(cols = -event_id, names_to = "species_id", values_to = "abundance") |>
+    dplyr::left_join(tx_filtered, by = "species_id") |>
+    dplyr::filter(abundance > 0)
+
+  # Compute total abundance per sample (all species)
+  total_abundance <- ab_long |>
+    dplyr::group_by(event_id) |>
+    dplyr::summarise(Total = sum(abundance, na.rm = TRUE), .groups = "drop")
+
+  # Aggregate abundance per event and group (Amphipods & Opportunistic Annelids)
+  ab_summary <- ab_long |>
+    dplyr::filter(!is.na(taxa)) |>
+    dplyr::group_by(event_id, taxa) |>
+    dplyr::summarise(total_abundance = sum(abundance, na.rm = TRUE), .groups = "drop") |>
+    tidyr::pivot_wider(names_from = taxa, values_from = total_abundance, values_fill = list(total_abundance = 0)) |>
+    dplyr::left_join(total_abundance, by = "event_id") # Join total abundance per sample
+
+  # Compute frequencies
+  ab_summary <- ab_summary |>
+    dplyr::mutate(
+      f_a = Amphipoda / Total, # Amphipod frequency
+      f_po = (Annelida + Polycheata) / Total, # Opportunistic annelid frequency
+      f_p = Polycheata / Total # Opportunistic polychaete frequency
+    ) |>
+    dplyr::mutate(
+      BO2A = log2((f_po / (f_a + 1)) + 1),
+      BOPA = log2((f_p / (f_a + 1)) + 1)
+    ) |>
+    dplyr::select(event_id, BO2A, BOPA) |>
+    tidyr::pivot_longer(cols = -event_id, names_to = "indicator", values_to = "indicator_value") |>
+    dplyr::filter(!is.na(indicator_value)) # Remove missing values
+
+  return(ab_summary)
+}
+
+
+
+ana_fucoid <- function(input_files, output_path) {
+  input_files <- unlist(input_files)
+
+  # Data
+  rc <- get_biodiversity(input_files, "recouvrement", "%")
+  tx <- get_tbl(input_files, "taxonomy")
+
+  # Identify fucoids
+  sp <- tx |>
+    dplyr::filter(family == "Fucaceae") |>
+    dplyr::select(species_id)
+
+  # Keep only events with fucoid data
+  indicator <- rc |>
+    dplyr::select(event_id, dplyr::any_of(sp$species_id)) |>
+    dplyr::rowwise() |>
+    dplyr::mutate(
+      indicator_value = sum(dplyr::c_across(-event_id)),
+      indicator = "FUCOID",
+      unit = "%"
+    ) |>
+    dplyr::ungroup() |>
+    dplyr::filter(indicator_value > 0) |>
+    dplyr::select(event_id, indicator, indicator_value, unit)
+
+  # Save results
+  vroom::vroom_write(indicator, file.path(output_path, "fucoid.csv"), delim = ",")
+}

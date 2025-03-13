@@ -1,7 +1,7 @@
 
 # Indicateurs de biodiversité {#sec-indicateurs}
 
-:::{.callout-warning}
+:::{.callout-caution}
 ## Références indicateurs
 
 Trouver et ajouter les références pour les indicateurs.
@@ -11,30 +11,53 @@ Trouver et ajouter les références pour les indicateurs.
 
 ::: {style="font-size: 80%;"}
 
-| Milieu | Acronyme | Nom de l'indicateur                          | Description                                                                 | Référence                          | Statut |
-|--------|---------|---------------------------------------------|-----------------------------------------------------------------------------|-------------------------------------|------------|
-| M; D; T | A       | Abondance (A)           | Quantifie les peuplements par le nombre d'espèces.                         | Barnes et al., 1991                | ✅ |
-| M; D; T | B       | Biomasse (B)                               | Quantifie les peuplements par le poids des espèces.                         | Barnes et al., 1991                | ✅ |
-| M; D; T | DOM     | Dominance                                  | Quantifie la proportion des différentes espèces.                            | Barnes et al., 1991                | ✅ |
-| M; D; T | S       | Richesse spécifique (S)                    | Nombre d'espèces par unité de surface.                                      | Peet, 1974                         | ✅ |
-| M; D; T | H'      | Indice de Shannon-Wiener (H’)              | Mesure la diversité en fonction du nombre d’espèces et de leur abondance.  | Gray et al., 1982                  | ✅ |
-| M; D; T | J'      | Indice d’équitabilité de Piélou (J’)       | Mesure la répartition des individus entre les espèces.                      | Piélou, 1966                       | ✅ |
-| M; D; T | SIMP    | Indice de Simpson (λ)                      | Probabilité que deux individus aléatoires soient de la même espèce.         | Simpson, 1949                      | ✅ |
-| M; D; T | HILL    | Série d’indices de Hill                    | Combine les indices de Simpson et de Shannon-Wiener.                       | Hill, 1973                         | ✅ |
-| M; D; T | HURB    | Méthode de raréfaction de Hurlbert         | Standardise le nombre d’espèces attendues par taille d’échantillon.        | Peet, 1974                         | ✅ |
-| M; D; T | TAXD    | Indice de diversité taxonomique            | Diversité basée sur la parenté taxonomique.                               | Warwick & Clarke, 1995             | ✅ |
-| M; D; T | BC      | Indice de dissimilarité Bray-Curtis        | Mesure la dissimilarité entre échantillons.                                | Bray & Curtis, 1957                | ✅ |
-| M; D; T | FR      | Indice de diversité fonctionnelle (FR)     | Mesure la richesse fonctionnelle.                                         | Mason et al., 2005                 | ❌ |
-| M; D; T | FE      | Indice de diversité fonctionnelle (FE)     | Mesure l’uniformité fonctionnelle.                                       | Mason et al., 2005                 | ❌ |
-| M; D; T | FD      | Indice de diversité fonctionnelle (FD)     | Mesure la divergence fonctionnelle.                                      | Mason et al., 2005                 | ❌ |
-| M | BENTIX | Bentix                                      | Pondération des groupes selon leur réponse aux perturbations.            | Simboura & Zenetos, 2002           | ❌ |
-| D | ISBg/ISBm | Indice de Suivi du Benthos (ISBg/ISBm)       | Évalue l’état écologique des cours d’eau.                               | Pelletier & Moisan, 2012           | ❌ |
-| M; T | BO2A  | Benthic Opportunistic Annelida Amphipod (BO2A) | Évalue la proportion d’annélides opportunistes et d’amphipodes.   | Dauvin & Ruellet, 2009            | ❌ |
-| M; T | BOPA  | Benthic Opportunistic Polychaetes/Amphipods Index (BOPA) | Ratio polychètes/amphipodes pour évaluer l’écosystème. | Dauvin & Ruellet, 2007 | ❌ |
-| M | BRI    | Benthic Response Index (BRI)                   | Indice de tolérance des espèces à la pollution.                         | Smith et al., 2001                 | ❌ |
-| M | BQI    | Benthic Quality Index (BQI)                    | Combine tolérance, abondance et diversité.                              | Rosenberg et al., 2004             | ❌ |
-| D | ASPT   | Average Score Per Taxon (ASPT)                 | Sensibilité des invertébrés à l’oxygène dissous.                        | Armitage et al., 1983              | ❌ |
-| M; T | FUCOID | Fucoid presence                              | Indicateur de pollution basé sur les algues fucoïdes.                  | Wilkinson et al., 2007             | ❌ |
+| Milieu | Acronyme | Nom de l'indicateur                          | Description                                                                 | Référence                          | Statut | Priorité |
+|--------|---------|---------------------------------------------|-----------------------------------------------------------------------------|-------------------------------------|------------|------------|
+| M; D; T | A       | Abondance (A)                              | Quantifie les peuplements par le nombre d'espèces.                         | Barnes et al., 1991                | ✅ | 1 |
+| M; D; T | B       | Biomasse (B)                               | Quantifie les peuplements par le poids des espèces.                         | Barnes et al., 1991                | ✅ | 1 |
+| M; D; T | DOM     | Dominance                                  | Quantifie la proportion des différentes espèces.                            | Barnes et al., 1991                | ✅ | 1 |
+| M; D; T | S       | Richesse spécifique (S)                    | Nombre d'espèces par unité de surface.                                      | Peet, 1974                         | ✅ | 1 |
+| M; D; T | H'      | Indice de Shannon-Wiener (H’)              | Mesure la diversité en fonction du nombre d’espèces et de leur abondance.  | Gray et al., 1982                  | ✅ | 1 |
+| M; D; T | J'      | Indice d’équitabilité de Piélou (J’)       | Mesure la répartition des individus entre les espèces.                      | Piélou, 1966                       | ✅ | 1 |
+| M; D; T | SIMP    | Indice de Simpson (λ)                      | Probabilité que deux individus aléatoires soient de la même espèce.         | Simpson, 1949                      | ✅ | 1 |
+| M; D; T | HILL    | Série d’indices de Hill                    | Combine les indices de Simpson et de Shannon-Wiener.                       | Hill, 1973                         | ✅ | 1 |
+| M; D; T | HURB    | Méthode de raréfaction de Hurlbert         | Standardise le nombre d’espèces attendues par taille d’échantillon.        | Peet, 1974                         | ✅ | 1 |
+| M; D; T | TAXD    | Indice de diversité taxonomique            | Diversité basée sur la parenté taxonomique.                               | Warwick & Clarke, 1995             | ✅ | 1 |
+| M; D; T | BC      | Indice de dissimilarité Bray-Curtis        | Mesure la dissimilarité entre échantillons.                                | Bray & Curtis, 1957                | ✅ | 1 |
+| M; D; T | FR      | Indice de diversité fonctionnelle (FR)     | Mesure la richesse fonctionnelle.                                         | Mason et al., 2005                 | ❌ | 1 |
+| M; D; T | FE      | Indice de diversité fonctionnelle (FE)     | Mesure l’uniformité fonctionnelle.                                       | Mason et al., 2005                 | ❌ | 1 |
+| M; D; T | FD      | Indice de diversité fonctionnelle (FD)     | Mesure la divergence fonctionnelle.                                      | Mason et al., 2005                 | ❌ | 1 |
+| M | BENTIX | Bentix                                      | Pondération des groupes selon leur réponse aux perturbations.            | Simboura & Zenetos, 2002           | ✅ | 2 |
+| D | ISBg/ISBm | Indice de Suivi du Benthos (ISBg/ISBm)       | Évalue l’état écologique des cours d’eau.                               | Pelletier & Moisan, 2012           | ❌ | 2 |
+| M; T | BO2A  | Benthic Opportunistic Annelida Amphipod (BO2A) | Évalue la proportion d’annélides opportunistes et d’amphipodes.   | Dauvin & Ruellet, 2009            | ✅ | 2 |
+| M; T | BOPA  | Benthic Opportunistic Polychaetes/Amphipods Index (BOPA) | Ratio polychètes/amphipodes pour évaluer l’écosystème. | Dauvin & Ruellet, 2007 | ✅ | 2 |
+| M | BRI    | Benthic Response Index (BRI)                   | Indice de tolérance des espèces à la pollution.                         | Smith et al., 2001                 | ❌ | 2 |
+| M | BQI    | Benthic Quality Index (BQI)                    | Combine tolérance, abondance et diversité.                              | Rosenberg et al., 2004             | ❌ | 2 |
+| D | ASPT   | Average Score Per Taxon (ASPT)                 | Sensibilité des invertébrés à l’oxygène dissous.                        | Armitage et al., 1983              | ❌ | 2 |
+| D      | BMWP    | Biological Monitoring Working Party (BMWP) | Évalue les familles d'invertébrés benthiques en fonction de leur sensibilité à la pollution. | Armitage et al., 1983 | ❌ | 3 |
+| M; T | FUCOID | Fucoid presence                              | Indicateur de pollution basé sur les algues fucoïdes.                  | Wilkinson et al., 2007             | ✅ | 2 |
+| M; T   | GPBI    | General-Purpose Biotic Index (GPBI)        | Se base sur la déviation de composition et structure des communautés benthiques par rapport à une référence. | Labrune et al., 2021 | ❌ | 3 |
+| T      | R-MaQI  | Rapid Quality Index - Rapid (R-MaQI)       | Intègre et améliore deux autres indicateurs : le ratio Rhodophyceae/Chlorophyceae et le Mean Macroalgal Score Index. | Sfriso et al., 2007 | ❌ | 3 |
+| M      | ZOSTERA | Depth limit of the marine angiosperm Zostera marina | Se base sur la profondeur à laquelle croît la Zostère pour évaluer le niveau d’eutrophisation du milieu. | Krause-Jensen et al., 2005 | ❌ | 3 |
+| M; T   | BCI     | Benthic condition Index (BCI)              | Évalue le degré de contamination du sédiment et les conditions d’oxygénation. | Engle & Summers, 1999 | ❌ | 3 |
+| T      | BEQI-FR | Benthic Ecosystem Quality Index – France (BEQI-FR) | Calcule un EQR basé sur 3 métriques combinées en un EQR moyen. | Blanchet et al., 2024 | ❌ | 3 |
+| T      | EQAT    | Chironomid Exuviae in Transitional Waters (EQAT) | Évalue l’état écologique en se basant sur les assemblages d'exuvies de chironomes estuariens. | Cañedo-Argüelles et al., 2012 | ❌ | 3 |
+| M      | AMBI    | AZTI Marine Biotic Index (AMBI)            | Évalue la réponse des communautés benthiques aux perturbations en classifiant les macroinvertébrés en groupes écologiques. | Borja et al., 2000 | ✅ | 3 |
+| M      | M-AMBI  | Multivariate AZTI Marine Biotic Index (M-AMBI) | Adaptation de l’AMBI qui évalue la réponse des communautés benthiques aux perturbations. | Sigovini et al., 2013 | ✅ | 3 |
+| M; T   | ITI     | Infaunal Trophic Index (ITI)               | Utilise les groupes trophiques pour classer les espèces selon leur mode d’alimentation et leur réponse aux perturbations. | Word, 1979 | ✅ | 3 |
+| D      | PSI     | Proportion of Sediment-sensitive Invertebrates (PSI) | Décrit la composition des sédiments de surface des lits de rivières; est considéré comme un bon proxy pour les espèces envahissantes. | Extence et al., 2013 | ❌ | NA |
+| M; D; T | ISI   | Indicator Species Index (ISI)              | Identifie les espèces indicatrices avec des études statistiques grâce à la méthode de raréfaction de Hurlbert. | Rygg, 2002 | ✅ | NA |
+| M; T   | IAP     | Indice Annélidien de Pollution (IAP)       | Utilise les présences et proportions d’espèces sentinelles en fonction de leur sensibilité ou tolérance à la pollution. | Bellan, 1980 | ❌ | NA |
+| M; T   | IB      | Indice Biotique (IB)                      | Classe les espèces en 5 groupes écologiques de polluosensibilités différentes qui se succèdent selon le gradient de pollution. | Borja et al., 2000 | ❌ | NA |
+| M; T   | DEPTH   | Distribution en profondeur                | Se base sur le déplacement vertical de la limite de profondeur de la végétation vivant sur un substrat mou. | Selig et al., 2007 | ❌ | NA |
+| D      | SQI     | Stream Quality Index (SQI)                | Quantifie la probabilité attendue que les stress chimiques et physiques aient un impact sur plusieurs composantes de l'état biologique. | Beck et al., 2019 | ❌ | NA |
+| T      | TWQI    | Transitional Water Quality Index (TWQI)   | Utilise différentes métriques liées à l’eutrophisation et les transforme en valeur de qualité pondérée. | Giordani et al., 2009 | ❌ | NA |
+| M; T   | I2EC    | Indice d’évaluation de l’endofaune côtière (I2EC) | Évalue la réponse de l’endofaune aux perturbations d’un écosystème côtier. | Grall & Glémarec, 2003 | ❌ | NA |
+| D      | CSCI    | California Stream Condition Index (CSCI)   | Compare les taxons et les métriques observés des macroinvertébrés benthiques sur un site à ceux attendus dans des conditions de référence. | Rehn et al., 2015 | ❌ | NA |
+| M; T   | ASSETS  | ASSETS                                     | Combine trois outils de diagnostic : index de pression, index d’état et index de réponse. | Bricker et al., 2003 | ❌ | NA |
+| M; T   | EEI     | Ecological Evaluation Index (EEI)         | Évalue l'état écologique des eaux de transition et côtières en utilisant les macroalgues. | Orfanidis et al., 2001 | ❌ | NA |
+| D      | HBI     | Hilsenhoff Biotic Index (HBI)             | Mesure la tolérance de l'assemblage de macroinvertébrés à l'enrichissement organique. | Hilsenhoff, 1988 | ❌ | NA |
+| T      | MaQI-E  | Macrophyte Quality Index - Expert (MaQI-E) | Se base sur la diversité et la couverture des macrophytes aquatiques pour évaluer l’état écologique. | Sfriso et al., 2008 | ❌ | NA |
 
 
 :::
@@ -371,7 +394,7 @@ Les étapes spécifiques du traitement des données sont les suivantes :
 
 ## Raréfaction de Hurlbert (HURB)
 
-::: {.callout-warning}
+::: {.callout-caution}
 ## Vérifier valeurs d'abondance
 
 Il faudra vérifier les données d'abondance puisque certaines semblent avoir des valeurs après la décimales, bien qu'il s'agisse de décompte d'individus. Pour l'instant, les données d'abondance sont arrondies afin de permettre d'appliquer la méthode. Il faudra cependant vérifier les données afin de valider leurs valeurs. 
@@ -416,13 +439,13 @@ Les étapes spécifiques du traitement des données sont les suivantes :
 
 ## Diversité Taxonomique (TAXD)
 
-::: {.callout-warning} 
+::: {.callout-caution} 
 ## Consolidation de la taxonomie
 
 Comme mentionné à la @sec-taxonomy, plus de travail est nécessaire afin d'obtenir une table taxonomique convenable. Les résultats de cette analyse devraient ainsi être revisités une fois la liste taxonomique convenablement consilidée.
 :::
 
-::: {.callout-warning}
+::: {.callout-caution}
 ## NA distance taxonomique
 
 Des `NA` sont présents au sein de l'analyse de distance taxonomique effectuée avec la fonction `vegan::taxa2dist`. Pour l'instant, les distances manquantes sont remplacées par une valeur de 1, représentant une distance maximale. Cette supposition devra toutefois être vérifée si les `NA` persistent une fois la consolidation de la taxonomie effectuée.
@@ -464,7 +487,7 @@ Les étapes spécifiques de l'analyse de diversité taxonomique sont les suivant
    - `vegan::taxondive()` est appliqué séparément pour chaque type de données.
 6. Export des résultats  
    - Chaque événement (`event_id`) est associé aux six métriques pour les trois types de données.
-   - Les résultats sont sauvegardés sous trois fichiers :
+   - Les résultats sont sauvegardés sous :
      - `diversite_taxonomique.csv`
 
 
@@ -519,6 +542,883 @@ Les étapes spécifiques du traitement des données sont les suivantes :
 5. Export des résultats  
    - Les valeurs calculées sont exportées sous format `.csv` :
      - `dissimilarite_bray_curtis.csv`
+
+
+## Richesse fonctionnelle (FR) {#sec-fr}
+
+::: {.callout-warning}
+## Statut
+
+L’application de l’indice FR dépend de la disponibilité des traits fonctionnels pour les espèces présentes. Ces données n'ont pu être récoltées pour cette itération du projet.
+:::
+
+L’indice de diversité fonctionnelle (FR) est une mesure de la richesse fonctionnelle d’une communauté biologique, c’est-à-dire l’étendue des traits fonctionnels présents au sein d’un échantillon (Mason et al., 2005). Contrairement aux indices de diversité taxonomique qui se basent sur le nombre d’espèces, cet indicateur repose sur les différences fonctionnelles entre les espèces, offrant ainsi une vision plus écologique de la biodiversité.
+
+La richesse fonctionnelle est généralement définie comme le volume occupé par l’ensemble des espèces dans un espace multi-dimensionnel de traits. Un écosystème présentant une grande diversité fonctionnelle peut être plus résilient et performant en termes de processus écologiques.
+
+L’indice FR est calculé à partir des distances fonctionnelles entre les espèces d’un échantillon, définies par un ensemble de traits biologiques pertinents.
+
+L’indice FR est défini comme suit :
+
+$$
+FR_i = \sum_{s=1}^{S} d(T_{i,s})
+$$ {#eq-fr}
+
+où :
+
+- $FR_i$ = Indice de diversité fonctionnelle pour l'événement $i$,
+- $S$ = Nombre total d’espèces dans l’échantillon,
+- $d(T_{i,s})$ = Distance fonctionnelle entre les espèces en fonction de leurs traits $T$.
+
+
+Les étapes spécifiques du traitement des données sont les suivantes :
+
+1. Filtrage des données fonctionnelles  
+   - Les données sont extraites de la table `biodiversity` et enrichies avec des traits fonctionnels.
+   - Les espèces sans traits disponibles sont exclues du calcul.
+
+2. Construction de la matrice de traits fonctionnels  
+   - Une matrice espèces-traits est créée avec les valeurs standardisées de chaque trait pertinent.
+
+3. Calcul des distances fonctionnelles  
+   - Une métrique de distance (ex. Gower, Euclidienne) est appliquée sur la matrice des traits.
+   - La méthode de convex hull ou de dispersion des traits peut être utilisée pour estimer la diversité fonctionnelle.
+
+4. Agrégation par événement  
+   - Pour chaque événement d’échantillonnage (`event_id`), la richesse fonctionnelle est calculée.
+
+
+## Équitabilité fonctionnelle (FE) {#sec-fe}
+
+::: {.callout-warning}
+## Statut
+
+L’application de l’indice FE dépend de la disponibilité des traits fonctionnels pour les espèces présentes. Ces données n'ont pu être récoltées pour cette itération du projet.
+:::
+
+L’indice de diversité fonctionnelle (FE) est une mesure de l’uniformité fonctionnelle d’une communauté biologique, c’est-à-dire la manière dont les traits fonctionnels sont répartis entre les espèces d’un échantillon donné (Mason et al., 2005). Cet indicateur permet d’évaluer si certaines espèces ou groupes fonctionnels dominent l’écosystème ou si les traits sont uniformément distribués.
+
+Une distribution plus homogène des traits fonctionnels peut favoriser la stabilité des écosystèmes en assurant un partage équilibré des ressources et des niches écologiques. À l’inverse, une faible équitabilité fonctionnelle pourrait indiquer une spécialisation accrue ou un environnement sous pression avec certaines espèces prédominantes.
+
+L’indice FE est défini comme suit :
+
+$$
+FE_i = \frac{H'_{func}}{\log(S)}
+$$ {#eq-fe}
+
+où :
+
+- $FE_i$ = Indice d’équitabilité fonctionnelle pour l'événement $i$,
+- $H'_{func}$ = Indice de Shannon appliqué aux distances fonctionnelles entre espèces,
+- $S$ = Nombre total d’espèces dans l’échantillon.
+
+Les étapes spécifiques du traitement des données sont les suivantes :
+
+1. Filtrage des données fonctionnelles  
+   - Les données sont extraites de la table `biodiversity` et enrichies avec des traits fonctionnels.
+   - Les espèces sans traits disponibles sont exclues du calcul.
+
+2. Construction de la matrice de traits fonctionnels  
+   - Une matrice espèces-traits est créée avec les valeurs standardisées de chaque trait pertinent.
+
+3. Calcul des distances fonctionnelles et de l’équitabilité  
+   - Une métrique de distance (ex. Gower, Euclidienne) est appliquée sur la matrice des traits.
+   - L’indice de Shannon est calculé sur la distribution des distances fonctionnelles entre espèces.
+   - La valeur est normalisée par le logarithme du nombre total d’espèces.
+
+4. Agrégation par événement  
+   - Pour chaque événement d’échantillonnage (`event_id`), l’équitabilité fonctionnelle est calculée.
+
+
+## Divergence fonctionnelle (FD) {#sec-fd}
+
+::: {.callout-warning}
+## Statut
+
+L’application de l’indice FD dépend de la disponibilité des traits fonctionnels pour les espèces présentes. Ces données n'ont pu être récoltées pour cette itération du projet.
+:::
+
+L’indice de diversité fonctionnelle (FD) est une mesure de la divergence fonctionnelle, c’est-à-dire la manière dont les espèces sont réparties dans l’espace des traits fonctionnels (Mason et al., 2005). Il permet d’évaluer si les espèces occupent des positions extrêmes dans l’espace fonctionnel ou si elles sont concentrées autour d’une moyenne.
+
+Une forte divergence fonctionnelle peut indiquer une spécialisation accrue des espèces et une exploitation optimisée des ressources écologiques, tandis qu’une faible divergence peut révéler une redondance fonctionnelle élevée, où plusieurs espèces remplissent des rôles similaires dans l’écosystème.
+
+L’indice FD est défini comme suit :
+
+$$
+FD_i = \frac{\sum_{s=1}^{S} w_s \cdot d(T_{i,s}, \bar{T_i})}{\sum_{s=1}^{S} w_s}
+$$ {#eq-fd}
+
+où :
+
+- $FD_i$ = Indice de divergence fonctionnelle pour l'événement $i$,
+- $S$ = Nombre total d’espèces dans l’échantillon,
+- $w_s$ = Abondance relative de l’espèce $s$,
+- $d(T_{i,s}, \bar{T_i})$ = Distance fonctionnelle de l’espèce $s$ par rapport au centre fonctionnel moyen $\bar{T_i}$.
+
+Les étapes spécifiques du traitement des données sont les suivantes :
+
+1. Filtrage des données fonctionnelles  
+   - Extraction des données à partir de la table `biodiversity` et enrichissement avec des traits fonctionnels.
+   - Exclusion des espèces sans traits disponibles.
+
+2. Construction de la matrice de traits fonctionnels  
+   - Création d’une matrice espèces-traits standardisée.
+
+3. Calcul des distances fonctionnelles  
+   - Utilisation d’une métrique de distance (ex. Gower, Euclidienne) pour évaluer la proximité des espèces dans l’espace fonctionnel.
+   - Détermination du centre fonctionnel moyen $\bar{T_i}$.
+
+4. Calcul de la divergence fonctionnelle  
+   - Pondération des distances fonctionnelles par l’abondance relative des espèces.
+   - Normalisation par la somme des abondances relatives.
+
+5. Agrégation par événement  
+   - Pour chaque événement d’échantillonnage (`event_id`), la divergence fonctionnelle est calculée.
+
+
+## Bentix {#sec-bentix}
+
+::: {.callout-caution}
+## Statut
+
+L’application de l’indice Bentix nécessite une classification des espèces benthiques selon leur tolérance aux perturbations. Bien que le package R `BBI` [@cordier2018] permette le calcul de cet indice, une consolidation appropriée des données taxonomiques de ce projet seront nécessaires pour un calcul adéquat de cet indicateur. 
+:::
+
+L’indice Bentix est un indicateur biologique permettant d’évaluer la qualité écologique des environnements benthiques en fonction de la réponse des groupes d’espèces aux perturbations anthropiques (Simboura & Zenetos, 2002). Il repose sur la pondération des espèces benthiques en fonction de leur sensibilité ou de leur tolérance aux perturbations environnementales, notamment l’enrichissement organique et la pollution.
+
+Les organismes benthiques sont classés en deux groupes écologiques :
+
+- Groupe tolérant : Espèces opportunistes résistantes aux perturbations (ex. annélides opportunistes).
+- Groupe sensible : Espèces sensibles aux perturbations qui disparaissent lorsque l’environnement se détériore.
+
+L’indice Bentix est calculé selon la proportion d’espèces sensibles et tolérantes dans l’échantillon.
+
+$$
+BENTIX_i = \frac{\sum_{s \in S_{sens}} w_s \cdot A_s}{\sum_{s=1}^{S} A_s} + 2 \times \frac{\sum_{s \in S_{tol}} w_s \cdot A_s}{\sum_{s=1}^{S} A_s}
+$$ {#eq-bentix}
+
+où :
+
+- $BENTIX_i$ = Indice Bentix pour l’événement $i$,
+- $S$ = Nombre total d’espèces dans l’échantillon,
+- $S_{sens}$ = Ensemble des espèces sensibles aux perturbations,
+- $S_{tol}$ = Ensemble des espèces tolérantes aux perturbations,
+- $A_s$ = Abondance de l’espèce $s$,
+- $w_s$ = Pondération de l’espèce $s$ selon sa sensibilité.
+
+Les étapes spécifiques du traitement des données sont les suivantes :
+
+1. Filtrage des données benthiques  
+   - Extraction des données de la table `biodiversity` pour les organismes benthiques.
+   - Attribution d’une catégorie écologique (sensible/tolérant) à chaque espèce en utilisant une classification de référence.
+
+2. Calcul des abondances pondérées et calcul de l'indice Bentix à l'aide du package R `BBI` [@cordier2018].
+   - Séparation des abondances en deux groupes (sensibles et tolérants).
+   - Calcul des proportions relatives de chaque groupe.
+   - Application de la formule de calcul en pondérant les abondances par leur tolérance.
+   - Calcul de l’indice Bentix pour chaque événement d’échantillonnage (`event_id`).
+
+3. Export des résultats  
+   - Chaque événement (`event_id`) est associé aux six métriques pour les trois types de données.
+   - Les résultats sont sauvegardés sous trois fichiers :
+     - `bbi.csv`
+
+
+| Valeur de Bentix | Qualité écologique     |
+|----------------------|--------------------------|
+| 4.5 - 6.0           | Très bonne (non perturbé) |
+| 3.5 - 4.5           | Bonne                     |
+| 2.5 - 3.5           | Moyenne                   |
+| 2.0 - 2.5           | Mauvaise                  |
+| < 2.0               | Très mauvaise (perturbé)  |
+
+
+## Indice de Suivi du Benthos (ISBg/ISBm) {#sec-isbg}
+
+::: {.callout-warning}
+## Statut
+
+L’application de l’indice ISBg/ISBm nécessite une classification des espèces benthiques selon leur tolérance aux perturbations et leur réponse aux conditions environnementales spécifiques aux cours d’eau. Les données nécessaires à sont application n'ont pu etre récoltées pour cette itération du projet.
+
+:::
+
+L’Indice de Suivi du Benthos (ISBg/ISBm) est un indice développé pour évaluer l’état écologique des cours d’eau en se basant sur la structure des communautés benthiques (Pelletier & Moisan, 2012). Il repose sur l’identification et la classification des taxons benthiques en fonction de leur sensibilité aux perturbations, notamment les impacts liés à l’eutrophisation, la pollution organique et la modification des habitats.
+
+L’indice se décline sous deux variantes :
+
+- ISBg : Basé sur les groupes taxonomiques principaux des invertébrés benthiques.
+- ISBm : Basé sur des mesures plus détaillées, prenant en compte la diversité spécifique et des traits fonctionnels.
+
+L’objectif principal de l’ISBg/ISBm est de caractériser l’impact des pressions environnementales en utilisant des indicateurs biologiques représentatifs de l’état de santé des cours d’eau.
+
+L’indice ISBg/ISBm repose sur l’analyse de plusieurs métriques :
+
+1. La composition des communautés benthiques (présence/absence, abondance relative des groupes).
+2. La tolérance des taxons aux perturbations (classification en fonction de la sensibilité écologique).
+3. Les traits fonctionnels (stratégies d’alimentation, préférences d’habitat).
+4. Les conditions environnementales locales (qualité de l’eau, substrat, vitesse du courant).
+
+L’indice ISBg/ISBm est calculé selon la formule :
+
+$$
+ISB_i = \sum_{s=1}^{S} w_s \cdot A_s
+$$ {#eq-isb}
+
+où :
+
+- $ISB_i$ = Indice de Suivi du Benthos pour l’événement $i$,
+- $S$ = Nombre total de taxons benthiques identifiés,
+- $A_s$ = Abondance de l’espèce $s$,
+- $w_s$ = Pondération de l’espèce $s$ selon sa tolérance aux perturbations.
+
+Les valeurs de $w_s$ sont attribuées en fonction de classifications de référence basées sur des études écologiques régionales.
+
+#### Étapes spécifiques du traitement des données {-}
+
+1. Filtrage des données benthiques  
+   - Extraction des données de la table `biodiversity` pour les invertébrés benthiques.
+   - Attribution d’un score de tolérance à chaque taxon en utilisant une classification de référence.
+
+2. Application de la pondération et calcul de l’indice ISBg/ISBm  
+   - Regroupement des taxons selon leur tolérance écologique.
+   - Application de la formule ISB pour chaque événement d’échantillonnage (`event_id`).
+   - Ajustement en fonction des conditions environnementales locales si des données sont disponibles.
+
+
+#### Classification écologique de l’indice ISBg/ISBm {-}
+
+| Valeur de ISB | Qualité écologique      |
+|--------------------|--------------------------|
+| > 80              | Très bonne (non perturbé) |
+| 60 - 80           | Bonne                     |
+| 40 - 60           | Moyenne                   |
+| 20 - 40           | Mauvaise                  |
+| < 20              | Très mauvaise (perturbé)  |
+
+
+## Benthic Opportunistic Annelida Amphipod (BO2A) {#sec-bo2a}
+
+::: {.callout-caution}
+L'indice BO2A analysant la proportion relative d’annélides opportunistes et d'amphipodes. L'implémentation actuelle considère que les familles d'annélides Spionidae, Capitellidae et de la classe Clitellata sont opportunistes et les amphipodes de la famille Pontoporeiidae [@maximov2023]. Cette classification devra être validée afin d'assurer une évaluation adéquate de cet indice.
+:::
+
+L’indice BO2A (Benthic Opportunistic Annelida Amphipod Index) est un indicateur biologique permettant d’évaluer l’état écologique des environnements benthiques en analysant la proportion relative d’annélides opportunistes et d’amphipodes dans les communautés benthiques (Dauvin & Ruellet, 2009). Il est basé sur l’hypothèse que les annélides opportunistes sont plus tolérants aux perturbations, tandis que les amphipodes sont plus sensibles aux modifications environnementales, notamment la pollution organique et la désoxygénation.
+
+L’indice BO2A repose sur l’analyse des proportions relatives des deux groupes taxonomiques suivants :
+
+- Annélides opportunistes (Tolérants aux perturbations) : annelides opportunistes (familles Spionidae et Capitellidae, classe Clittellata) qui prolifèrent en conditions enrichies en matière organique.
+- Amphipodes (Sensible aux perturbations) : amphipodes (famille Pontoporeiidae) dont l’abondance diminue en conditions dégradées.
+
+L’indice BO2A est défini comme suit :
+
+$$
+BO2A_i = \log_2 \left( \frac{f_{p+o}}{f_a + 1} + 1 \right)
+$$ {#eq-bo2a}
+
+où :
+
+- $BO2A_i$ = Indice BO2A pour l’événement $i$,
+- $f_{p+o}$ = Fréquence des annélides opportunistes (proportion des annélides opportunistes sur l’ensemble des individus présents dans l’échantillon),
+- $f_a$ = Fréquence des amphipodes (proportion d’amphipodes sur l’ensemble des individus présents dans l’échantillon).
+
+Le BO2A est basé sur une relation antagoniste entre amphipodes et annélides opportunistes :
+
+- BO2A proche de 0 → Faible proportion d’opportunistes, indiquant un bon état écologique.
+- BO2A proche de 1 → Forte dominance d’opportunistes, indiquant un état écologique perturbé.
+
+
+#### Interprétation de l’indice BO2A {-}
+
+| Valeur de BO2A | Signification écologique |
+|--------------------|--------------------------|
+| 0             | Absence d’annélides opportunistes, indiquant un bon état écologique. |
+| 0.5 - 0.8     | Bonne qualité écologique, avec une faible présence d’opportunistes. |
+| 0.8 - 1.2     | État intermédiaire, avec une distribution équilibrée entre amphipodes et annélides opportunistes. |
+| > 1.2         | Milieu perturbé, avec une dominance d’annélides opportunistes. |
+
+#### Étapes spécifiques du traitement des données {-}
+
+1. Filtrage des données benthiques  
+   - Extraction des données de la table `biodiversity` pour identifier les amphipodes et annélides opportunistes à partir des données taxonomiques.
+
+2. Calcul des fréquences et de l’indice BO2A  
+   - Détermination du nombre total d’amphipodes et d’annélides opportunistes pour chaque événement (`event_id`).
+   - Calcul des proportions relatives des groupes taxonomiques.
+   - Application de la formule BO2A pour chaque échantillon.
+
+3. Export des résultats  
+   - Chaque événement (`event_id`) est associé à la valeur calculée de l’indice BO2A.
+   - Les résultats sont sauvegardés sous le fichier :
+     - `bo2a_bopa.csv`
+
+## Benthic Opportunistic Polychaetes/Amphipods Index (BOPA) {#sec-bopa}
+
+::: {.callout-caution}
+## Classification polychètes et amphipodes
+
+L'indice BO2A analysant la proportion relative d’annélides opportunistes et d'amphipodes. L'implémentation actuelle considère que les familles d'annélides Spionidae et Capitellidae sont opportunistes et les amphipodes de la famille Pontoporeiidae [@maximov2023]. Cette classification devra être validée afin d'assurer une évaluation adéquate de cet indice.
+:::
+
+L’indice BOPA (Benthic Opportunistic Polychaetes/Amphipods Index) est un indicateur biologique permettant d’évaluer l’état écologique des environnements benthiques en analysant la proportion relative de polychètes opportunistes (Spionidae) et d’amphipodes dans les communautés benthiques (Dauvin & Ruellet, 2007).  
+
+L’indice repose sur le principe que :
+- Les polychètes opportunistes (Spionidae) tolèrent les milieux enrichis en matière organique et sont des indicateurs de perturbation.
+- Les amphipodes de la famille Pontoporeiidae sont sensibles aux perturbations et disparaissent lorsque l’environnement se dégrade.
+
+$$
+BOPA_i = \log_2 \left( \frac{f_p}{f_a + 1} + 1 \right)
+$$ {#eq-bopa}
+
+où :
+
+- $BOPA_i$ = Indice BOPA pour l’événement $i$,
+- $f_p$ = Fréquence des polychètes opportunistes (proportion de Spionidae sur l’ensemble des individus présents dans l’échantillon),
+- $f_a$ = Fréquence des amphipodes (proportion d’amphipodes sur l’ensemble des individus présents dans l’échantillon).
+
+L’indice BOPA est conçu pour varier entre 0 (peu de perturbation) et 1 (milieu très perturbé).
+
+#### Interprétation de l’indice BOPA
+
+| Valeur de BOPA | Signification écologique |
+|--------------------|--------------------------|
+| 0             | Environnement non perturbé, dominé par des amphipodes. |
+| 0.2 - 0.4     | Bonne qualité écologique, avec présence majoritaire d’amphipodes. |
+| 0.4 - 0.6     | État intermédiaire, avec une proportion équilibrée de polychètes opportunistes et d’amphipodes. |
+| 0.6 - 0.8     | Milieu potentiellement perturbé, avec une dominance de polychètes opportunistes. |
+| 1             | Absence totale d’amphipodes, indiquant un environnement fortement perturbé dominé par les polychètes opportunistes. |
+
+#### Étapes spécifiques du traitement des données {-}
+
+1. Filtrage des données benthiques  
+   - Extraction des données de la table `biodiversity` pour identifier les amphipodes et polychètes opportunistes à partir des données taxonomiques.
+
+2. Calcul des fréquences et de l’indice BOPA  
+   - Détermination du nombre total d’amphipodes et de polychètes opportunistes pour chaque événement (`event_id`).
+   - Calcul des proportions relatives des groupes taxonomiques.
+   - Application de la formule BOPA pour chaque échantillon.
+
+3. Export des résultats  
+   - Chaque événement (`event_id`) est associé à la valeur calculée de l’indice BOPA.
+   - Les résultats sont sauvegardés sous le fichier :
+     - `bo2a_bopa.csv`
+
+## Benthic Response Index (BRI) {#sec-bri}
+
+::: {.callout-warning}
+## Statut
+
+Le BRI nécessite une base de données spécifique aux espèces, attribuant des valeurs de tolérance à la pollution (0–10) aux espèces benthiques. Ces données n'ont pu être récoltées pour cette itération du projet.
+:::
+
+
+L’indice Benthic Response Index (BRI) est un indicateur écologique permettant d’évaluer la tolérance des communautés benthiques aux perturbations environnementales et à la pollution organique [@smith2001a]. Il repose sur l’attribution de scores de tolérance spécifiques à chaque espèce, permettant de quantifier leur réponse aux conditions dégradées.
+
+$$
+BRI_i = \frac{\sum_{s=1}^{S} (A_s \cdot T_s)}{\sum_{s=1}^{S} A_s}
+$$ {#eq-bri}
+
+où :
+
+- $BRI_i$ = Indice BRI pour l’échantillon $i$,
+- $A_s$ = Abondance de l’espèce $s$ dans l’échantillon,
+- $T_s$ = Score de tolérance de l’espèce $s$ (0 = très sensible, 10 = très tolérante),
+- $S$ = Nombre total d’espèces dans l’échantillon.
+
+#### Interprétation des valeurs du BRI {-}
+
+| Valeur de BRI | État écologique |
+|--------------|-----------------|
+| 0 - 15   | Milieu non perturbé |
+| 15 - 30  | Légèrement impacté |
+| 30 - 45  | Modérément impacté |
+| 45 - 60  | Fortement impacté |
+| > 60     | Milieu dégradé |
+
+
+## Benthic Quality Index (BQI) {#sec-bqi}
+
+::: {.callout-warning}
+## Statut
+
+Le BQI nécessite une base de données spécifique aux espèces, intégrant des valeurs de tolérance, d’abondance et de diversité pour évaluer la qualité benthique. Ces données n'ont pu être récoltées pour cette itération du projet.
+:::
+
+L’indice Benthic Quality Index (BQI) est un indicateur écologique utilisé pour évaluer l’état des communautés benthiques en combinant trois paramètres clés : la tolérance des espèces à la pollution, leur abondance et la diversité spécifique [@rosenberg2004]. Cet indice permet d’obtenir une mesure intégrée de la qualité des habitats benthiques en fonction de la présence d’espèces sensibles et tolérantes aux perturbations environnementales.
+
+Le BQI est calculé à partir de la formule suivante :
+
+$$
+BQI_i = \frac{\sum_{s=1}^{S} (A_s \cdot T_s)}{N_i} \cdot \log_2 (S_i + 1)
+$$ {#eq-bqi}
+
+où :
+
+- $BQI_i$ = Indice BQI pour l’échantillon $i$,
+- $A_s$ = Abondance de l’espèce $s$ dans l’échantillon,
+- $T_s$ = Score de tolérance de l’espèce $s$ (plus faible pour les espèces sensibles, plus élevé pour les espèces tolérantes),
+- $S_i$ = Nombre total d’espèces dans l’échantillon,
+- $N_i$ = Nombre total d’individus dans l’échantillon.
+
+L’ajout du logarithme de la richesse spécifique permet de pondérer l’indice en tenant compte de la diversité des communautés, offrant ainsi une meilleure évaluation de la résilience et de la stabilité écologique du milieu.
+
+#### Interprétation des valeurs du BQI {-}
+
+| Valeur de BQI | Qualité écologique |
+|--------------|-------------------|
+| > 6.0        | Très bonne (non perturbé) |
+| 4.5 - 6.0    | Bonne |
+| 3.0 - 4.5    | Moyenne |
+| 1.5 - 3.0    | Mauvaise |
+| < 1.5        | Très mauvaise (perturbé) |
+
+
+## Average Score Per Taxon (ASPT) {#sec-aspt}
+
+::: {.callout-warning}
+## Statut
+
+L’application de l’indice ASPT nécessite une base de données de référence attribuant des scores de sensibilité à l’oxygène dissous pour chaque taxon d’invertébrés benthiques. Ces données n'ont pu être récoltées pour cette itération du projet.
+:::
+
+::: {.callout-note}
+## Package R disponible
+
+Le package [`metrix`](https://cran.r-project.org/web/packages/metrix/index.html) fournit une fonction permettant de calculer les indices ASPT et BMWP à partir de la fonction `bmwp_ind`. Cette fonction requiert toutefois une classification des espèces en groupes fonctionnels et il n'est pas clair comment ces groupes sont déterminés. Ce package n'est également pas maintenu, alors il serait pertinent de ne pas l'ajouter comme dépendance au projet, mais plutôt d'utiliser directement les fonctions qui y sont disponibles.
+:::
+
+
+L’Average Score Per Taxon (ASPT) est un indice biologique utilisé pour évaluer la qualité de l’eau des cours d’eau en fonction de la sensibilité des invertébrés benthiques à la concentration en oxygène dissous [@armitage1983]. Il est basé sur la présence et l’abondance relative de divers taxons aquatiques et leur tolérance aux conditions hypoxiques.
+
+L’ASPT est dérivé du Biological Monitoring Working Party (BMWP), un système de bio-indication qui classe les invertébrés en fonction de leur tolérance à la pollution organique et au déficit en oxygène.
+
+Chaque taxon d’invertébré est associé à un score de sensibilité reflétant sa tolérance à la pollution et aux niveaux d’oxygène dissous :
+
+- Taxons très sensibles (ex. Éphéméroptères, Plécoptères, Trichoptères) ont un score élevé.
+- Taxons tolérants (ex. Chironomidés, Oligochètes) ont un score faible.
+
+L’indice ASPT est calculé comme la moyenne des scores de tolérance des taxons présents dans un échantillon :
+
+$$
+ASPT_i = \frac{\sum_{s=1}^{S} (T_s \cdot A_s)}{\sum_{s=1}^{S} A_s}
+$$ {#eq-aspt}
+
+où :
+
+- $ASPT_i$ = Indice ASPT pour l’échantillon $i$,
+- $S$ = Nombre total de taxons identifiés dans l’échantillon,
+- $T_s$ = Score de tolérance attribué au taxon $s$,
+- $A_s$ = Abondance du taxon $s$ dans l’échantillon.
+
+#### Interprétation de l’indice ASPT {-}
+
+| Valeur de ASPT | État écologique |
+|---------------|-----------------|
+| > 6.0        | Très bonne qualité de l’eau, faible pollution |
+| 5.0 - 6.0    | Bonne qualité de l’eau |
+| 4.0 - 5.0    | Qualité moyenne, impact modéré |
+| 3.0 - 4.0    | Mauvaise qualité, pollution organique notable |
+| < 3.0        | Très mauvaise qualité, hypoxie sévère |
+
+
+## Biological Monitoring Working Party (BMWP) Index {#sec-bmwp}
+
+::: {.callout-warning}
+## Statut
+
+L’application de l’indice BMWP nécessite une classification des familles d’invertébrés benthiques selon leur sensibilité à la pollution. Ces données n'ont pu être récoltées pour cette itération du projet.
+:::
+
+::: {.callout-note}
+## Package R disponible
+
+Le package [`metrix`](https://cran.r-project.org/web/packages/metrix/index.html) fournit une fonction permettant de calculer les indices ASPT et BMWP à partir de la fonction `bmwp_ind`. Cette fonction requiert toutefois une classification des espèces en groupes fonctionnels et il n'est pas clair comment ces groupes sont déterminés. Ce package n'est également pas maintenu, alors il serait pertinent de ne pas l'ajouter comme dépendance au projet, mais plutôt d'utiliser directement les fonctions qui y sont disponibles.
+:::
+
+L’indice Biological Monitoring Working Party (BMWP) est un indice biologique utilisé pour évaluer la qualité de l’eau des cours d’eau en fonction de la tolérance des familles d’invertébrés benthiques à la pollution organique et aux altérations environnementales [@armitage1983]. Il est largement utilisé dans les programmes de surveillance écologique pour identifier les impacts anthropiques sur les écosystèmes aquatiques.
+
+Chaque famille d’invertébrés benthiques est associée à un score de pollution, allant de 1 (très tolérant) à 10 (très sensible) :
+
+- Familles très sensibles aux pollutions organiques (ex. Éphéméroptères, Plécoptères, Trichoptères) ont un score élevé.
+- Familles tolérantes aux milieux perturbés (ex. Chironomidés, Oligochètes) ont un score faible.
+
+L’indice BMWP est la somme des scores attribués aux familles présentes dans un échantillon :
+
+$$
+BMWP_i = \sum_{s=1}^{S} T_s
+$$ {#eq-bmwp}
+
+où :
+
+- $BMWP_i$ = Indice BMWP pour l’échantillon $i$,
+- $S$ = Nombre total de familles d’invertébrés identifiées dans l’échantillon,
+- $T_s$ = Score de pollution attribué à la famille $s$.
+
+Contrairement à l’ASPT, BMWP ne prend pas en compte l’abondance des taxons, seulement leur présence.
+
+#### Interprétation de l’indice BMWP {-}
+
+| Valeur de BMWP | Qualité écologique |
+|--------------------|----------------------|
+| > 100         | Très bonne qualité de l’eau, peu de pollution |
+| 71 - 100      | Bonne qualité de l’eau |
+| 41 - 70       | Qualité moyenne, impact modéré |
+| 16 - 40       | Mauvaise qualité, pollution organique notable |
+| < 16         | Très mauvaise qualité, pollution sévère |
+
+
+## Présence des Fucoïdes (FUCOID) {#sec-fucoid}
+
+::: {.callout-warning}
+## Statut
+
+L’application de cet indice repose sur la caractérisation d'algues brunes de la famille des Fucaceae. La présente itération de cette base de données ne contient que 24 évènements d'échantillonnage avec un pourcentage de recouvrement pour cette famille. Nous ne présentons donc pas de résultats pour cet indicateur. 
+:::
+
+
+L’indice de présence des fucoïdes (FUCOID) est un indicateur écologique utilisé pour évaluer la qualité des habitats côtiers en fonction de la présence et de l’abondance des algues brunes fucoïdes [@wilkinson2007]. Ces algues sont particulièrement sensibles aux pollutions chimiques, aux modifications hydrodynamiques et aux impacts anthropiques, ce qui en fait d’excellents bioindicateurs des écosystèmes littoraux.
+
+Les fucoïdes sont des algues brunes de la famille des Fucaceae, largement distribuées dans les zones intertidales des côtes rocheuses. Leur présence est un indicateur d’un bon état écologique, tandis que leur disparition est souvent associée à des niveaux élevés de pollution et de stress environnemental.
+
+L’indice FUCOID repose sur l’évaluation de :
+
+1. Présence/absence des algues fucoïdes dans une zone donnée.
+2. Proportion du couvert algal occupé par les fucoïdes.
+3. Répartition spatiale des algues fucoïdes.
+
+L’indice FUCOID est généralement exprimé comme :
+
+$$
+FUCOID_i = \frac{A_{fuco}}{A_{total}}
+$$ {#eq-fucoid}
+
+où :
+
+- $FUCOID_i$ = Indice de présence des fucoïdes pour le site $i$,
+- $A_{fuco}$ = Surface couverte par les algues fucoïdes dans l’échantillon $i$,
+- $A_{total}$ = Surface totale de la zone échantillonnée.
+
+
+
+
+<!-- 
+| M; T   | GPBI    | General-Purpose Biotic Index (GPBI)        | Se base sur la déviation de composition et structure des communautés benthiques par rapport à une référence. | Labrune et al., 2021 | ❌ | 3 |
+-->
+
+<!--
+| T      | R-MaQI  | Rapid Quality Index - Rapid (R-MaQI)       | Intègre et améliore deux autres indicateurs : le ratio Rhodophyceae/Chlorophyceae et le Mean Macroalgal Score Index. | Sfriso et al., 2007 | ❌ | 3 |
+  -->
+
+<!-- 
+| M      | ZOSTERA | Depth limit of the marine angiosperm Zostera marina | Se base sur la profondeur à laquelle croît la Zostère pour évaluer le niveau d’eutrophisation du milieu. | Krause-Jensen et al., 2005 | ❌ | 3 |
+ -->
+
+<!--
+| M; T   | BCI     | Benthic condition Index (BCI)              | Évalue le degré de contamination du sédiment et les conditions d’oxygénation. | Engle & Summers, 1999 | ❌ | 3 |
+  -->
+
+<!-- 
+| T      | BEQI-FR | Benthic Ecosystem Quality Index – France (BEQI-FR) | Calcule un EQR basé sur 3 métriques combinées en un EQR moyen. | Blanchet et al., 2024 | ❌ | 3 |
+ -->
+
+<!--
+| T      | EQAT    | Chironomid Exuviae in Transitional Waters (EQAT) | Évalue l’état écologique en se basant sur les assemblages d'exuvies de chironomes estuariens. | Cañedo-Argüelles et al., 2012 | ❌ | 3 |
+  --> 
+
+## AZTI Marine Biotic Index (AMBI) {#sec-ambi}
+
+::: {.callout-caution}
+## Statut
+
+L’application de l’indice AMBI nécessite une classification des espèces benthiques selon leur tolérance aux perturbations. Bien que le package R `BBI` [@cordier2018] permette le calcul de cet indice, une consolidation appropriée des données taxonomiques de ce projet sera nécessaire pour un calcul adéquat de cet indicateur.
+:::
+
+L’AZTI Marine Biotic Index (AMBI) est un indice largement utilisé pour évaluer l’état écologique des habitats benthiques en fonction de la réponse des macroinvertébrés aux perturbations environnementales (Borja et al., 2000). Il repose sur la classification des espèces en cinq groupes écologiques en fonction de leur tolérance aux perturbations anthropiques, notamment l’enrichissement organique et la pollution.
+
+Les espèces benthiques sont réparties en cinq groupes écologiques :
+
+- Groupe I : Espèces sensibles, présentes uniquement dans des environnements non perturbés.
+- Groupe II : Espèces tolérantes aux faibles perturbations.
+- Groupe III : Espèces résistant à des conditions perturbées.
+- Groupe IV : Espèces opportunistes tolérant des perturbations élevées.
+- Groupe V : Espèces extrêmement tolérantes aux milieux très dégradés.
+
+L’indice AMBI est calculé selon la proportion d’espèces appartenant à chaque groupe écologique dans l’échantillon:
+
+$$
+AMBI_i = \frac{\sum_{s=1}^{S} w_s \cdot A_s}{\sum_{s=1}^{S} A_s}
+$$ {#eq-ambi}
+
+où :
+
+- $AMBI_i$ = Indice AMBI pour l’événement $i$,
+- $S$ = Nombre total d’espèces dans l’échantillon,
+- $A_s$ = Abondance de l’espèce $s$,
+- $w_s$ = Pondération de l’espèce $s$ selon son groupe écologique.
+
+#### Étapes spécifiques du traitement des données {-}
+
+1.Filtrage des données benthiques  
+   - Extraction des données de la table `biodiversity` pour les organismes benthiques.
+   - Attribution d’unecatégorie écologique (Groupe I à V) à chaque espèce en utilisant une classification de référence.
+
+2.Calcul des abondances pondérées et application de l’indice AMBI avec `BBI`  
+   - Séparation des abondances en cinq groupes écologiques.
+   - Application de la formule de calcul en pondérant les abondances par leur tolérance.
+   - Calcul de l’indice AMBI pour chaque événement d’échantillonnage (`event_id`).
+
+3.Export des résultats  
+   - Chaque événement (`event_id`) est associé aux valeurs calculées.
+   - Les résultats sont sauvegardés sous trois fichiers :
+     - `bbi.csv`
+
+#### Classification écologique de l’indice AMBI {-}
+
+|Valeur de AMBI |Qualité écologique      |
+|--------------------|--------------------------|
+| 0.0 - 1.2         | Très bonne (non perturbé) |
+| 1.2 - 3.3         | Bonne                     |
+| 3.3 - 4.3         | Moyenne                   |
+| 4.3 - 5.0         | Mauvaise                  |
+| > 5.0             | Très mauvaise (perturbé)  |
+
+
+## Multivariate AMBI (M-AMBI$^*$) {#sec-mambi-star}
+
+::: {.callout-caution}
+## Statut
+
+L’application de l’indice M-AMBI* nécessite une classification des espèces benthiques selon leur tolérance aux perturbations, ainsi que des données sur la richesse spécifique et la diversité. Bien que le package R `BBI` [@cordier2018] permette le calcul de l’indice AMBI, le M-AMBI* intègre également la richesse spécifique et l’indice de Shannon-Wiener, nécessitant un traitement supplémentaire via `vegan` [@vegan2024] et une normalisation Min-Max. De plus, une consolidation appropriée des données taxonomiques de ce projet sera nécessaire pour un calcul adéquat de cet indicateur.
+:::
+
+L’indice Multivariate AZTI Marine Biotic Index simplifié (M-AMBI*) est une version améliorée de l’AMBI [@borja2000], intégrant des métriques complémentaires pour fournir une évaluation robuste de l’état écologique des habitats benthiques [@sigovini2013]. Il repose sur trois paramètres :
+
+1. L’AMBI, qui classe les espèces selon leur tolérance aux perturbations.
+2. La richesse spécifique (S), qui reflète la diversité taxonomique.
+3. L’indice de Shannon-Wiener (H’), qui mesure la répartition des individus entre les espèces.
+
+#### Méthodologie {-}
+
+Contrairement à la version originale de M-AMBI, qui utilisait une analyse en composantes principales (PCA), les travaux de @sigovini2013 ont démontré que M-AMBI* fournit des résultats équivalents en utilisant une simple moyenne des valeurs normalisées.
+
+L’indice M-AMBI* est donc calculé comme suit :
+
+$$
+M\text{-}AMBI^*_i = \frac{S'_i + H'_i - AMBI'_i}{3}
+$$
+
+où :
+
+- $S'_i$, $H'_i$ et $AMBI'_i$ sont Min-Max normalisés sur la plage [0,1].
+- Cette approche simplifie l’algorithme sans altérer la fiabilité des résultats.
+
+
+#### Étapes spécifiques du traitement des données {-}
+
+1. Filtrage des données benthiques  
+   - Extraction des données de la table `biodiversity` pour les organismes benthiques.
+
+2. Calcul des métriques écologiques  
+   - AMBI est calculé avec le package `BBI`.
+   - Richesse spécifique (S) est calculée avec `vegan::specnumber()`.
+   - Indice de Shannon-Wiener (H') est estimé avec `vegan::diversity()`.
+
+3. Application de la normalisation et agrégation des valeurs  
+   - Min-Max Normalisation des indices AMBI, S et H' entre 0 et 1 :
+     $$
+     X'_i = \frac{X_i - X_{\text{min}}}{X_{\text{max}} - X_{\text{min}}}
+     $$
+   - Agrégation des trois métriques par moyenne pondérée pour obtenir M-AMBI*.
+
+4. Export des résultats  
+   - Chaque événement (`event_id`) est associé aux valeurs calculées.
+   - Les résultats sont sauvegardés sous trois fichiers :
+     - `bbi.csv`
+     - `mambi_indices.csv`
+
+
+#### Classification écologique de l’indice M-AMBI* {-}
+
+| Valeur de M-AMBI* | Qualité écologique      |
+|----------------------|--------------------------|
+| 0.8 - 1.0           | Très bonne (non perturbé) |
+| 0.6 - 0.8           | Bonne                     |
+| 0.4 - 0.6           | Moyenne                   |
+| 0.2 - 0.4           | Mauvaise                  |
+| < 0.2               | Très mauvaise (perturbé)  |
+
+
+
+## Infaunal Trophic Index (ITI) {#sec-iti}
+
+::: {.callout-caution}
+## Statut
+
+L’application de l’indice ITI nécessite une classification des espèces benthiques selon leur mode d’alimentation et leur réponse aux perturbations. Bien que le package R `BBI` [@cordier2018] permette le calcul de cet indice, une consolidation appropriée des données taxonomiques et trophiques de ce projet sera nécessaire pour un calcul adéquat de cet indicateur.
+:::
+
+L’Infaunal Trophic Index (ITI) est un indice écologique qui évalue la structure trophique des communautés benthiques en fonction de la proportion d’espèces appartenant à différents groupes fonctionnels (Word, 1979). Cet indice est principalement utilisé pour analyser l’effet des perturbations anthropiques, notamment l’enrichissement organique des sédiments, sur les écosystèmes marins.
+
+Les espèces benthiques sont classées en quatre groupes trophiques en fonction de leur mode d’alimentation et de leur tolérance aux perturbations :
+
+- Groupe 1 : Espèces suspensivores filtrantes (sensitive aux perturbations).
+- Groupe 2 : Espèces suspensivores et dépositivores non sélectives.
+- Groupe 3 : Espèces dépositivores sélectives.
+- Groupe 4 : Espèces opportunistes (tolérantes aux conditions anoxiques et enrichies en matière organique).
+
+L’indice ITI est basé sur la proportion d’espèces appartenant à ces groupes et leur abondance relative dans l’échantillon. L’ITI est calculé comme suit :
+
+$$
+ITI_i = \frac{\sum_{s=1}^{S} w_s \cdot A_s}{\sum_{s=1}^{S} A_s}
+$$ {#eq-iti}
+
+où :
+
+- $ITI_i$ = Indice ITI pour l’événement $i$,
+- $S$ = Nombre total d’espèces dans l’échantillon,
+- $A_s$ = Abondance de l’espèce $s$,
+- $w_s$ = Pondération de l’espèce $s$ selon son groupe trophique.
+
+#### Étapes spécifiques du traitement des données {-}
+
+1. Filtrage des données benthiques  
+   - Extraction des données de la table `biodiversity` pour les organismes benthiques.
+
+2. Calcul des abondances pondérées et application de l’indice ITI avec `BBI`  
+   - Attribution d’une catégorie trophique (Groupe 1 à 4) à chaque espèce en utilisant une classification de référence.
+   - Séparation des abondances en quatre groupes trophiques.
+   - Application de la formule de calcul en pondérant les abondances par leur mode d’alimentation.
+   - Calcul de l’indice ITI pour chaque événement d’échantillonnage (`event_id`).
+
+3. Export des résultats  
+   - Chaque événement (`event_id`) est associé aux valeurs calculées.
+   - Les résultats sont sauvegardés sous trois fichiers :
+     - `bbi.csv`
+
+#### Classification écologique de l’indice ITI {-}
+
+| Valeur de ITI  | Qualité écologique      |
+|--------------------|--------------------------|
+| > 60              | Très bonne (non perturbé) |
+| 30 - 60           | Bonne                     |
+| 15 - 30           | Moyenne                   |
+| 10 - 15           | Mauvaise                  |
+| < 10              | Très mauvaise (perturbé)  |
+
+
+<!--  
+| D      | PSI     | Proportion of Sediment-sensitive Invertebrates (PSI) | Décrit la composition des sédiments de surface des lits de rivières; est considéré comme un bon proxy pour les espèces envahissantes. | Extence et al., 2013 | ❌ | NA |
+-->
+
+## Indicator Species Index (ISI) {#sec-isi}
+
+::: {.callout-caution}
+## Statut
+
+L’application de l’indice ISI repose sur l’identification d’espèces indicatrices à l’aide d’études statistiques basées sur la méthode de raréfaction de Hurlbert. Bien que le package R `BBI` [@cordier2018] permette le calcul de cet indice, une consolidation appropriée des données taxonomiques et écologiques de ce projet sera nécessaire pour une estimation adéquate de cet indicateur.
+:::
+
+L’Indicator Species Index (ISI) est un indice conçu pour identifier des espèces indicatrices en fonction de leur présence et de leur abondance dans différents niveaux de qualité environnementale (Rygg, 2002). L’ISI s’appuie sur une méthode de raréfaction, dérivée de l’approche développée par Hurlbert (1971), afin d’évaluer la diversité et la spécificité des espèces dans différents types d’habitats. L’objectif principal de l’ISI est d’identifier des espèces qui réagissent de manière caractéristique aux conditions environnementales, permettant ainsi de classer les écosystèmes en fonction de leur état écologique.
+
+L’indice ISI est basé sur la relation entre :
+
+1. L’occurrence des espèces indicatrices, qui sont fortement associées à un état écologique particulier.
+2. L’abondance relative, qui reflète leur importance dans la communauté.
+3. L’approche de raréfaction de Hurlbert, qui standardise les comparaisons entre échantillons en tenant compte des différences d’effort d’échantillonnage.
+
+L’indice ISI est défini par :
+
+$$
+ISI_i = \sum_{s=1}^{S} w_s \cdot A_s
+$$ {#eq-isi}
+
+où :
+
+- $ISI_i$ = Indice ISI pour l’événement $i$,
+- $S$ = Nombre total d’espèces dans l’échantillon,
+- $A_s$ = Abondance de l’espèce $s$,
+- $w_s$ = Poids de l’espèce $s$ basé sur son pouvoir indicateur.
+
+Les poids $w_s$ sont attribués en fonction d’une classification statistique des espèces indicatrices, obtenue par une analyse de raréfaction.
+
+
+#### Étapes spécifiques du traitement des données {-}
+
+1. Identification des espèces indicatrices  
+   - Extraction des données taxonomiques et écologiques.
+   - Sélection des espèces présentant des occurrences significatives dans des états écologiques spécifiques.
+
+2. Application de la méthode de raréfaction de Hurlbert  
+   - Estimation du nombre d’espèces attendues par échantillon standardisé.
+   - Normalisation des abondances pour éviter les biais liés à l’effort d’échantillonnage.
+
+3. Calcul de l’ISI avec `BBI`  
+   - Attribution d’un score indicateur basé sur des classifications de référence.
+   - Agrégation des espèces indicatrices et pondération par leurs abondances relatives.
+   - Application de la formule ISI pour chaque événement d’échantillonnage (`event_id`).
+
+4. Export des résultats  
+   - Chaque événement (`event_id`) est associé aux valeurs calculées.
+   - Les résultats sont sauvegardés sous trois fichiers :
+     - `bbi.csv`
+
+#### Classification écologique de l’indice ISI {-}
+
+| Valeur de ISI  | Qualité écologique      |
+|--------------------|--------------------------|
+| > 6.0             | Très bonne (non perturbé) |
+| 4.5 - 6.0         | Bonne                     |
+| 3.0 - 4.5         | Moyenne                   |
+| 1.5 - 3.0         | Mauvaise                  |
+| < 1.5             | Très mauvaise (perturbé)  |
+
+
+
+<!--  
+| M; T   | IAP     | Indice Annélidien de Pollution (IAP)       | Utilise les présences et proportions d’espèces sentinelles en fonction de leur sensibilité ou tolérance à la pollution. | Bellan, 1980 | ❌ | NA |
+-->
+
+<!-- 
+| M; T   | IB      | Indice Biotique (IB)                      | Classe les espèces en 5 groupes écologiques de polluosensibilités différentes qui se succèdent selon le gradient de pollution. | Borja et al., 2000 | ❌ | NA |
+ -->
+
+<!--  
+| M; T   | DEPTH   | Distribution en profondeur                | Se base sur le déplacement vertical de la limite de profondeur de la végétation vivant sur un substrat mou. | Selig et al., 2007 | ❌ | NA |
+-->
+
+<!--
+| D      | SQI     | Stream Quality Index (SQI)                | Quantifie la probabilité attendue que les stress chimiques et physiques aient un impact sur plusieurs composantes de l'état biologique. | Beck et al., 2019 | ❌ | NA |
+  -->
+
+<!--  
+| T      | TWQI    | Transitional Water Quality Index (TWQI)   | Utilise différentes métriques liées à l’eutrophisation et les transforme en valeur de qualité pondérée. | Giordani et al., 2009 | ❌ | NA |
+-->
+
+<!-- 
+| M; T   | I2EC    | Indice d’évaluation de l’endofaune côtière (I2EC) | Évalue la réponse de l’endofaune aux perturbations d’un écosystème côtier. | Grall & Glémarec, 2003 | ❌ | NA |
+ -->
+
+<!-- 
+| D      | CSCI    | California Stream Condition Index (CSCI)   | Compare les taxons et les métriques observés des macroinvertébrés benthiques sur un site à ceux attendus dans des conditions de référence. | Rehn et al., 2015 | ❌ | NA |
+ -->
+
+<!-- 
+| M; T   | ASSETS  | ASSETS                                     | Combine trois outils de diagnostic : index de pression, index d’état et index de réponse. | Bricker et al., 2003 | ❌ | NA |
+ -->
+
+<!--  
+| M; T   | EEI     | Ecological Evaluation Index (EEI)         | Évalue l'état écologique des eaux de transition et côtières en utilisant les macroalgues. | Orfanidis et al., 2001 | ❌ | NA |
+-->
+
+<!-- 
+| D      | HBI     | Hilsenhoff Biotic Index (HBI)             | Mesure la tolérance de l'assemblage de macroinvertébrés à l'enrichissement organique. | Hilsenhoff, 1988 | ❌ | NA |
+ -->
+
+<!--  
+| T      | MaQI-E  | Macrophyte Quality Index - Expert (MaQI-E) | Se base sur la diversité et la couverture des macrophytes aquatiques pour évaluer l’état écologique. | Sfriso et al., 2008 | ❌ | NA |
+-->
+
+
+
 
 
 ## Références

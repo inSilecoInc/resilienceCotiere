@@ -96,3 +96,19 @@ pipeline:
         name: integrate biodiversity data
       output_files: 
       - diversite_taxonomique.csv
+    - name: bbi
+      description: Indice benthiques AMBI, M-AMBI, ISI, ITI, Bentix
+      script: ana_bbi
+      input_files:
+      - id: 93c9fa26-0a59-4d41-b037-2bad00e2b97c
+        name: integrate biodiversity data
+      output_files: 
+      - bbi.csv
+    - name: bo2a_bopa
+      description: Évalue la proportion d’annélides ou polychètes opportunistes et d’amphipodes. 
+      script: ana_bo2a_bopa
+      input_files:
+      - id: 93c9fa26-0a59-4d41-b037-2bad00e2b97c
+        name: integrate biodiversity data
+      output_files: 
+      - bo2a_bopa.csv
