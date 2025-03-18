@@ -16,8 +16,10 @@ pipeline:
         name: integrate biodiversity data
       - id: e246927f-d1b7-4450-8f91-a6e9b91c0c64
         name: processing resilience_cotiere
+      - id: d1d4149b-ba3c-40ac-890d-b73c2b619423
+        name: indicateurs et ecosystemes
       output_files: 
-      - Estuary_between_Ile_dOrleans_BaieComeau.png
-      - Gaspesie_Baie_des_Chaleurs.png
-      - Cote_Nord_Sept_Iles_Kegaska.png
-      - events_ecosystems.zip
+      # - Estuary_between_Ile_dOrleans_BaieComeau.png
+      # - Gaspesie_Baie_des_Chaleurs.png
+      # - Cote_Nord_Sept_Iles_Kegaska.png
+      - projet_indicateurs.zip
