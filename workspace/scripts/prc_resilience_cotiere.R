@@ -48,8 +48,23 @@ prc_resilience_cotiere <- function(input_files, output_path) {
       janitor::clean_names()
   })
 
+  eco_simple <- eco |>
+    dplyr::group_by(ecosystem_id, ecosystem) |>
+    dplyr::group_split() |>
+    lapply(function(x) {
+      id <- x$ecosystem_id[1]
+      nm <- x$ecosystem[1]
+      sf::st_union(x) |>
+        sf::st_as_sf() |>
+        dplyr::mutate(ecosystem_id = id, ecosystem = nm)
+    }) |>
+    dplyr::bind_rows() |>
+    sf::st_simplify(preserveTopology = TRUE, dTolerance = 75)
+
+
   # Export
   sf::st_write(eco, file.path(output_path, "resilience_cotiere_ecosystemes.gpkg"), delete_dsn = TRUE, quiet = TRUE)
+  sf::st_write(eco_simple, file.path(output_path, "resilience_cotiere_ecosystemes_simple.gpkg"), delete_dsn = TRUE, quiet = TRUE)
   sf::st_write(cote, file.path(output_path, "resilience_cotiere_cotes.gpkg"), delete_dsn = TRUE, quiet = TRUE)
 
   # Clean up temporary files

@@ -89,13 +89,13 @@ meta <- dplyr::tbl(con, "metadata") |>
 # Table
 knitr::kable(meta)
 
-# Map
-meta <- meta |>
-  dplyr::rowwise() |>
-  dplyr::mutate(geometry = list(create_bbox_polygon(longitude_min, longitude_max, latitude_min, latitude_max))) |>
-  dplyr::ungroup() |>
-  sf::st_as_sf(crs = 4326)
-mapview::mapview(meta, legend = FALSE)
+# # Map
+# meta <- meta |>
+#   dplyr::rowwise() |>
+#   dplyr::mutate(geometry = list(create_bbox_polygon(longitude_min, longitude_max, latitude_min, latitude_max))) |>
+#   dplyr::ungroup() |>
+#   sf::st_as_sf(crs = 4326)
+# mapview::mapview(meta, legend = FALSE)
 ```
 
 <br/>

@@ -441,6 +441,7 @@ list(
             input_files = list(tg_e246927f_d1b7_4450_8f91_a6e9b91c0c64_Cartographie_Ecosystèmes_Qc_Maritime_2021, 
                 tg_e246927f_d1b7_4450_8f91_a6e9b91c0c64_Côtes_Qc_Maritime_2022))
         c("workspace/data/harvested/resilience_cotiere-1.0.0/processed/resilience_cotiere_ecosystemes.gpkg", 
+        "workspace/data/harvested/resilience_cotiere-1.0.0/processed/resilience_cotiere_ecosystemes_simple.gpkg", 
         "workspace/data/harvested/resilience_cotiere-1.0.0/processed/resilience_cotiere_cotes.gpkg"
         )
     }, format = "file")),
@@ -648,6 +649,17 @@ list(
                 tg_e246927f_d1b7_4450_8f91_a6e9b91c0c64_processing_resilience_cotiere))
         c("workspace/data/analyzed/biodiversity_data-1.0.0/biodiversity_data.sqlite", 
         "workspace/data/analyzed/biodiversity_data-1.0.0/biodiversity_data.svg"
+        )
+    }, format = "file")),
+    list(tar_target(tg_ecb45967_f0b1_4f8d_901b_2119dc43be04_figures_events_ecosystems, 
+    {
+        fig_events_ecosystems(output_path = "workspace/data/analyzed/figures_events_ecosystems-1.0.0", 
+            input_files = list(tg_93c9fa26_0a59_4d41_b037_2bad00e2b97c_integrate_biodiversity_data, 
+                tg_e246927f_d1b7_4450_8f91_a6e9b91c0c64_processing_resilience_cotiere))
+        c("workspace/data/analyzed/figures_events_ecosystems-1.0.0/Estuary_between_Ile_dOrleans_BaieComeau.png", 
+        "workspace/data/analyzed/figures_events_ecosystems-1.0.0/Gaspesie_Baie_des_Chaleurs.png", 
+        "workspace/data/analyzed/figures_events_ecosystems-1.0.0/Cote_Nord_Sept_Iles_Kegaska.png", 
+        "workspace/data/analyzed/figures_events_ecosystems-1.0.0/events_ecosystems.zip"
         )
     }, format = "file")),
     list(tar_target(tg_d1d4149b_ba3c_40ac_890d_b73c2b619423_indicateurs_et_ecosystemes, 

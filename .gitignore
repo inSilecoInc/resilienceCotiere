@@ -36,6 +36,7 @@ raw/
 *.parquet
 *.sqlite
 *.svg
+*.png
 
 # Specific files & folders
 _targets

@@ -66,6 +66,7 @@ pipeline:
           - Côtes Qc Maritime 2022
         output_files: 
           - resilience_cotiere_ecosystemes.gpkg
+          - resilience_cotiere_ecosystemes_simple.gpkg
           - resilience_cotiere_cotes.gpkg
 
   output:
