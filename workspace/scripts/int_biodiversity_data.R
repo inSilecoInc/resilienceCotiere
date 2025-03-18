@@ -426,6 +426,8 @@ int_biodiversity_data <- function(input_files, output_path) {
         vroom::vroom(progress = FALSE, show_col_types = FALSE, delim = ",")
       abundance <- input_files[grepl("species_recovery_pointe_john.csv", input_files)] |>
         vroom::vroom(progress = FALSE, show_col_types = FALSE, delim = ",")
+      events <- input_files[grepl("events_pointe_john.csv", input_files)] |>
+        vroom::vroom(progress = FALSE, show_col_types = FALSE, delim = ",")
     })
 
     # Abundance data
@@ -459,7 +461,35 @@ int_biodiversity_data <- function(input_files, output_path) {
           "Nombre d'individus" = "abundance",
           "Recouvrement" = "recouvrement"
         )
-      ))
+      )) |>
+      dplyr::left_join(
+        events |>
+          dplyr::select(event_id, sample_size_value, sample_size_unit) |>
+          dplyr::mutate(sample_size_unit = dplyr::case_when(
+            stringr::str_detect(sample_size_unit, "heures") ~ "h",
+            stringr::str_detect(sample_size_unit, "metres") ~ "m2",
+            .default = NA
+          )),
+        by = "event_id"
+      ) |>
+      dplyr::mutate(
+        measurement_unit = dplyr::if_else(measurement_unit == "no unit", "n", measurement_unit),
+        measurement_value = as.numeric(measurement_value),
+        sample_size_value = as.numeric(sample_size_value)
+      ) |>
+      dplyr::mutate(
+        measurement_value = dplyr::case_when(
+          measurement_unit == "n" ~ measurement_value / sample_size_value,
+          .default = measurement_value
+        ),
+        measurement_unit = dplyr::if_else(
+          measurement_unit == "n",
+          glue::glue("{measurement_unit}/{sample_size_unit}"),
+          measurement_unit
+        )
+      ) |>
+      dplyr::select(-sample_size_value, -sample_size_unit) |>
+      dplyr::mutate(measurement_value = as.character(measurement_value))
 
     # The previous part covers whatever data is available in the abundance dataset
     # Now getting the occurrence data from the occurrence dataset

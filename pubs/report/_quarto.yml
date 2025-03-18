@@ -26,8 +26,8 @@ format:
   html:
     theme: cosmo
     toc-depth: 2
-  # docx:
-  #   toc-depth: 2
+  docx:
+    toc-depth: 2
 
 
 execute:

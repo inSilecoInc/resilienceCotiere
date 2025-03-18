@@ -106,26 +106,15 @@ ana_dominance <- function(input_files, output_path) {
 ana_richesse_specifique <- function(input_files, output_path) {
   input_files <- unlist(input_files)
 
-  # Abundance
-  ab <- get_biodiversity(input_files, "abundance", "n")
-
-  # Density
-  dn <- get_biodiversity(input_files, "abundance", "n/m2")
+  # Occurrences
+  occ <- get_biodiversity(input_files, "occurrence", NA)
 
   # Compute species richness per event
-  indicator <- dplyr::bind_rows(
-    data.frame(
-      event_id = ab$event_id,
-      indicator = "Richesse specifique",
-      indicator_value = vegan::specnumber(dplyr::select(ab, -event_id)),
-      unit = "n"
-    ),
-    data.frame(
-      event_id = dn$event_id,
-      indicator = "Richesse specifique",
-      indicator_value = vegan::specnumber(dplyr::select(dn, -event_id)),
-      unit = "n/m2"
-    )
+  indicator <- data.frame(
+    event_id = occ$event_id,
+    indicator = "Richesse specifique",
+    indicator_value = vegan::specnumber(dplyr::select(occ, -event_id)),
+    unit = "count"
   )
 
   # Save results

@@ -37,6 +37,7 @@ raw/
 *.sqlite
 *.svg
 *.png
+*.docx
 
 # Specific files & folders
 _targets
